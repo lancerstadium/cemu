@@ -1,0 +1,21 @@
+[
+{
+  "directory": "/home/lancer/item/uemu",
+  "arguments": ["/usr/bin/gcc", "-c", "-m64", "-fvisibility=hidden", "-O3", "-std=c11", "-isystem", "/home/lancer/item/uemu/build/.packages/u/unicorn/latest/4e0143c97b65425b855ad5fd03038b6a/include", "-DNDEBUG", "-o", "build/.objs/cemu/linux/x86_64/release/src/test.c.o", "src/test.c"],
+  "file": "src/test.c"
+},
+{
+  "directory": "/home/lancer/item/uemu",
+  "arguments": ["/usr/bin/gcc", "-c", "-m64", "-fvisibility=hidden", "-O3", "-std=c11", "-isystem", "/home/lancer/item/uemu/build/.packages/u/unicorn/latest/4e0143c97b65425b855ad5fd03038b6a/include", "-DNDEBUG", "-o", "build/.objs/cemu/linux/x86_64/release/src/linenoise.c.o", "src/linenoise.c"],
+  "file": "src/linenoise.c"
+},
+{
+  "directory": "/home/lancer/item/uemu",
+  "arguments": ["/usr/bin/gcc", "-c", "-m64", "-fvisibility=hidden", "-O3", "-std=c11", "-isystem", "/home/lancer/item/uemu/build/.packages/u/unicorn/latest/4e0143c97b65425b855ad5fd03038b6a/include", "-DNDEBUG", "-o", "build/.objs/cemu/linux/x86_64/release/src/log.c.o", "src/log.c"],
+  "file": "src/log.c"
+},
+{
+  "directory": "/home/lancer/item/uemu",
+  "arguments": ["/usr/bin/gcc", "-c", "-m64", "-fvisibility=hidden", "-O3", "-std=c11", "-isystem", "/home/lancer/item/uemu/build/.packages/u/unicorn/latest/4e0143c97b65425b855ad5fd03038b6a/include", "-DNDEBUG", "-o", "build/.objs/cemu/linux/x86_64/release/src/main.c.o", "src/main.c"],
+  "file": "src/main.c"
+}]

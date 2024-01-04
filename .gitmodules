@@ -1,0 +1,6 @@
+[submodule "package/doxygen-awesome-css"]
+	path = package/doxygen-awesome-css
+	url = https://github.com/jothepro/doxygen-awesome-css.git
+[submodule "package/unicorn"]
+	path = package/unicorn
+	url = https://github.com/unicorn-engine/unicorn.git
