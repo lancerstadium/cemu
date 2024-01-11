@@ -136,9 +136,13 @@ $(function(){initNavTree('globals.html',''); initResizable(); });
 
 <h3><a id="index_d" name="index_d"></a>- d -</h3><ul>
 <li>DRAM&#160;:&#160;<a class="el" href="dram_8h.html#a5c4f608d0cdf3a502dfe85d798e063ac">dram.h</a></li>
-<li>dram_load()&#160;:&#160;<a class="el" href="dram_8c.html#a51d945650b12b721792ce09cd04c6f48">dram.c</a>, <a class="el" href="dram_8h.html#a51d945650b12b721792ce09cd04c6f48">dram.h</a></li>
+<li>dram_alloc_data()&#160;:&#160;<a class="el" href="dram_8c.html#ac8d4a5ca62a22e51842fe34fd7332c2c">dram.c</a>, <a class="el" href="dram_8h.html#ac8d4a5ca62a22e51842fe34fd7332c2c">dram.h</a></li>
+<li>dram_free()&#160;:&#160;<a class="el" href="dram_8c.html#a05562b8b83599b63b38c1a966999b2fe">dram.c</a>, <a class="el" href="dram_8h.html#a05562b8b83599b63b38c1a966999b2fe">dram.h</a></li>
+<li>dram_init()&#160;:&#160;<a class="el" href="dram_8c.html#a5e7a4b3989c297778f6d25448b8b815f">dram.c</a>, <a class="el" href="dram_8h.html#a5e7a4b3989c297778f6d25448b8b815f">dram.h</a></li>
 <li>dram_load_16()&#160;:&#160;<a class="el" href="dram_8c.html#a29abfb27d75683553704b48e5b44c489">dram.c</a></li>
-<li>dram_store()&#160;:&#160;<a class="el" href="dram_8c.html#ae8add16e706dfe7b4ab4e3e0cca5f1c1">dram.c</a>, <a class="el" href="dram_8h.html#ae8add16e706dfe7b4ab4e3e0cca5f1c1">dram.h</a></li>
+<li>dram_load_data()&#160;:&#160;<a class="el" href="dram_8c.html#adf6107dcde9e8780fd226d6a2d3e9a7b">dram.c</a>, <a class="el" href="dram_8h.html#adf6107dcde9e8780fd226d6a2d3e9a7b">dram.h</a></li>
+<li>dram_release_data()&#160;:&#160;<a class="el" href="dram_8c.html#a7f93d1d7364f0cc16d2ed3772c8059d4">dram.c</a>, <a class="el" href="dram_8h.html#a7f93d1d7364f0cc16d2ed3772c8059d4">dram.h</a></li>
+<li>dram_write_data()&#160;:&#160;<a class="el" href="dram_8c.html#a2b7a105e90f45695cf8c9a170cd95e76">dram.c</a>, <a class="el" href="dram_8h.html#a2b7a105e90f45695cf8c9a170cd95e76">dram.h</a></li>
 </ul>
 
 
@@ -176,8 +180,8 @@ $(function(){initNavTree('globals.html',''); initResizable(); });
 <li>log_assert&#160;:&#160;<a class="el" href="log_8h.html#a8a5832ba98ade5cdcef7914712fb1529">log.h</a></li>
 <li>LOG_ASSERT_0&#160;:&#160;<a class="el" href="log_8h.html#aea98dd9af6733b8d171b2039d23161a6a62e4d52c0d516c82a2207048a3b40d25">log.h</a></li>
 <li>LOG_ASSERT_1&#160;:&#160;<a class="el" href="log_8h.html#aea98dd9af6733b8d171b2039d23161a6af8bda40ed64647a30bbf1c39a2845cea">log.h</a></li>
-<li>log_debug&#160;:&#160;<a class="el" href="log_8h.html#aa77e596ef13d2f0f75d0ac9540ed358d">log.h</a></li>
 <li>LOG_DEBUG&#160;:&#160;<a class="el" href="log_8h.html#aea98dd9af6733b8d171b2039d23161a6ab9f002c6ffbfd511da8090213227454e">log.h</a></li>
+<li>log_debug&#160;:&#160;<a class="el" href="log_8h.html#aa77e596ef13d2f0f75d0ac9540ed358d">log.h</a></li>
 <li>LOG_ERROR&#160;:&#160;<a class="el" href="log_8h.html#aea98dd9af6733b8d171b2039d23161a6a230506cce5c68c3bac5a821c42ed3473">log.h</a></li>
 <li>log_error&#160;:&#160;<a class="el" href="log_8h.html#a6ae72553ea9805dd87a463d6f710364d">log.h</a></li>
 <li>LOG_FATAL&#160;:&#160;<a class="el" href="log_8h.html#aea98dd9af6733b8d171b2039d23161a6ac630750884d91cb9767ef2200bbb048b">log.h</a></li>
@@ -202,6 +206,9 @@ $(function(){initNavTree('globals.html',''); initResizable(); });
 <h3><a id="index_m" name="index_m"></a>- m -</h3><ul>
 <li>main()&#160;:&#160;<a class="el" href="cemu_8c.html#adedb285b02c41bde2158ded9cc9fd7ac">cemu.c</a></li>
 <li>MAX_CALLBACKS&#160;:&#160;<a class="el" href="log_8h.html#aea0bffe478318f476a4bedee63256b2c">log.h</a></li>
+<li>mmu_get_offset()&#160;:&#160;<a class="el" href="mmu_8c.html#aea27dc1eed7c2dd3191436284b9ad8c4">mmu.c</a>, <a class="el" href="mmu_8h.html#aea27dc1eed7c2dd3191436284b9ad8c4">mmu.h</a></li>
+<li>mmu_GPA_to_HVA()&#160;:&#160;<a class="el" href="mmu_8c.html#a73b1a4f365aac4f80659ea34b442e554">mmu.c</a>, <a class="el" href="mmu_8h.html#a73b1a4f365aac4f80659ea34b442e554">mmu.h</a></li>
+<li>mmu_HVA_to_GPA()&#160;:&#160;<a class="el" href="mmu_8c.html#a90b8b8788284c94767fe1b47a0f212f6">mmu.c</a>, <a class="el" href="mmu_8h.html#a90b8b8788284c94767fe1b47a0f212f6">mmu.h</a></li>
 </ul>
 
 

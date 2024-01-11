@@ -24,20 +24,53 @@
 \DoxyCodeLine{00075\ \textcolor{comment}{//\ ====================================================================\ //}}
 \DoxyCodeLine{00076\ }
 \DoxyCodeLine{00080\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structDRAM__t}{DRAM\_t}}\ \{}
-\DoxyCodeLine{00082\ \ \ \ \ u8\ \mbox{\hyperlink{structDRAM__t_a83493b1fe45444bb6388e973ab0402fc}{mem}}[DRAM\_SIZE];}
-\DoxyCodeLine{00083\ \}\ \mbox{\hyperlink{dram_8h_a5c4f608d0cdf3a502dfe85d798e063ac}{DRAM}};}
-\DoxyCodeLine{00084\ }
-\DoxyCodeLine{00085\ }
-\DoxyCodeLine{00086\ \textcolor{comment}{//\ ====================================================================\ //}}
-\DoxyCodeLine{00087\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Declare\ API:\ DRAM}}
-\DoxyCodeLine{00088\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{comment}{//\ u8\ mem[DRAM\_SIZE];}}
+\DoxyCodeLine{00083\ \ \ \ \ u8*\ \mbox{\hyperlink{structDRAM__t_ac666ddaab4cb7b513fde8be97d81f7d8}{mem\_addr}};\ \ \textcolor{comment}{//\ 指向内存的地址指针}}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ alloc\_size;\ \ \ \ \textcolor{comment}{//\ 已分配大小}}
+\DoxyCodeLine{00085\ \ \ \ \ u8*\ alloc\_addr;\ \textcolor{comment}{//\ 指向待分配地址的指针}}
+\DoxyCodeLine{00086\ \}\ \mbox{\hyperlink{dram_8h_a5c4f608d0cdf3a502dfe85d798e063ac}{DRAM}};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ }
 \DoxyCodeLine{00089\ }
-\DoxyCodeLine{00097\ u64\ \mbox{\hyperlink{dram_8h_a51d945650b12b721792ce09cd04c6f48}{dram\_load}}(\mbox{\hyperlink{structDRAM__t}{DRAM}}*\ dram,\ u64\ addr,\ u64\ size);}
-\DoxyCodeLine{00098\ }
-\DoxyCodeLine{00106\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dram_8h_ae8add16e706dfe7b4ab4e3e0cca5f1c1}{dram\_store}}(\mbox{\hyperlink{structDRAM__t}{DRAM}}*\ dram,\ u64\ addr,\ u64\ size,\ u64\ value);}
-\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00092\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Declare\ API:\ DRAM}}
+\DoxyCodeLine{00093\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00099\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dram_8h_a5e7a4b3989c297778f6d25448b8b815f}{dram\_init}}(\mbox{\hyperlink{structDRAM__t}{DRAM}}*\ dram);}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00107\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dram_8h_ac8d4a5ca62a22e51842fe34fd7332c2c}{dram\_alloc\_data}}(\mbox{\hyperlink{structDRAM__t}{DRAM}}*\ dram,\ \textcolor{keywordtype}{size\_t}\ size,\ \textcolor{keywordtype}{void}*\ data);}
 \DoxyCodeLine{00108\ }
-\DoxyCodeLine{00109\ }
-\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ DRAM\_H}}
+\DoxyCodeLine{00116\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dram_8h_a2b7a105e90f45695cf8c9a170cd95e76}{dram\_write\_data}}(\mbox{\hyperlink{structDRAM__t}{DRAM}}*\ dram,\ \textcolor{keywordtype}{size\_t}\ offset,\ \textcolor{keywordtype}{size\_t}\ size,\ u64\ value);}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00125\ u64\ \mbox{\hyperlink{dram_8h_adf6107dcde9e8780fd226d6a2d3e9a7b}{dram\_load\_data}}(\mbox{\hyperlink{structDRAM__t}{DRAM}}*\ dram,\ \textcolor{keywordtype}{size\_t}\ offset,\ \textcolor{keywordtype}{size\_t}\ size);}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00132\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dram_8h_a7f93d1d7364f0cc16d2ed3772c8059d4}{dram\_release\_data}}(\mbox{\hyperlink{structDRAM__t}{DRAM}}*\ dram,\ \textcolor{keywordtype}{size\_t}\ size);}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00138\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dram_8h_a05562b8b83599b63b38c1a966999b2fe}{dram\_free}}(\mbox{\hyperlink{structDRAM__t}{DRAM}}*\ dram);}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00141\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Old\ API:\ DRAM}}
+\DoxyCodeLine{00142\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \textcolor{comment}{//\ /**}}
+\DoxyCodeLine{00145\ \textcolor{comment}{//\ \ *\ @brief\ DRAM加载对应地址指定大小的数据}}
+\DoxyCodeLine{00146\ \textcolor{comment}{//\ \ *\ @param\ dram\ DRAM结构体}}
+\DoxyCodeLine{00147\ \textcolor{comment}{//\ \ *\ @param\ addr\ 地址}}
+\DoxyCodeLine{00148\ \textcolor{comment}{//\ \ *\ @param\ size\ 数据大小}}
+\DoxyCodeLine{00149\ \textcolor{comment}{//\ \ *\ @return\ u64\ 数据}}
+\DoxyCodeLine{00150\ \textcolor{comment}{//\ \ */}}
+\DoxyCodeLine{00151\ \textcolor{comment}{//\ u64\ dram\_load(DRAM*\ dram,\ u64\ addr,\ u64\ size);}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \textcolor{comment}{//\ /**}}
+\DoxyCodeLine{00154\ \textcolor{comment}{//\ \ *\ @brief\ DRAM存取对应地址指定大小的数据}}
+\DoxyCodeLine{00155\ \textcolor{comment}{//\ \ *\ @param\ dram\ DRAM结构体}}
+\DoxyCodeLine{00156\ \textcolor{comment}{//\ \ *\ @param\ addr\ 地址}}
+\DoxyCodeLine{00157\ \textcolor{comment}{//\ \ *\ @param\ size\ 数据大小}}
+\DoxyCodeLine{00158\ \textcolor{comment}{//\ \ *\ @param\ value\ 数据}}
+\DoxyCodeLine{00159\ \textcolor{comment}{//\ \ */}}
+\DoxyCodeLine{00160\ \textcolor{comment}{//\ void\ dram\_store(DRAM*\ dram,\ u64\ addr,\ u64\ size,\ u64\ value);}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ DRAM\_H}}
 
 \end{DoxyCode}

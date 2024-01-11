@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['结构_0',['DRAM 结构',['../dram_8h.html#autotoc_md4',1,'']]]
+  ['总线介绍_0',['总线介绍',['../bus_8h.html#autotoc_md0',1,'']]]
 ];

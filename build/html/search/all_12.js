@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['功能_0',['DRAM 功能',['../dram_8h.html#autotoc_md5',1,'']]]
+  ['介绍_0',['介绍',['../cpu_8h.html#autotoc_md1',1,'CPU 介绍'],['../dram_8h.html#autotoc_md3',1,'DRAM 介绍']]]
 ];

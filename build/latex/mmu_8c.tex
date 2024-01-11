@@ -1,0 +1,91 @@
+\doxysection{src/cemu/mmu.c 文件参考}
+\hypertarget{mmu_8c}{}\label{mmu_8c}\index{src/cemu/mmu.c@{src/cemu/mmu.c}}
+{\ttfamily \#include "{}mmu.\+h"{}}\newline
+{\ttfamily \#include "{}log.\+h"{}}\newline
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{mmu_8c_aea27dc1eed7c2dd3191436284b9ad8c4}{mmu\+\_\+get\+\_\+offset}} (u64 base\+\_\+memory\+\_\+addr, u64 guest\+\_\+physics\+\_\+addr)
+\begin{DoxyCompactList}\small\item\em MMU获取来宾物理地址相对 DRAM\+\_\+\+BASE 的偏移量 \end{DoxyCompactList}\item 
+u64 \mbox{\hyperlink{mmu_8c_a73b1a4f365aac4f80659ea34b442e554}{mmu\+\_\+\+GPA\+\_\+to\+\_\+\+HVA}} (u64 base\+\_\+memory\+\_\+addr, u64 guest\+\_\+physics\+\_\+addr)
+\begin{DoxyCompactList}\small\item\em MMU将来宾物理地址转化为主机虚拟地址 \end{DoxyCompactList}\item 
+u64 \mbox{\hyperlink{mmu_8c_a90b8b8788284c94767fe1b47a0f212f6}{mmu\+\_\+\+HVA\+\_\+to\+\_\+\+GPA}} (u64 base\+\_\+memory\+\_\+addr, u64 host\+\_\+virtual\+\_\+addr)
+\begin{DoxyCompactList}\small\item\em MMU将主机虚拟地址转化为来宾物理地址 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyAuthor}{作者}
+your name (\href{mailto:you@domain.com}{\texttt{ you@domain.\+com}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{版本}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{日期}
+2024-\/01-\/10
+\end{DoxyDate}
+\begin{DoxyCopyright}{版权所有}
+Copyright (c) 2024 
+\end{DoxyCopyright}
+
+
+\doxysubsection{函数说明}
+\Hypertarget{mmu_8c_aea27dc1eed7c2dd3191436284b9ad8c4}\label{mmu_8c_aea27dc1eed7c2dd3191436284b9ad8c4} 
+\index{mmu.c@{mmu.c}!mmu\_get\_offset@{mmu\_get\_offset}}
+\index{mmu\_get\_offset@{mmu\_get\_offset}!mmu.c@{mmu.c}}
+\doxysubsubsection{\texorpdfstring{mmu\_get\_offset()}{mmu\_get\_offset()}}
+{\footnotesize\ttfamily size\+\_\+t mmu\+\_\+get\+\_\+offset (\begin{DoxyParamCaption}\item[{u64}]{base\+\_\+memory\+\_\+addr,  }\item[{u64}]{guest\+\_\+physics\+\_\+addr }\end{DoxyParamCaption})}
+
+
+
+MMU获取来宾物理地址相对 DRAM\+\_\+\+BASE 的偏移量 
+
+
+\begin{DoxyParams}{参数}
+{\em base\+\_\+memory\+\_\+addr} & 内存基址 {\ttfamily dram.\+mem\+\_\+addr} \\
+\hline
+{\em guest\+\_\+physics\+\_\+addr} & 来宾物理地址：比 DRAM\+\_\+\+BASE 大 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+size\+\_\+t 偏移量 
+\end{DoxyReturn}
+\Hypertarget{mmu_8c_a73b1a4f365aac4f80659ea34b442e554}\label{mmu_8c_a73b1a4f365aac4f80659ea34b442e554} 
+\index{mmu.c@{mmu.c}!mmu\_GPA\_to\_HVA@{mmu\_GPA\_to\_HVA}}
+\index{mmu\_GPA\_to\_HVA@{mmu\_GPA\_to\_HVA}!mmu.c@{mmu.c}}
+\doxysubsubsection{\texorpdfstring{mmu\_GPA\_to\_HVA()}{mmu\_GPA\_to\_HVA()}}
+{\footnotesize\ttfamily u64 mmu\+\_\+\+GPA\+\_\+to\+\_\+\+HVA (\begin{DoxyParamCaption}\item[{u64}]{base\+\_\+memory\+\_\+addr,  }\item[{u64}]{guest\+\_\+physics\+\_\+addr }\end{DoxyParamCaption})}
+
+
+
+MMU将来宾物理地址转化为主机虚拟地址 
+
+
+\begin{DoxyParams}{参数}
+{\em base\+\_\+memory\+\_\+addr} & 内存基址 {\ttfamily dram.\+mem\+\_\+addr} \\
+\hline
+{\em guest\+\_\+physics\+\_\+addr} & 来宾物理地址：比 DRAM\+\_\+\+BASE 大 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+u64 主机虚拟地址 
+\end{DoxyReturn}
+\Hypertarget{mmu_8c_a90b8b8788284c94767fe1b47a0f212f6}\label{mmu_8c_a90b8b8788284c94767fe1b47a0f212f6} 
+\index{mmu.c@{mmu.c}!mmu\_HVA\_to\_GPA@{mmu\_HVA\_to\_GPA}}
+\index{mmu\_HVA\_to\_GPA@{mmu\_HVA\_to\_GPA}!mmu.c@{mmu.c}}
+\doxysubsubsection{\texorpdfstring{mmu\_HVA\_to\_GPA()}{mmu\_HVA\_to\_GPA()}}
+{\footnotesize\ttfamily u64 mmu\+\_\+\+HVA\+\_\+to\+\_\+\+GPA (\begin{DoxyParamCaption}\item[{u64}]{base\+\_\+memory\+\_\+addr,  }\item[{u64}]{host\+\_\+virtual\+\_\+addr }\end{DoxyParamCaption})}
+
+
+
+MMU将主机虚拟地址转化为来宾物理地址 
+
+
+\begin{DoxyParams}{参数}
+{\em base\+\_\+memory\+\_\+addr} & 内存基址 \\
+\hline
+{\em host\+\_\+virtual\+\_\+addr} & 主机虚拟地址 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+u64 来宾物理地址 
+\end{DoxyReturn}

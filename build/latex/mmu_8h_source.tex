@@ -1,0 +1,31 @@
+\doxysection{mmu.\+h}
+\hypertarget{mmu_8h_source}{}\label{mmu_8h_source}\index{src/cemu/mmu.h@{src/cemu/mmu.h}}
+\mbox{\hyperlink{mmu_8h}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#ifndef\ MMU\_H}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ MMU\_H}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00052\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Include}}
+\DoxyCodeLine{00053\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{dram_8h}{dram.h}}"{}}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00061\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Declare\ API:\ MMU}}
+\DoxyCodeLine{00062\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00070\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{mmu_8h_aea27dc1eed7c2dd3191436284b9ad8c4}{mmu\_get\_offset}}(u64\ base\_memory\_addr,\ u64\ guest\_physics\_addr);}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00078\ u64\ \mbox{\hyperlink{mmu_8h_a73b1a4f365aac4f80659ea34b442e554}{mmu\_GPA\_to\_HVA}}(u64\ base\_memory\_addr,\ u64\ guest\_physics\_addr);}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00086\ u64\ \mbox{\hyperlink{mmu_8h_a90b8b8788284c94767fe1b47a0f212f6}{mmu\_HVA\_to\_GPA}}(u64\ base\_memory\_addr,\ u64\ host\_virtual\_addr);}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

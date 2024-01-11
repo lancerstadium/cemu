@@ -101,16 +101,20 @@ $(function(){initNavTree('loader_8c.html',''); initResizable(); });
 
 <p>文件加载实现  
 <a href="#details">更多...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="cpu_8h_source.html">cpu.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="loader_8h_source.html">loader.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="celf_8h_source.html">celf.h</a>&quot;</code><br />
 <code>#include &lt;errno.h&gt;</code><br />
 <code>#include &lt;fcntl.h&gt;</code><br />
+<code>#include &lt;sys/mman.h&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 函数</h2></td></tr>
 <tr class="memitem:a10be036e59ba668656090a8557eb7e29" id="r_a10be036e59ba668656090a8557eb7e29"><td class="memItemLeft" align="right" valign="top"><a id="a10be036e59ba668656090a8557eb7e29" name="a10be036e59ba668656090a8557eb7e29"></a>
 static void&#160;</td><td class="memItemRight" valign="bottom"><b>copy_to_addr</b> (char *filename, void *addr)</td></tr>
 <tr class="separator:a10be036e59ba668656090a8557eb7e29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac49c5bea0b10d6d9d41f3b28eb16c90b" id="r_ac49c5bea0b10d6d9d41f3b28eb16c90b"><td class="memItemLeft" align="right" valign="top"><a id="ac49c5bea0b10d6d9d41f3b28eb16c90b" name="ac49c5bea0b10d6d9d41f3b28eb16c90b"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>mmap_to_addr</b> (char *filename, void *addr)</td></tr>
+<tr class="separator:ac49c5bea0b10d6d9d41f3b28eb16c90b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24b71824a3471b7d534d753dff92b4b4" id="r_a24b71824a3471b7d534d753dff92b4b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a24b71824a3471b7d534d753dff92b4b4">load_file</a> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, char *filename)</td></tr>
 <tr class="memdesc:a24b71824a3471b7d534d753dff92b4b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">加载文件到处理器  <br /></td></tr>
 <tr class="separator:a24b71824a3471b7d534d753dff92b4b4"><td class="memSeparator" colspan="2">&#160;</td></tr>

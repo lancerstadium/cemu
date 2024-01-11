@@ -81,7 +81,7 @@
 \DoxyCodeLine{00087\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
 \DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ q\_l\ =\ atoi(\mbox{\hyperlink{argparse-new_8h_a08fab15af2e7e06cae1343e66cf50ead}{ap\_get}}(\textcolor{stringliteral}{"{}quiet"{}})-\/>value);}
 \DoxyCodeLine{00089\ \ \ \ \ \}}
-\DoxyCodeLine{00090\ \ \ \ \ printf(\textcolor{stringliteral}{"{}option\ quiet:\ \%d\(\backslash\)n"{}},\ q\_l);}
+\DoxyCodeLine{00090\ \ \ \ \ printf(\textcolor{stringliteral}{"{}set\ quiet:\ \%d\(\backslash\)n"{}},\ q\_l);}
 \DoxyCodeLine{00091\ \ \ \ \ ut\_set\_quiet(q\_l);}
 \DoxyCodeLine{00092\ \ \ \ \ run\_unit\_test();}
 \DoxyCodeLine{00093\ \}}
@@ -93,7 +93,7 @@
 \DoxyCodeLine{00099\ \ \ \ \ \mbox{\hyperlink{cpu_8c_acf95be96d2f1db5044b9d704edf739cd}{cpu\_init}}(\&cpu);}
 \DoxyCodeLine{00100\ \ \ \ \ \textcolor{comment}{//\ 2.\ 加载文件}}
 \DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordflow}{if}(!\mbox{\hyperlink{argparse-new_8h_a08fab15af2e7e06cae1343e66cf50ead}{ap\_get}}(\textcolor{stringliteral}{"{}input"{}})-\/>value)\ \{}
-\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}*\ default\_input\ =\ \textcolor{stringliteral}{"{}./test/temp\_01.out"{}};}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}*\ default\_input\ =\ \textcolor{stringliteral}{"{}./test/temp\_02.out"{}};}
 \DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{log_8h_a04af09851c431d178f16b24fa1aac1e9}{log\_warn}}(\textcolor{stringliteral}{"{}No\ input\ file,\ use:\ \%s"{}},\ default\_input);}
 \DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ load\_elf(\&cpu,\ default\_input);}
 \DoxyCodeLine{00105\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}

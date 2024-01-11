@@ -1,0 +1,109 @@
+\doxysection{src/cemu/mmu.h 文件参考}
+\hypertarget{mmu_8h}{}\label{mmu_8h}\index{src/cemu/mmu.h@{src/cemu/mmu.h}}
+{\ttfamily \#include "{}dram.\+h"{}}\newline
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{mmu_8h_aea27dc1eed7c2dd3191436284b9ad8c4}{mmu\+\_\+get\+\_\+offset}} (u64 base\+\_\+memory\+\_\+addr, u64 guest\+\_\+physics\+\_\+addr)
+\begin{DoxyCompactList}\small\item\em MMU获取来宾物理地址相对 DRAM\+\_\+\+BASE 的偏移量 \end{DoxyCompactList}\item 
+u64 \mbox{\hyperlink{mmu_8h_a73b1a4f365aac4f80659ea34b442e554}{mmu\+\_\+\+GPA\+\_\+to\+\_\+\+HVA}} (u64 base\+\_\+memory\+\_\+addr, u64 guest\+\_\+physics\+\_\+addr)
+\begin{DoxyCompactList}\small\item\em MMU将来宾物理地址转化为主机虚拟地址 \end{DoxyCompactList}\item 
+u64 \mbox{\hyperlink{mmu_8h_a90b8b8788284c94767fe1b47a0f212f6}{mmu\+\_\+\+HVA\+\_\+to\+\_\+\+GPA}} (u64 base\+\_\+memory\+\_\+addr, u64 host\+\_\+virtual\+\_\+addr)
+\begin{DoxyCompactList}\small\item\em MMU将主机虚拟地址转化为来宾物理地址 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyAuthor}{作者}
+your name (\href{mailto:you@domain.com}{\texttt{ you@domain.\+com}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{版本}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{日期}
+2024-\/01-\/09
+\end{DoxyDate}
+\begin{DoxyCopyright}{版权所有}
+Copyright (c) 2024
+\end{DoxyCopyright}
+\hypertarget{mmu_8h_autotoc_md6}{}\doxysubsection{\texorpdfstring{MMU 设计}{MMU 设计}}\label{mmu_8h_autotoc_md6}
+
+\begin{DoxyItemize}
+\item 关于\+MMU具体如何进行地址映射, 目前主要有两种主流的方式：
+\end{DoxyItemize}\hypertarget{mmu_8h_autotoc_md7}{}\doxysubsubsection{\texorpdfstring{直接映射}{直接映射}}\label{mmu_8h_autotoc_md7}
+
+\begin{DoxyItemize}
+\item 最简单的方法就是：物理地址 = 虚拟地址 + 偏移量。 这种最朴素的方式就是段式虚拟内存管理机制, 简称分段机制。 从直觉上来理解, 就是把物理内存划分成若干个段, 不同的进程就放到不同的段中运行, 进程不需要关心自己具体在哪一个段里面, 操作系统只要让不同的进程使用不同的偏移量, 进程之间就不会相互干扰了.
+\item 分段机制在硬件上的实现可以非常简单, 只需要在\+MMU中实现一个段基址寄存器就可以了。 操作系统在运行不同进程的时候, 就在段基址寄存器中设置不同的值, MMU会把进程使用的虚拟地址加上段基址, 来生成真正用于访问内存的物理地址
+\item 在的大部分操作系统都不再使用分段机制, 就连i386手册中也提到可以想办法"{}绕过"{}它来提高性能\+: 将段基地址设成0, 长度设成4\+GB, 这样看来就像没有段的概念一样, 这就是i386手册中提到的"{}扁平模式"{}
+\end{DoxyItemize}\hypertarget{mmu_8h_autotoc_md8}{}\doxysubsubsection{\texorpdfstring{分页机制}{分页机制}}\label{mmu_8h_autotoc_md8}
+
+\begin{DoxyItemize}
+\item i386是x86史上首次引进分页机制的处理器, 它把物理内存划分成以4\+KB为单位的页面, 同时也采用了二级页表的结构. 为了方便叙述, i386给第一级页表取了个新名字叫"{}页目录"{}.
+\item 每一张页目录和页表都有1024个表项, 每个表项的大小都是4字节, 除了包含页表(或者物理页)的基地址, 还包含一些标志位信息. 因此, 一张页目录或页表的大小是4\+KB, 要放在寄存器中是不可能的, 因此它们要放在内存中. 为了找到页目录, i386提供了一个\+CR3(control register 3)寄存器, 专门用于存放页目录的基地址
+\end{DoxyItemize}\hypertarget{mmu_8h_autotoc_md9}{}\doxysubsubsection{\texorpdfstring{riscv64需要实现三级页表}{riscv64需要实现三级页表}}\label{mmu_8h_autotoc_md9}
+
+\begin{DoxyItemize}
+\item riscv32的\+Sv32机制只能对32位的虚拟地址进行地址转换, 但riscv64的虚拟地址最长是64位, 因此需要有另外的机制来支持更长的虚拟地址的地址转换. 需要实现\+Sv39三级页表的分页机制即可, 而且\+PA只会使用4\+KB小页面, 不会使用2\+MB的大页面, 因此你无需实现\+Sv39的大页面功能. 具体细节请\+RTFM. 
+\end{DoxyItemize}
+
+\doxysubsection{函数说明}
+\Hypertarget{mmu_8h_aea27dc1eed7c2dd3191436284b9ad8c4}\label{mmu_8h_aea27dc1eed7c2dd3191436284b9ad8c4} 
+\index{mmu.h@{mmu.h}!mmu\_get\_offset@{mmu\_get\_offset}}
+\index{mmu\_get\_offset@{mmu\_get\_offset}!mmu.h@{mmu.h}}
+\doxysubsubsection{\texorpdfstring{mmu\_get\_offset()}{mmu\_get\_offset()}}
+{\footnotesize\ttfamily size\+\_\+t mmu\+\_\+get\+\_\+offset (\begin{DoxyParamCaption}\item[{u64}]{base\+\_\+memory\+\_\+addr,  }\item[{u64}]{guest\+\_\+physics\+\_\+addr }\end{DoxyParamCaption})}
+
+
+
+MMU获取来宾物理地址相对 DRAM\+\_\+\+BASE 的偏移量 
+
+
+\begin{DoxyParams}{参数}
+{\em base\+\_\+memory\+\_\+addr} & 内存基址 {\ttfamily dram.\+mem\+\_\+addr} \\
+\hline
+{\em guest\+\_\+physics\+\_\+addr} & 来宾物理地址：比 DRAM\+\_\+\+BASE 大 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+size\+\_\+t 偏移量 
+\end{DoxyReturn}
+\Hypertarget{mmu_8h_a73b1a4f365aac4f80659ea34b442e554}\label{mmu_8h_a73b1a4f365aac4f80659ea34b442e554} 
+\index{mmu.h@{mmu.h}!mmu\_GPA\_to\_HVA@{mmu\_GPA\_to\_HVA}}
+\index{mmu\_GPA\_to\_HVA@{mmu\_GPA\_to\_HVA}!mmu.h@{mmu.h}}
+\doxysubsubsection{\texorpdfstring{mmu\_GPA\_to\_HVA()}{mmu\_GPA\_to\_HVA()}}
+{\footnotesize\ttfamily u64 mmu\+\_\+\+GPA\+\_\+to\+\_\+\+HVA (\begin{DoxyParamCaption}\item[{u64}]{base\+\_\+memory\+\_\+addr,  }\item[{u64}]{guest\+\_\+physics\+\_\+addr }\end{DoxyParamCaption})}
+
+
+
+MMU将来宾物理地址转化为主机虚拟地址 
+
+
+\begin{DoxyParams}{参数}
+{\em base\+\_\+memory\+\_\+addr} & 内存基址 {\ttfamily dram.\+mem\+\_\+addr} \\
+\hline
+{\em guest\+\_\+physics\+\_\+addr} & 来宾物理地址：比 DRAM\+\_\+\+BASE 大 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+u64 主机虚拟地址 
+\end{DoxyReturn}
+\Hypertarget{mmu_8h_a90b8b8788284c94767fe1b47a0f212f6}\label{mmu_8h_a90b8b8788284c94767fe1b47a0f212f6} 
+\index{mmu.h@{mmu.h}!mmu\_HVA\_to\_GPA@{mmu\_HVA\_to\_GPA}}
+\index{mmu\_HVA\_to\_GPA@{mmu\_HVA\_to\_GPA}!mmu.h@{mmu.h}}
+\doxysubsubsection{\texorpdfstring{mmu\_HVA\_to\_GPA()}{mmu\_HVA\_to\_GPA()}}
+{\footnotesize\ttfamily u64 mmu\+\_\+\+HVA\+\_\+to\+\_\+\+GPA (\begin{DoxyParamCaption}\item[{u64}]{base\+\_\+memory\+\_\+addr,  }\item[{u64}]{host\+\_\+virtual\+\_\+addr }\end{DoxyParamCaption})}
+
+
+
+MMU将主机虚拟地址转化为来宾物理地址 
+
+
+\begin{DoxyParams}{参数}
+{\em base\+\_\+memory\+\_\+addr} & 内存基址 \\
+\hline
+{\em host\+\_\+virtual\+\_\+addr} & 主机虚拟地址 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+u64 来宾物理地址 
+\end{DoxyReturn}

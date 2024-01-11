@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['指令译码_0',['指令译码',['../opcode_8h.html#autotoc_md6',1,'']]]
+  ['取指与执行循环_0',['CPU 取指与执行循环',['../cpu_8h.html#autotoc_md2',1,'']]]
 ];

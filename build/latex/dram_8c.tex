@@ -6,6 +6,7 @@ DRAM功能实现
 
 
 {\ttfamily \#include "{}dram.\+h"{}}\newline
+{\ttfamily \#include "{}log.\+h"{}}\newline
 \doxysubsubsection*{函数}
 \begin{DoxyCompactItemize}
 \item 
@@ -32,10 +33,18 @@ static void {\bfseries dram\+\_\+store\+\_\+32} (\mbox{\hyperlink{dram_8h_a5c4f6
 \Hypertarget{dram_8c_a3107a7f87852889254f9276a078cc45b}\label{dram_8c_a3107a7f87852889254f9276a078cc45b} 
 static void {\bfseries dram\+\_\+store\+\_\+64} (\mbox{\hyperlink{dram_8h_a5c4f608d0cdf3a502dfe85d798e063ac}{DRAM}} \texorpdfstring{$\ast$}{*}dram, u64 addr, u64 value)
 \item 
-u64 \mbox{\hyperlink{dram_8c_a51d945650b12b721792ce09cd04c6f48}{dram\+\_\+load}} (\mbox{\hyperlink{dram_8h_a5c4f608d0cdf3a502dfe85d798e063ac}{DRAM}} \texorpdfstring{$\ast$}{*}dram, u64 addr, u64 size)
-\begin{DoxyCompactList}\small\item\em DRAM加载对应地址指定大小的数据 \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{dram_8c_ae8add16e706dfe7b4ab4e3e0cca5f1c1}{dram\+\_\+store}} (\mbox{\hyperlink{dram_8h_a5c4f608d0cdf3a502dfe85d798e063ac}{DRAM}} \texorpdfstring{$\ast$}{*}dram, u64 addr, u64 size, u64 value)
-\begin{DoxyCompactList}\small\item\em DRAM存取对应地址指定大小的数据 \end{DoxyCompactList}\end{DoxyCompactItemize}
+void \mbox{\hyperlink{dram_8c_a5e7a4b3989c297778f6d25448b8b815f}{dram\+\_\+init}} (\mbox{\hyperlink{dram_8h_a5c4f608d0cdf3a502dfe85d798e063ac}{DRAM}} \texorpdfstring{$\ast$}{*}dram)
+\begin{DoxyCompactList}\small\item\em 初始化\+DRAM结构体 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{dram_8c_ac8d4a5ca62a22e51842fe34fd7332c2c}{dram\+\_\+alloc\+\_\+data}} (\mbox{\hyperlink{dram_8h_a5c4f608d0cdf3a502dfe85d798e063ac}{DRAM}} \texorpdfstring{$\ast$}{*}dram, size\+\_\+t size, void \texorpdfstring{$\ast$}{*}data)
+\begin{DoxyCompactList}\small\item\em DRAM追加数据 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{dram_8c_a2b7a105e90f45695cf8c9a170cd95e76}{dram\+\_\+write\+\_\+data}} (\mbox{\hyperlink{dram_8h_a5c4f608d0cdf3a502dfe85d798e063ac}{DRAM}} \texorpdfstring{$\ast$}{*}dram, size\+\_\+t offset, size\+\_\+t size, u64 value)
+\begin{DoxyCompactList}\small\item\em DRAM向指定地址写入数据 \end{DoxyCompactList}\item 
+u64 \mbox{\hyperlink{dram_8c_adf6107dcde9e8780fd226d6a2d3e9a7b}{dram\+\_\+load\+\_\+data}} (\mbox{\hyperlink{dram_8h_a5c4f608d0cdf3a502dfe85d798e063ac}{DRAM}} \texorpdfstring{$\ast$}{*}dram, size\+\_\+t offset, size\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em DRAM在指定地址加载数据 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{dram_8c_a7f93d1d7364f0cc16d2ed3772c8059d4}{dram\+\_\+release\+\_\+data}} (\mbox{\hyperlink{dram_8h_a5c4f608d0cdf3a502dfe85d798e063ac}{DRAM}} \texorpdfstring{$\ast$}{*}dram, size\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em DRAM释放尾部数据 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{dram_8c_a05562b8b83599b63b38c1a966999b2fe}{dram\+\_\+free}} (\mbox{\hyperlink{dram_8h_a5c4f608d0cdf3a502dfe85d798e063ac}{DRAM}} \texorpdfstring{$\ast$}{*}dram)
+\begin{DoxyCompactList}\small\item\em 释放\+DRAM \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{详细描述}
@@ -56,19 +65,55 @@ Copyright (c) 2024
 
 
 \doxysubsection{函数说明}
-\Hypertarget{dram_8c_a51d945650b12b721792ce09cd04c6f48}\label{dram_8c_a51d945650b12b721792ce09cd04c6f48} 
-\index{dram.c@{dram.c}!dram\_load@{dram\_load}}
-\index{dram\_load@{dram\_load}!dram.c@{dram.c}}
-\doxysubsubsection{\texorpdfstring{dram\_load()}{dram\_load()}}
-{\footnotesize\ttfamily u64 dram\+\_\+load (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dram_8h_a5c4f608d0cdf3a502dfe85d798e063ac}{DRAM}} \texorpdfstring{$\ast$}{*}}]{dram,  }\item[{u64}]{addr,  }\item[{u64}]{size }\end{DoxyParamCaption})}
+\Hypertarget{dram_8c_ac8d4a5ca62a22e51842fe34fd7332c2c}\label{dram_8c_ac8d4a5ca62a22e51842fe34fd7332c2c} 
+\index{dram.c@{dram.c}!dram\_alloc\_data@{dram\_alloc\_data}}
+\index{dram\_alloc\_data@{dram\_alloc\_data}!dram.c@{dram.c}}
+\doxysubsubsection{\texorpdfstring{dram\_alloc\_data()}{dram\_alloc\_data()}}
+{\footnotesize\ttfamily void dram\+\_\+alloc\+\_\+data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dram_8h_a5c4f608d0cdf3a502dfe85d798e063ac}{DRAM}} \texorpdfstring{$\ast$}{*}}]{dram,  }\item[{size\+\_\+t}]{size,  }\item[{void \texorpdfstring{$\ast$}{*}}]{data }\end{DoxyParamCaption})}
 
 
 
-DRAM加载对应地址指定大小的数据 
+DRAM追加数据 
 
-\begin{DoxyNote}{注解}
-为了获取{\ttfamily addr}参数给定的地址上的数据， 我们需要从{\ttfamily addr}中减去{\ttfamily DRAM\+\_\+\+BASE}。 数据的实际起始地址为{\ttfamily mem\mbox{[}addr-\/\+DRAM\+\_\+\+BASE\mbox{]}} 
-\end{DoxyNote}
+
+\begin{DoxyParams}{参数}
+{\em dram} & 动态随机存取存储器 \\
+\hline
+{\em size} & 申请大小 \\
+\hline
+{\em data} & 数据 \\
+\hline
+\end{DoxyParams}
+\Hypertarget{dram_8c_a05562b8b83599b63b38c1a966999b2fe}\label{dram_8c_a05562b8b83599b63b38c1a966999b2fe} 
+\index{dram.c@{dram.c}!dram\_free@{dram\_free}}
+\index{dram\_free@{dram\_free}!dram.c@{dram.c}}
+\doxysubsubsection{\texorpdfstring{dram\_free()}{dram\_free()}}
+{\footnotesize\ttfamily void dram\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dram_8h_a5c4f608d0cdf3a502dfe85d798e063ac}{DRAM}} \texorpdfstring{$\ast$}{*}}]{dram }\end{DoxyParamCaption})}
+
+
+
+释放\+DRAM 
+
+
+\begin{DoxyParams}{参数}
+{\em dram} & 动态随机存取存储器 \\
+\hline
+\end{DoxyParams}
+\Hypertarget{dram_8c_a5e7a4b3989c297778f6d25448b8b815f}\label{dram_8c_a5e7a4b3989c297778f6d25448b8b815f} 
+\index{dram.c@{dram.c}!dram\_init@{dram\_init}}
+\index{dram\_init@{dram\_init}!dram.c@{dram.c}}
+\doxysubsubsection{\texorpdfstring{dram\_init()}{dram\_init()}}
+{\footnotesize\ttfamily void dram\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dram_8h_a5c4f608d0cdf3a502dfe85d798e063ac}{DRAM}} \texorpdfstring{$\ast$}{*}}]{dram }\end{DoxyParamCaption})}
+
+
+
+初始化\+DRAM结构体 
+
+
+\begin{DoxyParams}{参数}
+{\em dram} & 动态随机存取存储器 \\
+\hline
+\end{DoxyParams}
 \Hypertarget{dram_8c_a29abfb27d75683553704b48e5b44c489}\label{dram_8c_a29abfb27d75683553704b48e5b44c489} 
 \index{dram.c@{dram.c}!dram\_load\_16@{dram\_load\_16}}
 \index{dram\_load\_16@{dram\_load\_16}!dram.c@{dram.c}}
@@ -78,24 +123,63 @@ DRAM加载对应地址指定大小的数据
 \begin{DoxyNote}{注解}
 小端法是将最小端（权值最低位）最先存储。 当读取数据时，我们先读取最低的地址中存放的值通过返回值输送给总线， 随后左移 8 位（1 字节）并与 0xff（8 个 1）进行与操作来得到最低字节的数据， 并清空高字节以便用于或操作。 
 \end{DoxyNote}
-\Hypertarget{dram_8c_ae8add16e706dfe7b4ab4e3e0cca5f1c1}\label{dram_8c_ae8add16e706dfe7b4ab4e3e0cca5f1c1} 
-\index{dram.c@{dram.c}!dram\_store@{dram\_store}}
-\index{dram\_store@{dram\_store}!dram.c@{dram.c}}
-\doxysubsubsection{\texorpdfstring{dram\_store()}{dram\_store()}}
-{\footnotesize\ttfamily void dram\+\_\+store (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dram_8h_a5c4f608d0cdf3a502dfe85d798e063ac}{DRAM}} \texorpdfstring{$\ast$}{*}}]{dram,  }\item[{u64}]{addr,  }\item[{u64}]{size,  }\item[{u64}]{value }\end{DoxyParamCaption})}
+\Hypertarget{dram_8c_adf6107dcde9e8780fd226d6a2d3e9a7b}\label{dram_8c_adf6107dcde9e8780fd226d6a2d3e9a7b} 
+\index{dram.c@{dram.c}!dram\_load\_data@{dram\_load\_data}}
+\index{dram\_load\_data@{dram\_load\_data}!dram.c@{dram.c}}
+\doxysubsubsection{\texorpdfstring{dram\_load\_data()}{dram\_load\_data()}}
+{\footnotesize\ttfamily u64 dram\+\_\+load\+\_\+data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dram_8h_a5c4f608d0cdf3a502dfe85d798e063ac}{DRAM}} \texorpdfstring{$\ast$}{*}}]{dram,  }\item[{size\+\_\+t}]{offset,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
 
 
 
-DRAM存取对应地址指定大小的数据 
+DRAM在指定地址加载数据 
 
 
 \begin{DoxyParams}{参数}
-{\em dram} & DRAM结构体 \\
+{\em dram} & 动态随机存取存储器 \\
 \hline
-{\em addr} & 地址 \\
+{\em offset} & 偏移量 \\
 \hline
 {\em size} & 数据大小 \\
 \hline
-{\em value} & 数据 \\
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+u64 数据地址 
+\end{DoxyReturn}
+\Hypertarget{dram_8c_a7f93d1d7364f0cc16d2ed3772c8059d4}\label{dram_8c_a7f93d1d7364f0cc16d2ed3772c8059d4} 
+\index{dram.c@{dram.c}!dram\_release\_data@{dram\_release\_data}}
+\index{dram\_release\_data@{dram\_release\_data}!dram.c@{dram.c}}
+\doxysubsubsection{\texorpdfstring{dram\_release\_data()}{dram\_release\_data()}}
+{\footnotesize\ttfamily void dram\+\_\+release\+\_\+data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dram_8h_a5c4f608d0cdf3a502dfe85d798e063ac}{DRAM}} \texorpdfstring{$\ast$}{*}}]{dram,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+
+
+DRAM释放尾部数据 
+
+
+\begin{DoxyParams}{参数}
+{\em dram} & 动态随机存取存储器 \\
+\hline
+{\em size} & 数据大小 \\
+\hline
+\end{DoxyParams}
+\Hypertarget{dram_8c_a2b7a105e90f45695cf8c9a170cd95e76}\label{dram_8c_a2b7a105e90f45695cf8c9a170cd95e76} 
+\index{dram.c@{dram.c}!dram\_write\_data@{dram\_write\_data}}
+\index{dram\_write\_data@{dram\_write\_data}!dram.c@{dram.c}}
+\doxysubsubsection{\texorpdfstring{dram\_write\_data()}{dram\_write\_data()}}
+{\footnotesize\ttfamily void dram\+\_\+write\+\_\+data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dram_8h_a5c4f608d0cdf3a502dfe85d798e063ac}{DRAM}} \texorpdfstring{$\ast$}{*}}]{dram,  }\item[{size\+\_\+t}]{offset,  }\item[{size\+\_\+t}]{size,  }\item[{u64}]{value }\end{DoxyParamCaption})}
+
+
+
+DRAM向指定地址写入数据 
+
+
+\begin{DoxyParams}{参数}
+{\em dram} & 动态随机存取存储器 \\
+\hline
+{\em offset} & 偏移量 \\
+\hline
+{\em size} & 数据大小 \\
+\hline
+{\em value} & 数据值 \\
 \hline
 \end{DoxyParams}

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mem_0',['mem',['../structDRAM__t.html#a83493b1fe45444bb6388e973ab0402fc',1,'DRAM_t']]]
+  ['mem_5faddr_0',['mem_addr',['../structDRAM__t.html#ac666ddaab4cb7b513fde8be97d81f7d8',1,'DRAM_t']]]
 ];

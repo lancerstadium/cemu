@@ -5,15 +5,19 @@
 文件加载实现  
 
 
-{\ttfamily \#include "{}cpu.\+h"{}}\newline
+{\ttfamily \#include "{}loader.\+h"{}}\newline
 {\ttfamily \#include "{}celf.\+h"{}}\newline
 {\ttfamily \#include $<$errno.\+h$>$}\newline
 {\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$sys/mman.\+h$>$}\newline
 \doxysubsubsection*{函数}
 \begin{DoxyCompactItemize}
 \item 
 \Hypertarget{loader_8c_a10be036e59ba668656090a8557eb7e29}\label{loader_8c_a10be036e59ba668656090a8557eb7e29} 
 static void {\bfseries copy\+\_\+to\+\_\+addr} (char \texorpdfstring{$\ast$}{*}filename, void \texorpdfstring{$\ast$}{*}addr)
+\item 
+\Hypertarget{loader_8c_ac49c5bea0b10d6d9d41f3b28eb16c90b}\label{loader_8c_ac49c5bea0b10d6d9d41f3b28eb16c90b} 
+static void {\bfseries mmap\+\_\+to\+\_\+addr} (char \texorpdfstring{$\ast$}{*}filename, void \texorpdfstring{$\ast$}{*}addr)
 \item 
 void \mbox{\hyperlink{loader_8c_a24b71824a3471b7d534d753dff92b4b4}{load\+\_\+file}} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, char \texorpdfstring{$\ast$}{*}filename)
 \begin{DoxyCompactList}\small\item\em 加载文件到处理器 \end{DoxyCompactList}\item 

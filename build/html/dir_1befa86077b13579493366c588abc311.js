@@ -15,5 +15,7 @@ var dir_1befa86077b13579493366c588abc311 =
     [ "list.h", "list_8h.html", "list_8h" ],
     [ "loader.c", "loader_8c.html", "loader_8c" ],
     [ "loader.h", "loader_8h.html", "loader_8h" ],
+    [ "mmu.c", "mmu_8c.html", "mmu_8c" ],
+    [ "mmu.h", "mmu_8h.html", "mmu_8h" ],
     [ "opcode.h", "opcode_8h.html", null ]
 ];

@@ -102,6 +102,7 @@ $(function(){initNavTree('dram_8c.html',''); initResizable(); });
 <p>DRAM功能实现  
 <a href="#details">更多...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="dram_8h_source.html">dram.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="log_8h_source.html">log.h</a>&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 函数</h2></td></tr>
@@ -128,12 +129,24 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>dram_store_32<
 <tr class="memitem:a3107a7f87852889254f9276a078cc45b" id="r_a3107a7f87852889254f9276a078cc45b"><td class="memItemLeft" align="right" valign="top"><a id="a3107a7f87852889254f9276a078cc45b" name="a3107a7f87852889254f9276a078cc45b"></a>
 static void&#160;</td><td class="memItemRight" valign="bottom"><b>dram_store_64</b> (<a class="el" href="dram_8h.html#a5c4f608d0cdf3a502dfe85d798e063ac">DRAM</a> *dram, u64 addr, u64 value)</td></tr>
 <tr class="separator:a3107a7f87852889254f9276a078cc45b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a51d945650b12b721792ce09cd04c6f48" id="r_a51d945650b12b721792ce09cd04c6f48"><td class="memItemLeft" align="right" valign="top">u64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a51d945650b12b721792ce09cd04c6f48">dram_load</a> (<a class="el" href="dram_8h.html#a5c4f608d0cdf3a502dfe85d798e063ac">DRAM</a> *dram, u64 addr, u64 size)</td></tr>
-<tr class="memdesc:a51d945650b12b721792ce09cd04c6f48"><td class="mdescLeft">&#160;</td><td class="mdescRight">DRAM加载对应地址指定大小的数据  <br /></td></tr>
-<tr class="separator:a51d945650b12b721792ce09cd04c6f48"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae8add16e706dfe7b4ab4e3e0cca5f1c1" id="r_ae8add16e706dfe7b4ab4e3e0cca5f1c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae8add16e706dfe7b4ab4e3e0cca5f1c1">dram_store</a> (<a class="el" href="dram_8h.html#a5c4f608d0cdf3a502dfe85d798e063ac">DRAM</a> *dram, u64 addr, u64 size, u64 value)</td></tr>
-<tr class="memdesc:ae8add16e706dfe7b4ab4e3e0cca5f1c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">DRAM存取对应地址指定大小的数据  <br /></td></tr>
-<tr class="separator:ae8add16e706dfe7b4ab4e3e0cca5f1c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e7a4b3989c297778f6d25448b8b815f" id="r_a5e7a4b3989c297778f6d25448b8b815f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5e7a4b3989c297778f6d25448b8b815f">dram_init</a> (<a class="el" href="dram_8h.html#a5c4f608d0cdf3a502dfe85d798e063ac">DRAM</a> *dram)</td></tr>
+<tr class="memdesc:a5e7a4b3989c297778f6d25448b8b815f"><td class="mdescLeft">&#160;</td><td class="mdescRight">初始化DRAM结构体  <br /></td></tr>
+<tr class="separator:a5e7a4b3989c297778f6d25448b8b815f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8d4a5ca62a22e51842fe34fd7332c2c" id="r_ac8d4a5ca62a22e51842fe34fd7332c2c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac8d4a5ca62a22e51842fe34fd7332c2c">dram_alloc_data</a> (<a class="el" href="dram_8h.html#a5c4f608d0cdf3a502dfe85d798e063ac">DRAM</a> *dram, size_t size, void *data)</td></tr>
+<tr class="memdesc:ac8d4a5ca62a22e51842fe34fd7332c2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">DRAM追加数据  <br /></td></tr>
+<tr class="separator:ac8d4a5ca62a22e51842fe34fd7332c2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b7a105e90f45695cf8c9a170cd95e76" id="r_a2b7a105e90f45695cf8c9a170cd95e76"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2b7a105e90f45695cf8c9a170cd95e76">dram_write_data</a> (<a class="el" href="dram_8h.html#a5c4f608d0cdf3a502dfe85d798e063ac">DRAM</a> *dram, size_t offset, size_t size, u64 value)</td></tr>
+<tr class="memdesc:a2b7a105e90f45695cf8c9a170cd95e76"><td class="mdescLeft">&#160;</td><td class="mdescRight">DRAM向指定地址写入数据  <br /></td></tr>
+<tr class="separator:a2b7a105e90f45695cf8c9a170cd95e76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf6107dcde9e8780fd226d6a2d3e9a7b" id="r_adf6107dcde9e8780fd226d6a2d3e9a7b"><td class="memItemLeft" align="right" valign="top">u64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adf6107dcde9e8780fd226d6a2d3e9a7b">dram_load_data</a> (<a class="el" href="dram_8h.html#a5c4f608d0cdf3a502dfe85d798e063ac">DRAM</a> *dram, size_t offset, size_t size)</td></tr>
+<tr class="memdesc:adf6107dcde9e8780fd226d6a2d3e9a7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">DRAM在指定地址加载数据  <br /></td></tr>
+<tr class="separator:adf6107dcde9e8780fd226d6a2d3e9a7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f93d1d7364f0cc16d2ed3772c8059d4" id="r_a7f93d1d7364f0cc16d2ed3772c8059d4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7f93d1d7364f0cc16d2ed3772c8059d4">dram_release_data</a> (<a class="el" href="dram_8h.html#a5c4f608d0cdf3a502dfe85d798e063ac">DRAM</a> *dram, size_t size)</td></tr>
+<tr class="memdesc:a7f93d1d7364f0cc16d2ed3772c8059d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">DRAM释放尾部数据  <br /></td></tr>
+<tr class="separator:a7f93d1d7364f0cc16d2ed3772c8059d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05562b8b83599b63b38c1a966999b2fe" id="r_a05562b8b83599b63b38c1a966999b2fe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a05562b8b83599b63b38c1a966999b2fe">dram_free</a> (<a class="el" href="dram_8h.html#a5c4f608d0cdf3a502dfe85d798e063ac">DRAM</a> *dram)</td></tr>
+<tr class="memdesc:a05562b8b83599b63b38c1a966999b2fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">释放DRAM  <br /></td></tr>
+<tr class="separator:a05562b8b83599b63b38c1a966999b2fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>DRAM功能实现 </p>
@@ -142,32 +155,89 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>dram_store_64<
 <dl class="section date"><dt>日期</dt><dd>2024-01-08 </dd></dl>
 <dl class="section copyright"><dt>版权所有</dt><dd>Copyright (c) 2024 </dd></dl>
 </div><h2 class="groupheader">函数说明</h2>
-<a id="a51d945650b12b721792ce09cd04c6f48" name="a51d945650b12b721792ce09cd04c6f48"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a51d945650b12b721792ce09cd04c6f48">&#9670;&#160;</a></span>dram_load()</h2>
+<a id="ac8d4a5ca62a22e51842fe34fd7332c2c" name="ac8d4a5ca62a22e51842fe34fd7332c2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8d4a5ca62a22e51842fe34fd7332c2c">&#9670;&#160;</a></span>dram_alloc_data()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">u64 dram_load </td>
+          <td class="memname">void dram_alloc_data </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="dram_8h.html#a5c4f608d0cdf3a502dfe85d798e063ac">DRAM</a> *</td>          <td class="paramname"><span class="paramname"><em>dram</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">u64</td>          <td class="paramname"><span class="paramname"><em>addr</em>, </span></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>size</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">u64</td>          <td class="paramname"><span class="paramname"><em>size</em></span>&#160;)</td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>data</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>DRAM加载对应地址指定大小的数据 </p>
-<dl class="section note"><dt>注解</dt><dd>为了获取<code>addr</code>参数给定的地址上的数据， 我们需要从<code>addr</code>中减去<code>DRAM_BASE</code>。 数据的实际起始地址为<code>mem[addr-DRAM_BASE]</code> </dd></dl>
+<p>DRAM追加数据 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dram</td><td>动态随机存取存储器 </td></tr>
+    <tr><td class="paramname">size</td><td>申请大小 </td></tr>
+    <tr><td class="paramname">data</td><td>数据 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a05562b8b83599b63b38c1a966999b2fe" name="a05562b8b83599b63b38c1a966999b2fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05562b8b83599b63b38c1a966999b2fe">&#9670;&#160;</a></span>dram_free()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void dram_free </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="dram_8h.html#a5c4f608d0cdf3a502dfe85d798e063ac">DRAM</a> *</td>          <td class="paramname"><span class="paramname"><em>dram</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>释放DRAM </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dram</td><td>动态随机存取存储器 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5e7a4b3989c297778f6d25448b8b815f" name="a5e7a4b3989c297778f6d25448b8b815f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e7a4b3989c297778f6d25448b8b815f">&#9670;&#160;</a></span>dram_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void dram_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="dram_8h.html#a5c4f608d0cdf3a502dfe85d798e063ac">DRAM</a> *</td>          <td class="paramname"><span class="paramname"><em>dram</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>初始化DRAM结构体 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dram</td><td>动态随机存取存储器 </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -201,26 +271,93 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>dram_store_64<
 
 </div>
 </div>
-<a id="ae8add16e706dfe7b4ab4e3e0cca5f1c1" name="ae8add16e706dfe7b4ab4e3e0cca5f1c1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae8add16e706dfe7b4ab4e3e0cca5f1c1">&#9670;&#160;</a></span>dram_store()</h2>
+<a id="adf6107dcde9e8780fd226d6a2d3e9a7b" name="adf6107dcde9e8780fd226d6a2d3e9a7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf6107dcde9e8780fd226d6a2d3e9a7b">&#9670;&#160;</a></span>dram_load_data()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void dram_store </td>
+          <td class="memname">u64 dram_load_data </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="dram_8h.html#a5c4f608d0cdf3a502dfe85d798e063ac">DRAM</a> *</td>          <td class="paramname"><span class="paramname"><em>dram</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">u64</td>          <td class="paramname"><span class="paramname"><em>addr</em>, </span></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>offset</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">u64</td>          <td class="paramname"><span class="paramname"><em>size</em>, </span></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>size</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>DRAM在指定地址加载数据 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dram</td><td>动态随机存取存储器 </td></tr>
+    <tr><td class="paramname">offset</td><td>偏移量 </td></tr>
+    <tr><td class="paramname">size</td><td>数据大小 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>u64 数据地址 </dd></dl>
+
+</div>
+</div>
+<a id="a7f93d1d7364f0cc16d2ed3772c8059d4" name="a7f93d1d7364f0cc16d2ed3772c8059d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f93d1d7364f0cc16d2ed3772c8059d4">&#9670;&#160;</a></span>dram_release_data()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void dram_release_data </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="dram_8h.html#a5c4f608d0cdf3a502dfe85d798e063ac">DRAM</a> *</td>          <td class="paramname"><span class="paramname"><em>dram</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>size</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>DRAM释放尾部数据 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dram</td><td>动态随机存取存储器 </td></tr>
+    <tr><td class="paramname">size</td><td>数据大小 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2b7a105e90f45695cf8c9a170cd95e76" name="a2b7a105e90f45695cf8c9a170cd95e76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b7a105e90f45695cf8c9a170cd95e76">&#9670;&#160;</a></span>dram_write_data()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void dram_write_data </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="dram_8h.html#a5c4f608d0cdf3a502dfe85d798e063ac">DRAM</a> *</td>          <td class="paramname"><span class="paramname"><em>dram</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>offset</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>size</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -230,13 +367,13 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>dram_store_64<
       </table>
 </div><div class="memdoc">
 
-<p>DRAM存取对应地址指定大小的数据 </p>
+<p>DRAM向指定地址写入数据 </p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">dram</td><td>DRAM结构体 </td></tr>
-    <tr><td class="paramname">addr</td><td>地址 </td></tr>
+    <tr><td class="paramname">dram</td><td>动态随机存取存储器 </td></tr>
+    <tr><td class="paramname">offset</td><td>偏移量 </td></tr>
     <tr><td class="paramname">size</td><td>数据大小 </td></tr>
-    <tr><td class="paramname">value</td><td>数据 </td></tr>
+    <tr><td class="paramname">value</td><td>数据值 </td></tr>
   </table>
   </dd>
 </dl>
