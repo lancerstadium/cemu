@@ -1,0 +1,144 @@
+\doxysection{src/utils/obj.h 文件参考}
+\hypertarget{obj_8h}{}\label{obj_8h}\index{src/utils/obj.h@{src/utils/obj.h}}
+
+
+C面向对象头文件  
+
+
+\doxysubsubsection*{类}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct____OBJ__entry}{\+\_\+\+\_\+\+OBJ\+\_\+entry}}
+\item 
+struct \mbox{\hyperlink{struct____OBJ__pool}{\+\_\+\+\_\+\+OBJ\+\_\+pool}}
+\item 
+struct \mbox{\hyperlink{struct____OBJ__base}{\+\_\+\+\_\+\+OBJ\+\_\+base}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{obj_8h_ada0023a9d5c723794987314f5c35b29f}\label{obj_8h_ada0023a9d5c723794987314f5c35b29f} 
+int \+\_\+\+\_\+stdcall {\bfseries Virtual\+Protect} (void \texorpdfstring{$\ast$}{*}addr, size\+\_\+t size, unsigned long newprot, unsigned long \texorpdfstring{$\ast$}{*}oldprot)
+\item 
+\Hypertarget{obj_8h_a8bb29c45dd0b378c37b5aeece7c17a00}\label{obj_8h_a8bb29c45dd0b378c37b5aeece7c17a00} 
+static void \texorpdfstring{$\ast$}{*} {\bfseries \+\_\+\+\_\+\+OBJ\+\_\+clofn} (void \texorpdfstring{$\ast$}{*}prototype, size\+\_\+t \texorpdfstring{$\ast$}{*}phsize, void \texorpdfstring{$\ast$}{*}data)
+\item 
+\Hypertarget{obj_8h_a39a3bd278a3d064142575ec4b308837c}\label{obj_8h_a39a3bd278a3d064142575ec4b308837c} 
+static struct \mbox{\hyperlink{struct____OBJ__pool}{\+\_\+\+\_\+\+OBJ\+\_\+pool}} \texorpdfstring{$\ast$}{*} {\bfseries \+\_\+\+\_\+\+OBJ\+\_\+pool\+\_\+create} ()
+\item 
+\Hypertarget{obj_8h_a6dd2d10b7f5324d17a50c72a67e70230}\label{obj_8h_a6dd2d10b7f5324d17a50c72a67e70230} 
+static void {\bfseries \+\_\+\+\_\+\+OBJ\+\_\+pool\+\_\+destroy} (struct \mbox{\hyperlink{struct____OBJ__pool}{\+\_\+\+\_\+\+OBJ\+\_\+pool}} \texorpdfstring{$\ast$}{*}p)
+\item 
+\Hypertarget{obj_8h_aa4dcc70b38ead1976ec2462642437c96}\label{obj_8h_aa4dcc70b38ead1976ec2462642437c96} 
+static struct \mbox{\hyperlink{struct____OBJ__entry}{\+\_\+\+\_\+\+OBJ\+\_\+entry}} \texorpdfstring{$\ast$}{*} {\bfseries \+\_\+\+\_\+\+OBJ\+\_\+pool\+\_\+find} (struct \mbox{\hyperlink{struct____OBJ__entry}{\+\_\+\+\_\+\+OBJ\+\_\+entry}} entries\mbox{[}$\,$\mbox{]}, int space, void \texorpdfstring{$\ast$}{*}ptr)
+\item 
+\Hypertarget{obj_8h_aacac021d1b484072899b82c6e4cc755f}\label{obj_8h_aacac021d1b484072899b82c6e4cc755f} 
+static void {\bfseries \+\_\+\+\_\+\+OBJ\+\_\+pool\+\_\+resize} (struct \mbox{\hyperlink{struct____OBJ__pool}{\+\_\+\+\_\+\+OBJ\+\_\+pool}} \texorpdfstring{$\ast$}{*}p, int space)
+\item 
+\Hypertarget{obj_8h_aecab0ece0874fe675f311b6279bfc91e}\label{obj_8h_aecab0ece0874fe675f311b6279bfc91e} 
+static void \texorpdfstring{$\ast$}{*} {\bfseries \+\_\+\+\_\+\+OBJ\+\_\+pool\+\_\+add} (struct \mbox{\hyperlink{struct____OBJ__pool}{\+\_\+\+\_\+\+OBJ\+\_\+pool}} \texorpdfstring{$\ast$}{*}p, void \texorpdfstring{$\ast$}{*}ptr)
+\item 
+\Hypertarget{obj_8h_ac22bff52ae676870eb9e54dc85a2382b}\label{obj_8h_ac22bff52ae676870eb9e54dc85a2382b} 
+static int {\bfseries \+\_\+\+\_\+\+OBJ\+\_\+pool\+\_\+remove} (struct \mbox{\hyperlink{struct____OBJ__pool}{\+\_\+\+\_\+\+OBJ\+\_\+pool}} \texorpdfstring{$\ast$}{*}p, void \texorpdfstring{$\ast$}{*}ptr)
+\item 
+\Hypertarget{obj_8h_a8817c82e2daf53fb9bf6be490a7ce538}\label{obj_8h_a8817c82e2daf53fb9bf6be490a7ce538} 
+static void \texorpdfstring{$\ast$}{*} {\bfseries \+\_\+\+\_\+\+OBJ\+\_\+pool\+\_\+alloc} (struct \mbox{\hyperlink{struct____OBJ__pool}{\+\_\+\+\_\+\+OBJ\+\_\+pool}} \texorpdfstring{$\ast$}{*}p, size\+\_\+t size)
+\item 
+\Hypertarget{obj_8h_acd21e04eb2beb4fb142c7aed70315026}\label{obj_8h_acd21e04eb2beb4fb142c7aed70315026} 
+static void \texorpdfstring{$\ast$}{*} {\bfseries \+\_\+\+\_\+\+OBJ\+\_\+pool\+\_\+realloc} (struct \mbox{\hyperlink{struct____OBJ__pool}{\+\_\+\+\_\+\+OBJ\+\_\+pool}} \texorpdfstring{$\ast$}{*}p, void \texorpdfstring{$\ast$}{*}ptr, size\+\_\+t size)
+\item 
+\Hypertarget{obj_8h_ac247e31e10a41c38e05404f624e22a42}\label{obj_8h_ac247e31e10a41c38e05404f624e22a42} 
+static void {\bfseries \+\_\+\+\_\+\+OBJ\+\_\+pool\+\_\+free} (struct \mbox{\hyperlink{struct____OBJ__pool}{\+\_\+\+\_\+\+OBJ\+\_\+pool}} \texorpdfstring{$\ast$}{*}p, void \texorpdfstring{$\ast$}{*}ptr)
+\item 
+\Hypertarget{obj_8h_ac2f89ee2ac1827a4f4cb8824ae4eedeb}\label{obj_8h_ac2f89ee2ac1827a4f4cb8824ae4eedeb} 
+static void {\bfseries \+\_\+\+\_\+\+OBJ\+\_\+freebase} (struct \mbox{\hyperlink{struct____OBJ__base}{\+\_\+\+\_\+\+OBJ\+\_\+base}} \texorpdfstring{$\ast$}{*}base)
+\item 
+\Hypertarget{obj_8h_ad6ceda976b30a25409d45bd66dd9f4c1}\label{obj_8h_ad6ceda976b30a25409d45bd66dd9f4c1} 
+static void \texorpdfstring{$\ast$}{*} {\bfseries \+\_\+\+\_\+\+OBJ\+\_\+alloc} (size\+\_\+t size)
+\item 
+\Hypertarget{obj_8h_a9b5c01b2a0bd30c8cfd3f732ff4e0428}\label{obj_8h_a9b5c01b2a0bd30c8cfd3f732ff4e0428} 
+static void \texorpdfstring{$\ast$}{*} {\bfseries \+\_\+\+\_\+\+OBJ\+\_\+realloc} (void \texorpdfstring{$\ast$}{*}ptr, size\+\_\+t size)
+\item 
+\Hypertarget{obj_8h_a18c78867aea44cdcb6bf27919cd8b269}\label{obj_8h_a18c78867aea44cdcb6bf27919cd8b269} 
+static void {\bfseries \+\_\+\+\_\+\+OBJ\+\_\+free} (void \texorpdfstring{$\ast$}{*}ptr)
+\item 
+\Hypertarget{obj_8h_a455cd06501985f6ef3d57491cb5acdfd}\label{obj_8h_a455cd06501985f6ef3d57491cb5acdfd} 
+static void {\bfseries \+\_\+\+\_\+\+OBJ\+\_\+release} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{变量}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{obj_8h_a2f3684f97c5790aa91e1ed6d896c3e92}\label{obj_8h_a2f3684f97c5790aa91e1ed6d896c3e92} 
+static size\+\_\+t {\bfseries \+\_\+\+\_\+\+OBJ\+\_\+alloc\+\_\+s} = 0
+\item 
+\Hypertarget{obj_8h_ae7ba6df51d375e03391ba21d8314aac9}\label{obj_8h_ae7ba6df51d375e03391ba21d8314aac9} 
+static size\+\_\+t {\bfseries \+\_\+\+\_\+\+OBJ\+\_\+realloc\+\_\+s} = 0
+\item 
+\Hypertarget{obj_8h_ac4d8c86cbdc6ada99d142919fe5c6184}\label{obj_8h_ac4d8c86cbdc6ada99d142919fe5c6184} 
+static size\+\_\+t {\bfseries \+\_\+\+\_\+\+OBJ\+\_\+free\+\_\+s} = 0
+\item 
+\Hypertarget{obj_8h_a12beceae569af782d0f437530d5a8bad}\label{obj_8h_a12beceae569af782d0f437530d5a8bad} 
+static size\+\_\+t {\bfseries \+\_\+\+\_\+\+OBJ\+\_\+release\+\_\+s} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+C面向对象头文件 
+
+\begin{DoxyAuthor}{作者}
+lancer (\href{mailto:lancerstadium@163.com}{\texttt{ lancerstadium@163.\+com}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{版本}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{日期}
+2024-\/01-\/08 
+\end{DoxyDate}
+\begin{DoxyCopyright}{版权所有}
+Copyright (c) 2024 Origin author\+: Nomi-\/san \href{mailto:wuuyi123@gmail.com}{\texttt{ wuuyi123@gmail.\+com}} Repos\+: small-\/c/obj.\+h (\href{https://github.com/small-c/obj.h}{\texttt{ https\+://github.\+com/small-\/c/obj.\+h}}) Special thanks to yulon/clofn (\href{https://github.com/yulon/clofn}{\texttt{ https\+://github.\+com/yulon/clofn}})
+\end{DoxyCopyright}
+For example, 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{obj_8h}{obj.h}}"{}}}
+\DoxyCodeLine{\textcolor{comment}{//\ Class\ declaration}}
+\DoxyCodeLine{classdef(Dog);}
+\DoxyCodeLine{\textcolor{keyword}{class}(Dog,\ }
+\DoxyCodeLine{\ \ \ \ \ \textcolor{keyword}{public}(}
+\DoxyCodeLine{\ \ \ \ \ int\ (*get\_no)();\ }
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ void\ (*print\_msg)();}
+\DoxyCodeLine{\ \ \ \ \ ),\ }
+\DoxyCodeLine{\ \ \ \ \ \textcolor{keyword}{private}(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ no;\ }
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ *msg;}
+\DoxyCodeLine{\ \ \ \ \ )}
+\DoxyCodeLine{);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ ctor(Dog)(\textcolor{keywordtype}{int}\ no);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Constructor}}
+\DoxyCodeLine{\ dtor(Dog);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Destructor\ (optional)}}
+\DoxyCodeLine{\ method(Dog,\ \textcolor{keywordtype}{int},\ get\_no)();\ \ \ \ \ \textcolor{comment}{//\ Method}}
+\DoxyCodeLine{\ method(Dog,\ \textcolor{keywordtype}{void},\ print\_msg)();\ \textcolor{comment}{//\ Method}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ ctor(Dog)(\textcolor{keywordtype}{int}\ no)}
+\DoxyCodeLine{\ \{}
+\DoxyCodeLine{\ \ \ \ \ obj\_setup(Dog);}
+\DoxyCodeLine{\ \ \ \ \ obj\_bind(Dog,\ get\_no);}
+\DoxyCodeLine{\ \ \ \ \ obj\_bind(Dog,\ print\_msg);}
+\DoxyCodeLine{\ \ \ \ \ self-\/>no\ =\ no;}
+\DoxyCodeLine{\ \ \ \ \ self-\/>msg\ =\ \textcolor{stringliteral}{"{}Woff\ woff!\(\backslash\)n"{}};}
+\DoxyCodeLine{\ \ \ \ \ obj\_done(Dog);}
+\DoxyCodeLine{\ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ method(Dog,\ \textcolor{keywordtype}{int},\ get\_no)()}
+\DoxyCodeLine{\ \{}
+\DoxyCodeLine{\ \ \ \ \ obj\_prepare(Dog);}
+\DoxyCodeLine{\ \ \ \ \ \textcolor{keywordflow}{return}\ self-\/>no;}
+\DoxyCodeLine{\ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ method(Dog,\ \textcolor{keywordtype}{void},\ print\_msg)()}
+\DoxyCodeLine{\ \{}
+\DoxyCodeLine{\ \ \ \ \ obj\_prepare(Dog);}
+\DoxyCodeLine{\ \ \ \ \ printf(\textcolor{stringliteral}{"{}\%s"{}},\ self-\/>msg);}
+\DoxyCodeLine{\ \}}
+
+\end{DoxyCode}
+ 

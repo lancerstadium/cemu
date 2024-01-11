@@ -1,0 +1,274 @@
+\doxysection{src/utils/log.c 文件参考}
+\hypertarget{log_8c}{}\label{log_8c}\index{src/utils/log.c@{src/utils/log.c}}
+
+
+日志库头文件实现  
+
+
+{\ttfamily \#include "{}log.\+h"{}}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{log_8c_a1f81dfc93517b9d400a686df95d1e161}\label{log_8c_a1f81dfc93517b9d400a686df95d1e161} 
+static void {\bfseries stdout\+\_\+callback} (\mbox{\hyperlink{structlog__Event}{log\+\_\+\+Event}} \texorpdfstring{$\ast$}{*}ev)
+\item 
+\Hypertarget{log_8c_a90a5a60d9135936e75f8cd297dd09220}\label{log_8c_a90a5a60d9135936e75f8cd297dd09220} 
+static void {\bfseries file\+\_\+callback} (\mbox{\hyperlink{structlog__Event}{log\+\_\+\+Event}} \texorpdfstring{$\ast$}{*}ev)
+\item 
+\Hypertarget{log_8c_a92d638030a86fd259063b074c20e74eb}\label{log_8c_a92d638030a86fd259063b074c20e74eb} 
+static void {\bfseries lock} (void)
+\item 
+\Hypertarget{log_8c_abb7cc7eb4e959fda6a43c8dd85f20090}\label{log_8c_abb7cc7eb4e959fda6a43c8dd85f20090} 
+static void {\bfseries unlock} (void)
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{log_8c_a10736458177293d86f211aadeff89501}{log\+\_\+level\+\_\+string}} (int \mbox{\hyperlink{log_8h_acf4d33ee4cff36f69b924471174dcb11}{level}})
+\begin{DoxyCompactList}\small\item\em 获取日志级别的字符串 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{log_8c_a18259d7b87158a91089fd1d081617715}{log\+\_\+set\+\_\+lock}} (\mbox{\hyperlink{log_8h_af1c7dea93a5ff832ba11a7a4e3a46c45}{log\+\_\+\+Lock\+Fn}} fn, void \texorpdfstring{$\ast$}{*}udata)
+\begin{DoxyCompactList}\small\item\em 设置日志锁 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{log_8c_af2493e94f152a28b2ba4e3a2e2bba65d}{log\+\_\+set\+\_\+level}} (int \mbox{\hyperlink{log_8h_acf4d33ee4cff36f69b924471174dcb11}{level}})
+\begin{DoxyCompactList}\small\item\em 设置日志级别 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{log_8c_a6de5d12252f1b48279d28769b7c130eb}{log\+\_\+set\+\_\+quiet}} (bool enable)
+\begin{DoxyCompactList}\small\item\em 设置日志是否静默 \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{log_8c_a4196855e1cd42700557b6e4fa0715a35}{log\+\_\+add\+\_\+callback}} (\mbox{\hyperlink{log_8h_a4e1a7e636a6cabe43a851e125ea86a28}{log\+\_\+\+Log\+Fn}} fn, void \texorpdfstring{$\ast$}{*}udata, int \mbox{\hyperlink{log_8h_acf4d33ee4cff36f69b924471174dcb11}{level}})
+\begin{DoxyCompactList}\small\item\em 添加日志回调 \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{log_8c_afcf2da85fa8a21494dc461d546c50e4b}{log\+\_\+add\+\_\+fp}} (FILE \texorpdfstring{$\ast$}{*}fp, int \mbox{\hyperlink{log_8h_acf4d33ee4cff36f69b924471174dcb11}{level}})
+\begin{DoxyCompactList}\small\item\em 添加日志文件和级别 \end{DoxyCompactList}\item 
+\Hypertarget{log_8c_a40303441e0369bae90f0c91da5314176}\label{log_8c_a40303441e0369bae90f0c91da5314176} 
+static void {\bfseries init\+\_\+event} (\mbox{\hyperlink{structlog__Event}{log\+\_\+\+Event}} \texorpdfstring{$\ast$}{*}ev, void \texorpdfstring{$\ast$}{*}udata)
+\item 
+void \mbox{\hyperlink{log_8c_ac008ecbde449b2dd1bc4f8671d9a0e07}{log\+\_\+log}} (int \mbox{\hyperlink{log_8h_acf4d33ee4cff36f69b924471174dcb11}{level}}, const char \texorpdfstring{$\ast$}{*}file, int line, const char \texorpdfstring{$\ast$}{*}fmt,...)
+\begin{DoxyCompactList}\small\item\em 日志输出 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{变量}
+\begin{DoxyCompactItemize}
+\item 
+static const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{log_8c_a3c28d4a33f3ac2df9e3755241cbd244f}{level\+\_\+strings}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em 日志级别枚举字符串 \end{DoxyCompactList}\item 
+static const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{log_8c_a8a2ced25981b49f1555d16f390df6006}{level\+\_\+colors}} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+日志库头文件实现 
+
+\begin{DoxyAuthor}{作者}
+lancer (\href{mailto:lancerstadium@163.com}{\texttt{ lancerstadium@163.\+com}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{版本}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{日期}
+2024-\/01-\/08 
+\end{DoxyDate}
+\begin{DoxyCopyright}{版权所有}
+Copyright (c) 2023 
+\end{DoxyCopyright}
+\begin{DoxyNote}{注解}
+参考项目：\href{https://github.com/rxi/log.c}{\texttt{ Github \texorpdfstring{$\vert$}{|} log.\+c}} 
+\end{DoxyNote}
+
+
+\doxysubsection{函数说明}
+\Hypertarget{log_8c_a4196855e1cd42700557b6e4fa0715a35}\label{log_8c_a4196855e1cd42700557b6e4fa0715a35} 
+\index{log.c@{log.c}!log\_add\_callback@{log\_add\_callback}}
+\index{log\_add\_callback@{log\_add\_callback}!log.c@{log.c}}
+\doxysubsubsection{\texorpdfstring{log\_add\_callback()}{log\_add\_callback()}}
+{\footnotesize\ttfamily int log\+\_\+add\+\_\+callback (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{log_8h_a4e1a7e636a6cabe43a851e125ea86a28}{log\+\_\+\+Log\+Fn}}}]{fn,  }\item[{void \texorpdfstring{$\ast$}{*}}]{udata,  }\item[{int}]{level }\end{DoxyParamCaption})}
+
+
+
+添加日志回调 
+
+
+\begin{DoxyParams}{参数}
+{\em fn} & 日志锁回调函数，参考 {\ttfamily log\+\_\+\+Lock\+Fn} \\
+\hline
+{\em udata} & 用户数据 \\
+\hline
+{\em level} & 日志级别枚举类型，参考 {\ttfamily log\+\_\+\+Level} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+int 是否成功添加日志文件 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{返回值}
+{\em \`{}0\`{}} & 成功 {\ttfamily -\/1} 失败 \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{log_8c_afcf2da85fa8a21494dc461d546c50e4b}\label{log_8c_afcf2da85fa8a21494dc461d546c50e4b} 
+\index{log.c@{log.c}!log\_add\_fp@{log\_add\_fp}}
+\index{log\_add\_fp@{log\_add\_fp}!log.c@{log.c}}
+\doxysubsubsection{\texorpdfstring{log\_add\_fp()}{log\_add\_fp()}}
+{\footnotesize\ttfamily int log\+\_\+add\+\_\+fp (\begin{DoxyParamCaption}\item[{FILE \texorpdfstring{$\ast$}{*}}]{fp,  }\item[{int}]{level }\end{DoxyParamCaption})}
+
+
+
+添加日志文件和级别 
+
+
+\begin{DoxyParams}{参数}
+{\em fp} & 文件指针 \\
+\hline
+{\em level} & 日志级别枚举类型，参考 {\ttfamily log\+\_\+\+Level} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+int 是否成功添加日志文件 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{返回值}
+{\em \`{}0\`{}} & 成功 {\ttfamily -\/1} 失败 \\
+\hline
+\end{DoxyRetVals}
+\begin{DoxyNote}{注解}
+内部实现参考 {\ttfamily log\+\_\+add\+\_\+callback} 
+\end{DoxyNote}
+\Hypertarget{log_8c_a10736458177293d86f211aadeff89501}\label{log_8c_a10736458177293d86f211aadeff89501} 
+\index{log.c@{log.c}!log\_level\_string@{log\_level\_string}}
+\index{log\_level\_string@{log\_level\_string}!log.c@{log.c}}
+\doxysubsubsection{\texorpdfstring{log\_level\_string()}{log\_level\_string()}}
+{\footnotesize\ttfamily const char \texorpdfstring{$\ast$}{*} log\+\_\+level\+\_\+string (\begin{DoxyParamCaption}\item[{int}]{level }\end{DoxyParamCaption})}
+
+
+
+获取日志级别的字符串 
+
+
+\begin{DoxyParams}{参数}
+{\em level} & 日志级别枚举类型，参考 {\ttfamily log\+\_\+\+Level} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+const char\texorpdfstring{$\ast$}{*} 日志级别对应的字符串指针 
+\end{DoxyReturn}
+\Hypertarget{log_8c_ac008ecbde449b2dd1bc4f8671d9a0e07}\label{log_8c_ac008ecbde449b2dd1bc4f8671d9a0e07} 
+\index{log.c@{log.c}!log\_log@{log\_log}}
+\index{log\_log@{log\_log}!log.c@{log.c}}
+\doxysubsubsection{\texorpdfstring{log\_log()}{log\_log()}}
+{\footnotesize\ttfamily void log\+\_\+log (\begin{DoxyParamCaption}\item[{int}]{level,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{file,  }\item[{int}]{line,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{fmt,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+日志输出 
+
+
+\begin{DoxyParams}{参数}
+{\em level} & 日志级别枚举类型，参考 {\ttfamily log\+\_\+\+Level} \\
+\hline
+{\em file} & 文件名 \\
+\hline
+{\em line} & 文件行号 \\
+\hline
+{\em fmt} & 格式化字符串 \\
+\hline
+{\em ...} & 其他参数 \\
+\hline
+\end{DoxyParams}
+\Hypertarget{log_8c_af2493e94f152a28b2ba4e3a2e2bba65d}\label{log_8c_af2493e94f152a28b2ba4e3a2e2bba65d} 
+\index{log.c@{log.c}!log\_set\_level@{log\_set\_level}}
+\index{log\_set\_level@{log\_set\_level}!log.c@{log.c}}
+\doxysubsubsection{\texorpdfstring{log\_set\_level()}{log\_set\_level()}}
+{\footnotesize\ttfamily void log\+\_\+set\+\_\+level (\begin{DoxyParamCaption}\item[{int}]{level }\end{DoxyParamCaption})}
+
+
+
+设置日志级别 
+
+
+\begin{DoxyParams}{参数}
+{\em level} & 日志级别枚举类型，参考 {\ttfamily log\+\_\+\+Level} \\
+\hline
+\end{DoxyParams}
+\Hypertarget{log_8c_a18259d7b87158a91089fd1d081617715}\label{log_8c_a18259d7b87158a91089fd1d081617715} 
+\index{log.c@{log.c}!log\_set\_lock@{log\_set\_lock}}
+\index{log\_set\_lock@{log\_set\_lock}!log.c@{log.c}}
+\doxysubsubsection{\texorpdfstring{log\_set\_lock()}{log\_set\_lock()}}
+{\footnotesize\ttfamily void log\+\_\+set\+\_\+lock (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{log_8h_af1c7dea93a5ff832ba11a7a4e3a46c45}{log\+\_\+\+Lock\+Fn}}}]{fn,  }\item[{void \texorpdfstring{$\ast$}{*}}]{udata }\end{DoxyParamCaption})}
+
+
+
+设置日志锁 
+
+
+\begin{DoxyParams}{参数}
+{\em fn} & 日志锁回调函数，参考 {\ttfamily log\+\_\+\+Lock\+Fn} \\
+\hline
+{\em udata} & 用户数据 \\
+\hline
+\end{DoxyParams}
+\Hypertarget{log_8c_a6de5d12252f1b48279d28769b7c130eb}\label{log_8c_a6de5d12252f1b48279d28769b7c130eb} 
+\index{log.c@{log.c}!log\_set\_quiet@{log\_set\_quiet}}
+\index{log\_set\_quiet@{log\_set\_quiet}!log.c@{log.c}}
+\doxysubsubsection{\texorpdfstring{log\_set\_quiet()}{log\_set\_quiet()}}
+{\footnotesize\ttfamily void log\+\_\+set\+\_\+quiet (\begin{DoxyParamCaption}\item[{bool}]{enable }\end{DoxyParamCaption})}
+
+
+
+设置日志是否静默 
+
+
+\begin{DoxyParams}{参数}
+{\em enable} & 布尔值：{\ttfamily true} 为静默，{\ttfamily false} 为不静默 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{注解}
+将日志库全局变量 {\ttfamily L} 中的 {\ttfamily quiet} 字段设置为 {\ttfamily enable}
+\begin{DoxyEnumerate}
+\item 对于同一段日志输出函数 {\ttfamily log\+\_\+info} ： 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ 不设置静默模式}}
+\DoxyCodeLine{\mbox{\hyperlink{log_8c_a6de5d12252f1b48279d28769b7c130eb}{log\_set\_quiet}}(\textcolor{keyword}{false});}
+\DoxyCodeLine{\mbox{\hyperlink{log_8h_aa1cfe5444875c8eca0ea6f6993977d6d}{log\_info}}(\textcolor{stringliteral}{"{}hello"{}});}
+
+\end{DoxyCode}
+ 控制台输出： 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{12:48:17\ INFO\ \ src/\mbox{\hyperlink{cemu_8c_adedb285b02c41bde2158ded9cc9fd7ac}{main}}.c:26:\ Hello\ world!}
+
+\end{DoxyCode}
+
+\item 若设置静默模式，日志不会输出到控制台： 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ 设置静默模式}}
+\DoxyCodeLine{\mbox{\hyperlink{log_8c_a6de5d12252f1b48279d28769b7c130eb}{log\_set\_quiet}}(\textcolor{keyword}{true});}
+\DoxyCodeLine{\mbox{\hyperlink{log_8h_aa1cfe5444875c8eca0ea6f6993977d6d}{log\_info}}(\textcolor{stringliteral}{"{}hello"{}});}
+
+\end{DoxyCode}
+ 
+\end{DoxyEnumerate}
+\end{DoxyNote}
+
+
+\doxysubsection{变量说明}
+\Hypertarget{log_8c_a8a2ced25981b49f1555d16f390df6006}\label{log_8c_a8a2ced25981b49f1555d16f390df6006} 
+\index{log.c@{log.c}!level\_colors@{level\_colors}}
+\index{level\_colors@{level\_colors}!log.c@{log.c}}
+\doxysubsubsection{\texorpdfstring{level\_colors}{level\_colors}}
+{\footnotesize\ttfamily const char\texorpdfstring{$\ast$}{*} level\+\_\+colors\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries 初始值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ ANSI\_BRIGHT\_BLUE,\ ANSI\_CYAN,\ ANSI\_GREEN,\ ANSI\_YELLOW,\ ANSI\_RED,\ ANSI\_MAGENTA,\ ANSI\_BRIGHT\_GREEN,\ ANSI\_BRIGHT\_RED\}}
+
+\end{DoxyCode}
+\Hypertarget{log_8c_a3c28d4a33f3ac2df9e3755241cbd244f}\label{log_8c_a3c28d4a33f3ac2df9e3755241cbd244f} 
+\index{log.c@{log.c}!level\_strings@{level\_strings}}
+\index{level\_strings@{level\_strings}!log.c@{log.c}}
+\doxysubsubsection{\texorpdfstring{level\_strings}{level\_strings}}
+{\footnotesize\ttfamily const char\texorpdfstring{$\ast$}{*} level\+\_\+strings\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries 初始值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}TRAC"{}},\ \textcolor{stringliteral}{"{}DEBU"{}},\ \textcolor{stringliteral}{"{}INFO"{}},\ \textcolor{stringliteral}{"{}WARN"{}},\ \textcolor{stringliteral}{"{}ERRO"{}},\ \textcolor{stringliteral}{"{}FATA"{}},\ \textcolor{stringliteral}{"{}ASSE"{}},\ \textcolor{stringliteral}{"{}ASSE"{}}\}}
+
+\end{DoxyCode}
+
+
+日志级别枚举字符串 
+
+\begin{DoxyNote}{注解}
+对应日志枚举类型 {\ttfamily log\+\_\+\+Level} 
+\end{DoxyNote}

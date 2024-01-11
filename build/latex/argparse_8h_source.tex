@@ -1,0 +1,217 @@
+\doxysection{argparse.\+h}
+\hypertarget{argparse_8h_source}{}\label{argparse_8h_source}\index{src/utils/argparse.h@{src/utils/argparse.h}}
+\mbox{\hyperlink{argparse_8h}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#ifndef\ ARGPARSE\_H}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#define\ ARGPARSE\_H}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00076\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Include}}
+\DoxyCodeLine{00077\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{color_8h}{color.h}}"{}}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00093\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Define}}
+\DoxyCodeLine{00094\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{comment}{/*\ 解析器包含的子命令数\ */}}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#ifndef\ AP\_MAX\_NCOMMAND}}
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\#define\ AP\_MAX\_NCOMMAND\ 10}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{comment}{/*\ 长参数名前的flag\ */}}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#ifndef\ AP\_LONG\_FLAG}}
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#define\ AP\_LONG\_FLAG\ "{}-\/-\/"{}}}
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \textcolor{comment}{/*\ 短参数名前的flag\ */}}
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#ifndef\ AP\_SHORT\_FLAG}}
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#define\ AP\_SHORT\_FLAG\ "{}-\/"{}}}
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#define\ AP\_DEFAULT\_COMMAND\ "{}default"{}}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#define\ AP\_END\_ARG\ \(\backslash\)}}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ 0\ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\ \ \ \ \}}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#define\ AP\_INPUT\_ARG\ \(\backslash\)}}
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\ \ \ \ \{\ \ \ \(\backslash\)}}
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ .short\_arg\ =\ "{}i"{},\ \ \(\backslash\)}}
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ .long\_arg\ =\ "{}input"{},\ \(\backslash\)}}
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ .init.s\ =\ "{}"{},\ \(\backslash\)}}
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ .help\ =\ "{}set\ input\ file"{}\ \(\backslash\)}}
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\ \ \ \ \}}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\#define\ ap\_min(a,\ b)\ ((a)\ >\ (b)\ ?\ (b)\ :\ (a))}}
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\#define\ ap\_max(a,\ b)\ ((a)\ >\ (b)\ ?\ (a)\ :\ (b))}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \textcolor{preprocessor}{\#define\ NOW\_CMD\ (\&pap-\/>commands[pap-\/>command\_pos])}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \textcolor{comment}{/*\ 错误提示\ */}}
+\DoxyCodeLine{00133\ \textcolor{preprocessor}{\#define\ ERROR\_MSG\ \_red("{}\ [ERROR]"{})}}
+\DoxyCodeLine{00134\ \textcolor{preprocessor}{\#define\ ap\_err(msg)\ (ERROR\_MSG\ "{}:\ "{}\ msg\ "{}\(\backslash\)n"{})}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \textcolor{comment}{//\ 命令冲突}}
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\#ifndef\ ERROR\_COMMAND\_CONFLICT}}
+\DoxyCodeLine{00138\ \textcolor{preprocessor}{\#define\ ERROR\_COMMAND\_CONFLICT\ ap\_err("{}Conflict."{})}}
+\DoxyCodeLine{00139\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \textcolor{comment}{//\ 没有传递子命令}}
+\DoxyCodeLine{00142\ \textcolor{preprocessor}{\#ifndef\ ERROR\_NO\_SUBCOMMAND}}
+\DoxyCodeLine{00143\ \textcolor{preprocessor}{\#define\ ERROR\_NO\_SUBCOMMAND\ ap\_err("{}Pass\ a\ subcommand."{})}}
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \textcolor{comment}{//\ 没有传递参数值}}
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\#ifndef\ ERROR\_LOST\_ARG\_VALUE}}
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\#define\ ERROR\_LOST\_ARG\_VALUE\ ap\_err("{}\(\backslash\)"{}\%s\(\backslash\)"{}\ lost\ arg\ value."{})}}
+\DoxyCodeLine{00149\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \textcolor{preprocessor}{\#ifndef\ ERROR\_DONOT\_NEED\_VALUE}}
+\DoxyCodeLine{00152\ \textcolor{preprocessor}{\#define\ ERROR\_DONOT\_NEED\_VALUE\ ap\_err("{}\(\backslash\)"{}\%s\(\backslash\)"{}\ does\ not\ need\ arg\ value."{})}}
+\DoxyCodeLine{00153\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \textcolor{preprocessor}{\#ifndef\ ERROR\_ARG\_NOT\_EXIST}}
+\DoxyCodeLine{00156\ \textcolor{preprocessor}{\#define\ ERROR\_ARG\_NOT\_EXIST\ ap\_err("{}Arg\ name\ \(\backslash\)"{}\%s\(\backslash\)"{}\ does\ not\ exist."{})}}
+\DoxyCodeLine{00157\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \textcolor{preprocessor}{\#ifndef\ ERROR\_LOST\_ARG\_NAME}}
+\DoxyCodeLine{00160\ \textcolor{preprocessor}{\#define\ ERROR\_LOST\_ARG\_NAME\ ap\_err("{}Except\ a\ arg\ name,\ but\ got\ \(\backslash\)"{}\%s\(\backslash\)"{}."{})}}
+\DoxyCodeLine{00161\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \textcolor{preprocessor}{\#ifndef\ ERROR\_SUBCOMMAND\_NOT\_EXIST}}
+\DoxyCodeLine{00164\ \textcolor{preprocessor}{\#define\ ERROR\_SUBCOMMAND\_NOT\_EXIST\ ap\_err("{}Subcommand\ \%s\ does\ not\ exist."{})}}
+\DoxyCodeLine{00165\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00169\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Sturct:\ Argparser}}
+\DoxyCodeLine{00170\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \textcolor{comment}{/*\ 是否跟随参数\ */}}
+\DoxyCodeLine{00173\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00174\ \ \ \ \ ap\_YES\ =\ 0,}
+\DoxyCodeLine{00175\ \ \ \ \ ap\_NO}
+\DoxyCodeLine{00176\ \}\ ArgValue;}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{comment}{/*\ 单短线参数名\ */}}
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keywordtype}{char}\ *short\_arg;}
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{comment}{/*\ 双短线参数名\ */}}
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keywordtype}{char}\ *long\_arg;}
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{comment}{/*\ 是否跟随参数值\ */}}
+\DoxyCodeLine{00184\ \ \ \ \ ArgValue\ arg\_have\_value;}
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{comment}{/*\ 传递值\ */}}
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keywordtype}{char}\ *value;}
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{comment}{/*\ 初始值\ */}}
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keyword}{union\ }\{}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ i;}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ b;}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ f;}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ *s;}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ *v;}
+\DoxyCodeLine{00194\ \ \ \ \ \}\ init;}
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{comment}{/*\ 参数的说明\ */}}
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{keywordtype}{char}\ *help;}
+\DoxyCodeLine{00197\ \}\ \mbox{\hyperlink{structap__arg__t}{ap\_arg\_t}};}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \textcolor{comment}{/*\ command对应的回调函数\ */}}
+\DoxyCodeLine{00201\ \textcolor{keyword}{typedef}\ void\ (*callback\_t)(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ *argv[],\ \textcolor{keywordtype}{char}\ *envp[]);}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00204\ \{}
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{comment}{/*\ 命令名}}
+\DoxyCodeLine{00206\ \textcolor{comment}{\ \ \ \ \ *\ -\/\ 全局命令为NULL}}
+\DoxyCodeLine{00207\ \textcolor{comment}{\ \ \ \ \ *\ -\/\ 子命令时，为子命令名}}
+\DoxyCodeLine{00208\ \textcolor{comment}{\ \ \ \ \ **/}}
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keywordtype}{char}\ *command;}
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{comment}{/*\ 对命令的描述\ */}}
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keywordtype}{char}\ *description;}
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{comment}{/*\ 命令的用法\ */}}
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{keywordtype}{char}\ *usage;}
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{comment}{/*\ 是否是子命令\ */}}
+\DoxyCodeLine{00215\ \ \ \ \ \textcolor{keywordtype}{int}\ subcommand;}
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{comment}{/*\ 参数个数\ */}}
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keywordtype}{int}\ nargs;}
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{comment}{/*\ 命令的回调函数\ */}}
+\DoxyCodeLine{00219\ \ \ \ \ callback\_t\ callback;}
+\DoxyCodeLine{00220\ \ \ \ \ \textcolor{comment}{/*\ 存储的参数\ */}}
+\DoxyCodeLine{00221\ \ \ \ \ \mbox{\hyperlink{structap__arg__t}{ap\_arg\_t}}\ *args;}
+\DoxyCodeLine{00222\ \}\ \mbox{\hyperlink{structap__command__t}{ap\_command\_t}};}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \textcolor{comment}{/*\ 打印command的回调函数\ */}}
+\DoxyCodeLine{00225\ \textcolor{keyword}{typedef}\ void\ (*print\_ap\_command\_t)(\mbox{\hyperlink{structap__command__t}{ap\_command\_t}}\ *);}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structargparse__t}{argparse\_t}}}
+\DoxyCodeLine{00228\ \{}
+\DoxyCodeLine{00229\ \ \ \ \ \textcolor{comment}{/*\ 程序开始运行打印的内容}}
+\DoxyCodeLine{00230\ \textcolor{comment}{\ \ \ \ \ *\ 可以是logo之类的}}
+\DoxyCodeLine{00231\ \textcolor{comment}{\ \ \ \ \ **/}}
+\DoxyCodeLine{00232\ \ \ \ \ \textcolor{keywordtype}{char}\ *print;}
+\DoxyCodeLine{00233\ \ \ \ \ \textcolor{comment}{/*\ 命令个数\ */}}
+\DoxyCodeLine{00234\ \ \ \ \ \textcolor{keywordtype}{int}\ ncommand;}
+\DoxyCodeLine{00235\ \ \ \ \ \textcolor{comment}{/*\ 存储的命令\ */}}
+\DoxyCodeLine{00236\ \ \ \ \ \mbox{\hyperlink{structap__command__t}{ap\_command\_t}}\ commands[AP\_MAX\_NCOMMAND];}
+\DoxyCodeLine{00237\ \ \ \ \ \textcolor{comment}{/*\ 当前命令行使用的command命令\ */}}
+\DoxyCodeLine{00238\ \ \ \ \ \textcolor{keywordtype}{int}\ command\_pos;}
+\DoxyCodeLine{00239\ \ \ \ \ \textcolor{comment}{/*\ 自定义打印command参数\ */}}
+\DoxyCodeLine{00240\ \ \ \ \ print\_ap\_command\_t\ print\_command;}
+\DoxyCodeLine{00241\ \ \ \ \ \textcolor{comment}{/*\ 程序名\ */}}
+\DoxyCodeLine{00242\ \ \ \ \ \textcolor{keywordtype}{char}\ *prog\_name;\ \ \ \ }
+\DoxyCodeLine{00243\ \ \ \ \ \textcolor{comment}{/*\ 程序名去除路径\ */}\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00244\ \ \ \ \ \textcolor{keywordtype}{char}\ *prog\_name\_without\_path;}
+\DoxyCodeLine{00245\ \ \ \ \ \textcolor{comment}{/*\ 有全局命令\ */}}
+\DoxyCodeLine{00246\ \ \ \ \ \textcolor{keywordtype}{int}\ have\_global;}
+\DoxyCodeLine{00247\ \ \ \ \ \textcolor{comment}{/*\ 有子命令\ */}}
+\DoxyCodeLine{00248\ \ \ \ \ \textcolor{keywordtype}{int}\ have\_subcommand;}
+\DoxyCodeLine{00249\ \};}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00252\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00253\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Declare\ API:\ Argparse}}
+\DoxyCodeLine{00254\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00257\ \textcolor{comment}{/*\ 定义参数用到的宏\ */}}
+\DoxyCodeLine{00258\ \textcolor{preprocessor}{\#define\ ap\_def\_args(name)\ static\ ap\_arg\_t\ name[]}}
+\DoxyCodeLine{00259\ \textcolor{preprocessor}{\#define\ ap\_def\_callback(name)\ void\ name(int\ argc,\ char\ *argv[],\ char\ *envp[])}}
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00267\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{argparse_8h_ae37bd559bda68ce36be35c6777050325}{ap\_init\_parser}}(\textcolor{keywordtype}{char}\ *print\_message,\ print\_ap\_command\_t\ print\_command);}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00278\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{argparse_8h_a981df02d9758af738434580f8452e49b}{ap\_add\_command}}(\textcolor{keywordtype}{char}\ *command,\ \textcolor{keywordtype}{char}\ *description,\ \textcolor{keywordtype}{char}\ *usage,\ callback\_t\ callback,\ \mbox{\hyperlink{structap__arg__t}{ap\_arg\_t}}\ *args);}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00286\ \mbox{\hyperlink{structap__arg__t}{ap\_arg\_t}}*\ \mbox{\hyperlink{argparse_8h_a5742af30352e7e80adcbae79342a6498}{ap\_get}}(\textcolor{keywordtype}{char}\ *arg\_name);}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00292\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{argparse_8h_ab80b11e9205a0727eac26a88f6e3c3c9}{ap\_default\_print\_command}}(\mbox{\hyperlink{structap__command__t}{ap\_command\_t}}\ *c);}
+\DoxyCodeLine{00293\ }
+\DoxyCodeLine{00298\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{argparse_8h_a5d24e9c277c40f0f601b3b26271465be}{ap\_default\_print\_base\_command}}(\mbox{\hyperlink{structap__command__t}{ap\_command\_t}}\ *c);}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00303\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{argparse_8h_af1d84e1d8d2ede366d5cbf4d9889b9c9}{ap\_print\_parser}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00304\ }
+\DoxyCodeLine{00305\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ ap\_print\_command(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00306\ }
+\DoxyCodeLine{00313\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{argparse_8h_a973a38c6015fa793da3e6f4067af7ed9}{ap\_do\_parser}}(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ *argv[],\ \textcolor{keywordtype}{char}\ *envp[]);}
+\DoxyCodeLine{00314\ }
+\DoxyCodeLine{00315\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00316\ \}}
+\DoxyCodeLine{00317\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00318\ }
+\DoxyCodeLine{00319\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

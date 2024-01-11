@@ -1,0 +1,128 @@
+\doxysection{src/cemu/dram.h 文件参考}
+\hypertarget{dram_8h}{}\label{dram_8h}\index{src/cemu/dram.h@{src/cemu/dram.h}}
+
+
+DRAM头文件  
+
+
+{\ttfamily \#include "{}typedef.\+h"{}}\newline
+\doxysubsubsection*{类}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structDRAM__t}{DRAM\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em DRAM 动态随机存取存储器结构体 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{宏定义}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{dram_8h_a4e35909b44ea391fbb7bb146992bb84d}\label{dram_8h_a4e35909b44ea391fbb7bb146992bb84d} 
+\#define {\bfseries DRAM\+\_\+\+SIZE}~1024\texorpdfstring{$\ast$}{*}1024\texorpdfstring{$\ast$}{*}1   /\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} 1MB 大小 \mbox{\hyperlink{dram_8h_a5c4f608d0cdf3a502dfe85d798e063ac}{DRAM}} \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{dram_8h_af664e1a9045803369e50e29fdc1ca530}\label{dram_8h_af664e1a9045803369e50e29fdc1ca530} 
+\#define {\bfseries DRAM\+\_\+\+BASE}~0x80000000    /\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{dram_8h_a5c4f608d0cdf3a502dfe85d798e063ac}{DRAM}} 基址 \texorpdfstring{$\ast$}{*}/
+\end{DoxyCompactItemize}
+\doxysubsubsection*{类型定义}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{dram_8h_a5c4f608d0cdf3a502dfe85d798e063ac}\label{dram_8h_a5c4f608d0cdf3a502dfe85d798e063ac} 
+typedef struct \mbox{\hyperlink{structDRAM__t}{DRAM\+\_\+t}} {\bfseries DRAM}
+\begin{DoxyCompactList}\small\item\em DRAM 动态随机存取存储器结构体 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+u64 \mbox{\hyperlink{dram_8h_a51d945650b12b721792ce09cd04c6f48}{dram\+\_\+load}} (\mbox{\hyperlink{dram_8h_a5c4f608d0cdf3a502dfe85d798e063ac}{DRAM}} \texorpdfstring{$\ast$}{*}dram, u64 addr, u64 size)
+\begin{DoxyCompactList}\small\item\em DRAM加载对应地址指定大小的数据 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{dram_8h_ae8add16e706dfe7b4ab4e3e0cca5f1c1}{dram\+\_\+store}} (\mbox{\hyperlink{dram_8h_a5c4f608d0cdf3a502dfe85d798e063ac}{DRAM}} \texorpdfstring{$\ast$}{*}dram, u64 addr, u64 size, u64 value)
+\begin{DoxyCompactList}\small\item\em DRAM存取对应地址指定大小的数据 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+DRAM头文件 
+
+\begin{DoxyAuthor}{作者}
+lancer (\href{mailto:lancerstadium@163.com}{\texttt{ lancerstadium@163.\+com}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{版本}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{日期}
+2024-\/01-\/08 
+\end{DoxyDate}
+\begin{DoxyCopyright}{版权所有}
+Copyright (c) 2024
+\end{DoxyCopyright}
+\hypertarget{dram_8h_autotoc_md3}{}\doxysubsection{\texorpdfstring{DRAM 介绍}{DRAM 介绍}}\label{dram_8h_autotoc_md3}
+\hypertarget{dram_8h_autotoc_md4}{}\doxysubsubsection{\texorpdfstring{DRAM 结构}{DRAM 结构}}\label{dram_8h_autotoc_md4}
+
+\begin{DoxyItemize}
+\item DRAM（动态随机存取存储器）存放所有指令与数据。 模拟器中的内存只是一个 64 位变量的数组，用于存放 64 位值。 此处我们用变量{\ttfamily DRAM\+\_\+\+SIZE}定义内存的大小， 用变量{\ttfamily DRAM\+\_\+\+BASE}定义内存的起始地址。
+\item 内存有一个大于{\ttfamily 0x0}的起始地址， 因为 RISC-\/V 架构有一个内存映射 I/\+O。 在内存映射 I/O 中，内存与 I/O 设备共享相同的地址空间。 在{\ttfamily QEMU}中，低地址用于 I/O 端口 并且 DRAM 内存起始地址为{\ttfamily 0x800000000}。 因此我们将{\ttfamily DRAM\+\_\+\+BASE}的值定为{\ttfamily 0x800000000}。
+\item 由于内存映射 I/\+O，我们可以使用任何能够访问 内存的指令来执行 I/O 操作。否则，我们将需要单独 的指令和 I/O 端口的读写总线。 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ Address\ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/+\ \ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/+\ \ \ addr\ \ \ |\ \ |\ \ \ ROM\ \ \ |\ \ |}
+\DoxyCodeLine{|\ \ \ \ \ \ \ |-\/-\/-\/-\/-\/-\/-\/-\/-\/>|\ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/+\ \ |}
+\DoxyCodeLine{|\ \ \mbox{\hyperlink{structCPU__t}{CPU}}\ \ |\ \ \ \ \ \ \ \ \ \ |\ \ |\ \ \ RAM\ \ \ |\ \ |}
+\DoxyCodeLine{|\ \ \ \ \ \ \ |<-\/-\/-\/-\/-\/-\/-\/-\/-\/|\ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/+\ \ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/+\ \ \ data\ \ \ |\ \ |\ \ \ I/O\ \ \ |\ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/+\ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+
+\end{DoxyCode}
+
+\end{DoxyItemize}\hypertarget{dram_8h_autotoc_md5}{}\doxysubsubsection{\texorpdfstring{DRAM 功能}{DRAM 功能}}\label{dram_8h_autotoc_md5}
+
+\begin{DoxyItemize}
+\item DRAM 是系统的内存。\+CPU 读取数据并从内存中取得指令， 也向内存中存/写数据。因此 DRAM 有两个基本操作： 从内存中读和写入内存。
+\item 定义函数{\ttfamily \doxylink{dram_8h_a51d945650b12b721792ce09cd04c6f48}{dram\+\_\+load()}}用于读取内存， 以及{\ttfamily \doxylink{dram_8h_ae8add16e706dfe7b4ab4e3e0cca5f1c1}{dram\+\_\+store()}}用于写入内存。 
+\end{DoxyItemize}
+
+\doxysubsection{函数说明}
+\Hypertarget{dram_8h_a51d945650b12b721792ce09cd04c6f48}\label{dram_8h_a51d945650b12b721792ce09cd04c6f48} 
+\index{dram.h@{dram.h}!dram\_load@{dram\_load}}
+\index{dram\_load@{dram\_load}!dram.h@{dram.h}}
+\doxysubsubsection{\texorpdfstring{dram\_load()}{dram\_load()}}
+{\footnotesize\ttfamily u64 dram\+\_\+load (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dram_8h_a5c4f608d0cdf3a502dfe85d798e063ac}{DRAM}} \texorpdfstring{$\ast$}{*}}]{dram,  }\item[{u64}]{addr,  }\item[{u64}]{size }\end{DoxyParamCaption})}
+
+
+
+DRAM加载对应地址指定大小的数据 
+
+
+\begin{DoxyParams}{参数}
+{\em dram} & DRAM结构体 \\
+\hline
+{\em addr} & 地址 \\
+\hline
+{\em size} & 数据大小 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+u64 数据
+\end{DoxyReturn}
+\begin{DoxyNote}{注解}
+为了获取{\ttfamily addr}参数给定的地址上的数据， 我们需要从{\ttfamily addr}中减去{\ttfamily DRAM\+\_\+\+BASE}。 数据的实际起始地址为{\ttfamily mem\mbox{[}addr-\/\+DRAM\+\_\+\+BASE\mbox{]}} 
+\end{DoxyNote}
+\Hypertarget{dram_8h_ae8add16e706dfe7b4ab4e3e0cca5f1c1}\label{dram_8h_ae8add16e706dfe7b4ab4e3e0cca5f1c1} 
+\index{dram.h@{dram.h}!dram\_store@{dram\_store}}
+\index{dram\_store@{dram\_store}!dram.h@{dram.h}}
+\doxysubsubsection{\texorpdfstring{dram\_store()}{dram\_store()}}
+{\footnotesize\ttfamily void dram\+\_\+store (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dram_8h_a5c4f608d0cdf3a502dfe85d798e063ac}{DRAM}} \texorpdfstring{$\ast$}{*}}]{dram,  }\item[{u64}]{addr,  }\item[{u64}]{size,  }\item[{u64}]{value }\end{DoxyParamCaption})}
+
+
+
+DRAM存取对应地址指定大小的数据 
+
+
+\begin{DoxyParams}{参数}
+{\em dram} & DRAM结构体 \\
+\hline
+{\em addr} & 地址 \\
+\hline
+{\em size} & 数据大小 \\
+\hline
+{\em value} & 数据 \\
+\hline
+\end{DoxyParams}

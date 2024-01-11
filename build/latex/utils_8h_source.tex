@@ -1,0 +1,66 @@
+\doxysection{utils.\+h}
+\hypertarget{utils_8h_source}{}\label{utils_8h_source}\index{src/utils/utils.h@{src/utils/utils.h}}
+\mbox{\hyperlink{utils_8h}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#ifndef\ UTILS\_H}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ UTILS\_H}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Include}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{log_8h}{log.h}}"{}}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ \#include\ "{}argparse-\/new.h"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{argparse_8h}{argparse.h}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{linenoise_8h}{linenoise.h}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{unittest_8h}{unittest.h}}"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{typedef_8h}{typedef.h}}"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{macro_8h}{macro.h}}"{}}}
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ \#include\ "{}list.h"{}}}
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ \#include\ "{}obj.h"{}}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Data:\ Args\ def}}
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{comment}{//\ Step1:\ 定义参数}}
+\DoxyCodeLine{00036\ ap\_def\_args(default\_args)\ =\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \{.short\_arg\ =\ \textcolor{stringliteral}{"{}o"{}},\ .long\_arg\ =\ \textcolor{stringliteral}{"{}output"{}},\ .init.s\ =\ \textcolor{stringliteral}{"{}./a.out"{}},\ .help\ =\ \textcolor{stringliteral}{"{}set\ output\ path"{}}\},}
+\DoxyCodeLine{00038\ \ \ \ \ \{.short\_arg\ =\ \textcolor{stringliteral}{"{}q"{}},\ .long\_arg\ =\ \textcolor{stringliteral}{"{}quiet"{}},\ \ .init.i\ =\ 3,\ .help\ =\ \textcolor{stringliteral}{"{}set\ quiet\ level"{}}\},}
+\DoxyCodeLine{00039\ \ \ \ \ AP\_INPUT\_ARG,}
+\DoxyCodeLine{00040\ \ \ \ \ AP\_END\_ARG\};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ ap\_def\_args(test\_args)\ =\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \{.short\_arg\ =\ \textcolor{stringliteral}{"{}o"{}},\ .long\_arg\ =\ \textcolor{stringliteral}{"{}output"{}},\ .init.s\ =\ \textcolor{stringliteral}{"{}./test"{}},\ .help\ =\ \textcolor{stringliteral}{"{}set\ output\ path"{}}\},}
+\DoxyCodeLine{00044\ \ \ \ \ \{.short\_arg\ =\ \textcolor{stringliteral}{"{}q"{}},\ .long\_arg\ =\ \textcolor{stringliteral}{"{}quiet"{}},\ \ .init.i\ =\ 3,\ .help\ =\ \textcolor{stringliteral}{"{}set\ quiet\ level"{}}\},}
+\DoxyCodeLine{00045\ \ \ \ \ AP\_END\_ARG\};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ ap\_def\_args(debug\_args)\ =\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \{.short\_arg\ =\ \textcolor{stringliteral}{"{}o"{}},\ .long\_arg\ =\ \textcolor{stringliteral}{"{}output"{}},\ .init.s\ =\ \textcolor{stringliteral}{"{}./test"{}},\ .help\ =\ \textcolor{stringliteral}{"{}set\ output\ path"{}}\},}
+\DoxyCodeLine{00049\ \ \ \ \ \{.short\_arg\ =\ \textcolor{stringliteral}{"{}l"{}},\ .long\_arg\ =\ \textcolor{stringliteral}{"{}log"{}},\ .init.s\ =\ \textcolor{stringliteral}{"{}./log"{}},\ .help\ =\ \textcolor{stringliteral}{"{}set\ log\ file"{}}\},}
+\DoxyCodeLine{00050\ \ \ \ \ AP\_INPUT\_ARG,}
+\DoxyCodeLine{00051\ \ \ \ \ AP\_END\_ARG\};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00056\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Declare\ API:\ Utils}}
+\DoxyCodeLine{00057\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keywordtype}{void}\ run\_unit\_test();}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{comment}{//\ Step2:\ 定义回调函数}}
+\DoxyCodeLine{00062\ ap\_def\_callback(default\_callback);}
+\DoxyCodeLine{00063\ ap\_def\_callback(hello\_callback);}
+\DoxyCodeLine{00064\ ap\_def\_callback(debug\_callback);}
+\DoxyCodeLine{00065\ ap\_def\_callback(test\_callback);}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00073\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{utils_8h_afb51512327b6cdad886c705d2cfb6362}{arg\_parser}}(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ *argv[],\ \textcolor{keywordtype}{char}\ *envp[]);}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#endif\ }}
+
+\end{DoxyCode}

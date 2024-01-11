@@ -1,0 +1,81 @@
+\doxysection{log\+\_\+\+Event结构体 参考}
+\hypertarget{structlog__Event}{}\label{structlog__Event}\index{log\_Event@{log\_Event}}
+
+
+日志事件结构体  
+
+
+
+
+{\ttfamily \#include $<$log.\+h$>$}
+
+\doxysubsubsection*{Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+va\+\_\+list \mbox{\hyperlink{structlog__Event_adeb420d9154c0bff0fbdca8bb0c3a985}{ap}}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structlog__Event_a2917e4ca45c418b9b3301252237deac8}{fmt}}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structlog__Event_a969b190548f8944aa795256527851507}{file}}
+\item 
+struct tm \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structlog__Event_a6c12994b7b84ac38e52e10f45d06ff33}{time}}
+\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structlog__Event_a63bd6c3fc18873d4291dbd851b00aca3}{udata}}
+\item 
+int \mbox{\hyperlink{structlog__Event_ae414a8da0ccc8e0f766025a8b23b34a4}{line}}
+\item 
+int \mbox{\hyperlink{structlog__Event_a296a68f4ae9bb0411f2157dcb4a862c4}{level}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+日志事件结构体 
+
+\doxysubsection{类成员变量说明}
+\Hypertarget{structlog__Event_adeb420d9154c0bff0fbdca8bb0c3a985}\label{structlog__Event_adeb420d9154c0bff0fbdca8bb0c3a985} 
+\index{log\_Event@{log\_Event}!ap@{ap}}
+\index{ap@{ap}!log\_Event@{log\_Event}}
+\doxysubsubsection{\texorpdfstring{ap}{ap}}
+{\footnotesize\ttfamily va\+\_\+list log\+\_\+\+Event\+::ap}
+
+参数列表 \Hypertarget{structlog__Event_a969b190548f8944aa795256527851507}\label{structlog__Event_a969b190548f8944aa795256527851507} 
+\index{log\_Event@{log\_Event}!file@{file}}
+\index{file@{file}!log\_Event@{log\_Event}}
+\doxysubsubsection{\texorpdfstring{file}{file}}
+{\footnotesize\ttfamily const char\texorpdfstring{$\ast$}{*} log\+\_\+\+Event\+::file}
+
+文件名 \Hypertarget{structlog__Event_a2917e4ca45c418b9b3301252237deac8}\label{structlog__Event_a2917e4ca45c418b9b3301252237deac8} 
+\index{log\_Event@{log\_Event}!fmt@{fmt}}
+\index{fmt@{fmt}!log\_Event@{log\_Event}}
+\doxysubsubsection{\texorpdfstring{fmt}{fmt}}
+{\footnotesize\ttfamily const char\texorpdfstring{$\ast$}{*} log\+\_\+\+Event\+::fmt}
+
+格式化字符串 \Hypertarget{structlog__Event_a296a68f4ae9bb0411f2157dcb4a862c4}\label{structlog__Event_a296a68f4ae9bb0411f2157dcb4a862c4} 
+\index{log\_Event@{log\_Event}!level@{level}}
+\index{level@{level}!log\_Event@{log\_Event}}
+\doxysubsubsection{\texorpdfstring{level}{level}}
+{\footnotesize\ttfamily int log\+\_\+\+Event\+::level}
+
+日志级别 \Hypertarget{structlog__Event_ae414a8da0ccc8e0f766025a8b23b34a4}\label{structlog__Event_ae414a8da0ccc8e0f766025a8b23b34a4} 
+\index{log\_Event@{log\_Event}!line@{line}}
+\index{line@{line}!log\_Event@{log\_Event}}
+\doxysubsubsection{\texorpdfstring{line}{line}}
+{\footnotesize\ttfamily int log\+\_\+\+Event\+::line}
+
+行号 \Hypertarget{structlog__Event_a6c12994b7b84ac38e52e10f45d06ff33}\label{structlog__Event_a6c12994b7b84ac38e52e10f45d06ff33} 
+\index{log\_Event@{log\_Event}!time@{time}}
+\index{time@{time}!log\_Event@{log\_Event}}
+\doxysubsubsection{\texorpdfstring{time}{time}}
+{\footnotesize\ttfamily struct tm\texorpdfstring{$\ast$}{*} log\+\_\+\+Event\+::time}
+
+时间 \Hypertarget{structlog__Event_a63bd6c3fc18873d4291dbd851b00aca3}\label{structlog__Event_a63bd6c3fc18873d4291dbd851b00aca3} 
+\index{log\_Event@{log\_Event}!udata@{udata}}
+\index{udata@{udata}!log\_Event@{log\_Event}}
+\doxysubsubsection{\texorpdfstring{udata}{udata}}
+{\footnotesize\ttfamily void\texorpdfstring{$\ast$}{*} log\+\_\+\+Event\+::udata}
+
+用户数据 
+
+该结构体的文档由以下文件生成\+:\begin{DoxyCompactItemize}
+\item 
+src/utils/\mbox{\hyperlink{log_8h}{log.\+h}}\end{DoxyCompactItemize}

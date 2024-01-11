@@ -1,0 +1,338 @@
+\doxysection{src/cemu/opcode.h 文件参考}
+\hypertarget{opcode_8h}{}\label{opcode_8h}\index{src/cemu/opcode.h@{src/cemu/opcode.h}}
+
+
+操作码头文件  
+
+
+\doxysubsubsection*{宏定义}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{opcode_8h_ae253f17e1792a8324699cdaca73cf387}\label{opcode_8h_ae253f17e1792a8324699cdaca73cf387} 
+\#define {\bfseries LUI}~0x37
+\item 
+\Hypertarget{opcode_8h_a70899342bce2a876e7d335d5a809e775}\label{opcode_8h_a70899342bce2a876e7d335d5a809e775} 
+\#define {\bfseries AUIPC}~0x17
+\item 
+\Hypertarget{opcode_8h_a9f8938c41dd93edd84b1e8319560cea7}\label{opcode_8h_a9f8938c41dd93edd84b1e8319560cea7} 
+\#define {\bfseries JAL}~0x6f
+\item 
+\Hypertarget{opcode_8h_a0fa8374fa39b77297efc164c358c024a}\label{opcode_8h_a0fa8374fa39b77297efc164c358c024a} 
+\#define {\bfseries JALR}~0x67
+\item 
+\Hypertarget{opcode_8h_a4a576bae886fea0085ee73676f852bb8}\label{opcode_8h_a4a576bae886fea0085ee73676f852bb8} 
+\#define {\bfseries B\+\_\+\+TYPE}~0x63
+\item 
+\Hypertarget{opcode_8h_a9e21b1bbecbc6c491f4cb7de14e9b72c}\label{opcode_8h_a9e21b1bbecbc6c491f4cb7de14e9b72c} 
+\#define {\bfseries BEQ}~0x0
+\item 
+\Hypertarget{opcode_8h_a4e557ce20e8f60bde33104f27f2f6f5d}\label{opcode_8h_a4e557ce20e8f60bde33104f27f2f6f5d} 
+\#define {\bfseries BNE}~0x1
+\item 
+\Hypertarget{opcode_8h_a44ab2d501dd18ee539959a22a4409f43}\label{opcode_8h_a44ab2d501dd18ee539959a22a4409f43} 
+\#define {\bfseries BLT}~0x4
+\item 
+\Hypertarget{opcode_8h_af7ec7187f4c6f0a42196da1ca936c995}\label{opcode_8h_af7ec7187f4c6f0a42196da1ca936c995} 
+\#define {\bfseries BGE}~0x5
+\item 
+\Hypertarget{opcode_8h_aa3b216a4641e884c88bbad07092144ff}\label{opcode_8h_aa3b216a4641e884c88bbad07092144ff} 
+\#define {\bfseries BLTU}~0x6
+\item 
+\Hypertarget{opcode_8h_a6b385d6e1924bb10f17caa9d1f7dcca4}\label{opcode_8h_a6b385d6e1924bb10f17caa9d1f7dcca4} 
+\#define {\bfseries BGEU}~0x7
+\item 
+\Hypertarget{opcode_8h_a0b674752cca6d434a1a69f40877eb2be}\label{opcode_8h_a0b674752cca6d434a1a69f40877eb2be} 
+\#define {\bfseries LOAD}~0x03
+\item 
+\Hypertarget{opcode_8h_acc55daa58d88a3612f2ef74a6abbe97f}\label{opcode_8h_acc55daa58d88a3612f2ef74a6abbe97f} 
+\#define {\bfseries LB}~0x0
+\item 
+\Hypertarget{opcode_8h_a06ca9df8b3c86c3698aa210a71ea3ea8}\label{opcode_8h_a06ca9df8b3c86c3698aa210a71ea3ea8} 
+\#define {\bfseries LH}~0x1
+\item 
+\Hypertarget{opcode_8h_ad4b135b7ba4889a823f26261d8de74b3}\label{opcode_8h_ad4b135b7ba4889a823f26261d8de74b3} 
+\#define {\bfseries LW}~0x2
+\item 
+\Hypertarget{opcode_8h_a9b06fda83ca7a20a56bd6565d6841893}\label{opcode_8h_a9b06fda83ca7a20a56bd6565d6841893} 
+\#define {\bfseries LD}~0x3
+\item 
+\Hypertarget{opcode_8h_a2e26c4ad393da231a1102e8f95bc27dd}\label{opcode_8h_a2e26c4ad393da231a1102e8f95bc27dd} 
+\#define {\bfseries LBU}~0x4
+\item 
+\Hypertarget{opcode_8h_ae36bc5eb456287b135a0cefb9955d055}\label{opcode_8h_ae36bc5eb456287b135a0cefb9955d055} 
+\#define {\bfseries LHU}~0x5
+\item 
+\Hypertarget{opcode_8h_aefc8153bedbd7d3f60cdbddad43756fe}\label{opcode_8h_aefc8153bedbd7d3f60cdbddad43756fe} 
+\#define {\bfseries LWU}~0x6
+\item 
+\Hypertarget{opcode_8h_a0d2c963c4479bfcef9727d6481a0b784}\label{opcode_8h_a0d2c963c4479bfcef9727d6481a0b784} 
+\#define {\bfseries S\+\_\+\+TYPE}~0x23
+\item 
+\Hypertarget{opcode_8h_a5c5526b246db088c8f509c0a52e574d7}\label{opcode_8h_a5c5526b246db088c8f509c0a52e574d7} 
+\#define {\bfseries SB}~0x0
+\item 
+\Hypertarget{opcode_8h_a4453478cd8b3bf96df84fe861cb78600}\label{opcode_8h_a4453478cd8b3bf96df84fe861cb78600} 
+\#define {\bfseries SH}~0x1
+\item 
+\Hypertarget{opcode_8h_a4b95e941f44a20ea60512bbe2065f0b6}\label{opcode_8h_a4b95e941f44a20ea60512bbe2065f0b6} 
+\#define {\bfseries SW}~0x2
+\item 
+\Hypertarget{opcode_8h_a9f5064fb4edd1381305163ee726f8ca5}\label{opcode_8h_a9f5064fb4edd1381305163ee726f8ca5} 
+\#define {\bfseries SD}~0x3
+\item 
+\Hypertarget{opcode_8h_a685813f758ad8fb6fad67c0084c5ca09}\label{opcode_8h_a685813f758ad8fb6fad67c0084c5ca09} 
+\#define {\bfseries I\+\_\+\+TYPE}~0x13                /\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} opcode：I-\/type 0010011 \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{opcode_8h_a240067f241bac82304fe36d2d4a296da}\label{opcode_8h_a240067f241bac82304fe36d2d4a296da} 
+\#define {\bfseries ADDI}~0x0             /\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} funct3：\+ADDI   000 \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{opcode_8h_a60aa1465b86099c85c94504757de4187}\label{opcode_8h_a60aa1465b86099c85c94504757de4187} 
+\#define {\bfseries SLLI}~0x1             /\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} funct3：\+SLLI   001 \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{opcode_8h_a447393f86b3ef95b4684a1c8c814ece9}\label{opcode_8h_a447393f86b3ef95b4684a1c8c814ece9} 
+\#define {\bfseries SLTI}~0x2             /\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} funct3：\+SLTI   010 \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{opcode_8h_ac4c87fcf602a98c6adfb0eb960ba7c40}\label{opcode_8h_ac4c87fcf602a98c6adfb0eb960ba7c40} 
+\#define {\bfseries SLTIU}~0x3             /\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} funct3：\+SLTIU  011 \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{opcode_8h_a0ea404a13da2acb9a3ef80eda91bd7e6}\label{opcode_8h_a0ea404a13da2acb9a3ef80eda91bd7e6} 
+\#define {\bfseries XORI}~0x4             /\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} funct3：\+XORI   100 \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{opcode_8h_a9e358c78a833aa112a13c59875848997}\label{opcode_8h_a9e358c78a833aa112a13c59875848997} 
+\#define {\bfseries SRI}~0x5             /\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} funct3：\+SRI    101 \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{opcode_8h_ae42029404ba00f611797c6f4006e39bf}\label{opcode_8h_ae42029404ba00f611797c6f4006e39bf} 
+\#define {\bfseries SRLI}~0x00        /\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} funct7：\+SRLI   0000000 \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{opcode_8h_a198491967199a2b9715adf6dc815e012}\label{opcode_8h_a198491967199a2b9715adf6dc815e012} 
+\#define {\bfseries SRAI}~0x20        /\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} funct7：\+SRAI   0100000 \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{opcode_8h_ade8154dab9666f65904be28a9e4cadb5}\label{opcode_8h_ade8154dab9666f65904be28a9e4cadb5} 
+\#define {\bfseries ORI}~0x6             /\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} funct3：\+ORI    110 \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{opcode_8h_a6629468bc5e11d36efed350908f2dff4}\label{opcode_8h_a6629468bc5e11d36efed350908f2dff4} 
+\#define {\bfseries ANDI}~0x7             /\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} funct3：\+ANDI   111 \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{opcode_8h_a809fc7f901378a40281868f9a306127f}\label{opcode_8h_a809fc7f901378a40281868f9a306127f} 
+\#define {\bfseries R\+\_\+\+TYPE}~0x33
+\item 
+\Hypertarget{opcode_8h_a360e6589d7e4086fdb6f36cb78e11a0f}\label{opcode_8h_a360e6589d7e4086fdb6f36cb78e11a0f} 
+\#define {\bfseries ADDSUB}~0x0
+\item 
+\Hypertarget{opcode_8h_a97fe5470fb1ac167c713671655ff3e52}\label{opcode_8h_a97fe5470fb1ac167c713671655ff3e52} 
+\#define {\bfseries ADD}~0x00
+\item 
+\Hypertarget{opcode_8h_a62c52d6d320f53e9e6632cce5a595660}\label{opcode_8h_a62c52d6d320f53e9e6632cce5a595660} 
+\#define {\bfseries SUB}~0x20
+\item 
+\Hypertarget{opcode_8h_a189dc429a87af5f7abf3c53b32d7889b}\label{opcode_8h_a189dc429a87af5f7abf3c53b32d7889b} 
+\#define {\bfseries SLL}~0x1
+\item 
+\Hypertarget{opcode_8h_a0cfd10e565d5dc821bd50e5d7409b31d}\label{opcode_8h_a0cfd10e565d5dc821bd50e5d7409b31d} 
+\#define {\bfseries SLT}~0x2
+\item 
+\Hypertarget{opcode_8h_afedbd56796babcf8aab4442d0d962c08}\label{opcode_8h_afedbd56796babcf8aab4442d0d962c08} 
+\#define {\bfseries SLTU}~0x3
+\item 
+\Hypertarget{opcode_8h_a45cd11034d1a7d86c3a88d36f5e7f1ab}\label{opcode_8h_a45cd11034d1a7d86c3a88d36f5e7f1ab} 
+\#define {\bfseries XOR}~0x4
+\item 
+\Hypertarget{opcode_8h_abaed93a16a0cde13f32bc4dc48b96804}\label{opcode_8h_abaed93a16a0cde13f32bc4dc48b96804} 
+\#define {\bfseries SR}~0x5
+\item 
+\Hypertarget{opcode_8h_a391959af0568008f17f41df83486de19}\label{opcode_8h_a391959af0568008f17f41df83486de19} 
+\#define {\bfseries SRL}~0x00
+\item 
+\Hypertarget{opcode_8h_a67bda54c44dd9397dce0c127d7787726}\label{opcode_8h_a67bda54c44dd9397dce0c127d7787726} 
+\#define {\bfseries SRA}~0x20
+\item 
+\Hypertarget{opcode_8h_a3363ca4d6d3cc0230b2804280591c991}\label{opcode_8h_a3363ca4d6d3cc0230b2804280591c991} 
+\#define {\bfseries OR}~0x6
+\item 
+\Hypertarget{opcode_8h_acd1b97556dfbbac61063a63031d2f91d}\label{opcode_8h_acd1b97556dfbbac61063a63031d2f91d} 
+\#define {\bfseries AND}~0x7
+\item 
+\Hypertarget{opcode_8h_a4c4ef974c16c9b8ffd86d2daac2b6184}\label{opcode_8h_a4c4ef974c16c9b8ffd86d2daac2b6184} 
+\#define {\bfseries FENCE}~0x0f
+\item 
+\Hypertarget{opcode_8h_a9af6a95a347bb4b08c652c9e8f1bdbab}\label{opcode_8h_a9af6a95a347bb4b08c652c9e8f1bdbab} 
+\#define {\bfseries I\+\_\+\+TYPE\+\_\+64}~0x1b
+\item 
+\Hypertarget{opcode_8h_ab71441cb943e66e31d2264104ecf5860}\label{opcode_8h_ab71441cb943e66e31d2264104ecf5860} 
+\#define {\bfseries ADDIW}~0x0
+\item 
+\Hypertarget{opcode_8h_afdc97808d48878d1ddb25012e07c3694}\label{opcode_8h_afdc97808d48878d1ddb25012e07c3694} 
+\#define {\bfseries SLLIW}~0x1
+\item 
+\Hypertarget{opcode_8h_a0229cf95ff0310c2e59f0d09c10c3b4a}\label{opcode_8h_a0229cf95ff0310c2e59f0d09c10c3b4a} 
+\#define {\bfseries SRIW}~0x5
+\item 
+\Hypertarget{opcode_8h_afc72efd71472101cedc6efdd4109b57e}\label{opcode_8h_afc72efd71472101cedc6efdd4109b57e} 
+\#define {\bfseries SRLIW}~0x00
+\item 
+\Hypertarget{opcode_8h_a64790a7a5a6bfbf1a8c106ec2a937e67}\label{opcode_8h_a64790a7a5a6bfbf1a8c106ec2a937e67} 
+\#define {\bfseries SRAIW}~0x20
+\item 
+\Hypertarget{opcode_8h_a10350f4a1141887dc0e56de1fc908fa4}\label{opcode_8h_a10350f4a1141887dc0e56de1fc908fa4} 
+\#define {\bfseries R\+\_\+\+TYPE\+\_\+64}~0x3b
+\item 
+\Hypertarget{opcode_8h_a360e6589d7e4086fdb6f36cb78e11a0f}\label{opcode_8h_a360e6589d7e4086fdb6f36cb78e11a0f} 
+\#define {\bfseries ADDSUB}~0x0
+\item 
+\Hypertarget{opcode_8h_a5619969d16043a27872b7dd712539ce9}\label{opcode_8h_a5619969d16043a27872b7dd712539ce9} 
+\#define {\bfseries ADDW}~0x00
+\item 
+\Hypertarget{opcode_8h_a0d20f8734163f10d3093ea89511fdd86}\label{opcode_8h_a0d20f8734163f10d3093ea89511fdd86} 
+\#define {\bfseries MULW}~0x01
+\item 
+\Hypertarget{opcode_8h_a2d11cb05279d5d2538d4d864e22b7d0b}\label{opcode_8h_a2d11cb05279d5d2538d4d864e22b7d0b} 
+\#define {\bfseries SUBW}~0x20
+\item 
+\Hypertarget{opcode_8h_a0ec0abb74473bb243f77d9fb7dc7a1f3}\label{opcode_8h_a0ec0abb74473bb243f77d9fb7dc7a1f3} 
+\#define {\bfseries DIVW}~0x4
+\item 
+\Hypertarget{opcode_8h_a6e530b8051e7881a503f7b3c37cfbbfa}\label{opcode_8h_a6e530b8051e7881a503f7b3c37cfbbfa} 
+\#define {\bfseries SLLW}~0x1
+\item 
+\Hypertarget{opcode_8h_a6f327277fdd50c81018e1692bf7cb5d0}\label{opcode_8h_a6f327277fdd50c81018e1692bf7cb5d0} 
+\#define {\bfseries SRW}~0x5
+\item 
+\Hypertarget{opcode_8h_ad647c9ee00b8582968fd1140c7318aec}\label{opcode_8h_ad647c9ee00b8582968fd1140c7318aec} 
+\#define {\bfseries SRLW}~0x00
+\item 
+\Hypertarget{opcode_8h_a31f145c2875444b21da95866bd1d0dda}\label{opcode_8h_a31f145c2875444b21da95866bd1d0dda} 
+\#define {\bfseries DIVUW}~0x01
+\item 
+\Hypertarget{opcode_8h_a9080460cbd41a993a734218a96569b44}\label{opcode_8h_a9080460cbd41a993a734218a96569b44} 
+\#define {\bfseries SRAW}~0x20
+\item 
+\Hypertarget{opcode_8h_ac2500f8df4a0e19dfb6ca6f11c375bde}\label{opcode_8h_ac2500f8df4a0e19dfb6ca6f11c375bde} 
+\#define {\bfseries REMW}~0x6
+\item 
+\Hypertarget{opcode_8h_a279e4f166605d069c693847c5926051c}\label{opcode_8h_a279e4f166605d069c693847c5926051c} 
+\#define {\bfseries REMUW}~0x7
+\item 
+\Hypertarget{opcode_8h_aa811cfff7ed3e366dac57bec585d73ca}\label{opcode_8h_aa811cfff7ed3e366dac57bec585d73ca} 
+\#define {\bfseries CSR}~0x73
+\item 
+\Hypertarget{opcode_8h_a168a6686e8dc833e9a16a530d34b55f4}\label{opcode_8h_a168a6686e8dc833e9a16a530d34b55f4} 
+\#define {\bfseries ECALLBREAK}~0x00
+\item 
+\Hypertarget{opcode_8h_a0544c4e74330db93481b32626ff64baa}\label{opcode_8h_a0544c4e74330db93481b32626ff64baa} 
+\#define {\bfseries CSRRW}~0x01
+\item 
+\Hypertarget{opcode_8h_ac75ddc7fdfbc2df7412b601b4eaa0247}\label{opcode_8h_ac75ddc7fdfbc2df7412b601b4eaa0247} 
+\#define {\bfseries CSRRS}~0x02
+\item 
+\Hypertarget{opcode_8h_aef4a786c5303bebb7fdcc58057287cc8}\label{opcode_8h_aef4a786c5303bebb7fdcc58057287cc8} 
+\#define {\bfseries CSRRC}~0x03
+\item 
+\Hypertarget{opcode_8h_a68e11ae873561686bddf98ce5b1aa780}\label{opcode_8h_a68e11ae873561686bddf98ce5b1aa780} 
+\#define {\bfseries CSRRWI}~0x05
+\item 
+\Hypertarget{opcode_8h_acc5ccc2ba2506232f60ceb512019a7be}\label{opcode_8h_acc5ccc2ba2506232f60ceb512019a7be} 
+\#define {\bfseries CSRRSI}~0x06
+\item 
+\Hypertarget{opcode_8h_a024836e6d63a064f122265a472b23008}\label{opcode_8h_a024836e6d63a064f122265a472b23008} 
+\#define {\bfseries CSRRCI}~0x07
+\item 
+\Hypertarget{opcode_8h_abea7058a726783dcdef0fa03a33db815}\label{opcode_8h_abea7058a726783dcdef0fa03a33db815} 
+\#define {\bfseries AMO\+\_\+W}~0x2f
+\item 
+\Hypertarget{opcode_8h_aa90b08e98c37bcd575556f44ccb78e49}\label{opcode_8h_aa90b08e98c37bcd575556f44ccb78e49} 
+\#define {\bfseries LR\+\_\+W}~0x02
+\item 
+\Hypertarget{opcode_8h_afb0a7c846429493d35ba180b8e294fd3}\label{opcode_8h_afb0a7c846429493d35ba180b8e294fd3} 
+\#define {\bfseries SC\+\_\+W}~0x03
+\item 
+\Hypertarget{opcode_8h_a3da5dd8535dfbd1adc977c1a446247dc}\label{opcode_8h_a3da5dd8535dfbd1adc977c1a446247dc} 
+\#define {\bfseries AMOSWAP\+\_\+W}~0x01
+\item 
+\Hypertarget{opcode_8h_aad97034c70ecbe4f8fd4405c8e574f6e}\label{opcode_8h_aad97034c70ecbe4f8fd4405c8e574f6e} 
+\#define {\bfseries AMOADD\+\_\+W}~0x00
+\item 
+\Hypertarget{opcode_8h_ae8dfecaba0d2e0d7a24ea4148f36ad00}\label{opcode_8h_ae8dfecaba0d2e0d7a24ea4148f36ad00} 
+\#define {\bfseries AMOXOR\+\_\+W}~0x04
+\item 
+\Hypertarget{opcode_8h_a3117379d566b3c56b2b4a69126d8a7c7}\label{opcode_8h_a3117379d566b3c56b2b4a69126d8a7c7} 
+\#define {\bfseries AMOAND\+\_\+W}~0x0c
+\item 
+\Hypertarget{opcode_8h_a8a97b79ab1824df21334ddd789698a7a}\label{opcode_8h_a8a97b79ab1824df21334ddd789698a7a} 
+\#define {\bfseries AMOOR\+\_\+W}~0x08
+\item 
+\Hypertarget{opcode_8h_adbdd0668c15d7a625a0ef67353451e50}\label{opcode_8h_adbdd0668c15d7a625a0ef67353451e50} 
+\#define {\bfseries AMOMIN\+\_\+W}~0x10
+\item 
+\Hypertarget{opcode_8h_af5ce7a67598ccbd1e5142d44c36aa9f9}\label{opcode_8h_af5ce7a67598ccbd1e5142d44c36aa9f9} 
+\#define {\bfseries AMOMAX\+\_\+W}~0x14
+\item 
+\Hypertarget{opcode_8h_ad9740bcc60981a56ef4fcfa2644a8b17}\label{opcode_8h_ad9740bcc60981a56ef4fcfa2644a8b17} 
+\#define {\bfseries AMOMINU\+\_\+W}~0x18
+\item 
+\Hypertarget{opcode_8h_ad145dba046b2d834ebc470c8f34cc9a2}\label{opcode_8h_ad145dba046b2d834ebc470c8f34cc9a2} 
+\#define {\bfseries AMOMAXU\+\_\+W}~0x1c
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+操作码头文件 
+
+\begin{DoxyAuthor}{作者}
+lancer (\href{mailto:lancerstadium@163.com}{\texttt{ lancerstadium@163.\+com}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{版本}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{日期}
+2024-\/01-\/08 
+\end{DoxyDate}
+\begin{DoxyCopyright}{版权所有}
+Copyright (c) 2024
+\end{DoxyCopyright}
+\hypertarget{opcode_8h_autotoc_md6}{}\doxysubsection{\texorpdfstring{指令译码}{指令译码}}\label{opcode_8h_autotoc_md6}
+
+\begin{DoxyItemize}
+\item 从 dram 中读取的用于执行的指令是 32 位宽的。 这 32 位包含所有要执行的操作对应的指令， 比如操作码，用于读/写的源寄存器和目标寄存器， 立即数值等等。
+\item 对于不同类型的指令的译码是不同的，指令类型有以下几种：
+\end{DoxyItemize}
+\begin{DoxyEnumerate}
+\item R 类型：寄存器类型指令
+\item I 类型：立即数类型指令
+\item S 类型：存储类型指令
+\item B 类型：中断类型指令
+\item U 类型：寄存器类型指令
+\item J 类型：跳转类型指令
+\end{DoxyEnumerate}
+\begin{DoxyItemize}
+\item 下表展示了不同类型指令的寄存器的映射关系： 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{RISC-\/V\ Instuctions\ Types:}
+\DoxyCodeLine{}
+\DoxyCodeLine{|31\ \ \ \ \ \ \ \ \ \ \ \ 25|24\ \ \ \ \ \ \ 20|19\ \ \ \ \ \ \ 15|14\ \ \ \ 12|11\ \ \ \ \ \ \ \ 7|6\ \ \ \ \ \ \ \ \ \ \ \ 0|\ \ \ 32-\/bit}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ \ \ \ \ funct7\ \ \ \ \ |\ \ \ \ rs2\ \ \ \ |\ \ \ \ rs1\ \ \ \ |\ funct3\ |\ \ \ \ rd\ \ \ \ \ |\ \ \ \ opcode\ \ \ \ |\ \ \ R-\/type}
+\DoxyCodeLine{|-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/|}
+\DoxyCodeLine{|\ \ \ \ \ \ \ \ \ \ \ imm[11:0]\ \ \ \ \ \ \ \ |\ \ \ \ rs1\ \ \ \ |\ funct3\ |\ \ \ \ rd\ \ \ \ \ |\ \ \ \ opcode\ \ \ \ |\ \ \ I-\/type}
+\DoxyCodeLine{|-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/|}
+\DoxyCodeLine{|\ \ \ \ imm[11:5]\ \ \ |\ \ \ \ rs2\ \ \ \ |\ \ \ \ rs1\ \ \ \ |\ funct3\ |\ \ imm[4:0]\ |\ \ \ \ opcode\ \ \ \ |\ \ \ S-\/type}
+\DoxyCodeLine{|-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/|}
+\DoxyCodeLine{|\ \ \ imm[12|10:5]\ |\ \ \ \ rs2\ \ \ \ |\ \ \ \ rs1\ \ \ \ |\ funct3\ |imm[4:1|11]|\ \ \ \ opcode\ \ \ \ |\ \ \ B-\/type\ \ }
+\DoxyCodeLine{|-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/|}
+\DoxyCodeLine{|\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ imm[32:12]\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ rd\ \ \ \ \ |\ \ \ \ opcode\ \ \ \ |\ \ \ U-\/type}
+\DoxyCodeLine{|-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/|}
+\DoxyCodeLine{|\ \ \ \ \ \ \ \ \ \ \ \ \ \ imm[20|10:1|11|19:12]\ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ rd\ \ \ \ \ |\ \ \ \ opcode\ \ \ \ |\ \ \ J-\/type}
+\DoxyCodeLine{|-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+
+\end{DoxyCode}
+
+\end{DoxyItemize}
+\begin{DoxyEnumerate}
+\item {\ttfamily opcode}： 低 7 位（inst\mbox{[}6\+:0\mbox{]}）用于区别每个 CPU 操作。
+\item {\ttfamily rd}：一个 4 位值（inst\mbox{[}11\+:7\mbox{]}），给定目标寄存器的地址。
+\item {\ttfamily funct3}：一个 3 位值（inst\mbox{[}14\+:12\mbox{]}）， 每一组类似操作的操作码相同（如 ADD，\+SUB，\+DIV，\+MUL 等等）。 每组可包括至多 8 个不同指令，对应 8 个不同的{\ttfamily funct3}值。
+\item {\ttfamily funct7}：一个 7 位值（inst\mbox{[}31\+:25\mbox{]}）。与{\ttfamily funct3}类似， {\ttfamily funct7}将一组相同的{\ttfamily funct3}指令划分为多个指令。 例如，\+SR（右移）有两个指令： {\ttfamily SRA}（算数右移）与{\ttfamily SRL}（逻辑右移）对应不同的{\ttfamily funct7}。
+\item {\ttfamily rs1}：一个 4 位值（inst\mbox{[}19\+:15\mbox{]}），给定源寄存器 1 的地址。
+\item {\ttfamily rs2}：一个 4 位值（inst\mbox{[}24\+:20\mbox{]}），给定源寄存器 2 的地址。
+\item {\ttfamily imm}：表示立即数。
+\item {\ttfamily shamt}：shamt 位于{\ttfamily imm}的低位，存有移位指令的移位量。 
+\end{DoxyEnumerate}

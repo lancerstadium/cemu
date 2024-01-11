@@ -1,0 +1,101 @@
+\doxysection{src/cemu/dram.c 文件参考}
+\hypertarget{dram_8c}{}\label{dram_8c}\index{src/cemu/dram.c@{src/cemu/dram.c}}
+
+
+DRAM功能实现  
+
+
+{\ttfamily \#include "{}dram.\+h"{}}\newline
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{dram_8c_a0d4ebb397cce21ecb57f4a58ef1a61be}\label{dram_8c_a0d4ebb397cce21ecb57f4a58ef1a61be} 
+static u64 {\bfseries dram\+\_\+load\+\_\+8} (\mbox{\hyperlink{dram_8h_a5c4f608d0cdf3a502dfe85d798e063ac}{DRAM}} \texorpdfstring{$\ast$}{*}dram, u64 addr)
+\item 
+static u64 \mbox{\hyperlink{dram_8c_a29abfb27d75683553704b48e5b44c489}{dram\+\_\+load\+\_\+16}} (\mbox{\hyperlink{dram_8h_a5c4f608d0cdf3a502dfe85d798e063ac}{DRAM}} \texorpdfstring{$\ast$}{*}dram, u64 addr)
+\item 
+\Hypertarget{dram_8c_a7b67cb45981ccd0684f37f0b643f8217}\label{dram_8c_a7b67cb45981ccd0684f37f0b643f8217} 
+static u64 {\bfseries dram\+\_\+load\+\_\+32} (\mbox{\hyperlink{dram_8h_a5c4f608d0cdf3a502dfe85d798e063ac}{DRAM}} \texorpdfstring{$\ast$}{*}dram, u64 addr)
+\item 
+\Hypertarget{dram_8c_a43d559c1e0a1d2940807788a718b9036}\label{dram_8c_a43d559c1e0a1d2940807788a718b9036} 
+static u64 {\bfseries dram\+\_\+load\+\_\+64} (\mbox{\hyperlink{dram_8h_a5c4f608d0cdf3a502dfe85d798e063ac}{DRAM}} \texorpdfstring{$\ast$}{*}dram, u64 addr)
+\item 
+\Hypertarget{dram_8c_a77e2bcffaa07049a96632b0634d56f16}\label{dram_8c_a77e2bcffaa07049a96632b0634d56f16} 
+static void {\bfseries dram\+\_\+store\+\_\+8} (\mbox{\hyperlink{dram_8h_a5c4f608d0cdf3a502dfe85d798e063ac}{DRAM}} \texorpdfstring{$\ast$}{*}dram, u64 addr, u64 value)
+\item 
+\Hypertarget{dram_8c_a42c1158e11d047032be73d7af7e775b9}\label{dram_8c_a42c1158e11d047032be73d7af7e775b9} 
+static void {\bfseries dram\+\_\+store\+\_\+16} (\mbox{\hyperlink{dram_8h_a5c4f608d0cdf3a502dfe85d798e063ac}{DRAM}} \texorpdfstring{$\ast$}{*}dram, u64 addr, u64 value)
+\item 
+\Hypertarget{dram_8c_a2cb8784fa0bd9443b1cde2483af3a57c}\label{dram_8c_a2cb8784fa0bd9443b1cde2483af3a57c} 
+static void {\bfseries dram\+\_\+store\+\_\+32} (\mbox{\hyperlink{dram_8h_a5c4f608d0cdf3a502dfe85d798e063ac}{DRAM}} \texorpdfstring{$\ast$}{*}dram, u64 addr, u64 value)
+\item 
+\Hypertarget{dram_8c_a3107a7f87852889254f9276a078cc45b}\label{dram_8c_a3107a7f87852889254f9276a078cc45b} 
+static void {\bfseries dram\+\_\+store\+\_\+64} (\mbox{\hyperlink{dram_8h_a5c4f608d0cdf3a502dfe85d798e063ac}{DRAM}} \texorpdfstring{$\ast$}{*}dram, u64 addr, u64 value)
+\item 
+u64 \mbox{\hyperlink{dram_8c_a51d945650b12b721792ce09cd04c6f48}{dram\+\_\+load}} (\mbox{\hyperlink{dram_8h_a5c4f608d0cdf3a502dfe85d798e063ac}{DRAM}} \texorpdfstring{$\ast$}{*}dram, u64 addr, u64 size)
+\begin{DoxyCompactList}\small\item\em DRAM加载对应地址指定大小的数据 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{dram_8c_ae8add16e706dfe7b4ab4e3e0cca5f1c1}{dram\+\_\+store}} (\mbox{\hyperlink{dram_8h_a5c4f608d0cdf3a502dfe85d798e063ac}{DRAM}} \texorpdfstring{$\ast$}{*}dram, u64 addr, u64 size, u64 value)
+\begin{DoxyCompactList}\small\item\em DRAM存取对应地址指定大小的数据 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+DRAM功能实现 
+
+\begin{DoxyAuthor}{作者}
+lancer (\href{mailto:lancerstadium@163.com}{\texttt{ lancerstadium@163.\+com}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{版本}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{日期}
+2024-\/01-\/08 
+\end{DoxyDate}
+\begin{DoxyCopyright}{版权所有}
+Copyright (c) 2024 
+\end{DoxyCopyright}
+
+
+\doxysubsection{函数说明}
+\Hypertarget{dram_8c_a51d945650b12b721792ce09cd04c6f48}\label{dram_8c_a51d945650b12b721792ce09cd04c6f48} 
+\index{dram.c@{dram.c}!dram\_load@{dram\_load}}
+\index{dram\_load@{dram\_load}!dram.c@{dram.c}}
+\doxysubsubsection{\texorpdfstring{dram\_load()}{dram\_load()}}
+{\footnotesize\ttfamily u64 dram\+\_\+load (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dram_8h_a5c4f608d0cdf3a502dfe85d798e063ac}{DRAM}} \texorpdfstring{$\ast$}{*}}]{dram,  }\item[{u64}]{addr,  }\item[{u64}]{size }\end{DoxyParamCaption})}
+
+
+
+DRAM加载对应地址指定大小的数据 
+
+\begin{DoxyNote}{注解}
+为了获取{\ttfamily addr}参数给定的地址上的数据， 我们需要从{\ttfamily addr}中减去{\ttfamily DRAM\+\_\+\+BASE}。 数据的实际起始地址为{\ttfamily mem\mbox{[}addr-\/\+DRAM\+\_\+\+BASE\mbox{]}} 
+\end{DoxyNote}
+\Hypertarget{dram_8c_a29abfb27d75683553704b48e5b44c489}\label{dram_8c_a29abfb27d75683553704b48e5b44c489} 
+\index{dram.c@{dram.c}!dram\_load\_16@{dram\_load\_16}}
+\index{dram\_load\_16@{dram\_load\_16}!dram.c@{dram.c}}
+\doxysubsubsection{\texorpdfstring{dram\_load\_16()}{dram\_load\_16()}}
+{\footnotesize\ttfamily static u64 dram\+\_\+load\+\_\+16 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dram_8h_a5c4f608d0cdf3a502dfe85d798e063ac}{DRAM}} \texorpdfstring{$\ast$}{*}}]{dram,  }\item[{u64}]{addr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\begin{DoxyNote}{注解}
+小端法是将最小端（权值最低位）最先存储。 当读取数据时，我们先读取最低的地址中存放的值通过返回值输送给总线， 随后左移 8 位（1 字节）并与 0xff（8 个 1）进行与操作来得到最低字节的数据， 并清空高字节以便用于或操作。 
+\end{DoxyNote}
+\Hypertarget{dram_8c_ae8add16e706dfe7b4ab4e3e0cca5f1c1}\label{dram_8c_ae8add16e706dfe7b4ab4e3e0cca5f1c1} 
+\index{dram.c@{dram.c}!dram\_store@{dram\_store}}
+\index{dram\_store@{dram\_store}!dram.c@{dram.c}}
+\doxysubsubsection{\texorpdfstring{dram\_store()}{dram\_store()}}
+{\footnotesize\ttfamily void dram\+\_\+store (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{dram_8h_a5c4f608d0cdf3a502dfe85d798e063ac}{DRAM}} \texorpdfstring{$\ast$}{*}}]{dram,  }\item[{u64}]{addr,  }\item[{u64}]{size,  }\item[{u64}]{value }\end{DoxyParamCaption})}
+
+
+
+DRAM存取对应地址指定大小的数据 
+
+
+\begin{DoxyParams}{参数}
+{\em dram} & DRAM结构体 \\
+\hline
+{\em addr} & 地址 \\
+\hline
+{\em size} & 数据大小 \\
+\hline
+{\em value} & 数据 \\
+\hline
+\end{DoxyParams}

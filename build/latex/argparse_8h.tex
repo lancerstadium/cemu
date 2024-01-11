@@ -1,0 +1,352 @@
+\doxysection{src/utils/argparse.h 文件参考}
+\hypertarget{argparse_8h}{}\label{argparse_8h}\index{src/utils/argparse.h@{src/utils/argparse.h}}
+
+
+命令行解析库头文件  
+
+
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include "{}color.\+h"{}}\newline
+\doxysubsubsection*{类}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structap__arg__t}{ap\+\_\+arg\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structap__command__t}{ap\+\_\+command\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structargparse__t}{argparse\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{宏定义}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{argparse_8h_ae0beaae014b957dd399eab9537ebff30}\label{argparse_8h_ae0beaae014b957dd399eab9537ebff30} 
+\#define {\bfseries AP\+\_\+\+MAX\+\_\+\+NCOMMAND}~10
+\item 
+\Hypertarget{argparse_8h_a8c0bf99cbb12fd534567fa5f25a6eae0}\label{argparse_8h_a8c0bf99cbb12fd534567fa5f25a6eae0} 
+\#define {\bfseries AP\+\_\+\+LONG\+\_\+\+FLAG}~"{}-\/-\/"{}
+\item 
+\Hypertarget{argparse_8h_af4b200732fa37a3d3b6a184e44ac3f39}\label{argparse_8h_af4b200732fa37a3d3b6a184e44ac3f39} 
+\#define {\bfseries AP\+\_\+\+SHORT\+\_\+\+FLAG}~"{}-\/"{}
+\item 
+\Hypertarget{argparse_8h_aab5b179affe24992196e9eb579b34123}\label{argparse_8h_aab5b179affe24992196e9eb579b34123} 
+\#define {\bfseries AP\+\_\+\+DEFAULT\+\_\+\+COMMAND}~"{}default"{}
+\item 
+\#define \mbox{\hyperlink{argparse_8h_a8da6a6d7f53bfd0ae6956b399ec88f8d}{AP\+\_\+\+END\+\_\+\+ARG}}
+\item 
+\#define \mbox{\hyperlink{argparse_8h_a7a01760f2bc8a6f91870342df933ceb4}{AP\+\_\+\+INPUT\+\_\+\+ARG}}
+\item 
+\Hypertarget{argparse_8h_ac630e7a49acf31c99538caa29ebf9ac6}\label{argparse_8h_ac630e7a49acf31c99538caa29ebf9ac6} 
+\#define {\bfseries ap\+\_\+min}(a,  b)~((a) $>$ (b) ? (b) \+: (a))
+\item 
+\Hypertarget{argparse_8h_ac771d4159fb5c152a99bfb35cd0db349}\label{argparse_8h_ac771d4159fb5c152a99bfb35cd0db349} 
+\#define {\bfseries ap\+\_\+max}(a,  b)~((a) $>$ (b) ? (a) \+: (b))
+\item 
+\Hypertarget{argparse_8h_aaa88eb7f1666bb57d199867bd89bad67}\label{argparse_8h_aaa88eb7f1666bb57d199867bd89bad67} 
+\#define {\bfseries NOW\+\_\+\+CMD}~(\&pap-\/$>$commands\mbox{[}pap-\/$>$command\+\_\+pos\mbox{]})
+\item 
+\Hypertarget{argparse_8h_a0de6e99a67f2badfa8e5445f749c72e1}\label{argparse_8h_a0de6e99a67f2badfa8e5445f749c72e1} 
+\#define {\bfseries ERROR\+\_\+\+MSG}~\+\_\+red("{} \mbox{[}ERROR\mbox{]}"{})
+\item 
+\Hypertarget{argparse_8h_af63a41390c4e7d683a18d391c8f9aae4}\label{argparse_8h_af63a41390c4e7d683a18d391c8f9aae4} 
+\#define {\bfseries ap\+\_\+err}(msg)~(ERROR\+\_\+\+MSG "{}\+: "{} msg "{}\textbackslash{}n"{})
+\item 
+\Hypertarget{argparse_8h_abb2cc3e0b5896c7c0751bfeb74337024}\label{argparse_8h_abb2cc3e0b5896c7c0751bfeb74337024} 
+\#define {\bfseries ERROR\+\_\+\+COMMAND\+\_\+\+CONFLICT}~ap\+\_\+err("{}Conflict."{})
+\item 
+\Hypertarget{argparse_8h_a22979a195aca7837e4d123fc796be0cd}\label{argparse_8h_a22979a195aca7837e4d123fc796be0cd} 
+\#define {\bfseries ERROR\+\_\+\+NO\+\_\+\+SUBCOMMAND}~ap\+\_\+err("{}Pass a subcommand."{})
+\item 
+\Hypertarget{argparse_8h_ae61c78328b10af48462c198e29862bdf}\label{argparse_8h_ae61c78328b10af48462c198e29862bdf} 
+\#define {\bfseries ERROR\+\_\+\+LOST\+\_\+\+ARG\+\_\+\+VALUE}~ap\+\_\+err("{}\textbackslash{}"{}\%s\textbackslash{}"{} lost arg value."{})
+\item 
+\Hypertarget{argparse_8h_a395a197845dc76936ca9cf4ac16f2a58}\label{argparse_8h_a395a197845dc76936ca9cf4ac16f2a58} 
+\#define {\bfseries ERROR\+\_\+\+DONOT\+\_\+\+NEED\+\_\+\+VALUE}~ap\+\_\+err("{}\textbackslash{}"{}\%s\textbackslash{}"{} does not need arg value."{})
+\item 
+\Hypertarget{argparse_8h_a091d1b217f38f1280f15fefe47827c24}\label{argparse_8h_a091d1b217f38f1280f15fefe47827c24} 
+\#define {\bfseries ERROR\+\_\+\+ARG\+\_\+\+NOT\+\_\+\+EXIST}~ap\+\_\+err("{}Arg name \textbackslash{}"{}\%s\textbackslash{}"{} does not exist."{})
+\item 
+\Hypertarget{argparse_8h_a9522de57358a4e82d27ef24319ab9f21}\label{argparse_8h_a9522de57358a4e82d27ef24319ab9f21} 
+\#define {\bfseries ERROR\+\_\+\+LOST\+\_\+\+ARG\+\_\+\+NAME}~ap\+\_\+err("{}Except a arg name, but got \textbackslash{}"{}\%s\textbackslash{}"{}."{})
+\item 
+\Hypertarget{argparse_8h_abf68c21ed2882b42848316adf437a0ac}\label{argparse_8h_abf68c21ed2882b42848316adf437a0ac} 
+\#define {\bfseries ERROR\+\_\+\+SUBCOMMAND\+\_\+\+NOT\+\_\+\+EXIST}~ap\+\_\+err("{}Subcommand \%s does not exist."{})
+\item 
+\Hypertarget{argparse_8h_a4f24b557d82d667bacdb95b7f583a755}\label{argparse_8h_a4f24b557d82d667bacdb95b7f583a755} 
+\#define {\bfseries ap\+\_\+def\+\_\+args}(name)~static \mbox{\hyperlink{structap__arg__t}{ap\+\_\+arg\+\_\+t}} name\mbox{[}$\,$\mbox{]}
+\item 
+\Hypertarget{argparse_8h_a9ea4ec0cecff2d77bc83101bf23430f7}\label{argparse_8h_a9ea4ec0cecff2d77bc83101bf23430f7} 
+\#define {\bfseries ap\+\_\+def\+\_\+callback}(name)~void name(int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]}, char \texorpdfstring{$\ast$}{*}envp\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{类型定义}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{argparse_8h_a9e39905730bc9409289f6a0863ce6cc3}\label{argparse_8h_a9e39905730bc9409289f6a0863ce6cc3} 
+typedef void(\texorpdfstring{$\ast$}{*} {\bfseries callback\+\_\+t}) (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]}, char \texorpdfstring{$\ast$}{*}envp\mbox{[}$\,$\mbox{]})
+\item 
+\Hypertarget{argparse_8h_ab458db3fc02a65735942984f4e34ccc0}\label{argparse_8h_ab458db3fc02a65735942984f4e34ccc0} 
+typedef void(\texorpdfstring{$\ast$}{*} {\bfseries print\+\_\+ap\+\_\+command\+\_\+t}) (\mbox{\hyperlink{structap__command__t}{ap\+\_\+command\+\_\+t}} \texorpdfstring{$\ast$}{*})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{枚举}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{argparse_8h_ab2e28d859934760467a5deff1c865f51}\label{argparse_8h_ab2e28d859934760467a5deff1c865f51} 
+enum {\bfseries Arg\+Value} \{ {\bfseries ap\+\_\+\+YES} = 0
+, {\bfseries ap\+\_\+\+NO}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{argparse_8h_ae37bd559bda68ce36be35c6777050325}{ap\+\_\+init\+\_\+parser}} (char \texorpdfstring{$\ast$}{*}print\+\_\+message, print\+\_\+ap\+\_\+command\+\_\+t print\+\_\+command)
+\begin{DoxyCompactList}\small\item\em 初始化解析器 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{argparse_8h_a981df02d9758af738434580f8452e49b}{ap\+\_\+add\+\_\+command}} (char \texorpdfstring{$\ast$}{*}command, char \texorpdfstring{$\ast$}{*}description, char \texorpdfstring{$\ast$}{*}usage, callback\+\_\+t callback, \mbox{\hyperlink{structap__arg__t}{ap\+\_\+arg\+\_\+t}} \texorpdfstring{$\ast$}{*}args)
+\begin{DoxyCompactList}\small\item\em 添加一个子命令 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structap__arg__t}{ap\+\_\+arg\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{argparse_8h_a5742af30352e7e80adcbae79342a6498}{ap\+\_\+get}} (char \texorpdfstring{$\ast$}{*}arg\+\_\+name)
+\begin{DoxyCompactList}\small\item\em 根据参数名获取参数值 \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{argparse_8h_ab80b11e9205a0727eac26a88f6e3c3c9}{ap\+\_\+default\+\_\+print\+\_\+command}} (\mbox{\hyperlink{structap__command__t}{ap\+\_\+command\+\_\+t}} \texorpdfstring{$\ast$}{*}c)
+\begin{DoxyCompactList}\small\item\em 打印command \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{argparse_8h_a5d24e9c277c40f0f601b3b26271465be}{ap\+\_\+default\+\_\+print\+\_\+base\+\_\+command}} (\mbox{\hyperlink{structap__command__t}{ap\+\_\+command\+\_\+t}} \texorpdfstring{$\ast$}{*}c)
+\begin{DoxyCompactList}\small\item\em 打印 command 简易版 \end{DoxyCompactList}\item 
+\Hypertarget{argparse_8h_af1d84e1d8d2ede366d5cbf4d9889b9c9}\label{argparse_8h_af1d84e1d8d2ede366d5cbf4d9889b9c9} 
+static void {\bfseries ap\+\_\+print\+\_\+parser} (void)
+\begin{DoxyCompactList}\small\item\em 打印解析器 \end{DoxyCompactList}\item 
+\Hypertarget{argparse_8h_af2a68ba1015726ef657807501b88bcd0}\label{argparse_8h_af2a68ba1015726ef657807501b88bcd0} 
+static void {\bfseries ap\+\_\+print\+\_\+command} (void)
+\item 
+void \mbox{\hyperlink{argparse_8h_a973a38c6015fa793da3e6f4067af7ed9}{ap\+\_\+do\+\_\+parser}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]}, char \texorpdfstring{$\ast$}{*}envp\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em 解析命令行 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+命令行解析库头文件 
+
+\begin{DoxyAuthor}{作者}
+lancer (\href{mailto:you@domain.com}{\texttt{ you@domain.\+com}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{版本}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{日期}
+2023-\/12-\/25
+\end{DoxyDate}
+\begin{DoxyCopyright}{版权所有}
+Copyright (c) 2023 
+\end{DoxyCopyright}
+\begin{DoxyNote}{注解}
+参考项目：\href{https://github.com/dwpeng/argparse}{\texttt{ Github \texorpdfstring{$\vert$}{|} argparse}} 
+
+
+\end{DoxyNote}
+\hypertarget{argparse_8h_autotoc_md7}{}\doxysubsection{\texorpdfstring{参数解析步骤}{参数解析步骤}}\label{argparse_8h_autotoc_md7}
+
+\begin{DoxyEnumerate}
+\item Step1\+: 使用宏 {\ttfamily ap\+\_\+def\+\_\+args} 定义参数 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{argparse_8h}{argparse.h}}"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{ap\_def\_args(test\_args)\ =\ \{}
+\DoxyCodeLine{\ \ \{.short\_arg\ =\ \textcolor{stringliteral}{"{}o"{}},\ .long\_arg\ =\ \textcolor{stringliteral}{"{}output"{}},\ .init.s\ =\ \textcolor{stringliteral}{"{}./test"{}},\ .help\ =\ \textcolor{stringliteral}{"{}set\ output\ path"{}}\},}
+\DoxyCodeLine{\ \ \{.short\_arg\ =\ \textcolor{stringliteral}{"{}q"{}},\ .long\_arg\ =\ \textcolor{stringliteral}{"{}quiet"{}}\ ,\ .init.b\ =\ true\ \ \ \ ,\ .help\ =\ \textcolor{stringliteral}{"{}quiet\ run"{}}\},}
+\DoxyCodeLine{\ \ \{.short\_arg\ =\ \textcolor{stringliteral}{"{}d"{}},\ .long\_arg\ =\ \textcolor{stringliteral}{"{}debug"{}}\ ,\ .init.b\ =\ false\ \ \ ,\ .help\ =\ \textcolor{stringliteral}{"{}debug\ mode"{}}\},}
+\DoxyCodeLine{\ \ AP\_END\_ARG}
+\DoxyCodeLine{\};}
+
+\end{DoxyCode}
+
+\item Step2\+: 使用宏 {\ttfamily ap\+\_\+def\+\_\+callback} 定义回调函数 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ap\_def\_callback(test\_callback)\ \{}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{structap__arg__t}{ap\_arg\_t}}\ *arg\ =\ \mbox{\hyperlink{argparse-new_8h_a08fab15af2e7e06cae1343e66cf50ead}{ap\_get}}(\textcolor{stringliteral}{"{}output"{}});}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{if}\ (!arg-\/>value)\ \{}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}no\ value.\ init:\ \%s\(\backslash\)n"{}},\ arg-\/>init.s);}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}option\ output:\ \%s\(\backslash\)n"{}},\ arg-\/>value);}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\ \ printf(\textcolor{stringliteral}{"{}option\ quiet:\ \%d\(\backslash\)n"{}},\ \mbox{\hyperlink{argparse-new_8h_a08fab15af2e7e06cae1343e66cf50ead}{ap\_get}}(\textcolor{stringliteral}{"{}quiet"{}})-\/>init.b);}
+\DoxyCodeLine{\ \ printf(\textcolor{stringliteral}{"{}option\ debug:\ \%d\(\backslash\)n"{}},\ \mbox{\hyperlink{argparse-new_8h_a08fab15af2e7e06cae1343e66cf50ead}{ap\_get}}(\textcolor{stringliteral}{"{}debug"{}})-\/>init.b);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+\item Step3\+: 使用宏 {\ttfamily ap\+\_\+init\+\_\+parser} 初始化解析器 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{argparse-new_8h_a482012b62ececbd29dabcf99962bf4c4}{ap\_init\_parser}}(\textcolor{stringliteral}{"{}uemu\ -\/\ a\ simple\ emulator"{}},\ \mbox{\hyperlink{list_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}});}
+
+\end{DoxyCode}
+
+\item Step4\+: 使用宏 {\ttfamily ap\+\_\+add\+\_\+command} 添加命令 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{argparse-new_8h_ae10018c06215aadf0c791039cd13a64d}{ap\_add\_command}}(\textcolor{stringliteral}{"{}test"{}},\ \textcolor{stringliteral}{"{}Print\ \`{}Hello,\ World!`."{}},\ \textcolor{stringliteral}{"{}This\ is\ usage."{}},\ test\_callback,\ test\_args);}
+
+\end{DoxyCode}
+ \begin{DoxyAttention}{注意}
+添加命令名为 {\ttfamily default} 时，是设置主命令：
+\end{DoxyAttention}
+
+\item Step5\+: 使用宏 {\ttfamily ap\+\_\+add\+\_\+command} 解析命令 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{argparse-new_8h_a472462d3dd7b0f0a90e131a90487b651}{ap\_do\_parser}}(argc,\ argv,\ envp);}
+
+\end{DoxyCode}
+
+\item Step6：示例 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ arg\_parse(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ *argv[],\ \textcolor{keywordtype}{char}\ *envp[])}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \textcolor{comment}{//\ Step3:\ 初始化解析器}}
+\DoxyCodeLine{\ \mbox{\hyperlink{argparse-new_8h_a482012b62ececbd29dabcf99962bf4c4}{ap\_init\_parser}}(\textcolor{stringliteral}{"{}uemu\ -\/\ a\ simple\ emulator"{}},\ \mbox{\hyperlink{list_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}});}
+\DoxyCodeLine{\ \textcolor{comment}{//\ Step4:\ 添加命令}}
+\DoxyCodeLine{\ \mbox{\hyperlink{argparse-new_8h_ae10018c06215aadf0c791039cd13a64d}{ap\_add\_command}}(\textcolor{stringliteral}{"{}default"{}},\ \textcolor{stringliteral}{"{}Default:\ print\ \`{}Hello,\ World!`"{}},\ \textcolor{stringliteral}{"{}uemu\ test"{}},\ hello\_callback,\ help\_args);}
+\DoxyCodeLine{\ \mbox{\hyperlink{argparse-new_8h_ae10018c06215aadf0c791039cd13a64d}{ap\_add\_command}}(\textcolor{stringliteral}{"{}help"{}},\ \textcolor{stringliteral}{"{}This\ is\ description."{}},\ \textcolor{stringliteral}{"{}This\ is\ usage."{}},\ help\_callback,\ help\_args);\ }
+\DoxyCodeLine{\ \mbox{\hyperlink{argparse-new_8h_ae10018c06215aadf0c791039cd13a64d}{ap\_add\_command}}(\textcolor{stringliteral}{"{}debug"{}},\ \textcolor{stringliteral}{"{}Enter\ debug\ mode."{}},\ \textcolor{stringliteral}{"{}This\ is\ usage."{}},\ debug\_callback,\ debug\_args);}
+\DoxyCodeLine{\ \mbox{\hyperlink{argparse-new_8h_ae10018c06215aadf0c791039cd13a64d}{ap\_add\_command}}(\textcolor{stringliteral}{"{}test"{}},\ \textcolor{stringliteral}{"{}Unit\ test"{}},\ \textcolor{stringliteral}{"{}This\ is\ usage."{}},\ test\_callback,\ test\_args);}
+\DoxyCodeLine{\ \textcolor{comment}{//\ Step5:\ 开始解析}}
+\DoxyCodeLine{\ \mbox{\hyperlink{argparse-new_8h_a472462d3dd7b0f0a90e131a90487b651}{ap\_do\_parser}}(argc,\ argv,\ envp);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 
+\end{DoxyEnumerate}
+
+\doxysubsection{宏定义说明}
+\Hypertarget{argparse_8h_a8da6a6d7f53bfd0ae6956b399ec88f8d}\label{argparse_8h_a8da6a6d7f53bfd0ae6956b399ec88f8d} 
+\index{argparse.h@{argparse.h}!AP\_END\_ARG@{AP\_END\_ARG}}
+\index{AP\_END\_ARG@{AP\_END\_ARG}!argparse.h@{argparse.h}}
+\doxysubsubsection{\texorpdfstring{AP\_END\_ARG}{AP\_END\_ARG}}
+{\footnotesize\ttfamily \#define AP\+\_\+\+END\+\_\+\+ARG}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 0\ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{argparse_8h_a7a01760f2bc8a6f91870342df933ceb4}\label{argparse_8h_a7a01760f2bc8a6f91870342df933ceb4} 
+\index{argparse.h@{argparse.h}!AP\_INPUT\_ARG@{AP\_INPUT\_ARG}}
+\index{AP\_INPUT\_ARG@{AP\_INPUT\_ARG}!argparse.h@{argparse.h}}
+\doxysubsubsection{\texorpdfstring{AP\_INPUT\_ARG}{AP\_INPUT\_ARG}}
+{\footnotesize\ttfamily \#define AP\+\_\+\+INPUT\+\_\+\+ARG}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \{\ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ .short\_arg\ =\ \textcolor{stringliteral}{"{}i"{}},\ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ .long\_arg\ =\ \textcolor{stringliteral}{"{}input"{}},\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ .init.s\ =\ \textcolor{stringliteral}{"{}"{}},\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ .help\ =\ \textcolor{stringliteral}{"{}set\ input\ file"{}}\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{函数说明}
+\Hypertarget{argparse_8h_a981df02d9758af738434580f8452e49b}\label{argparse_8h_a981df02d9758af738434580f8452e49b} 
+\index{argparse.h@{argparse.h}!ap\_add\_command@{ap\_add\_command}}
+\index{ap\_add\_command@{ap\_add\_command}!argparse.h@{argparse.h}}
+\doxysubsubsection{\texorpdfstring{ap\_add\_command()}{ap\_add\_command()}}
+{\footnotesize\ttfamily void ap\+\_\+add\+\_\+command (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{command,  }\item[{char \texorpdfstring{$\ast$}{*}}]{description,  }\item[{char \texorpdfstring{$\ast$}{*}}]{usage,  }\item[{callback\+\_\+t}]{callback,  }\item[{\mbox{\hyperlink{structap__arg__t}{ap\+\_\+arg\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{args }\end{DoxyParamCaption})}
+
+
+
+添加一个子命令 
+
+
+\begin{DoxyParams}{参数}
+{\em command} & \\
+\hline
+{\em description} & \\
+\hline
+{\em usage} & \\
+\hline
+{\em callback} & \\
+\hline
+{\em args} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{argparse_8h_a5d24e9c277c40f0f601b3b26271465be}\label{argparse_8h_a5d24e9c277c40f0f601b3b26271465be} 
+\index{argparse.h@{argparse.h}!ap\_default\_print\_base\_command@{ap\_default\_print\_base\_command}}
+\index{ap\_default\_print\_base\_command@{ap\_default\_print\_base\_command}!argparse.h@{argparse.h}}
+\doxysubsubsection{\texorpdfstring{ap\_default\_print\_base\_command()}{ap\_default\_print\_base\_command()}}
+{\footnotesize\ttfamily static void ap\+\_\+default\+\_\+print\+\_\+base\+\_\+command (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structap__command__t}{ap\+\_\+command\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+打印 command 简易版 
+
+
+\begin{DoxyParams}{参数}
+{\em c} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{argparse_8h_ab80b11e9205a0727eac26a88f6e3c3c9}\label{argparse_8h_ab80b11e9205a0727eac26a88f6e3c3c9} 
+\index{argparse.h@{argparse.h}!ap\_default\_print\_command@{ap\_default\_print\_command}}
+\index{ap\_default\_print\_command@{ap\_default\_print\_command}!argparse.h@{argparse.h}}
+\doxysubsubsection{\texorpdfstring{ap\_default\_print\_command()}{ap\_default\_print\_command()}}
+{\footnotesize\ttfamily static void ap\+\_\+default\+\_\+print\+\_\+command (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structap__command__t}{ap\+\_\+command\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+打印command 
+
+
+\begin{DoxyParams}{参数}
+{\em c} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{argparse_8h_a973a38c6015fa793da3e6f4067af7ed9}\label{argparse_8h_a973a38c6015fa793da3e6f4067af7ed9} 
+\index{argparse.h@{argparse.h}!ap\_do\_parser@{ap\_do\_parser}}
+\index{ap\_do\_parser@{ap\_do\_parser}!argparse.h@{argparse.h}}
+\doxysubsubsection{\texorpdfstring{ap\_do\_parser()}{ap\_do\_parser()}}
+{\footnotesize\ttfamily void ap\+\_\+do\+\_\+parser (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}}]{argv\mbox{[}$\,$\mbox{]},  }\item[{char \texorpdfstring{$\ast$}{*}}]{envp\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+解析命令行 
+
+
+\begin{DoxyParams}{参数}
+{\em argc} & \\
+\hline
+{\em argv} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{argparse_8h_a5742af30352e7e80adcbae79342a6498}\label{argparse_8h_a5742af30352e7e80adcbae79342a6498} 
+\index{argparse.h@{argparse.h}!ap\_get@{ap\_get}}
+\index{ap\_get@{ap\_get}!argparse.h@{argparse.h}}
+\doxysubsubsection{\texorpdfstring{ap\_get()}{ap\_get()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structap__arg__t}{ap\+\_\+arg\+\_\+t}} \texorpdfstring{$\ast$}{*} ap\+\_\+get (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{arg\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+根据参数名获取参数值 
+
+
+\begin{DoxyParams}{参数}
+{\em arg\+\_\+name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+void\texorpdfstring{$\ast$}{*} 
+\end{DoxyReturn}
+\Hypertarget{argparse_8h_ae37bd559bda68ce36be35c6777050325}\label{argparse_8h_ae37bd559bda68ce36be35c6777050325} 
+\index{argparse.h@{argparse.h}!ap\_init\_parser@{ap\_init\_parser}}
+\index{ap\_init\_parser@{ap\_init\_parser}!argparse.h@{argparse.h}}
+\doxysubsubsection{\texorpdfstring{ap\_init\_parser()}{ap\_init\_parser()}}
+{\footnotesize\ttfamily void ap\+\_\+init\+\_\+parser (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{print\+\_\+message,  }\item[{print\+\_\+ap\+\_\+command\+\_\+t}]{print\+\_\+command }\end{DoxyParamCaption})}
+
+
+
+初始化解析器 
+
+
+\begin{DoxyParams}{参数}
+{\em print\+\_\+message} & \\
+\hline
+{\em print\+\_\+command} & \\
+\hline
+\end{DoxyParams}

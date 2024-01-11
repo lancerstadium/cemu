@@ -1,0 +1,151 @@
+\doxysection{common.\+h}
+\hypertarget{common_8h_source}{}\label{common_8h_source}\index{src/common.h@{src/common.h}}
+\mbox{\hyperlink{common_8h}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{utils_8h}{utils/utils.h}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ \#include\ "{}unicorn/unicorn.h"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ /**\ 模拟执行基址\ */}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ \#define\ ADDRESS\ 0x1000000}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ /**\ 模拟执行代码：`INC\ ecx;\ DEC\ edx;\ PXOR\ xmm0,\ xmm1`\ */}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ \#define\ X86\_CODE32\ "{}\(\backslash\)x41\(\backslash\)x4a\(\backslash\)x66\(\backslash\)x0f\(\backslash\)xef\(\backslash\)xc1"{}}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ /**}}
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ \ *\ @brief\ hook\ 回调函数：在终端中输出起始地址和硬编码大小}}
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ \ *\ }}
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ \ *\ @param\ uc\ \`{}unicorn`\ 引擎句柄}}
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ \ *\ @param\ address\ 指令地址}}
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ \ *\ @param\ size\ 指令大小}}
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ \ *\ @param\ user\_data\ 用户数据}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ \ *\ }}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ \ *\ @note\ \`{}uc`\ 为\ \`{}unicorn`\ 引擎句柄}}
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ \ *\ @par\ 示例}}
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ \ *\ \`{}\`{}\`{}c}}
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ \ *\ hook\_block(uc,\ 0x1000000,\ 0x100,\ NULL);}}
+\DoxyCodeLine{00034\ \textcolor{comment}{//\ \ *\ \`{}\`{}\`{}}}
+\DoxyCodeLine{00035\ \textcolor{comment}{//\ \ *\ }}
+\DoxyCodeLine{00036\ \textcolor{comment}{//\ \ */}}
+\DoxyCodeLine{00037\ \textcolor{comment}{//\ static\ void\ hook\_block(uc\_engine\ *uc,\ uint64\_t\ address,\ uint32\_t\ size,\ void\ *user\_data)}}
+\DoxyCodeLine{00038\ \textcolor{comment}{//\ \{}}
+\DoxyCodeLine{00039\ \textcolor{comment}{//\ \ \ \ \ printf("{}>>>\ Tracing\ basic\ block\ at\ 0x\%"{}PRIx64\ "{},\ block\ size\ =\ 0x\%x\(\backslash\)n"{},\ address,\ size);}}
+\DoxyCodeLine{00040\ \textcolor{comment}{//\ \}}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{comment}{//\ /**}}
+\DoxyCodeLine{00043\ \textcolor{comment}{//\ \ *\ @brief\ hook\ 回调函数，用于监视程序运行时的变化}}
+\DoxyCodeLine{00044\ \textcolor{comment}{//\ \ *\ }}
+\DoxyCodeLine{00045\ \textcolor{comment}{//\ \ *\ @param\ uc\ \`{}unicorn`\ 引擎句柄}}
+\DoxyCodeLine{00046\ \textcolor{comment}{//\ \ *\ @param\ address\ 指令地址}}
+\DoxyCodeLine{00047\ \textcolor{comment}{//\ \ *\ @param\ size\ 指令大小}}
+\DoxyCodeLine{00048\ \textcolor{comment}{//\ \ *\ @param\ user\_data\ 用户数据}}
+\DoxyCodeLine{00049\ \textcolor{comment}{//\ \ *\ }}
+\DoxyCodeLine{00050\ \textcolor{comment}{//\ \ *\ @attention\ \`{}uc`\ 为\ \`{}unicorn`\ 引擎句柄}}
+\DoxyCodeLine{00051\ \textcolor{comment}{//\ \ */}}
+\DoxyCodeLine{00052\ \textcolor{comment}{//\ static\ void\ hook\_code(uc\_engine\ *uc,\ uint64\_t\ address,\ uint32\_t\ size,\ void\ *user\_data)}}
+\DoxyCodeLine{00053\ \textcolor{comment}{//\ \{}}
+\DoxyCodeLine{00054\ \textcolor{comment}{//\ \ \ \ \ int\ eflags;\ /**>\ EFLAGS\ 寄存器值\ */}}
+\DoxyCodeLine{00055\ \textcolor{comment}{//\ \ \ \ \ printf("{}>>>\ Tracing\ instruction\ at\ 0x\%"{}PRIx64\ "{},\ instruction\ size\ =\ 0x\%x\(\backslash\)n"{},\ address,\ size);}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{comment}{//\ \ \ \ \ uc\_reg\_read(uc,\ UC\_X86\_REG\_EFLAGS,\ \&eflags);\ //获取寄存器值放入eflags变量中}}
+\DoxyCodeLine{00058\ \textcolor{comment}{//\ \ \ \ \ printf("{}>>>\ -\/-\/-\/\ EFLAGS\ is\ 0x\%x\(\backslash\)n"{},\ eflags);}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{comment}{//\ \ \ \ \ //\ Uncomment\ below\ code\ to\ stop\ the\ emulation\ using\ uc\_emu\_stop()}}
+\DoxyCodeLine{00061\ \textcolor{comment}{//\ \ \ \ \ //\ if\ (address\ ==\ 0x1000009)}}
+\DoxyCodeLine{00062\ \textcolor{comment}{//\ \ \ \ \ //\ \ \ \ uc\_emu\_stop(uc);}}
+\DoxyCodeLine{00063\ \textcolor{comment}{//\ \}}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{comment}{//\ /**}}
+\DoxyCodeLine{00066\ \textcolor{comment}{//\ \ *\ @brief\ 测试\ x86\ 模拟执行环境}}
+\DoxyCodeLine{00067\ \textcolor{comment}{//\ \ *\ @note\ 功能还在开发中}}
+\DoxyCodeLine{00068\ \textcolor{comment}{//\ \ */}}
+\DoxyCodeLine{00069\ \textcolor{comment}{//\ static\ void\ test\_i386(void)}}
+\DoxyCodeLine{00070\ \textcolor{comment}{//\ \{}}
+\DoxyCodeLine{00071\ \textcolor{comment}{//\ \ \ \ \ uc\_engine\ *uc;}}
+\DoxyCodeLine{00072\ \textcolor{comment}{//\ \ \ \ \ uc\_err\ err;}}
+\DoxyCodeLine{00073\ \textcolor{comment}{//\ \ \ \ \ uint32\_t\ tmp;}}
+\DoxyCodeLine{00074\ \textcolor{comment}{//\ \ \ \ \ uc\_hook\ trace1,\ trace2;}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{comment}{//\ \ \ \ \ int\ r\_ecx\ =\ 0x1234;\ \ \ \ \ //\ ECX\ 寄存器}}
+\DoxyCodeLine{00077\ \textcolor{comment}{//\ \ \ \ \ int\ r\_edx\ =\ 0x7890;\ \ \ \ \ //\ EDX\ 寄存器}}
+\DoxyCodeLine{00078\ \textcolor{comment}{//\ \ \ \ \ //\ XMM0\ 、\ XMM1\ 寄存器,\ 数组分别为低64位和高64位}}
+\DoxyCodeLine{00079\ \textcolor{comment}{//\ \ \ \ \ uint64\_t\ r\_xmm0[2]\ =\ \{0x08090a0b0c0d0e0f,\ 0x0001020304050607\};}}
+\DoxyCodeLine{00080\ \textcolor{comment}{//\ \ \ \ \ uint64\_t\ r\_xmm1[2]\ =\ \{0x8090a0b0c0d0e0f0,\ 0x0010203040506070\};}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{comment}{//\ \ \ \ \ printf("{}Emulate\ i386\ code\(\backslash\)n"{});}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{comment}{//\ \ \ \ \ //\ 初始化x86环境}}
+\DoxyCodeLine{00085\ \textcolor{comment}{//\ \ \ \ \ err\ =\ uc\_open(UC\_ARCH\_X86,\ UC\_MODE\_32,\ \&uc);}}
+\DoxyCodeLine{00086\ \textcolor{comment}{//\ \ \ \ \ if\ (err)\ \{}}
+\DoxyCodeLine{00087\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ printf("{}Failed\ on\ uc\_open()\ with\ error\ returned:\ \%u\(\backslash\)n"{},\ err);}}
+\DoxyCodeLine{00088\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ return;}}
+\DoxyCodeLine{00089\ \textcolor{comment}{//\ \ \ \ \ \}}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{comment}{//\ \ \ \ \ //\ 为模拟执行代码申请\ 2MB\ 内存}}
+\DoxyCodeLine{00092\ \textcolor{comment}{//\ \ \ \ \ uc\_mem\_map(uc,\ ADDRESS,\ 2\ *\ 1024\ *\ 1024,\ UC\_PROT\_ALL);}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{comment}{//\ \ \ \ \ //\ 向目标地址写入opcode}}
+\DoxyCodeLine{00095\ \textcolor{comment}{//\ \ \ \ \ if\ (uc\_mem\_write(uc,\ ADDRESS,\ X86\_CODE32,\ sizeof(X86\_CODE32)\ -\/\ 1))\ \{}}
+\DoxyCodeLine{00096\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ printf("{}Failed\ to\ write\ emulation\ code\ to\ memory,\ quit!\(\backslash\)n"{});}}
+\DoxyCodeLine{00097\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ return;}}
+\DoxyCodeLine{00098\ \textcolor{comment}{//\ \ \ \ \ \}}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \textcolor{comment}{//\ \ \ \ \ //\ 初始化寄存器ECX、EDX、XMM0、XMM1}}
+\DoxyCodeLine{00101\ \textcolor{comment}{//\ \ \ \ \ uc\_reg\_write(uc,\ UC\_X86\_REG\_ECX,\ \&r\_ecx);}}
+\DoxyCodeLine{00102\ \textcolor{comment}{//\ \ \ \ \ uc\_reg\_write(uc,\ UC\_X86\_REG\_EDX,\ \&r\_edx);}}
+\DoxyCodeLine{00103\ \textcolor{comment}{//\ \ \ \ \ uc\_reg\_write(uc,\ UC\_X86\_REG\_XMM0,\ \&r\_xmm0);}}
+\DoxyCodeLine{00104\ \textcolor{comment}{//\ \ \ \ \ uc\_reg\_write(uc,\ UC\_X86\_REG\_XMM1,\ \&r\_xmm1);}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \textcolor{comment}{//\ \ \ \ \ //\ 在函数内插桩，成功时会调用回调函数\ }}
+\DoxyCodeLine{00107\ \textcolor{comment}{//\ \ \ \ \ uc\_hook\_add(uc,\ \&trace1,\ UC\_HOOK\_BLOCK,\ hook\_block,\ NULL,\ 1,\ 0);}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \textcolor{comment}{//\ \ \ \ \ //\ 每当代码执行时调用回调函数}}
+\DoxyCodeLine{00110\ \textcolor{comment}{//\ \ \ \ \ uc\_hook\_add(uc,\ \&trace2,\ UC\_HOOK\_CODE,\ hook\_code,\ NULL,\ 1,\ 0);}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \textcolor{comment}{//\ \ \ \ \ //\ 模拟执行}}
+\DoxyCodeLine{00113\ \textcolor{comment}{//\ \ \ \ \ err\ =\ uc\_emu\_start(uc,\ ADDRESS,\ ADDRESS\ +\ sizeof(X86\_CODE32)\ -\/\ 1,\ 0,\ 0);}}
+\DoxyCodeLine{00114\ \textcolor{comment}{//\ \ \ \ \ if\ (err)\ \{}}
+\DoxyCodeLine{00115\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ printf("{}Failed\ on\ uc\_emu\_start()\ with\ error\ returned\ \%u:\ \%s\(\backslash\)n"{},}}
+\DoxyCodeLine{00116\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ err,\ uc\_strerror(err));}}
+\DoxyCodeLine{00117\ \textcolor{comment}{//\ \ \ \ \ \}}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \textcolor{comment}{//\ \ \ \ \ //\ 最后输出一些模拟执行完成后寄存器的值}}
+\DoxyCodeLine{00120\ \textcolor{comment}{//\ \ \ \ \ printf("{}>>>\ Emulation\ done.\ Below\ is\ the\ CPU\ context\(\backslash\)n"{});}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \textcolor{comment}{//\ \ \ \ \ uc\_reg\_read(uc,\ UC\_X86\_REG\_ECX,\ \&r\_ecx);}}
+\DoxyCodeLine{00123\ \textcolor{comment}{//\ \ \ \ \ uc\_reg\_read(uc,\ UC\_X86\_REG\_EDX,\ \&r\_edx);}}
+\DoxyCodeLine{00124\ \textcolor{comment}{//\ \ \ \ \ uc\_reg\_read(uc,\ UC\_X86\_REG\_XMM0,\ \&r\_xmm0);}}
+\DoxyCodeLine{00125\ \textcolor{comment}{//\ \ \ \ \ printf("{}>>>\ ECX\ =\ 0x\%x\(\backslash\)n"{},\ r\_ecx);}}
+\DoxyCodeLine{00126\ \textcolor{comment}{//\ \ \ \ \ printf("{}>>>\ EDX\ =\ 0x\%x\(\backslash\)n"{},\ r\_edx);}}
+\DoxyCodeLine{00127\ \textcolor{comment}{//\ \ \ \ \ printf("{}>>>\ XMM0\ =\ 0x\%.16"{}PRIx64"{}\%.16"{}PRIx64"{}\(\backslash\)n"{},\ r\_xmm0[1],\ r\_xmm0[0]);}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \textcolor{comment}{//\ \ \ \ \ //\ 读取内存中的内容}}
+\DoxyCodeLine{00130\ \textcolor{comment}{//\ \ \ \ \ if\ (!uc\_mem\_read(uc,\ ADDRESS,\ \&tmp,\ sizeof(tmp)))}}
+\DoxyCodeLine{00131\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ printf("{}>>>\ Read\ 4\ bytes\ from\ [0x\%x]\ =\ 0x\%x\(\backslash\)n"{},\ ADDRESS,\ tmp);}}
+\DoxyCodeLine{00132\ \textcolor{comment}{//\ \ \ \ \ else}}
+\DoxyCodeLine{00133\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ printf("{}>>>\ Failed\ to\ read\ 4\ bytes\ from\ [0x\%x]\(\backslash\)n"{},\ ADDRESS);}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \textcolor{comment}{//\ \ \ \ \ //\ 最后需要关闭，否则会导致内存泄露}}
+\DoxyCodeLine{00136\ \textcolor{comment}{//\ \ \ \ \ uc\_close(uc);}}
+\DoxyCodeLine{00137\ \textcolor{comment}{//\ \}}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \textcolor{comment}{//\ /**}}
+\DoxyCodeLine{00141\ \textcolor{comment}{//\ \ *\ @brief\ 测试\ riscv\ 模拟执行环境}}
+\DoxyCodeLine{00142\ \textcolor{comment}{//\ \ *\ @warning\ 功能还在开发中}}
+\DoxyCodeLine{00143\ \textcolor{comment}{//\ \ *\ @par\ 示例}}
+\DoxyCodeLine{00144\ \textcolor{comment}{//\ \ *\ }}
+\DoxyCodeLine{00145\ \textcolor{comment}{//\ \ *\ \#\#\ Code\ block}}
+\DoxyCodeLine{00146\ \textcolor{comment}{//\ \ *\ }}
+\DoxyCodeLine{00147\ \textcolor{comment}{//\ \ *\ \`{}\`{}\`{}c}}
+\DoxyCodeLine{00148\ \textcolor{comment}{//\ \ *\ test\_riscv();}}
+\DoxyCodeLine{00149\ \textcolor{comment}{//\ \ *\ \`{}\`{}\`{}}}
+\DoxyCodeLine{00150\ \textcolor{comment}{//\ \ */}}
+\DoxyCodeLine{00151\ \textcolor{comment}{//\ void\ test\_riscv()\ }}
+\DoxyCodeLine{00152\ \textcolor{comment}{//\ \{}}
+\DoxyCodeLine{00153\ \textcolor{comment}{//\ \ \ \ \ printf("{}Emulate\ riscv\ code\(\backslash\)n"{});}}
+\DoxyCodeLine{00154\ \textcolor{comment}{//\ \}}}
+
+\end{DoxyCode}

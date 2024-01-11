@@ -1,0 +1,133 @@
+\doxysection{cemu.\+h}
+\hypertarget{cemu_8h_source}{}\label{cemu_8h_source}\index{src/cemu/cemu.h@{src/cemu/cemu.h}}
+\mbox{\hyperlink{cemu_8h}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#ifndef\ CEMU\_H}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ CEMU\_H}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Include}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{cpu_8h}{cpu.h}}"{}}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{loader_8h}{loader.h}}"{}}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{utils_8h}{utils.h}}"{}}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ 测试}}
+\DoxyCodeLine{00024\ \textcolor{keywordtype}{void}\ run\_unit\_test()\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{comment}{//\ test}}
+\DoxyCodeLine{00026\ \ \ \ \ ut\_print\_test();}
+\DoxyCodeLine{00027\ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Monitor\ Command\ Callback}}
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keywordtype}{void}\ help\_command\_callback()\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ printf(\textcolor{stringliteral}{"{}help\ info\(\backslash\)n"{}});}
+\DoxyCodeLine{00035\ \}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keywordtype}{void}\ run\_command\_callback(\textcolor{keywordtype}{char}\ *args,\ \mbox{\hyperlink{structCPU__t}{CPU}}\ *cpu)\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{cpu_8c_a24be27f18c18da0331c6ef74e8eb71bb}{cpu\_step}}(cpu,\ -\/1);}
+\DoxyCodeLine{00039\ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keywordtype}{void}\ step\_command\_callback(\textcolor{keywordtype}{char}\ *args,\ \mbox{\hyperlink{structCPU__t}{CPU}}\ *cpu)\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{if}(args\ !=\ \mbox{\hyperlink{list_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}}\ \&\&\ strlen(args)\ >\ 0)\{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!\mbox{\hyperlink{cpu_8c_a24be27f18c18da0331c6ef74e8eb71bb}{cpu\_step}}(cpu,\ atoi(args)))\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{log_8h_a6ae72553ea9805dd87a463d6f710364d}{log\_error}}(\textcolor{stringliteral}{"{}CPU\ step\ error!"{}});}
+\DoxyCodeLine{00045\ \ \ \ \ \}\textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{log_8h_a04af09851c431d178f16b24fa1aac1e9}{log\_warn}}(\textcolor{stringliteral}{"{}step\ one"{}});}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!\mbox{\hyperlink{cpu_8c_a24be27f18c18da0331c6ef74e8eb71bb}{cpu\_step}}(cpu,\ 1))\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{log_8h_a6ae72553ea9805dd87a463d6f710364d}{log\_error}}(\textcolor{stringliteral}{"{}CPU\ step\ error!"{}});}
+\DoxyCodeLine{00049\ \ \ \ \ \}}
+\DoxyCodeLine{00050\ \}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00053\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Argparse\ Command\ Callback}}
+\DoxyCodeLine{00054\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ ap\_def\_callback(default\_callback)\ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordflow}{if}(argc\ <=\ 1)\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{log_8h_a6ae72553ea9805dd87a463d6f710364d}{log\_error}}(\textcolor{stringliteral}{"{}No\ input\ file"{}});}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ exit(-\/1);}
+\DoxyCodeLine{00060\ \ \ \ \ \}}
+\DoxyCodeLine{00061\ \ \ \ \ \mbox{\hyperlink{structCPU__t}{CPU}}\ cpu;}
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{cpu_8c_aeb351583dd7a247f2d5a4d234489f20c}{cpu\_loop}}(\&cpu,\ \mbox{\hyperlink{argparse-new_8h_a08fab15af2e7e06cae1343e66cf50ead}{ap\_get}}(\textcolor{stringliteral}{"{}input"{}})-\/>value);}
+\DoxyCodeLine{00063\ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ ap\_def\_callback(hello\_callback)\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \mbox{\hyperlink{log_8h_aa77e596ef13d2f0f75d0ac9540ed358d}{log\_debug}}(\textcolor{stringliteral}{"{}Hello,\ World!"{}});}
+\DoxyCodeLine{00067\ \ \ \ \ \mbox{\hyperlink{log_8h_af89cb876e6e1d43cfeacdd58a7c9b78c}{log\_trace}}(\textcolor{stringliteral}{"{}Hello,\ World!"{}});}
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{log_8h_aa1cfe5444875c8eca0ea6f6993977d6d}{log\_info}}(\textcolor{stringliteral}{"{}Hello,\ World!"{}});}
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{log_8h_a04af09851c431d178f16b24fa1aac1e9}{log\_warn}}(\textcolor{stringliteral}{"{}Hello,\ World!"{}});}
+\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{log_8h_a6ae72553ea9805dd87a463d6f710364d}{log\_error}}(\textcolor{stringliteral}{"{}Hello,\ World!"{}});}
+\DoxyCodeLine{00071\ \ \ \ \ \mbox{\hyperlink{log_8h_a8a5832ba98ade5cdcef7914712fb1529}{log\_assert}}(5\ ==\ 5,\ \textcolor{stringliteral}{"{}Hello,\ World!"{}});}
+\DoxyCodeLine{00072\ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ ap\_def\_callback(test\_callback)\ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \mbox{\hyperlink{structap__arg__t}{ap\_arg\_t}}*\ arg\_o\ =\ \mbox{\hyperlink{argparse-new_8h_a08fab15af2e7e06cae1343e66cf50ead}{ap\_get}}(\textcolor{stringliteral}{"{}output"{}});}
+\DoxyCodeLine{00076\ \ \ \ \ \mbox{\hyperlink{log_8h_a8a5832ba98ade5cdcef7914712fb1529}{log\_assert}}(arg\_o\ !=\ \mbox{\hyperlink{list_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}},\ \textcolor{stringliteral}{"{}arg\_o\ not\ NULL"{}});}
+\DoxyCodeLine{00077\ \ \ \ \ \mbox{\hyperlink{log_8h_a8a5832ba98ade5cdcef7914712fb1529}{log\_assert}}(arg\_o-\/>value\ ==\ \mbox{\hyperlink{list_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}},\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordflow}{if}\ (!arg\_o-\/>value)\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}no\ value.\ init:\ \%s\(\backslash\)n"{}},\ arg\_o-\/>init.s);}
+\DoxyCodeLine{00081\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}option\ output:\ \%s\(\backslash\)n"{}},\ arg\_o-\/>value);}
+\DoxyCodeLine{00083\ \ \ \ \ \}}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{int}\ q\_l;}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordflow}{if}(!\mbox{\hyperlink{argparse-new_8h_a08fab15af2e7e06cae1343e66cf50ead}{ap\_get}}(\textcolor{stringliteral}{"{}quiet"{}})-\/>value)\ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ q\_l\ =\ \mbox{\hyperlink{argparse-new_8h_a08fab15af2e7e06cae1343e66cf50ead}{ap\_get}}(\textcolor{stringliteral}{"{}quiet"{}})-\/>init.i;}
+\DoxyCodeLine{00087\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ q\_l\ =\ atoi(\mbox{\hyperlink{argparse-new_8h_a08fab15af2e7e06cae1343e66cf50ead}{ap\_get}}(\textcolor{stringliteral}{"{}quiet"{}})-\/>value);}
+\DoxyCodeLine{00089\ \ \ \ \ \}}
+\DoxyCodeLine{00090\ \ \ \ \ printf(\textcolor{stringliteral}{"{}option\ quiet:\ \%d\(\backslash\)n"{}},\ q\_l);}
+\DoxyCodeLine{00091\ \ \ \ \ ut\_set\_quiet(q\_l);}
+\DoxyCodeLine{00092\ \ \ \ \ run\_unit\_test();}
+\DoxyCodeLine{00093\ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ ap\_def\_callback(debug\_callback)\ \{}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \mbox{\hyperlink{structCPU__t}{CPU}}\ cpu;}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{comment}{//\ 1.\ 初始化：cpu,\ 寄存器\ regs\ 和程序计数器\ pc}}
+\DoxyCodeLine{00099\ \ \ \ \ \mbox{\hyperlink{cpu_8c_acf95be96d2f1db5044b9d704edf739cd}{cpu\_init}}(\&cpu);}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{comment}{//\ 2.\ 加载文件}}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordflow}{if}(!\mbox{\hyperlink{argparse-new_8h_a08fab15af2e7e06cae1343e66cf50ead}{ap\_get}}(\textcolor{stringliteral}{"{}input"{}})-\/>value)\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}*\ default\_input\ =\ \textcolor{stringliteral}{"{}./test/temp\_01.out"{}};}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{log_8h_a04af09851c431d178f16b24fa1aac1e9}{log\_warn}}(\textcolor{stringliteral}{"{}No\ input\ file,\ use:\ \%s"{}},\ default\_input);}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ load\_elf(\&cpu,\ default\_input);}
+\DoxyCodeLine{00105\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ load\_elf(\&cpu,\ \mbox{\hyperlink{argparse-new_8h_a08fab15af2e7e06cae1343e66cf50ead}{ap\_get}}(\textcolor{stringliteral}{"{}input"{}})-\/>value);}
+\DoxyCodeLine{00107\ \ \ \ \ \}}
+\DoxyCodeLine{00108\ \ \ \ \ linenoiseHistoryLoad(\textcolor{stringliteral}{"{}history.txt"{}});\ \textcolor{comment}{//\ Load\ command\ history\ from\ file}}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordtype}{char}\ *line;}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordflow}{while}\ ((line\ =\ linenoise(\textcolor{stringliteral}{"{}>>\ "{}}))\ !=\ \mbox{\hyperlink{list_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}})\ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line[0]\ !=\ \textcolor{charliteral}{'\(\backslash\)0'})\ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ linenoiseHistoryAdd(line);\ \textcolor{comment}{//\ Add\ command\ to\ history}}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ linenoiseHistorySave(\textcolor{stringliteral}{"{}history.txt"{}});\ \textcolor{comment}{//\ Save\ command\ history\ to\ file}}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ *command\ =\ strtok(line,\ \textcolor{stringliteral}{"{}\ "{}});\ \textcolor{comment}{//\ 解析命令}}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ *args\ =\ strtok(\mbox{\hyperlink{list_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}},\ \textcolor{stringliteral}{"{}\ "{}});\ \textcolor{comment}{//\ 解析参数}}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strcmp(command,\ \textcolor{stringliteral}{"{}help"{}})\ ==\ 0\ ||\ strcmp(command,\ \textcolor{stringliteral}{"{}h"{}}\ )\ ==\ 0)\ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ help\_command\_callback();}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (strcmp(command,\ \textcolor{stringliteral}{"{}run"{}}\ )\ ==\ 0\ ||\ strcmp(command,\ \textcolor{stringliteral}{"{}r"{}}\ )\ ==\ 0)\ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ run\_command\_callback(args,\ \&cpu);}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (strcmp(command,\ \textcolor{stringliteral}{"{}step"{}})\ ==\ 0\ ||\ strcmp(command,\ \textcolor{stringliteral}{"{}si"{}})\ ==\ 0)\ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ step\_command\_callback(args,\ \&cpu);}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (strcmp(command,\ \textcolor{stringliteral}{"{}load"{}})\ ==\ 0\ ||\ strcmp(command,\ \textcolor{stringliteral}{"{}l"{}}\ )\ ==\ 0)\ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ load\_elf(\&cpu,\ args);}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (strcmp(command,\ \textcolor{stringliteral}{"{}quit"{}})\ ==\ 0\ ||\ strcmp(command,\ \textcolor{stringliteral}{"{}q"{}}\ )\ ==\ 0)\ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ free(line);}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{log_8h_aa1cfe5444875c8eca0ea6f6993977d6d}{log\_info}}(\textcolor{stringliteral}{"{}Bye!"{}});}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ exit(0);}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{log_8h_a04af09851c431d178f16b24fa1aac1e9}{log\_warn}}(\textcolor{stringliteral}{"{}Unknown\ command:\ \%s"{}},\ command);}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ free(line);}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00133\ \ \ \ \ \}}
+\DoxyCodeLine{00134\ \}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ CEMU\_H}}
+
+\end{DoxyCode}

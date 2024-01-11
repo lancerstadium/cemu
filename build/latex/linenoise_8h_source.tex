@@ -1,0 +1,82 @@
+\doxysection{linenoise.\+h}
+\hypertarget{linenoise_8h_source}{}\label{linenoise_8h_source}\index{src/utils/linenoise.h@{src/utils/linenoise.h}}
+\mbox{\hyperlink{linenoise_8h}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#ifndef\ \_\_LINENOISE\_H}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ \_\_LINENOISE\_H}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00054\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#include\ <stddef.h>}\ \textcolor{comment}{/*\ For\ size\_t.\ */}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{char}\ *linenoiseEditMore;}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{comment}{/*\ The\ linenoiseState\ structure\ represents\ the\ state\ during\ line\ editing.}}
+\DoxyCodeLine{00062\ \textcolor{comment}{\ *\ We\ pass\ this\ state\ to\ functions\ implementing\ specific\ editing}}
+\DoxyCodeLine{00063\ \textcolor{comment}{\ *\ functionalities.\ */}}
+\DoxyCodeLine{00064\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structlinenoiseState}{linenoiseState}}\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{int}\ in\_completion;\ \ \textcolor{comment}{/*\ The\ user\ pressed\ TAB\ and\ we\ are\ now\ in\ completion}}
+\DoxyCodeLine{00066\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *\ mode,\ so\ input\ is\ handled\ by\ completeLine().\ */}}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ completion\_idx;\ \textcolor{comment}{/*\ Index\ of\ next\ completion\ to\ propose.\ */}}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{int}\ ifd;\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Terminal\ stdin\ file\ descriptor.\ */}}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{int}\ ofd;\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Terminal\ stdout\ file\ descriptor.\ */}}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{char}\ *buf;\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Edited\ line\ buffer.\ */}}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ buflen;\ \ \ \ \ \ \textcolor{comment}{/*\ Edited\ line\ buffer\ size.\ */}}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *prompt;\ \textcolor{comment}{/*\ Prompt\ to\ display.\ */}}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ plen;\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Prompt\ length.\ */}}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ pos;\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Current\ cursor\ position.\ */}}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ oldpos;\ \ \ \ \ \ \textcolor{comment}{/*\ Previous\ refresh\ cursor\ position.\ */}}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ len;\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Current\ edited\ line\ length.\ */}}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ cols;\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Number\ of\ columns\ in\ terminal.\ */}}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ oldrows;\ \ \ \ \ \textcolor{comment}{/*\ Rows\ used\ by\ last\ refrehsed\ line\ (multiline\ mode)\ */}}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{int}\ history\_index;\ \ \textcolor{comment}{/*\ The\ history\ index\ we\ are\ currently\ editing.\ */}}
+\DoxyCodeLine{00080\ \};}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structlinenoiseCompletions}{linenoiseCompletions}}\ \{}
+\DoxyCodeLine{00083\ \ \ \textcolor{keywordtype}{size\_t}\ len;}
+\DoxyCodeLine{00084\ \ \ \textcolor{keywordtype}{char}\ **cvec;}
+\DoxyCodeLine{00085\ \}\ \mbox{\hyperlink{structlinenoiseCompletions}{linenoiseCompletions}};}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{comment}{/*\ Non\ blocking\ API.\ */}}
+\DoxyCodeLine{00088\ \textcolor{keywordtype}{int}\ linenoiseEditStart(\textcolor{keyword}{struct}\ \mbox{\hyperlink{structlinenoiseState}{linenoiseState}}\ *l,\ \textcolor{keywordtype}{int}\ stdin\_fd,\ \textcolor{keywordtype}{int}\ stdout\_fd,\ \textcolor{keywordtype}{char}\ *buf,\ \textcolor{keywordtype}{size\_t}\ buflen,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *prompt);}
+\DoxyCodeLine{00089\ \textcolor{keywordtype}{char}\ *linenoiseEditFeed(\textcolor{keyword}{struct}\ \mbox{\hyperlink{structlinenoiseState}{linenoiseState}}\ *l);}
+\DoxyCodeLine{00090\ \textcolor{keywordtype}{void}\ linenoiseEditStop(\textcolor{keyword}{struct}\ \mbox{\hyperlink{structlinenoiseState}{linenoiseState}}\ *l);}
+\DoxyCodeLine{00091\ \textcolor{keywordtype}{void}\ linenoiseHide(\textcolor{keyword}{struct}\ \mbox{\hyperlink{structlinenoiseState}{linenoiseState}}\ *l);}
+\DoxyCodeLine{00092\ \textcolor{keywordtype}{void}\ linenoiseShow(\textcolor{keyword}{struct}\ \mbox{\hyperlink{structlinenoiseState}{linenoiseState}}\ *l);}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{comment}{/*\ Blocking\ API.\ */}}
+\DoxyCodeLine{00095\ \textcolor{keywordtype}{char}\ *linenoise(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *prompt);}
+\DoxyCodeLine{00096\ \textcolor{keywordtype}{void}\ linenoiseFree(\textcolor{keywordtype}{void}\ *ptr);}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \textcolor{comment}{/*\ Completion\ API.\ */}}
+\DoxyCodeLine{00099\ \textcolor{keyword}{typedef}\ void(linenoiseCompletionCallback)(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *,\ \mbox{\hyperlink{structlinenoiseCompletions}{linenoiseCompletions}}\ *);}
+\DoxyCodeLine{00100\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{char}*(linenoiseHintsCallback)(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *,\ \textcolor{keywordtype}{int}\ *color,\ \textcolor{keywordtype}{int}\ *bold);}
+\DoxyCodeLine{00101\ \textcolor{keyword}{typedef}\ void(linenoiseFreeHintsCallback)(\textcolor{keywordtype}{void}\ *);}
+\DoxyCodeLine{00102\ \textcolor{keywordtype}{void}\ linenoiseSetCompletionCallback(linenoiseCompletionCallback\ *);}
+\DoxyCodeLine{00103\ \textcolor{keywordtype}{void}\ linenoiseSetHintsCallback(linenoiseHintsCallback\ *);}
+\DoxyCodeLine{00104\ \textcolor{keywordtype}{void}\ linenoiseSetFreeHintsCallback(linenoiseFreeHintsCallback\ *);}
+\DoxyCodeLine{00105\ \textcolor{keywordtype}{void}\ linenoiseAddCompletion(\mbox{\hyperlink{structlinenoiseCompletions}{linenoiseCompletions}}\ *,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *);}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \textcolor{comment}{/*\ History\ API.\ */}}
+\DoxyCodeLine{00108\ \textcolor{keywordtype}{int}\ linenoiseHistoryAdd(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *line);}
+\DoxyCodeLine{00109\ \textcolor{keywordtype}{int}\ linenoiseHistorySetMaxLen(\textcolor{keywordtype}{int}\ len);}
+\DoxyCodeLine{00110\ \textcolor{keywordtype}{int}\ linenoiseHistorySave(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *filename);}
+\DoxyCodeLine{00111\ \textcolor{keywordtype}{int}\ linenoiseHistoryLoad(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *filename);}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \textcolor{comment}{/*\ Other\ utilities.\ */}}
+\DoxyCodeLine{00114\ \textcolor{keywordtype}{void}\ linenoiseClearScreen(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00115\ \textcolor{keywordtype}{void}\ linenoiseSetMultiLine(\textcolor{keywordtype}{int}\ ml);}
+\DoxyCodeLine{00116\ \textcolor{keywordtype}{void}\ linenoisePrintKeyCodes(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00117\ \textcolor{keywordtype}{void}\ linenoiseMaskModeEnable(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00118\ \textcolor{keywordtype}{void}\ linenoiseMaskModeDisable(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00121\ \}}
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ \_\_LINENOISE\_H\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

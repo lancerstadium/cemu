@@ -1,0 +1,433 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>uemu: src/cemu/opcode.h 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">uemu
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('opcode_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#define-members">宏定义</a>  </div>
+  <div class="headertitle"><div class="title">opcode.h 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>操作码头文件  
+<a href="#details">更多...</a></p>
+
+<p><a href="opcode_8h_source.html">浏览源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:ae253f17e1792a8324699cdaca73cf387" id="r_ae253f17e1792a8324699cdaca73cf387"><td class="memItemLeft" align="right" valign="top"><a id="ae253f17e1792a8324699cdaca73cf387" name="ae253f17e1792a8324699cdaca73cf387"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LUI</b>&#160;&#160;&#160;0x37</td></tr>
+<tr class="separator:ae253f17e1792a8324699cdaca73cf387"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70899342bce2a876e7d335d5a809e775" id="r_a70899342bce2a876e7d335d5a809e775"><td class="memItemLeft" align="right" valign="top"><a id="a70899342bce2a876e7d335d5a809e775" name="a70899342bce2a876e7d335d5a809e775"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>AUIPC</b>&#160;&#160;&#160;0x17</td></tr>
+<tr class="separator:a70899342bce2a876e7d335d5a809e775"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f8938c41dd93edd84b1e8319560cea7" id="r_a9f8938c41dd93edd84b1e8319560cea7"><td class="memItemLeft" align="right" valign="top"><a id="a9f8938c41dd93edd84b1e8319560cea7" name="a9f8938c41dd93edd84b1e8319560cea7"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>JAL</b>&#160;&#160;&#160;0x6f</td></tr>
+<tr class="separator:a9f8938c41dd93edd84b1e8319560cea7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0fa8374fa39b77297efc164c358c024a" id="r_a0fa8374fa39b77297efc164c358c024a"><td class="memItemLeft" align="right" valign="top"><a id="a0fa8374fa39b77297efc164c358c024a" name="a0fa8374fa39b77297efc164c358c024a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>JALR</b>&#160;&#160;&#160;0x67</td></tr>
+<tr class="separator:a0fa8374fa39b77297efc164c358c024a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a576bae886fea0085ee73676f852bb8" id="r_a4a576bae886fea0085ee73676f852bb8"><td class="memItemLeft" align="right" valign="top"><a id="a4a576bae886fea0085ee73676f852bb8" name="a4a576bae886fea0085ee73676f852bb8"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>B_TYPE</b>&#160;&#160;&#160;0x63</td></tr>
+<tr class="separator:a4a576bae886fea0085ee73676f852bb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e21b1bbecbc6c491f4cb7de14e9b72c" id="r_a9e21b1bbecbc6c491f4cb7de14e9b72c"><td class="memItemLeft" align="right" valign="top"><a id="a9e21b1bbecbc6c491f4cb7de14e9b72c" name="a9e21b1bbecbc6c491f4cb7de14e9b72c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BEQ</b>&#160;&#160;&#160;0x0</td></tr>
+<tr class="separator:a9e21b1bbecbc6c491f4cb7de14e9b72c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e557ce20e8f60bde33104f27f2f6f5d" id="r_a4e557ce20e8f60bde33104f27f2f6f5d"><td class="memItemLeft" align="right" valign="top"><a id="a4e557ce20e8f60bde33104f27f2f6f5d" name="a4e557ce20e8f60bde33104f27f2f6f5d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BNE</b>&#160;&#160;&#160;0x1</td></tr>
+<tr class="separator:a4e557ce20e8f60bde33104f27f2f6f5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44ab2d501dd18ee539959a22a4409f43" id="r_a44ab2d501dd18ee539959a22a4409f43"><td class="memItemLeft" align="right" valign="top"><a id="a44ab2d501dd18ee539959a22a4409f43" name="a44ab2d501dd18ee539959a22a4409f43"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BLT</b>&#160;&#160;&#160;0x4</td></tr>
+<tr class="separator:a44ab2d501dd18ee539959a22a4409f43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7ec7187f4c6f0a42196da1ca936c995" id="r_af7ec7187f4c6f0a42196da1ca936c995"><td class="memItemLeft" align="right" valign="top"><a id="af7ec7187f4c6f0a42196da1ca936c995" name="af7ec7187f4c6f0a42196da1ca936c995"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BGE</b>&#160;&#160;&#160;0x5</td></tr>
+<tr class="separator:af7ec7187f4c6f0a42196da1ca936c995"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3b216a4641e884c88bbad07092144ff" id="r_aa3b216a4641e884c88bbad07092144ff"><td class="memItemLeft" align="right" valign="top"><a id="aa3b216a4641e884c88bbad07092144ff" name="aa3b216a4641e884c88bbad07092144ff"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BLTU</b>&#160;&#160;&#160;0x6</td></tr>
+<tr class="separator:aa3b216a4641e884c88bbad07092144ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b385d6e1924bb10f17caa9d1f7dcca4" id="r_a6b385d6e1924bb10f17caa9d1f7dcca4"><td class="memItemLeft" align="right" valign="top"><a id="a6b385d6e1924bb10f17caa9d1f7dcca4" name="a6b385d6e1924bb10f17caa9d1f7dcca4"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BGEU</b>&#160;&#160;&#160;0x7</td></tr>
+<tr class="separator:a6b385d6e1924bb10f17caa9d1f7dcca4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b674752cca6d434a1a69f40877eb2be" id="r_a0b674752cca6d434a1a69f40877eb2be"><td class="memItemLeft" align="right" valign="top"><a id="a0b674752cca6d434a1a69f40877eb2be" name="a0b674752cca6d434a1a69f40877eb2be"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LOAD</b>&#160;&#160;&#160;0x03</td></tr>
+<tr class="separator:a0b674752cca6d434a1a69f40877eb2be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc55daa58d88a3612f2ef74a6abbe97f" id="r_acc55daa58d88a3612f2ef74a6abbe97f"><td class="memItemLeft" align="right" valign="top"><a id="acc55daa58d88a3612f2ef74a6abbe97f" name="acc55daa58d88a3612f2ef74a6abbe97f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LB</b>&#160;&#160;&#160;0x0</td></tr>
+<tr class="separator:acc55daa58d88a3612f2ef74a6abbe97f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06ca9df8b3c86c3698aa210a71ea3ea8" id="r_a06ca9df8b3c86c3698aa210a71ea3ea8"><td class="memItemLeft" align="right" valign="top"><a id="a06ca9df8b3c86c3698aa210a71ea3ea8" name="a06ca9df8b3c86c3698aa210a71ea3ea8"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LH</b>&#160;&#160;&#160;0x1</td></tr>
+<tr class="separator:a06ca9df8b3c86c3698aa210a71ea3ea8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4b135b7ba4889a823f26261d8de74b3" id="r_ad4b135b7ba4889a823f26261d8de74b3"><td class="memItemLeft" align="right" valign="top"><a id="ad4b135b7ba4889a823f26261d8de74b3" name="ad4b135b7ba4889a823f26261d8de74b3"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LW</b>&#160;&#160;&#160;0x2</td></tr>
+<tr class="separator:ad4b135b7ba4889a823f26261d8de74b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b06fda83ca7a20a56bd6565d6841893" id="r_a9b06fda83ca7a20a56bd6565d6841893"><td class="memItemLeft" align="right" valign="top"><a id="a9b06fda83ca7a20a56bd6565d6841893" name="a9b06fda83ca7a20a56bd6565d6841893"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LD</b>&#160;&#160;&#160;0x3</td></tr>
+<tr class="separator:a9b06fda83ca7a20a56bd6565d6841893"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e26c4ad393da231a1102e8f95bc27dd" id="r_a2e26c4ad393da231a1102e8f95bc27dd"><td class="memItemLeft" align="right" valign="top"><a id="a2e26c4ad393da231a1102e8f95bc27dd" name="a2e26c4ad393da231a1102e8f95bc27dd"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LBU</b>&#160;&#160;&#160;0x4</td></tr>
+<tr class="separator:a2e26c4ad393da231a1102e8f95bc27dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae36bc5eb456287b135a0cefb9955d055" id="r_ae36bc5eb456287b135a0cefb9955d055"><td class="memItemLeft" align="right" valign="top"><a id="ae36bc5eb456287b135a0cefb9955d055" name="ae36bc5eb456287b135a0cefb9955d055"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LHU</b>&#160;&#160;&#160;0x5</td></tr>
+<tr class="separator:ae36bc5eb456287b135a0cefb9955d055"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefc8153bedbd7d3f60cdbddad43756fe" id="r_aefc8153bedbd7d3f60cdbddad43756fe"><td class="memItemLeft" align="right" valign="top"><a id="aefc8153bedbd7d3f60cdbddad43756fe" name="aefc8153bedbd7d3f60cdbddad43756fe"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LWU</b>&#160;&#160;&#160;0x6</td></tr>
+<tr class="separator:aefc8153bedbd7d3f60cdbddad43756fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d2c963c4479bfcef9727d6481a0b784" id="r_a0d2c963c4479bfcef9727d6481a0b784"><td class="memItemLeft" align="right" valign="top"><a id="a0d2c963c4479bfcef9727d6481a0b784" name="a0d2c963c4479bfcef9727d6481a0b784"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>S_TYPE</b>&#160;&#160;&#160;0x23</td></tr>
+<tr class="separator:a0d2c963c4479bfcef9727d6481a0b784"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c5526b246db088c8f509c0a52e574d7" id="r_a5c5526b246db088c8f509c0a52e574d7"><td class="memItemLeft" align="right" valign="top"><a id="a5c5526b246db088c8f509c0a52e574d7" name="a5c5526b246db088c8f509c0a52e574d7"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SB</b>&#160;&#160;&#160;0x0</td></tr>
+<tr class="separator:a5c5526b246db088c8f509c0a52e574d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4453478cd8b3bf96df84fe861cb78600" id="r_a4453478cd8b3bf96df84fe861cb78600"><td class="memItemLeft" align="right" valign="top"><a id="a4453478cd8b3bf96df84fe861cb78600" name="a4453478cd8b3bf96df84fe861cb78600"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SH</b>&#160;&#160;&#160;0x1</td></tr>
+<tr class="separator:a4453478cd8b3bf96df84fe861cb78600"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b95e941f44a20ea60512bbe2065f0b6" id="r_a4b95e941f44a20ea60512bbe2065f0b6"><td class="memItemLeft" align="right" valign="top"><a id="a4b95e941f44a20ea60512bbe2065f0b6" name="a4b95e941f44a20ea60512bbe2065f0b6"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SW</b>&#160;&#160;&#160;0x2</td></tr>
+<tr class="separator:a4b95e941f44a20ea60512bbe2065f0b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f5064fb4edd1381305163ee726f8ca5" id="r_a9f5064fb4edd1381305163ee726f8ca5"><td class="memItemLeft" align="right" valign="top"><a id="a9f5064fb4edd1381305163ee726f8ca5" name="a9f5064fb4edd1381305163ee726f8ca5"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SD</b>&#160;&#160;&#160;0x3</td></tr>
+<tr class="separator:a9f5064fb4edd1381305163ee726f8ca5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a685813f758ad8fb6fad67c0084c5ca09" id="r_a685813f758ad8fb6fad67c0084c5ca09"><td class="memItemLeft" align="right" valign="top"><a id="a685813f758ad8fb6fad67c0084c5ca09" name="a685813f758ad8fb6fad67c0084c5ca09"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>I_TYPE</b>&#160;&#160;&#160;0x13                /** opcode：I-type 0010011 */</td></tr>
+<tr class="separator:a685813f758ad8fb6fad67c0084c5ca09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a240067f241bac82304fe36d2d4a296da" id="r_a240067f241bac82304fe36d2d4a296da"><td class="memItemLeft" align="right" valign="top"><a id="a240067f241bac82304fe36d2d4a296da" name="a240067f241bac82304fe36d2d4a296da"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>ADDI</b>&#160;&#160;&#160;0x0             /** funct3：ADDI   000 */</td></tr>
+<tr class="separator:a240067f241bac82304fe36d2d4a296da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60aa1465b86099c85c94504757de4187" id="r_a60aa1465b86099c85c94504757de4187"><td class="memItemLeft" align="right" valign="top"><a id="a60aa1465b86099c85c94504757de4187" name="a60aa1465b86099c85c94504757de4187"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SLLI</b>&#160;&#160;&#160;0x1             /** funct3：SLLI   001 */</td></tr>
+<tr class="separator:a60aa1465b86099c85c94504757de4187"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a447393f86b3ef95b4684a1c8c814ece9" id="r_a447393f86b3ef95b4684a1c8c814ece9"><td class="memItemLeft" align="right" valign="top"><a id="a447393f86b3ef95b4684a1c8c814ece9" name="a447393f86b3ef95b4684a1c8c814ece9"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SLTI</b>&#160;&#160;&#160;0x2             /** funct3：SLTI   010 */</td></tr>
+<tr class="separator:a447393f86b3ef95b4684a1c8c814ece9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4c87fcf602a98c6adfb0eb960ba7c40" id="r_ac4c87fcf602a98c6adfb0eb960ba7c40"><td class="memItemLeft" align="right" valign="top"><a id="ac4c87fcf602a98c6adfb0eb960ba7c40" name="ac4c87fcf602a98c6adfb0eb960ba7c40"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SLTIU</b>&#160;&#160;&#160;0x3             /** funct3：SLTIU  011 */</td></tr>
+<tr class="separator:ac4c87fcf602a98c6adfb0eb960ba7c40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ea404a13da2acb9a3ef80eda91bd7e6" id="r_a0ea404a13da2acb9a3ef80eda91bd7e6"><td class="memItemLeft" align="right" valign="top"><a id="a0ea404a13da2acb9a3ef80eda91bd7e6" name="a0ea404a13da2acb9a3ef80eda91bd7e6"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>XORI</b>&#160;&#160;&#160;0x4             /** funct3：XORI   100 */</td></tr>
+<tr class="separator:a0ea404a13da2acb9a3ef80eda91bd7e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e358c78a833aa112a13c59875848997" id="r_a9e358c78a833aa112a13c59875848997"><td class="memItemLeft" align="right" valign="top"><a id="a9e358c78a833aa112a13c59875848997" name="a9e358c78a833aa112a13c59875848997"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SRI</b>&#160;&#160;&#160;0x5             /** funct3：SRI    101 */</td></tr>
+<tr class="separator:a9e358c78a833aa112a13c59875848997"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae42029404ba00f611797c6f4006e39bf" id="r_ae42029404ba00f611797c6f4006e39bf"><td class="memItemLeft" align="right" valign="top"><a id="ae42029404ba00f611797c6f4006e39bf" name="ae42029404ba00f611797c6f4006e39bf"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SRLI</b>&#160;&#160;&#160;0x00        /** funct7：SRLI   0000000 */</td></tr>
+<tr class="separator:ae42029404ba00f611797c6f4006e39bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a198491967199a2b9715adf6dc815e012" id="r_a198491967199a2b9715adf6dc815e012"><td class="memItemLeft" align="right" valign="top"><a id="a198491967199a2b9715adf6dc815e012" name="a198491967199a2b9715adf6dc815e012"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SRAI</b>&#160;&#160;&#160;0x20        /** funct7：SRAI   0100000 */</td></tr>
+<tr class="separator:a198491967199a2b9715adf6dc815e012"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade8154dab9666f65904be28a9e4cadb5" id="r_ade8154dab9666f65904be28a9e4cadb5"><td class="memItemLeft" align="right" valign="top"><a id="ade8154dab9666f65904be28a9e4cadb5" name="ade8154dab9666f65904be28a9e4cadb5"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>ORI</b>&#160;&#160;&#160;0x6             /** funct3：ORI    110 */</td></tr>
+<tr class="separator:ade8154dab9666f65904be28a9e4cadb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6629468bc5e11d36efed350908f2dff4" id="r_a6629468bc5e11d36efed350908f2dff4"><td class="memItemLeft" align="right" valign="top"><a id="a6629468bc5e11d36efed350908f2dff4" name="a6629468bc5e11d36efed350908f2dff4"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>ANDI</b>&#160;&#160;&#160;0x7             /** funct3：ANDI   111 */</td></tr>
+<tr class="separator:a6629468bc5e11d36efed350908f2dff4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a809fc7f901378a40281868f9a306127f" id="r_a809fc7f901378a40281868f9a306127f"><td class="memItemLeft" align="right" valign="top"><a id="a809fc7f901378a40281868f9a306127f" name="a809fc7f901378a40281868f9a306127f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>R_TYPE</b>&#160;&#160;&#160;0x33</td></tr>
+<tr class="separator:a809fc7f901378a40281868f9a306127f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a360e6589d7e4086fdb6f36cb78e11a0f" id="r_a360e6589d7e4086fdb6f36cb78e11a0f"><td class="memItemLeft" align="right" valign="top"><a id="a360e6589d7e4086fdb6f36cb78e11a0f" name="a360e6589d7e4086fdb6f36cb78e11a0f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>ADDSUB</b>&#160;&#160;&#160;0x0</td></tr>
+<tr class="separator:a360e6589d7e4086fdb6f36cb78e11a0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97fe5470fb1ac167c713671655ff3e52" id="r_a97fe5470fb1ac167c713671655ff3e52"><td class="memItemLeft" align="right" valign="top"><a id="a97fe5470fb1ac167c713671655ff3e52" name="a97fe5470fb1ac167c713671655ff3e52"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>ADD</b>&#160;&#160;&#160;0x00</td></tr>
+<tr class="separator:a97fe5470fb1ac167c713671655ff3e52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62c52d6d320f53e9e6632cce5a595660" id="r_a62c52d6d320f53e9e6632cce5a595660"><td class="memItemLeft" align="right" valign="top"><a id="a62c52d6d320f53e9e6632cce5a595660" name="a62c52d6d320f53e9e6632cce5a595660"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SUB</b>&#160;&#160;&#160;0x20</td></tr>
+<tr class="separator:a62c52d6d320f53e9e6632cce5a595660"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a189dc429a87af5f7abf3c53b32d7889b" id="r_a189dc429a87af5f7abf3c53b32d7889b"><td class="memItemLeft" align="right" valign="top"><a id="a189dc429a87af5f7abf3c53b32d7889b" name="a189dc429a87af5f7abf3c53b32d7889b"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SLL</b>&#160;&#160;&#160;0x1</td></tr>
+<tr class="separator:a189dc429a87af5f7abf3c53b32d7889b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0cfd10e565d5dc821bd50e5d7409b31d" id="r_a0cfd10e565d5dc821bd50e5d7409b31d"><td class="memItemLeft" align="right" valign="top"><a id="a0cfd10e565d5dc821bd50e5d7409b31d" name="a0cfd10e565d5dc821bd50e5d7409b31d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SLT</b>&#160;&#160;&#160;0x2</td></tr>
+<tr class="separator:a0cfd10e565d5dc821bd50e5d7409b31d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afedbd56796babcf8aab4442d0d962c08" id="r_afedbd56796babcf8aab4442d0d962c08"><td class="memItemLeft" align="right" valign="top"><a id="afedbd56796babcf8aab4442d0d962c08" name="afedbd56796babcf8aab4442d0d962c08"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SLTU</b>&#160;&#160;&#160;0x3</td></tr>
+<tr class="separator:afedbd56796babcf8aab4442d0d962c08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45cd11034d1a7d86c3a88d36f5e7f1ab" id="r_a45cd11034d1a7d86c3a88d36f5e7f1ab"><td class="memItemLeft" align="right" valign="top"><a id="a45cd11034d1a7d86c3a88d36f5e7f1ab" name="a45cd11034d1a7d86c3a88d36f5e7f1ab"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>XOR</b>&#160;&#160;&#160;0x4</td></tr>
+<tr class="separator:a45cd11034d1a7d86c3a88d36f5e7f1ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abaed93a16a0cde13f32bc4dc48b96804" id="r_abaed93a16a0cde13f32bc4dc48b96804"><td class="memItemLeft" align="right" valign="top"><a id="abaed93a16a0cde13f32bc4dc48b96804" name="abaed93a16a0cde13f32bc4dc48b96804"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SR</b>&#160;&#160;&#160;0x5</td></tr>
+<tr class="separator:abaed93a16a0cde13f32bc4dc48b96804"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a391959af0568008f17f41df83486de19" id="r_a391959af0568008f17f41df83486de19"><td class="memItemLeft" align="right" valign="top"><a id="a391959af0568008f17f41df83486de19" name="a391959af0568008f17f41df83486de19"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SRL</b>&#160;&#160;&#160;0x00</td></tr>
+<tr class="separator:a391959af0568008f17f41df83486de19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67bda54c44dd9397dce0c127d7787726" id="r_a67bda54c44dd9397dce0c127d7787726"><td class="memItemLeft" align="right" valign="top"><a id="a67bda54c44dd9397dce0c127d7787726" name="a67bda54c44dd9397dce0c127d7787726"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SRA</b>&#160;&#160;&#160;0x20</td></tr>
+<tr class="separator:a67bda54c44dd9397dce0c127d7787726"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3363ca4d6d3cc0230b2804280591c991" id="r_a3363ca4d6d3cc0230b2804280591c991"><td class="memItemLeft" align="right" valign="top"><a id="a3363ca4d6d3cc0230b2804280591c991" name="a3363ca4d6d3cc0230b2804280591c991"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>OR</b>&#160;&#160;&#160;0x6</td></tr>
+<tr class="separator:a3363ca4d6d3cc0230b2804280591c991"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd1b97556dfbbac61063a63031d2f91d" id="r_acd1b97556dfbbac61063a63031d2f91d"><td class="memItemLeft" align="right" valign="top"><a id="acd1b97556dfbbac61063a63031d2f91d" name="acd1b97556dfbbac61063a63031d2f91d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>AND</b>&#160;&#160;&#160;0x7</td></tr>
+<tr class="separator:acd1b97556dfbbac61063a63031d2f91d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c4ef974c16c9b8ffd86d2daac2b6184" id="r_a4c4ef974c16c9b8ffd86d2daac2b6184"><td class="memItemLeft" align="right" valign="top"><a id="a4c4ef974c16c9b8ffd86d2daac2b6184" name="a4c4ef974c16c9b8ffd86d2daac2b6184"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>FENCE</b>&#160;&#160;&#160;0x0f</td></tr>
+<tr class="separator:a4c4ef974c16c9b8ffd86d2daac2b6184"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9af6a95a347bb4b08c652c9e8f1bdbab" id="r_a9af6a95a347bb4b08c652c9e8f1bdbab"><td class="memItemLeft" align="right" valign="top"><a id="a9af6a95a347bb4b08c652c9e8f1bdbab" name="a9af6a95a347bb4b08c652c9e8f1bdbab"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>I_TYPE_64</b>&#160;&#160;&#160;0x1b</td></tr>
+<tr class="separator:a9af6a95a347bb4b08c652c9e8f1bdbab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab71441cb943e66e31d2264104ecf5860" id="r_ab71441cb943e66e31d2264104ecf5860"><td class="memItemLeft" align="right" valign="top"><a id="ab71441cb943e66e31d2264104ecf5860" name="ab71441cb943e66e31d2264104ecf5860"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>ADDIW</b>&#160;&#160;&#160;0x0</td></tr>
+<tr class="separator:ab71441cb943e66e31d2264104ecf5860"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdc97808d48878d1ddb25012e07c3694" id="r_afdc97808d48878d1ddb25012e07c3694"><td class="memItemLeft" align="right" valign="top"><a id="afdc97808d48878d1ddb25012e07c3694" name="afdc97808d48878d1ddb25012e07c3694"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SLLIW</b>&#160;&#160;&#160;0x1</td></tr>
+<tr class="separator:afdc97808d48878d1ddb25012e07c3694"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0229cf95ff0310c2e59f0d09c10c3b4a" id="r_a0229cf95ff0310c2e59f0d09c10c3b4a"><td class="memItemLeft" align="right" valign="top"><a id="a0229cf95ff0310c2e59f0d09c10c3b4a" name="a0229cf95ff0310c2e59f0d09c10c3b4a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SRIW</b>&#160;&#160;&#160;0x5</td></tr>
+<tr class="separator:a0229cf95ff0310c2e59f0d09c10c3b4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc72efd71472101cedc6efdd4109b57e" id="r_afc72efd71472101cedc6efdd4109b57e"><td class="memItemLeft" align="right" valign="top"><a id="afc72efd71472101cedc6efdd4109b57e" name="afc72efd71472101cedc6efdd4109b57e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SRLIW</b>&#160;&#160;&#160;0x00</td></tr>
+<tr class="separator:afc72efd71472101cedc6efdd4109b57e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64790a7a5a6bfbf1a8c106ec2a937e67" id="r_a64790a7a5a6bfbf1a8c106ec2a937e67"><td class="memItemLeft" align="right" valign="top"><a id="a64790a7a5a6bfbf1a8c106ec2a937e67" name="a64790a7a5a6bfbf1a8c106ec2a937e67"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SRAIW</b>&#160;&#160;&#160;0x20</td></tr>
+<tr class="separator:a64790a7a5a6bfbf1a8c106ec2a937e67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10350f4a1141887dc0e56de1fc908fa4" id="r_a10350f4a1141887dc0e56de1fc908fa4"><td class="memItemLeft" align="right" valign="top"><a id="a10350f4a1141887dc0e56de1fc908fa4" name="a10350f4a1141887dc0e56de1fc908fa4"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>R_TYPE_64</b>&#160;&#160;&#160;0x3b</td></tr>
+<tr class="separator:a10350f4a1141887dc0e56de1fc908fa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a360e6589d7e4086fdb6f36cb78e11a0f" id="r_a360e6589d7e4086fdb6f36cb78e11a0f"><td class="memItemLeft" align="right" valign="top"><a id="a360e6589d7e4086fdb6f36cb78e11a0f" name="a360e6589d7e4086fdb6f36cb78e11a0f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>ADDSUB</b>&#160;&#160;&#160;0x0</td></tr>
+<tr class="separator:a360e6589d7e4086fdb6f36cb78e11a0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5619969d16043a27872b7dd712539ce9" id="r_a5619969d16043a27872b7dd712539ce9"><td class="memItemLeft" align="right" valign="top"><a id="a5619969d16043a27872b7dd712539ce9" name="a5619969d16043a27872b7dd712539ce9"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>ADDW</b>&#160;&#160;&#160;0x00</td></tr>
+<tr class="separator:a5619969d16043a27872b7dd712539ce9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d20f8734163f10d3093ea89511fdd86" id="r_a0d20f8734163f10d3093ea89511fdd86"><td class="memItemLeft" align="right" valign="top"><a id="a0d20f8734163f10d3093ea89511fdd86" name="a0d20f8734163f10d3093ea89511fdd86"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MULW</b>&#160;&#160;&#160;0x01</td></tr>
+<tr class="separator:a0d20f8734163f10d3093ea89511fdd86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d11cb05279d5d2538d4d864e22b7d0b" id="r_a2d11cb05279d5d2538d4d864e22b7d0b"><td class="memItemLeft" align="right" valign="top"><a id="a2d11cb05279d5d2538d4d864e22b7d0b" name="a2d11cb05279d5d2538d4d864e22b7d0b"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SUBW</b>&#160;&#160;&#160;0x20</td></tr>
+<tr class="separator:a2d11cb05279d5d2538d4d864e22b7d0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ec0abb74473bb243f77d9fb7dc7a1f3" id="r_a0ec0abb74473bb243f77d9fb7dc7a1f3"><td class="memItemLeft" align="right" valign="top"><a id="a0ec0abb74473bb243f77d9fb7dc7a1f3" name="a0ec0abb74473bb243f77d9fb7dc7a1f3"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>DIVW</b>&#160;&#160;&#160;0x4</td></tr>
+<tr class="separator:a0ec0abb74473bb243f77d9fb7dc7a1f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e530b8051e7881a503f7b3c37cfbbfa" id="r_a6e530b8051e7881a503f7b3c37cfbbfa"><td class="memItemLeft" align="right" valign="top"><a id="a6e530b8051e7881a503f7b3c37cfbbfa" name="a6e530b8051e7881a503f7b3c37cfbbfa"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SLLW</b>&#160;&#160;&#160;0x1</td></tr>
+<tr class="separator:a6e530b8051e7881a503f7b3c37cfbbfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f327277fdd50c81018e1692bf7cb5d0" id="r_a6f327277fdd50c81018e1692bf7cb5d0"><td class="memItemLeft" align="right" valign="top"><a id="a6f327277fdd50c81018e1692bf7cb5d0" name="a6f327277fdd50c81018e1692bf7cb5d0"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SRW</b>&#160;&#160;&#160;0x5</td></tr>
+<tr class="separator:a6f327277fdd50c81018e1692bf7cb5d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad647c9ee00b8582968fd1140c7318aec" id="r_ad647c9ee00b8582968fd1140c7318aec"><td class="memItemLeft" align="right" valign="top"><a id="ad647c9ee00b8582968fd1140c7318aec" name="ad647c9ee00b8582968fd1140c7318aec"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SRLW</b>&#160;&#160;&#160;0x00</td></tr>
+<tr class="separator:ad647c9ee00b8582968fd1140c7318aec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31f145c2875444b21da95866bd1d0dda" id="r_a31f145c2875444b21da95866bd1d0dda"><td class="memItemLeft" align="right" valign="top"><a id="a31f145c2875444b21da95866bd1d0dda" name="a31f145c2875444b21da95866bd1d0dda"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>DIVUW</b>&#160;&#160;&#160;0x01</td></tr>
+<tr class="separator:a31f145c2875444b21da95866bd1d0dda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9080460cbd41a993a734218a96569b44" id="r_a9080460cbd41a993a734218a96569b44"><td class="memItemLeft" align="right" valign="top"><a id="a9080460cbd41a993a734218a96569b44" name="a9080460cbd41a993a734218a96569b44"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SRAW</b>&#160;&#160;&#160;0x20</td></tr>
+<tr class="separator:a9080460cbd41a993a734218a96569b44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2500f8df4a0e19dfb6ca6f11c375bde" id="r_ac2500f8df4a0e19dfb6ca6f11c375bde"><td class="memItemLeft" align="right" valign="top"><a id="ac2500f8df4a0e19dfb6ca6f11c375bde" name="ac2500f8df4a0e19dfb6ca6f11c375bde"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>REMW</b>&#160;&#160;&#160;0x6</td></tr>
+<tr class="separator:ac2500f8df4a0e19dfb6ca6f11c375bde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a279e4f166605d069c693847c5926051c" id="r_a279e4f166605d069c693847c5926051c"><td class="memItemLeft" align="right" valign="top"><a id="a279e4f166605d069c693847c5926051c" name="a279e4f166605d069c693847c5926051c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>REMUW</b>&#160;&#160;&#160;0x7</td></tr>
+<tr class="separator:a279e4f166605d069c693847c5926051c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa811cfff7ed3e366dac57bec585d73ca" id="r_aa811cfff7ed3e366dac57bec585d73ca"><td class="memItemLeft" align="right" valign="top"><a id="aa811cfff7ed3e366dac57bec585d73ca" name="aa811cfff7ed3e366dac57bec585d73ca"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CSR</b>&#160;&#160;&#160;0x73</td></tr>
+<tr class="separator:aa811cfff7ed3e366dac57bec585d73ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a168a6686e8dc833e9a16a530d34b55f4" id="r_a168a6686e8dc833e9a16a530d34b55f4"><td class="memItemLeft" align="right" valign="top"><a id="a168a6686e8dc833e9a16a530d34b55f4" name="a168a6686e8dc833e9a16a530d34b55f4"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>ECALLBREAK</b>&#160;&#160;&#160;0x00</td></tr>
+<tr class="separator:a168a6686e8dc833e9a16a530d34b55f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0544c4e74330db93481b32626ff64baa" id="r_a0544c4e74330db93481b32626ff64baa"><td class="memItemLeft" align="right" valign="top"><a id="a0544c4e74330db93481b32626ff64baa" name="a0544c4e74330db93481b32626ff64baa"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CSRRW</b>&#160;&#160;&#160;0x01</td></tr>
+<tr class="separator:a0544c4e74330db93481b32626ff64baa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac75ddc7fdfbc2df7412b601b4eaa0247" id="r_ac75ddc7fdfbc2df7412b601b4eaa0247"><td class="memItemLeft" align="right" valign="top"><a id="ac75ddc7fdfbc2df7412b601b4eaa0247" name="ac75ddc7fdfbc2df7412b601b4eaa0247"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CSRRS</b>&#160;&#160;&#160;0x02</td></tr>
+<tr class="separator:ac75ddc7fdfbc2df7412b601b4eaa0247"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef4a786c5303bebb7fdcc58057287cc8" id="r_aef4a786c5303bebb7fdcc58057287cc8"><td class="memItemLeft" align="right" valign="top"><a id="aef4a786c5303bebb7fdcc58057287cc8" name="aef4a786c5303bebb7fdcc58057287cc8"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CSRRC</b>&#160;&#160;&#160;0x03</td></tr>
+<tr class="separator:aef4a786c5303bebb7fdcc58057287cc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68e11ae873561686bddf98ce5b1aa780" id="r_a68e11ae873561686bddf98ce5b1aa780"><td class="memItemLeft" align="right" valign="top"><a id="a68e11ae873561686bddf98ce5b1aa780" name="a68e11ae873561686bddf98ce5b1aa780"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CSRRWI</b>&#160;&#160;&#160;0x05</td></tr>
+<tr class="separator:a68e11ae873561686bddf98ce5b1aa780"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc5ccc2ba2506232f60ceb512019a7be" id="r_acc5ccc2ba2506232f60ceb512019a7be"><td class="memItemLeft" align="right" valign="top"><a id="acc5ccc2ba2506232f60ceb512019a7be" name="acc5ccc2ba2506232f60ceb512019a7be"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CSRRSI</b>&#160;&#160;&#160;0x06</td></tr>
+<tr class="separator:acc5ccc2ba2506232f60ceb512019a7be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a024836e6d63a064f122265a472b23008" id="r_a024836e6d63a064f122265a472b23008"><td class="memItemLeft" align="right" valign="top"><a id="a024836e6d63a064f122265a472b23008" name="a024836e6d63a064f122265a472b23008"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CSRRCI</b>&#160;&#160;&#160;0x07</td></tr>
+<tr class="separator:a024836e6d63a064f122265a472b23008"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abea7058a726783dcdef0fa03a33db815" id="r_abea7058a726783dcdef0fa03a33db815"><td class="memItemLeft" align="right" valign="top"><a id="abea7058a726783dcdef0fa03a33db815" name="abea7058a726783dcdef0fa03a33db815"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>AMO_W</b>&#160;&#160;&#160;0x2f</td></tr>
+<tr class="separator:abea7058a726783dcdef0fa03a33db815"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa90b08e98c37bcd575556f44ccb78e49" id="r_aa90b08e98c37bcd575556f44ccb78e49"><td class="memItemLeft" align="right" valign="top"><a id="aa90b08e98c37bcd575556f44ccb78e49" name="aa90b08e98c37bcd575556f44ccb78e49"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LR_W</b>&#160;&#160;&#160;0x02</td></tr>
+<tr class="separator:aa90b08e98c37bcd575556f44ccb78e49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb0a7c846429493d35ba180b8e294fd3" id="r_afb0a7c846429493d35ba180b8e294fd3"><td class="memItemLeft" align="right" valign="top"><a id="afb0a7c846429493d35ba180b8e294fd3" name="afb0a7c846429493d35ba180b8e294fd3"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SC_W</b>&#160;&#160;&#160;0x03</td></tr>
+<tr class="separator:afb0a7c846429493d35ba180b8e294fd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3da5dd8535dfbd1adc977c1a446247dc" id="r_a3da5dd8535dfbd1adc977c1a446247dc"><td class="memItemLeft" align="right" valign="top"><a id="a3da5dd8535dfbd1adc977c1a446247dc" name="a3da5dd8535dfbd1adc977c1a446247dc"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>AMOSWAP_W</b>&#160;&#160;&#160;0x01</td></tr>
+<tr class="separator:a3da5dd8535dfbd1adc977c1a446247dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad97034c70ecbe4f8fd4405c8e574f6e" id="r_aad97034c70ecbe4f8fd4405c8e574f6e"><td class="memItemLeft" align="right" valign="top"><a id="aad97034c70ecbe4f8fd4405c8e574f6e" name="aad97034c70ecbe4f8fd4405c8e574f6e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>AMOADD_W</b>&#160;&#160;&#160;0x00</td></tr>
+<tr class="separator:aad97034c70ecbe4f8fd4405c8e574f6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8dfecaba0d2e0d7a24ea4148f36ad00" id="r_ae8dfecaba0d2e0d7a24ea4148f36ad00"><td class="memItemLeft" align="right" valign="top"><a id="ae8dfecaba0d2e0d7a24ea4148f36ad00" name="ae8dfecaba0d2e0d7a24ea4148f36ad00"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>AMOXOR_W</b>&#160;&#160;&#160;0x04</td></tr>
+<tr class="separator:ae8dfecaba0d2e0d7a24ea4148f36ad00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3117379d566b3c56b2b4a69126d8a7c7" id="r_a3117379d566b3c56b2b4a69126d8a7c7"><td class="memItemLeft" align="right" valign="top"><a id="a3117379d566b3c56b2b4a69126d8a7c7" name="a3117379d566b3c56b2b4a69126d8a7c7"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>AMOAND_W</b>&#160;&#160;&#160;0x0c</td></tr>
+<tr class="separator:a3117379d566b3c56b2b4a69126d8a7c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a97b79ab1824df21334ddd789698a7a" id="r_a8a97b79ab1824df21334ddd789698a7a"><td class="memItemLeft" align="right" valign="top"><a id="a8a97b79ab1824df21334ddd789698a7a" name="a8a97b79ab1824df21334ddd789698a7a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>AMOOR_W</b>&#160;&#160;&#160;0x08</td></tr>
+<tr class="separator:a8a97b79ab1824df21334ddd789698a7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbdd0668c15d7a625a0ef67353451e50" id="r_adbdd0668c15d7a625a0ef67353451e50"><td class="memItemLeft" align="right" valign="top"><a id="adbdd0668c15d7a625a0ef67353451e50" name="adbdd0668c15d7a625a0ef67353451e50"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>AMOMIN_W</b>&#160;&#160;&#160;0x10</td></tr>
+<tr class="separator:adbdd0668c15d7a625a0ef67353451e50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5ce7a67598ccbd1e5142d44c36aa9f9" id="r_af5ce7a67598ccbd1e5142d44c36aa9f9"><td class="memItemLeft" align="right" valign="top"><a id="af5ce7a67598ccbd1e5142d44c36aa9f9" name="af5ce7a67598ccbd1e5142d44c36aa9f9"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>AMOMAX_W</b>&#160;&#160;&#160;0x14</td></tr>
+<tr class="separator:af5ce7a67598ccbd1e5142d44c36aa9f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9740bcc60981a56ef4fcfa2644a8b17" id="r_ad9740bcc60981a56ef4fcfa2644a8b17"><td class="memItemLeft" align="right" valign="top"><a id="ad9740bcc60981a56ef4fcfa2644a8b17" name="ad9740bcc60981a56ef4fcfa2644a8b17"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>AMOMINU_W</b>&#160;&#160;&#160;0x18</td></tr>
+<tr class="separator:ad9740bcc60981a56ef4fcfa2644a8b17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad145dba046b2d834ebc470c8f34cc9a2" id="r_ad145dba046b2d834ebc470c8f34cc9a2"><td class="memItemLeft" align="right" valign="top"><a id="ad145dba046b2d834ebc470c8f34cc9a2" name="ad145dba046b2d834ebc470c8f34cc9a2"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>AMOMAXU_W</b>&#160;&#160;&#160;0x1c</td></tr>
+<tr class="separator:ad145dba046b2d834ebc470c8f34cc9a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>操作码头文件 </p>
+<dl class="section author"><dt>作者</dt><dd>lancer (<a href="#" onclick="location.href='mai'+'lto:'+'lan'+'ce'+'rst'+'ad'+'ium'+'@1'+'63.'+'co'+'m'; return false;">lance<span class="obfuscator">.nosp@m.</span>rsta<span class="obfuscator">.nosp@m.</span>dium@<span class="obfuscator">.nosp@m.</span>163.<span class="obfuscator">.nosp@m.</span>com</a>) </dd></dl>
+<dl class="section version"><dt>版本</dt><dd>0.1 </dd></dl>
+<dl class="section date"><dt>日期</dt><dd>2024-01-08 </dd></dl>
+<dl class="section copyright"><dt>版权所有</dt><dd>Copyright (c) 2024</dd></dl>
+<h1><a class="anchor" id="autotoc_md6"></a>
+指令译码</h1>
+<ul>
+<li>从 dram 中读取的用于执行的指令是 32 位宽的。 这 32 位包含所有要执行的操作对应的指令， 比如操作码，用于读/写的源寄存器和目标寄存器， 立即数值等等。</li>
+<li>对于不同类型的指令的译码是不同的，指令类型有以下几种：</li>
+</ul>
+<ol type="1">
+<li>R 类型：寄存器类型指令</li>
+<li>I 类型：立即数类型指令</li>
+<li>S 类型：存储类型指令</li>
+<li>B 类型：中断类型指令</li>
+<li>U 类型：寄存器类型指令</li>
+<li>J 类型：跳转类型指令</li>
+</ol>
+<ul>
+<li>下表展示了不同类型指令的寄存器的映射关系： <div class="fragment"><div class="line">RISC-V Instuctions Types:</div>
+<div class="line"> </div>
+<div class="line">|31            25|24       20|19       15|14    12|11        7|6            0|   32-bit</div>
+<div class="line">+----------------------------------------------------------------------------+</div>
+<div class="line">|     funct7     |    rs2    |    rs1    | funct3 |    rd     |    opcode    |   R-type</div>
+<div class="line">|----------------------------------------------------------------------------|</div>
+<div class="line">|           imm[11:0]        |    rs1    | funct3 |    rd     |    opcode    |   I-type</div>
+<div class="line">|----------------------------------------------------------------------------|</div>
+<div class="line">|    imm[11:5]   |    rs2    |    rs1    | funct3 |  imm[4:0] |    opcode    |   S-type</div>
+<div class="line">|----------------------------------------------------------------------------|</div>
+<div class="line">|   imm[12|10:5] |    rs2    |    rs1    | funct3 |imm[4:1|11]|    opcode    |   B-type  </div>
+<div class="line">|----------------------------------------------------------------------------|</div>
+<div class="line">|                   imm[32:12]                    |    rd     |    opcode    |   U-type</div>
+<div class="line">|----------------------------------------------------------------------------|</div>
+<div class="line">|              imm[20|10:1|11|19:12]              |    rd     |    opcode    |   J-type</div>
+<div class="line">|----------------------------------------------------------------------------+</div>
+</div><!-- fragment --></li>
+</ul>
+<ol type="1">
+<li><code>opcode</code>： 低 7 位（inst[6:0]）用于区别每个 CPU 操作。</li>
+<li><code>rd</code>：一个 4 位值（inst[11:7]），给定目标寄存器的地址。</li>
+<li><code>funct3</code>：一个 3 位值（inst[14:12]）， 每一组类似操作的操作码相同（如 ADD，SUB，DIV，MUL 等等）。 每组可包括至多 8 个不同指令，对应 8 个不同的<code>funct3</code>值。</li>
+<li><code>funct7</code>：一个 7 位值（inst[31:25]）。与<code>funct3</code>类似， <code>funct7</code>将一组相同的<code>funct3</code>指令划分为多个指令。 例如，SR（右移）有两个指令： <code>SRA</code>（算数右移）与<code>SRL</code>（逻辑右移）对应不同的<code>funct7</code>。</li>
+<li><code>rs1</code>：一个 4 位值（inst[19:15]），给定源寄存器 1 的地址。</li>
+<li><code>rs2</code>：一个 4 位值（inst[24:20]），给定源寄存器 2 的地址。</li>
+<li><code>imm</code>：表示立即数。</li>
+<li><code>shamt</code>：shamt 位于<code>imm</code>的低位，存有移位指令的移位量。 </li>
+</ol>
+</div></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_1befa86077b13579493366c588abc311.html">cemu</a></li><li class="navelem"><a class="el" href="opcode_8h.html">opcode.h</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
+</body>
+</html>

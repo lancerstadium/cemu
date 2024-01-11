@@ -1,0 +1,544 @@
+\doxysection{src/cemu/cpu.c 文件参考}
+\hypertarget{cpu_8c}{}\label{cpu_8c}\index{src/cemu/cpu.c@{src/cemu/cpu.c}}
+
+
+中央处理器实现  
+
+
+{\ttfamily \#include "{}csr.\+h"{}}\newline
+{\ttfamily \#include "{}opcode.\+h"{}}\newline
+{\ttfamily \#include "{}utils.\+h"{}}\newline
+\doxysubsubsection*{宏定义}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{cpu_8c_afd1733fb30da26e893dc5ed32987f63e}\label{cpu_8c_afd1733fb30da26e893dc5ed32987f63e} 
+\#define {\bfseries ADDR\+\_\+\+MISALIGNED}(addr)~(addr \& 0x3)
+\item 
+\Hypertarget{cpu_8c_a3fa59841b9f27c7ebc9c1cd2e9777268}\label{cpu_8c_a3fa59841b9f27c7ebc9c1cd2e9777268} 
+\#define {\bfseries MAX\+\_\+\+CPU\+\_\+\+STEP}~10
+\end{DoxyCompactItemize}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+static u64 \mbox{\hyperlink{cpu_8c_afe50d05d75efdfd2bf769d566cc8e675}{cpu\+\_\+load}} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u64 addr, u64 size)
+\begin{DoxyCompactList}\small\item\em \texorpdfstring{$\ast$}{*}处理器加载数据 \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{cpu_8c_ab9d268797991f00ce0c99da19c12589a}{cpu\+\_\+store}} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u64 addr, u64 size, u64 value)
+\begin{DoxyCompactList}\small\item\em \texorpdfstring{$\ast$}{*}处理器存储数据 \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{cpu_8c_a06ad5cd47e7b12911352840f3975e22b}{print\+\_\+op}} (char \texorpdfstring{$\ast$}{*}s)
+\begin{DoxyCompactList}\small\item\em 打印操作码 \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{cpu_8c_aa006396b01c7e478ae12120fb81f58e6}{cpu\+\_\+step\+\_\+one}} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu)
+\begin{DoxyCompactList}\small\item\em 处理器执行一条指令 \end{DoxyCompactList}\item 
+\Hypertarget{cpu_8c_a934ca1fb8f419f68671c94afa391d3ec}\label{cpu_8c_a934ca1fb8f419f68671c94afa391d3ec} 
+static u64 {\bfseries rd} (u32 inst)
+\item 
+\Hypertarget{cpu_8c_ac30323b6bf33744ecd7f6f3896722304}\label{cpu_8c_ac30323b6bf33744ecd7f6f3896722304} 
+static u64 {\bfseries rs1} (u32 inst)
+\item 
+\Hypertarget{cpu_8c_abee51ea5c3949da3c0ab29141bf56ddd}\label{cpu_8c_abee51ea5c3949da3c0ab29141bf56ddd} 
+static u64 {\bfseries rs2} (u32 inst)
+\item 
+\Hypertarget{cpu_8c_a537cd0dde77b07b69debfae793675772}\label{cpu_8c_a537cd0dde77b07b69debfae793675772} 
+static u64 {\bfseries imm\+\_\+I} (u32 inst)
+\item 
+\Hypertarget{cpu_8c_a1645c852f104c9e09fa6501e0dca98fb}\label{cpu_8c_a1645c852f104c9e09fa6501e0dca98fb} 
+static u64 {\bfseries imm\+\_\+S} (u32 inst)
+\item 
+\Hypertarget{cpu_8c_a9322093aab808a9689629cf3c751d5d5}\label{cpu_8c_a9322093aab808a9689629cf3c751d5d5} 
+static u64 {\bfseries imm\+\_\+B} (u32 inst)
+\item 
+\Hypertarget{cpu_8c_a3d05b815cb23fa8a0cdce2e18b1a7ae0}\label{cpu_8c_a3d05b815cb23fa8a0cdce2e18b1a7ae0} 
+static u64 {\bfseries imm\+\_\+U} (u32 inst)
+\item 
+\Hypertarget{cpu_8c_a8741e64c3c3a2f3ab094c7294f8471ae}\label{cpu_8c_a8741e64c3c3a2f3ab094c7294f8471ae} 
+static u64 {\bfseries imm\+\_\+J} (u32 inst)
+\item 
+\Hypertarget{cpu_8c_a55e8862cb2d0d531235fd1635cb52d5e}\label{cpu_8c_a55e8862cb2d0d531235fd1635cb52d5e} 
+static u32 {\bfseries shamt} (u32 inst)
+\item 
+\Hypertarget{cpu_8c_a7b7962054a871b959cd163c487c3ce99}\label{cpu_8c_a7b7962054a871b959cd163c487c3ce99} 
+static u64 {\bfseries csr} (u32 inst)
+\item 
+\Hypertarget{cpu_8c_ae8f91bb1ede7ce2ee12e691dae368267}\label{cpu_8c_ae8f91bb1ede7ce2ee12e691dae368267} 
+void {\bfseries exec\+\_\+\+LUI} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_accf4ed929349cd38477e5c1246394bca}\label{cpu_8c_accf4ed929349cd38477e5c1246394bca} 
+void {\bfseries exec\+\_\+\+AUIPC} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a750069b3e5b064f3974281c7666cb7c7}\label{cpu_8c_a750069b3e5b064f3974281c7666cb7c7} 
+void {\bfseries exec\+\_\+\+JAL} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a9c735426da2c0d5fdb63ae19caf4b9cd}\label{cpu_8c_a9c735426da2c0d5fdb63ae19caf4b9cd} 
+void {\bfseries exec\+\_\+\+JALR} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_acd886de243e6b99e24495c9c55c524fa}\label{cpu_8c_acd886de243e6b99e24495c9c55c524fa} 
+void {\bfseries exec\+\_\+\+BEQ} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a19c8b0aa6f6ab7a214500f44178374e7}\label{cpu_8c_a19c8b0aa6f6ab7a214500f44178374e7} 
+void {\bfseries exec\+\_\+\+BNE} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a2506ce67e280f41572928f3f33be6507}\label{cpu_8c_a2506ce67e280f41572928f3f33be6507} 
+void {\bfseries exec\+\_\+\+BLT} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a1e0a192fdf90d33dd9de7f70fea6642d}\label{cpu_8c_a1e0a192fdf90d33dd9de7f70fea6642d} 
+void {\bfseries exec\+\_\+\+BGE} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a579abd1f69ed30fe8276eb8035df8cd0}\label{cpu_8c_a579abd1f69ed30fe8276eb8035df8cd0} 
+void {\bfseries exec\+\_\+\+BLTU} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_ac3d57e51821cb3c1b06c4e03c9c6972d}\label{cpu_8c_ac3d57e51821cb3c1b06c4e03c9c6972d} 
+void {\bfseries exec\+\_\+\+BGEU} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a520bc5df4382236df2fec8043b0c7a01}\label{cpu_8c_a520bc5df4382236df2fec8043b0c7a01} 
+void {\bfseries exec\+\_\+\+LB} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a0b1ad6f8a5cb4593d8631ae508538550}\label{cpu_8c_a0b1ad6f8a5cb4593d8631ae508538550} 
+void {\bfseries exec\+\_\+\+LH} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a3c5fb9cbf66d53496c2f75c2b2e2ecd5}\label{cpu_8c_a3c5fb9cbf66d53496c2f75c2b2e2ecd5} 
+void {\bfseries exec\+\_\+\+LW} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_abcb79bb73722bc79e7c84a0e582e058b}\label{cpu_8c_abcb79bb73722bc79e7c84a0e582e058b} 
+void {\bfseries exec\+\_\+\+LD} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_aea4c13b3026823790571806529e9d2a6}\label{cpu_8c_aea4c13b3026823790571806529e9d2a6} 
+void {\bfseries exec\+\_\+\+LBU} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a6598a6ac3637069d2efd6585a556461a}\label{cpu_8c_a6598a6ac3637069d2efd6585a556461a} 
+void {\bfseries exec\+\_\+\+LHU} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a149d88b721746981d67cd4056f2220d3}\label{cpu_8c_a149d88b721746981d67cd4056f2220d3} 
+void {\bfseries exec\+\_\+\+LWU} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_ad1c4be90d12d404915bc55cb831cb7d6}\label{cpu_8c_ad1c4be90d12d404915bc55cb831cb7d6} 
+void {\bfseries exec\+\_\+\+SB} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a658c2eec97d07a15064009e939dd9972}\label{cpu_8c_a658c2eec97d07a15064009e939dd9972} 
+void {\bfseries exec\+\_\+\+SH} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_ab4a932e5bb3cc1aa8048ddc3409e2509}\label{cpu_8c_ab4a932e5bb3cc1aa8048ddc3409e2509} 
+void {\bfseries exec\+\_\+\+SW} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a796477c29cceac7ec9501f229a7dfcce}\label{cpu_8c_a796477c29cceac7ec9501f229a7dfcce} 
+void {\bfseries exec\+\_\+\+SD} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+void \mbox{\hyperlink{cpu_8c_a2bab798e5d090c5ce8e11f51221f8a2c}{exec\+\_\+\+ADDI}} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\begin{DoxyCompactList}\small\item\em 立即数相加 \end{DoxyCompactList}\item 
+\Hypertarget{cpu_8c_a5f9e4acc8a1acf3008985e537ffdebc8}\label{cpu_8c_a5f9e4acc8a1acf3008985e537ffdebc8} 
+void {\bfseries exec\+\_\+\+SLLI} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a1396629e749705bd8c3ac0f8a8108586}\label{cpu_8c_a1396629e749705bd8c3ac0f8a8108586} 
+void {\bfseries exec\+\_\+\+SLTI} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_ad00c60dd998358c909eac7ff9685211e}\label{cpu_8c_ad00c60dd998358c909eac7ff9685211e} 
+void {\bfseries exec\+\_\+\+SLTIU} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a9dbd3b8b16b78ad0cbdf6611055f2a06}\label{cpu_8c_a9dbd3b8b16b78ad0cbdf6611055f2a06} 
+void {\bfseries exec\+\_\+\+XORI} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a8b497c6fbe7a2e15021a1bc44333da78}\label{cpu_8c_a8b497c6fbe7a2e15021a1bc44333da78} 
+void {\bfseries exec\+\_\+\+SRLI} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a2e046421b0b7b687771e5889b6f731e0}\label{cpu_8c_a2e046421b0b7b687771e5889b6f731e0} 
+void {\bfseries exec\+\_\+\+SRAI} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a902417c8530fb9d45fabd8ffb1f8cbe6}\label{cpu_8c_a902417c8530fb9d45fabd8ffb1f8cbe6} 
+void {\bfseries exec\+\_\+\+ORI} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_acc979708e718bb789f48ab537bf94ea5}\label{cpu_8c_acc979708e718bb789f48ab537bf94ea5} 
+void {\bfseries exec\+\_\+\+ANDI} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a023e5ce2fa5faae81163ca53b51134e4}\label{cpu_8c_a023e5ce2fa5faae81163ca53b51134e4} 
+void {\bfseries exec\+\_\+\+ADD} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a7249bf886830038f5363a7a301bbc187}\label{cpu_8c_a7249bf886830038f5363a7a301bbc187} 
+void {\bfseries exec\+\_\+\+SUB} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a29b8ca57f70d140e98e0a03dbaf9a8e1}\label{cpu_8c_a29b8ca57f70d140e98e0a03dbaf9a8e1} 
+void {\bfseries exec\+\_\+\+SLL} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_aecef9d13fd865eaf7e94087621ccf7e8}\label{cpu_8c_aecef9d13fd865eaf7e94087621ccf7e8} 
+void {\bfseries exec\+\_\+\+SLT} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a4cd1be168351aae6c87228ad5495b643}\label{cpu_8c_a4cd1be168351aae6c87228ad5495b643} 
+void {\bfseries exec\+\_\+\+SLTU} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a4f898515755c96ee35cf0ba4854b101a}\label{cpu_8c_a4f898515755c96ee35cf0ba4854b101a} 
+void {\bfseries exec\+\_\+\+XOR} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a18eff4303ff3ea455d8180129b890ae9}\label{cpu_8c_a18eff4303ff3ea455d8180129b890ae9} 
+void {\bfseries exec\+\_\+\+SRL} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_ab3cd0c3dc242996400feefd822f2e618}\label{cpu_8c_ab3cd0c3dc242996400feefd822f2e618} 
+void {\bfseries exec\+\_\+\+SRA} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a22350ab389c662d513616d7ff07b0c58}\label{cpu_8c_a22350ab389c662d513616d7ff07b0c58} 
+void {\bfseries exec\+\_\+\+OR} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a2a0166963b6e0b514b8de28e637925f0}\label{cpu_8c_a2a0166963b6e0b514b8de28e637925f0} 
+void {\bfseries exec\+\_\+\+AND} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a13881990333d454eceab627fd13d48b2}\label{cpu_8c_a13881990333d454eceab627fd13d48b2} 
+void {\bfseries exec\+\_\+\+FENCE} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a51024a4df01d73e825fba5e5456a04cd}\label{cpu_8c_a51024a4df01d73e825fba5e5456a04cd} 
+void {\bfseries exec\+\_\+\+ECALL} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_affdb7f0b02e40b3f8d5f32510faf0065}\label{cpu_8c_affdb7f0b02e40b3f8d5f32510faf0065} 
+void {\bfseries exec\+\_\+\+EBREAK} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_afe90d99cb0cc119f0586b0f6139e3cdc}\label{cpu_8c_afe90d99cb0cc119f0586b0f6139e3cdc} 
+void {\bfseries exec\+\_\+\+ECALLBREAK} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a992bbb0656dabaea47eccb8d691ee0e4}\label{cpu_8c_a992bbb0656dabaea47eccb8d691ee0e4} 
+void {\bfseries exec\+\_\+\+ADDIW} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_afc1b2892100f33be774d91714bbe3349}\label{cpu_8c_afc1b2892100f33be774d91714bbe3349} 
+void {\bfseries exec\+\_\+\+SLLIW} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_acccfe67134eb04cbaa6c04da2b79902e}\label{cpu_8c_acccfe67134eb04cbaa6c04da2b79902e} 
+void {\bfseries exec\+\_\+\+SRLIW} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a5d47cdb313c4b7392705c5b7fc08a920}\label{cpu_8c_a5d47cdb313c4b7392705c5b7fc08a920} 
+void {\bfseries exec\+\_\+\+SRAIW} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a069c3c8d3042b1c5308e94344ab22f07}\label{cpu_8c_a069c3c8d3042b1c5308e94344ab22f07} 
+void {\bfseries exec\+\_\+\+ADDW} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a161b75097c94920d4f910fd07a031809}\label{cpu_8c_a161b75097c94920d4f910fd07a031809} 
+void {\bfseries exec\+\_\+\+MULW} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a46edff150db7fe9ef37978581fd8a96f}\label{cpu_8c_a46edff150db7fe9ef37978581fd8a96f} 
+void {\bfseries exec\+\_\+\+SUBW} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a5ae2986f265ed5b16f0e60a71394531e}\label{cpu_8c_a5ae2986f265ed5b16f0e60a71394531e} 
+void {\bfseries exec\+\_\+\+DIVW} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a9b3dcdae354c278a79c4b9e3633d8680}\label{cpu_8c_a9b3dcdae354c278a79c4b9e3633d8680} 
+void {\bfseries exec\+\_\+\+SLLW} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a298924a4e5de555ee0d6f12259582547}\label{cpu_8c_a298924a4e5de555ee0d6f12259582547} 
+void {\bfseries exec\+\_\+\+SRLW} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_aaab91360b7f44368186d3665c3adcd38}\label{cpu_8c_aaab91360b7f44368186d3665c3adcd38} 
+void {\bfseries exec\+\_\+\+DIVUW} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_acbb998afa6b97c0623fb42d92c4012a1}\label{cpu_8c_acbb998afa6b97c0623fb42d92c4012a1} 
+void {\bfseries exec\+\_\+\+SRAW} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a377e9fa232b41e2f08dfe9a38d083375}\label{cpu_8c_a377e9fa232b41e2f08dfe9a38d083375} 
+void {\bfseries exec\+\_\+\+REMW} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a0f43740a1b924745455e35c18626a4a3}\label{cpu_8c_a0f43740a1b924745455e35c18626a4a3} 
+void {\bfseries exec\+\_\+\+REMUW} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a45126f7c16c658f21f19712a4f21593e}\label{cpu_8c_a45126f7c16c658f21f19712a4f21593e} 
+void {\bfseries exec\+\_\+\+CSRRW} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a3aeaf1470d991319922ea57a9a421b33}\label{cpu_8c_a3aeaf1470d991319922ea57a9a421b33} 
+void {\bfseries exec\+\_\+\+CSRRS} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_aa816655581be281b822e594b16fc742c}\label{cpu_8c_aa816655581be281b822e594b16fc742c} 
+void {\bfseries exec\+\_\+\+CSRRC} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a4db19c088c574e59ad0cf636982423cd}\label{cpu_8c_a4db19c088c574e59ad0cf636982423cd} 
+void {\bfseries exec\+\_\+\+CSRRWI} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a8e47d0d1fa185d763bd5032394560de8}\label{cpu_8c_a8e47d0d1fa185d763bd5032394560de8} 
+void {\bfseries exec\+\_\+\+CSRRSI} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_ad9d258b2ce7bd4b46ac632899e4f9e71}\label{cpu_8c_ad9d258b2ce7bd4b46ac632899e4f9e71} 
+void {\bfseries exec\+\_\+\+CSRRCI} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a711c9fa1b464ab31a8879964d986365f}\label{cpu_8c_a711c9fa1b464ab31a8879964d986365f} 
+void {\bfseries exec\+\_\+\+LR\+\_\+W} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_ad9538c793d73da05cb5b4c3b4e38e944}\label{cpu_8c_ad9538c793d73da05cb5b4c3b4e38e944} 
+void {\bfseries exec\+\_\+\+SC\+\_\+W} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a3d1b442dd70e25588a67a948afc9c43e}\label{cpu_8c_a3d1b442dd70e25588a67a948afc9c43e} 
+void {\bfseries exec\+\_\+\+AMOSWAP\+\_\+W} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a1409cebc7d931dbd5a02d21ca3b707a3}\label{cpu_8c_a1409cebc7d931dbd5a02d21ca3b707a3} 
+void {\bfseries exec\+\_\+\+AMOADD\+\_\+W} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a1f3ea8ddbbb03cfb887f88dcabe74e94}\label{cpu_8c_a1f3ea8ddbbb03cfb887f88dcabe74e94} 
+void {\bfseries exec\+\_\+\+AMOXOR\+\_\+W} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a1653df8863c7a06303b77acdfe2cf16f}\label{cpu_8c_a1653df8863c7a06303b77acdfe2cf16f} 
+void {\bfseries exec\+\_\+\+AMOAND\+\_\+W} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a0b15f9636915a8a90ad6fb9cda99fe62}\label{cpu_8c_a0b15f9636915a8a90ad6fb9cda99fe62} 
+void {\bfseries exec\+\_\+\+AMOOR\+\_\+W} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a5d025e3a8a5c02a3d0dbe49fc95139d4}\label{cpu_8c_a5d025e3a8a5c02a3d0dbe49fc95139d4} 
+void {\bfseries exec\+\_\+\+AMOMIN\+\_\+W} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a98abb36760e68c86278c7e1cc0ebae6f}\label{cpu_8c_a98abb36760e68c86278c7e1cc0ebae6f} 
+void {\bfseries exec\+\_\+\+AMOMAX\+\_\+W} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_ac5d1e05223d2f4431af2c0837cfccb8c}\label{cpu_8c_ac5d1e05223d2f4431af2c0837cfccb8c} 
+void {\bfseries exec\+\_\+\+AMOMINU\+\_\+W} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a04777d4057102364c04710c1f7cf9815}\label{cpu_8c_a04777d4057102364c04710c1f7cf9815} 
+void {\bfseries exec\+\_\+\+AMOMAXU\+\_\+W} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_ad74462f01b7e2aafb6a9fd0e163a86fb}\label{cpu_8c_ad74462f01b7e2aafb6a9fd0e163a86fb} 
+void {\bfseries exec\+\_\+\+LR\+\_\+D} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a38b3108df213c82bfc164d67bce68057}\label{cpu_8c_a38b3108df213c82bfc164d67bce68057} 
+void {\bfseries exec\+\_\+\+SC\+\_\+D} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a68023b0b04720e3f684b3daa24213c2c}\label{cpu_8c_a68023b0b04720e3f684b3daa24213c2c} 
+void {\bfseries exec\+\_\+\+AMOSWAP\+\_\+D} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_ac3398273143d97e47d39e98df1dbf350}\label{cpu_8c_ac3398273143d97e47d39e98df1dbf350} 
+void {\bfseries exec\+\_\+\+AMOADD\+\_\+D} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a6e8234a8956bbf22cb57568a6b4236e9}\label{cpu_8c_a6e8234a8956bbf22cb57568a6b4236e9} 
+void {\bfseries exec\+\_\+\+AMOXOR\+\_\+D} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a6383a0b56bd4fc9f4af2c1bbcb23ed86}\label{cpu_8c_a6383a0b56bd4fc9f4af2c1bbcb23ed86} 
+void {\bfseries exec\+\_\+\+AMOAND\+\_\+D} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a4dc4d9d06e3ae2467949b3946069dce8}\label{cpu_8c_a4dc4d9d06e3ae2467949b3946069dce8} 
+void {\bfseries exec\+\_\+\+AMOOR\+\_\+D} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_ae6600c91c311ed75d5fb358156924f30}\label{cpu_8c_ae6600c91c311ed75d5fb358156924f30} 
+void {\bfseries exec\+\_\+\+AMOMIN\+\_\+D} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a26bc0b58be1b3e302223646d7147f2d3}\label{cpu_8c_a26bc0b58be1b3e302223646d7147f2d3} 
+void {\bfseries exec\+\_\+\+AMOMAX\+\_\+D} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_a507357ca180977c13f61b5c5ba473c1f}\label{cpu_8c_a507357ca180977c13f61b5c5ba473c1f} 
+void {\bfseries exec\+\_\+\+AMOMINU\+\_\+D} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+\Hypertarget{cpu_8c_aa04864fca24a4ef7f88f3b7ab7c3e094}\label{cpu_8c_aa04864fca24a4ef7f88f3b7ab7c3e094} 
+void {\bfseries exec\+\_\+\+AMOMAXU\+\_\+D} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\item 
+void \mbox{\hyperlink{cpu_8c_acf95be96d2f1db5044b9d704edf739cd}{cpu\+\_\+init}} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu)
+\begin{DoxyCompactList}\small\item\em 处理器初始化给定的{\ttfamily CPU}， 将指针指向的{\ttfamily CPU}中的寄存器全部置 0， 并将程序寄存器{\ttfamily pc}的值设为内存的起始地址。 \end{DoxyCompactList}\item 
+u32 \mbox{\hyperlink{cpu_8c_af31c0dc195290e2455b036c9198a23bb}{cpu\+\_\+fetch}} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu)
+\begin{DoxyCompactList}\small\item\em 处理器从内存（\+DRAM）中读取指令用于执行， 并将其存入指令变量{\ttfamily inst}中。 \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{cpu_8c_ae08f27bf9fb7d836bb92df902ef5828d}{cpu\+\_\+execute}} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\begin{DoxyCompactList}\small\item\em 处理器将从{\ttfamily DRAM}中取得并存放 在{\ttfamily inst}变量中的指令解码并执行。本质上是 ALU 和指令译码器的组合。 \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{cpu_8c_a24be27f18c18da0331c6ef74e8eb71bb}{cpu\+\_\+step}} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, int step)
+\begin{DoxyCompactList}\small\item\em 处理器步进执行 \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{cpu_8c_aeb351583dd7a247f2d5a4d234489f20c}{cpu\+\_\+loop}} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, char \texorpdfstring{$\ast$}{*}filename)
+\begin{DoxyCompactList}\small\item\em 处理器循环执行 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{cpu_8c_a7b8675bf8eb9edc2d2c07c74d5e21f9e}{cpu\+\_\+dump\+\_\+regs}} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu)
+\begin{DoxyCompactList}\small\item\em 处理器查看寄存器的值 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+中央处理器实现 
+
+\begin{DoxyAuthor}{作者}
+lancer (\href{mailto:lancerstadium@163.com}{\texttt{ lancerstadium@163.\+com}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{版本}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{日期}
+2024-\/01-\/08 
+\end{DoxyDate}
+\begin{DoxyCopyright}{版权所有}
+Copyright (c) 2024 
+\end{DoxyCopyright}
+\begin{DoxyNote}{注解}
+当编写 exec 函数时，应当注意 0 扩展与符号扩展。 例如，立即数在与寄存器中的其它值一起被操作时， 通常是符号扩展到 64 位。我们可以在需要时通过 C 语言的类型转换（int32\+\_\+t) \texorpdfstring{$>$}{>} (int64\+\_\+t) \texorpdfstring{$>$}{>} (u64) 来实现符号位扩展。 
+\end{DoxyNote}
+
+
+\doxysubsection{函数说明}
+\Hypertarget{cpu_8c_a7b8675bf8eb9edc2d2c07c74d5e21f9e}\label{cpu_8c_a7b8675bf8eb9edc2d2c07c74d5e21f9e} 
+\index{cpu.c@{cpu.c}!cpu\_dump\_regs@{cpu\_dump\_regs}}
+\index{cpu\_dump\_regs@{cpu\_dump\_regs}!cpu.c@{cpu.c}}
+\doxysubsubsection{\texorpdfstring{cpu\_dump\_regs()}{cpu\_dump\_regs()}}
+{\footnotesize\ttfamily void cpu\+\_\+dump\+\_\+regs (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}}]{cpu }\end{DoxyParamCaption})}
+
+
+
+处理器查看寄存器的值 
+
+
+\begin{DoxyParams}{参数}
+{\em cpu} & 中央处理器 \\
+\hline
+\end{DoxyParams}
+\Hypertarget{cpu_8c_ae08f27bf9fb7d836bb92df902ef5828d}\label{cpu_8c_ae08f27bf9fb7d836bb92df902ef5828d} 
+\index{cpu.c@{cpu.c}!cpu\_execute@{cpu\_execute}}
+\index{cpu\_execute@{cpu\_execute}!cpu.c@{cpu.c}}
+\doxysubsubsection{\texorpdfstring{cpu\_execute()}{cpu\_execute()}}
+{\footnotesize\ttfamily int cpu\+\_\+execute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}}]{cpu,  }\item[{u32}]{inst }\end{DoxyParamCaption})}
+
+
+
+处理器将从{\ttfamily DRAM}中取得并存放 在{\ttfamily inst}变量中的指令解码并执行。本质上是 ALU 和指令译码器的组合。 
+
+\begin{DoxyNote}{注解}
+操作码告诉我们要对给定的地址和寄存器进行什么操作。 具体要进行什么操作取决于 3 个值： 操作码 opcode，funct3 和 funct7。 根据指令映射， 我们用以下 cpu\+\_\+execute 函数对这 3 个部分进行译码。 
+\end{DoxyNote}
+\Hypertarget{cpu_8c_af31c0dc195290e2455b036c9198a23bb}\label{cpu_8c_af31c0dc195290e2455b036c9198a23bb} 
+\index{cpu.c@{cpu.c}!cpu\_fetch@{cpu\_fetch}}
+\index{cpu\_fetch@{cpu\_fetch}!cpu.c@{cpu.c}}
+\doxysubsubsection{\texorpdfstring{cpu\_fetch()}{cpu\_fetch()}}
+{\footnotesize\ttfamily u32 cpu\+\_\+fetch (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}}]{cpu }\end{DoxyParamCaption})}
+
+
+
+处理器从内存（\+DRAM）中读取指令用于执行， 并将其存入指令变量{\ttfamily inst}中。 
+
+
+\begin{DoxyParams}{参数}
+{\em cpu} & 中央处理器 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+u32 32-\/bit 指令数据 
+\end{DoxyReturn}
+\Hypertarget{cpu_8c_acf95be96d2f1db5044b9d704edf739cd}\label{cpu_8c_acf95be96d2f1db5044b9d704edf739cd} 
+\index{cpu.c@{cpu.c}!cpu\_init@{cpu\_init}}
+\index{cpu\_init@{cpu\_init}!cpu.c@{cpu.c}}
+\doxysubsubsection{\texorpdfstring{cpu\_init()}{cpu\_init()}}
+{\footnotesize\ttfamily void cpu\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}}]{cpu }\end{DoxyParamCaption})}
+
+
+
+处理器初始化给定的{\ttfamily CPU}， 将指针指向的{\ttfamily CPU}中的寄存器全部置 0， 并将程序寄存器{\ttfamily pc}的值设为内存的起始地址。 
+
+
+\begin{DoxyParams}{参数}
+{\em cpu} & 中央处理器 \\
+\hline
+\end{DoxyParams}
+\Hypertarget{cpu_8c_afe50d05d75efdfd2bf769d566cc8e675}\label{cpu_8c_afe50d05d75efdfd2bf769d566cc8e675} 
+\index{cpu.c@{cpu.c}!cpu\_load@{cpu\_load}}
+\index{cpu\_load@{cpu\_load}!cpu.c@{cpu.c}}
+\doxysubsubsection{\texorpdfstring{cpu\_load()}{cpu\_load()}}
+{\footnotesize\ttfamily static u64 cpu\+\_\+load (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}}]{cpu,  }\item[{u64}]{addr,  }\item[{u64}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+\texorpdfstring{$\ast$}{*}处理器加载数据 
+
+
+\begin{DoxyParams}{参数}
+{\em cpu} & 中央处理器 \\
+\hline
+{\em addr} & 地址 \\
+\hline
+{\em size} & 数据大小 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+u64 数据 
+\end{DoxyReturn}
+\Hypertarget{cpu_8c_aeb351583dd7a247f2d5a4d234489f20c}\label{cpu_8c_aeb351583dd7a247f2d5a4d234489f20c} 
+\index{cpu.c@{cpu.c}!cpu\_loop@{cpu\_loop}}
+\index{cpu\_loop@{cpu\_loop}!cpu.c@{cpu.c}}
+\doxysubsubsection{\texorpdfstring{cpu\_loop()}{cpu\_loop()}}
+{\footnotesize\ttfamily int cpu\+\_\+loop (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}}]{cpu,  }\item[{char \texorpdfstring{$\ast$}{*}}]{filename }\end{DoxyParamCaption})}
+
+
+
+处理器循环执行 
+
+\begin{DoxyNote}{注解}
+三级流水线\+CPU
+\begin{DoxyItemize}
+\item 第 1 级流水线由函数{\ttfamily \doxylink{cpu_8c_af31c0dc195290e2455b036c9198a23bb}{cpu\+\_\+fetch()}}处理。
+\item 第 2、3 级流水线由定义在{\ttfamily \doxylink{cpu_8h}{cpu.\+h}}中的函数{\ttfamily \doxylink{cpu_8c_ae08f27bf9fb7d836bb92df902ef5828d}{cpu\+\_\+execute()}}一并处理。
+\item 程序计数器{\ttfamily pc}在每次循环后增加 4 个字节（32 位，因为每个 RISC-\/V 指令长度都为 32 位）， 以获取下一条指令。因此 CPU 执行循环可以被写为下面这样： 
+\end{DoxyItemize}
+\end{DoxyNote}
+\Hypertarget{cpu_8c_a24be27f18c18da0331c6ef74e8eb71bb}\label{cpu_8c_a24be27f18c18da0331c6ef74e8eb71bb} 
+\index{cpu.c@{cpu.c}!cpu\_step@{cpu\_step}}
+\index{cpu\_step@{cpu\_step}!cpu.c@{cpu.c}}
+\doxysubsubsection{\texorpdfstring{cpu\_step()}{cpu\_step()}}
+{\footnotesize\ttfamily int cpu\+\_\+step (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}}]{cpu,  }\item[{int}]{step }\end{DoxyParamCaption})}
+
+
+
+处理器步进执行 
+
+
+\begin{DoxyParams}{参数}
+{\em cpu} & 中央处理器 \\
+\hline
+{\em step} & 步数 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+int 错误代码 
+\end{DoxyReturn}
+\Hypertarget{cpu_8c_aa006396b01c7e478ae12120fb81f58e6}\label{cpu_8c_aa006396b01c7e478ae12120fb81f58e6} 
+\index{cpu.c@{cpu.c}!cpu\_step\_one@{cpu\_step\_one}}
+\index{cpu\_step\_one@{cpu\_step\_one}!cpu.c@{cpu.c}}
+\doxysubsubsection{\texorpdfstring{cpu\_step\_one()}{cpu\_step\_one()}}
+{\footnotesize\ttfamily static int cpu\+\_\+step\+\_\+one (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}}]{cpu }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+处理器执行一条指令 
+
+
+\begin{DoxyParams}{参数}
+{\em cpu} & 中央处理器 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+int 错误代码 
+\end{DoxyReturn}
+\Hypertarget{cpu_8c_ab9d268797991f00ce0c99da19c12589a}\label{cpu_8c_ab9d268797991f00ce0c99da19c12589a} 
+\index{cpu.c@{cpu.c}!cpu\_store@{cpu\_store}}
+\index{cpu\_store@{cpu\_store}!cpu.c@{cpu.c}}
+\doxysubsubsection{\texorpdfstring{cpu\_store()}{cpu\_store()}}
+{\footnotesize\ttfamily static void cpu\+\_\+store (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}}]{cpu,  }\item[{u64}]{addr,  }\item[{u64}]{size,  }\item[{u64}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+\texorpdfstring{$\ast$}{*}处理器存储数据 
+
+
+\begin{DoxyParams}{参数}
+{\em cpu} & 中央处理器 \\
+\hline
+{\em addr} & 地址 \\
+\hline
+{\em size} & 数据大小 \\
+\hline
+{\em value} & 数据 \\
+\hline
+\end{DoxyParams}
+\Hypertarget{cpu_8c_a2bab798e5d090c5ce8e11f51221f8a2c}\label{cpu_8c_a2bab798e5d090c5ce8e11f51221f8a2c} 
+\index{cpu.c@{cpu.c}!exec\_ADDI@{exec\_ADDI}}
+\index{exec\_ADDI@{exec\_ADDI}!cpu.c@{cpu.c}}
+\doxysubsubsection{\texorpdfstring{exec\_ADDI()}{exec\_ADDI()}}
+{\footnotesize\ttfamily void exec\+\_\+\+ADDI (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}}]{cpu,  }\item[{u32}]{inst }\end{DoxyParamCaption})}
+
+
+
+立即数相加 
+
+
+\begin{DoxyParams}{参数}
+{\em cpu} & 处理器 \\
+\hline
+{\em inst} & 指令 \\
+\hline
+\end{DoxyParams}
+\Hypertarget{cpu_8c_a06ad5cd47e7b12911352840f3975e22b}\label{cpu_8c_a06ad5cd47e7b12911352840f3975e22b} 
+\index{cpu.c@{cpu.c}!print\_op@{print\_op}}
+\index{print\_op@{print\_op}!cpu.c@{cpu.c}}
+\doxysubsubsection{\texorpdfstring{print\_op()}{print\_op()}}
+{\footnotesize\ttfamily static void print\+\_\+op (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+打印操作码 
+
+
+\begin{DoxyParams}{参数}
+{\em s} & 操作码字符串 \\
+\hline
+\end{DoxyParams}

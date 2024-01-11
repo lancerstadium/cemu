@@ -1,0 +1,216 @@
+\doxysection{src/utils/unittest.h 文件参考}
+\hypertarget{unittest_8h}{}\label{unittest_8h}\index{src/utils/unittest.h@{src/utils/unittest.h}}
+
+
+单元测试头文件  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include "{}color.\+h"{}}\newline
+\doxysubsubsection*{类}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structunittest__t}{unittest\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{宏定义}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{unittest_8h_a054174a95de8922c6e8c9055adda7122}\label{unittest_8h_a054174a95de8922c6e8c9055adda7122} 
+\#define {\bfseries VA\+\_\+\+NARG}(args...)~VA\+\_\+\+NARG\+\_\+(0, \#\#args, VA\+\_\+\+RSEQ\+\_\+N())
+\item 
+\Hypertarget{unittest_8h_ab0bcdb0c04efabb50ee66b92e27546fb}\label{unittest_8h_ab0bcdb0c04efabb50ee66b92e27546fb} 
+\#define {\bfseries VA\+\_\+\+NARG\+\_\+}(args...)~VA\+\_\+\+ARG\+\_\+N(args)
+\item 
+\Hypertarget{unittest_8h_aabb43e8e561a76aa232be1a920061cc2}\label{unittest_8h_aabb43e8e561a76aa232be1a920061cc2} 
+\#define {\bfseries VA\+\_\+\+ARG\+\_\+N}(\+\_\+0,  a,  b,  c,  d,  e,  f,  g,  h,  i,  j,  k,  l,  m,  n,  o,  p,  N, ...)~N
+\item 
+\Hypertarget{unittest_8h_a7dd8b56db63a0a21cec14df769c1fbd0}\label{unittest_8h_a7dd8b56db63a0a21cec14df769c1fbd0} 
+\#define {\bfseries VA\+\_\+\+RSEQ\+\_\+N}()~16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0
+\item 
+\Hypertarget{unittest_8h_a862316201d8f4975db616927a2716091}\label{unittest_8h_a862316201d8f4975db616927a2716091} 
+\#define {\bfseries VA\+\_\+\+FIRST}(args...)~VA\+\_\+\+FIRST\+\_\+(args)
+\item 
+\Hypertarget{unittest_8h_a7ee6c6e6227f42247036d0852bdaaa8d}\label{unittest_8h_a7ee6c6e6227f42247036d0852bdaaa8d} 
+\#define {\bfseries VA\+\_\+\+FIRST\+\_\+}(F, ...)~F
+\item 
+\Hypertarget{unittest_8h_a4f1e0c59a816cb972a1de12fa0081dd4}\label{unittest_8h_a4f1e0c59a816cb972a1de12fa0081dd4} 
+\#define {\bfseries VA\+\_\+\+FIRST\+\_\+\+STR}(args...)~VA\+\_\+\+FIRST\+\_\+\+STR\+\_\+(args)
+\item 
+\Hypertarget{unittest_8h_ae8d213f2591cb5892f09f0029889c274}\label{unittest_8h_ae8d213f2591cb5892f09f0029889c274} 
+\#define {\bfseries VA\+\_\+\+FIRST\+\_\+\+STR\+\_\+}(F, ...)~\#F
+\item 
+\Hypertarget{unittest_8h_a8c44a7220a1a4a396d690d81abf4eb03}\label{unittest_8h_a8c44a7220a1a4a396d690d81abf4eb03} 
+\#define {\bfseries VA\+\_\+\+REST\+\_\+}(F,  args...)~args
+\item 
+\Hypertarget{unittest_8h_a83765ee7108beb23b1ea5dbefd111771}\label{unittest_8h_a83765ee7108beb23b1ea5dbefd111771} 
+\#define {\bfseries VA\+\_\+\+REST}(args...)~VA\+\_\+\+REST\+\_\+(args)
+\item 
+\Hypertarget{unittest_8h_a5cfed449e1e4c60d312ae742439c14cf}\label{unittest_8h_a5cfed449e1e4c60d312ae742439c14cf} 
+\#define {\bfseries UT\+\_\+\+FAIL}~"{}FAIL"{}
+\item 
+\Hypertarget{unittest_8h_af625c20907a231abfd6f405f17846700}\label{unittest_8h_af625c20907a231abfd6f405f17846700} 
+\#define {\bfseries UT\+\_\+\+PASS}~"{}PASS"{}
+\item 
+\Hypertarget{unittest_8h_ab0bccacff7ac8aae6ec271c0dc25d5ec}\label{unittest_8h_ab0bccacff7ac8aae6ec271c0dc25d5ec} 
+\#define {\bfseries ut\+\_\+set\+\_\+quiet}(num)~    \mbox{\hyperlink{log_8h_ae4426f467d61ae456b95844d4d9c2dcd}{ut.\+quiet}} = num;
+\item 
+\Hypertarget{unittest_8h_a85ee0eaf813c1bfc0b46dfb8620e9fa7}\label{unittest_8h_a85ee0eaf813c1bfc0b46dfb8620e9fa7} 
+\#define {\bfseries ut\+\_\+assert}(test...)
+\item 
+\Hypertarget{unittest_8h_a1bbbc439eb5154398aa82de02f895c44}\label{unittest_8h_a1bbbc439eb5154398aa82de02f895c44} 
+\#define {\bfseries ut\+\_\+dec\+\_\+test}(testname)~    int testname\#\#\+\_\+test()
+\item 
+\#define \mbox{\hyperlink{unittest_8h_ae3fe828f1ee18ef01fd1562ade7d36b8}{ut\+\_\+def\+\_\+test}}(testname, ...)
+\item 
+\Hypertarget{unittest_8h_a0cb7941c30077aeb4400af1dedf32c9f}\label{unittest_8h_a0cb7941c30077aeb4400af1dedf32c9f} 
+\#define {\bfseries ut\+\_\+run\+\_\+test}(testname)
+\item 
+\#define \mbox{\hyperlink{unittest_8h_a37fea7e004bb1569f18a25c6f7b05c2d}{ut\+\_\+print\+\_\+test}}()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{变量}
+\begin{DoxyCompactItemize}
+\item 
+static struct \mbox{\hyperlink{structunittest__t}{unittest\+\_\+t}} \mbox{\hyperlink{unittest_8h_a6bf3f332463a705dcb1d2b18951fe1e7}{ut}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+单元测试头文件 
+
+\begin{DoxyAuthor}{作者}
+lancer (\href{mailto:lancerstadium@163.com}{\texttt{ lancerstadium@163.\+com}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{版本}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{日期}
+2023-\/12-\/28
+\end{DoxyDate}
+\begin{DoxyCopyright}{版权所有}
+Copyright (c) 2023 
+\end{DoxyCopyright}
+\begin{DoxyNote}{注解}
+参考项目：\href{https://gitee.com/zhuangbo/MiniUnit}{\texttt{ Gitee \texorpdfstring{$\vert$}{|} Mini\+Unit}}
+\end{DoxyNote}
+A small unit test framework for C/\+C++.
+
+Origin author\+: Bo Zhuang \href{mailto:sdzhuangbo@hotmail.com}{\texttt{ sdzhuangbo@hotmail.\+com}} Features\+:
+\begin{DoxyItemize}
+\item {\ttfamily ut\+\_\+assert(expr)} assertion fail if {\ttfamily expr} false
+\item {\ttfamily ut\+\_\+assert(expr, message)} assertion with message
+\item {\ttfamily ut\+\_\+assert(expr, message, args...)} assertion with message and args
+\item {\ttfamily ut\+\_\+run\+\_\+test(test)} to run a test function in form {\ttfamily int f()} return 0 if passed
+\item {\ttfamily ut\+\_\+test\+\_\+results()} to display the test results
+\item {\ttfamily \#define MU\+\_\+\+NOCOLOR} if ANSI escape code not supported
+\end{DoxyItemize}
+
+For example, 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{unittest_8h}{unittest.h}}"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ test\_one()\ \{}
+\DoxyCodeLine{\ \ ut\_assert(2\ +\ 2\ ==\ 4);}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{return}\ 0;\ \textcolor{comment}{//\ 0\ means\ test\ passed}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ test\_two()\ \{}
+\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ a\ =\ 3,\ b\ =\ 5;}
+\DoxyCodeLine{\ \ ut\_assert(a\ ==\ 3);}
+\DoxyCodeLine{\ \ ut\_assert(b\ ==\ 5,\ \textcolor{stringliteral}{"{}b\ is\ 5"{}});}
+\DoxyCodeLine{\ \ ut\_assert(a\ +\ b\ ==\ 7,\ \textcolor{stringliteral}{"{}should\ be\ \%d"{}},\ a\ +\ b);\ \textcolor{comment}{//\ fail}}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{cemu_8c_adedb285b02c41bde2158ded9cc9fd7ac}{main}}()}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ ut\_run\_test(test\_one);}
+\DoxyCodeLine{\ \ ut\_run\_test(test\_two);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ ut\_test\_results();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 
+
+\doxysubsection{宏定义说明}
+\Hypertarget{unittest_8h_ae3fe828f1ee18ef01fd1562ade7d36b8}\label{unittest_8h_ae3fe828f1ee18ef01fd1562ade7d36b8} 
+\index{unittest.h@{unittest.h}!ut\_def\_test@{ut\_def\_test}}
+\index{ut\_def\_test@{ut\_def\_test}!unittest.h@{unittest.h}}
+\doxysubsubsection{\texorpdfstring{ut\_def\_test}{ut\_def\_test}}
+{\footnotesize\ttfamily \#define ut\+\_\+def\+\_\+test(\begin{DoxyParamCaption}\item[{}]{testname,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ testname\#\#\_test()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ut.flag\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ut.u\_t\ =\ 0,\ ut.u\_p\ =\ 0,\ ut.u\_f\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \_\_VA\_ARGS\_\_\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ if\ (ut.quiet\ <\ 3)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)n"{}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}|-\/"{}}\ \_bgreen(\textcolor{stringliteral}{"{}\ \%d\ "{}}\ UT\_PASS)\ \textcolor{stringliteral}{"{}\ -\/\ "{}},\ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ut.u\_p);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ printf(\_bred(\textcolor{stringliteral}{"{}\%d\ "{}}\ UT\_FAIL),\ ut.u\_f);\ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\ -\/\ "{}}\ \_bold(\textcolor{stringliteral}{"{}\%d\ all"{}})\ \textcolor{stringliteral}{"{}\ \(\backslash\)n|"{}},\ ut.u\_t);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ut.flag;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{unittest_8h_a37fea7e004bb1569f18a25c6f7b05c2d}\label{unittest_8h_a37fea7e004bb1569f18a25c6f7b05c2d} 
+\index{unittest.h@{unittest.h}!ut\_print\_test@{ut\_print\_test}}
+\index{ut\_print\_test@{ut\_print\_test}!unittest.h@{unittest.h}}
+\doxysubsubsection{\texorpdfstring{ut\_print\_test}{ut\_print\_test}}
+{\footnotesize\ttfamily \#define ut\+\_\+print\+\_\+test(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{do}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ if\ (ut.quiet\ <\ 6)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)n"{}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}|==============\ Test\ Result\ =============="{}});\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)n"{}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}|\ "{}}\ \_bgreen(\textcolor{stringliteral}{"{}\%d\ "{}}\ UT\_PASS)\ \textcolor{stringliteral}{"{}\ and\ "{}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ut.n\_pass);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ printf(\_bred(\textcolor{stringliteral}{"{}\%d\ "{}}\ UT\_FAIL),\ ut.n\_fail);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\ in\ "{}}\ \_bold(\textcolor{stringliteral}{"{}\%d\ TEST(S)"{}}),\ ut.n\_test);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ if\ (ut.n\_pass\ ==\ ut.n\_test)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)n"{}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}|============"{}}\ \_green(\textcolor{stringliteral}{"{}\ ALL\ TESTS\ PASSED\ "{}})\ \textcolor{stringliteral}{"{}==========="{}});\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ else\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)n"{}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}|==========="{}}\ \_red(\textcolor{stringliteral}{"{}\ \%d\ TEST(S)\ FAILED\ "{}})\ \textcolor{stringliteral}{"{}============"{}}\ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\(\backslash\)n"{}},\ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ut.n\_fail);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}\ \textcolor{keywordflow}{while}\ (0)}
+
+\end{DoxyCode}
+
+
+\doxysubsection{变量说明}
+\Hypertarget{unittest_8h_a6bf3f332463a705dcb1d2b18951fe1e7}\label{unittest_8h_a6bf3f332463a705dcb1d2b18951fe1e7} 
+\index{unittest.h@{unittest.h}!ut@{ut}}
+\index{ut@{ut}!unittest.h@{unittest.h}}
+\doxysubsubsection{\texorpdfstring{ut}{ut}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structunittest__t}{unittest\+\_\+t}} ut\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries 初始值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ .n\_fail\ =\ 0,}
+\DoxyCodeLine{\ \ \ \ .n\_pass\ =\ 0,}
+\DoxyCodeLine{\ \ \ \ .n\_test\ =\ 0,}
+\DoxyCodeLine{\ \ \ \ .u\_f\ =\ 0,}
+\DoxyCodeLine{\ \ \ \ .u\_p\ =\ 0,}
+\DoxyCodeLine{\ \ \ \ .u\_t\ =\ 0,}
+\DoxyCodeLine{\ \ \ \ .flag\ =\ 0,}
+\DoxyCodeLine{\ \ \ \ .quiet\ =\ 0}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

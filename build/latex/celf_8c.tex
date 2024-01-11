@@ -1,0 +1,48 @@
+\doxysection{src/cemu/celf.c 文件参考}
+\hypertarget{celf_8c}{}\label{celf_8c}\index{src/cemu/celf.c@{src/cemu/celf.c}}
+
+
+ELF解析实现  
+
+
+{\ttfamily \#include "{}celf.\+h"{}}\newline
+{\ttfamily \#include "{}dram.\+h"{}}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$sys/mman.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{celf_8c_a6d90953dc3135d4ee90e22fd1358cb16}\label{celf_8c_a6d90953dc3135d4ee90e22fd1358cb16} 
+char \texorpdfstring{$\ast$}{*} {\bfseries elf\+\_\+arch} (int arch)
+\item 
+\Hypertarget{celf_8c_ab2c5c2bf39a85118129335056c04744b}\label{celf_8c_ab2c5c2bf39a85118129335056c04744b} 
+char \texorpdfstring{$\ast$}{*} {\bfseries read\+\_\+section} (int fd, Elf64\+\_\+\+Shdr sh, int buff)
+\item 
+\Hypertarget{celf_8c_a4cf0d0e7cc82636d459c3cec26e7a04c}\label{celf_8c_a4cf0d0e7cc82636d459c3cec26e7a04c} 
+u16 {\bfseries find\+\_\+segment} (void \texorpdfstring{$\ast$}{*}mmaped\+\_\+elf, int fsize)
+\item 
+\Hypertarget{celf_8c_a5ef40da693fc473f31a1e97665beb432}\label{celf_8c_a5ef40da693fc473f31a1e97665beb432} 
+int {\bfseries get\+\_\+file\+\_\+size} (int fd)
+\item 
+\Hypertarget{celf_8c_ad5250b7d7932edad332fe5dbb15a0c9a}\label{celf_8c_ad5250b7d7932edad332fe5dbb15a0c9a} 
+void \texorpdfstring{$\ast$}{*} {\bfseries map\+\_\+elf} (char \texorpdfstring{$\ast$}{*}file\+\_\+name, void \texorpdfstring{$\ast$}{*}addr, int \texorpdfstring{$\ast$}{*}file\+\_\+len)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+ELF解析实现 
+
+\begin{DoxyAuthor}{作者}
+your name (\href{mailto:you@domain.com}{\texttt{ you@domain.\+com}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{版本}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{日期}
+2024-\/01-\/08 
+\end{DoxyDate}
+\begin{DoxyCopyright}{版权所有}
+Copyright (c) 2024 
+\end{DoxyCopyright}

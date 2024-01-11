@@ -1,0 +1,266 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>uemu: src/cemu/dram.h 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">uemu
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('dram_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">类</a> &#124;
+<a href="#define-members">宏定义</a> &#124;
+<a href="#typedef-members">类型定义</a> &#124;
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle"><div class="title">dram.h 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>DRAM头文件  
+<a href="#details">更多...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="typedef_8h_source.html">typedef.h</a>&quot;</code><br />
+</div>
+<p><a href="dram_8h_source.html">浏览源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+类</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structDRAM__t.html">DRAM_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">DRAM 动态随机存取存储器结构体  <a href="structDRAM__t.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:a4e35909b44ea391fbb7bb146992bb84d" id="r_a4e35909b44ea391fbb7bb146992bb84d"><td class="memItemLeft" align="right" valign="top"><a id="a4e35909b44ea391fbb7bb146992bb84d" name="a4e35909b44ea391fbb7bb146992bb84d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>DRAM_SIZE</b>&#160;&#160;&#160;1024*1024*1   /** 1MB 大小 <a class="el" href="#a5c4f608d0cdf3a502dfe85d798e063ac">DRAM</a> */</td></tr>
+<tr class="separator:a4e35909b44ea391fbb7bb146992bb84d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af664e1a9045803369e50e29fdc1ca530" id="r_af664e1a9045803369e50e29fdc1ca530"><td class="memItemLeft" align="right" valign="top"><a id="af664e1a9045803369e50e29fdc1ca530" name="af664e1a9045803369e50e29fdc1ca530"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>DRAM_BASE</b>&#160;&#160;&#160;0x80000000    /** <a class="el" href="#a5c4f608d0cdf3a502dfe85d798e063ac">DRAM</a> 基址 */</td></tr>
+<tr class="separator:af664e1a9045803369e50e29fdc1ca530"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+类型定义</h2></td></tr>
+<tr class="memitem:a5c4f608d0cdf3a502dfe85d798e063ac" id="r_a5c4f608d0cdf3a502dfe85d798e063ac"><td class="memItemLeft" align="right" valign="top"><a id="a5c4f608d0cdf3a502dfe85d798e063ac" name="a5c4f608d0cdf3a502dfe85d798e063ac"></a>
+typedef struct <a class="el" href="structDRAM__t.html">DRAM_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>DRAM</b></td></tr>
+<tr class="memdesc:a5c4f608d0cdf3a502dfe85d798e063ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">DRAM 动态随机存取存储器结构体 <br /></td></tr>
+<tr class="separator:a5c4f608d0cdf3a502dfe85d798e063ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:a51d945650b12b721792ce09cd04c6f48" id="r_a51d945650b12b721792ce09cd04c6f48"><td class="memItemLeft" align="right" valign="top">u64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a51d945650b12b721792ce09cd04c6f48">dram_load</a> (<a class="el" href="#a5c4f608d0cdf3a502dfe85d798e063ac">DRAM</a> *dram, u64 addr, u64 size)</td></tr>
+<tr class="memdesc:a51d945650b12b721792ce09cd04c6f48"><td class="mdescLeft">&#160;</td><td class="mdescRight">DRAM加载对应地址指定大小的数据  <br /></td></tr>
+<tr class="separator:a51d945650b12b721792ce09cd04c6f48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8add16e706dfe7b4ab4e3e0cca5f1c1" id="r_ae8add16e706dfe7b4ab4e3e0cca5f1c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae8add16e706dfe7b4ab4e3e0cca5f1c1">dram_store</a> (<a class="el" href="#a5c4f608d0cdf3a502dfe85d798e063ac">DRAM</a> *dram, u64 addr, u64 size, u64 value)</td></tr>
+<tr class="memdesc:ae8add16e706dfe7b4ab4e3e0cca5f1c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">DRAM存取对应地址指定大小的数据  <br /></td></tr>
+<tr class="separator:ae8add16e706dfe7b4ab4e3e0cca5f1c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>DRAM头文件 </p>
+<dl class="section author"><dt>作者</dt><dd>lancer (<a href="#" onclick="location.href='mai'+'lto:'+'lan'+'ce'+'rst'+'ad'+'ium'+'@1'+'63.'+'co'+'m'; return false;">lance<span class="obfuscator">.nosp@m.</span>rsta<span class="obfuscator">.nosp@m.</span>dium@<span class="obfuscator">.nosp@m.</span>163.<span class="obfuscator">.nosp@m.</span>com</a>) </dd></dl>
+<dl class="section version"><dt>版本</dt><dd>0.1 </dd></dl>
+<dl class="section date"><dt>日期</dt><dd>2024-01-08 </dd></dl>
+<dl class="section copyright"><dt>版权所有</dt><dd>Copyright (c) 2024</dd></dl>
+<h1><a class="anchor" id="autotoc_md3"></a>
+DRAM 介绍</h1>
+<h2><a class="anchor" id="autotoc_md4"></a>
+DRAM 结构</h2>
+<ul>
+<li>DRAM（动态随机存取存储器）存放所有指令与数据。 模拟器中的内存只是一个 64 位变量的数组，用于存放 64 位值。 此处我们用变量<code>DRAM_SIZE</code>定义内存的大小， 用变量<code>DRAM_BASE</code>定义内存的起始地址。</li>
+<li>内存有一个大于<code>0x0</code>的起始地址， 因为 RISC-V 架构有一个内存映射 I/O。 在内存映射 I/O 中，内存与 I/O 设备共享相同的地址空间。 在<code>QEMU</code>中，低地址用于 I/O 端口 并且 DRAM 内存起始地址为<code>0x800000000</code>。 因此我们将<code>DRAM_BASE</code>的值定为<code>0x800000000</code>。</li>
+<li>由于内存映射 I/O，我们可以使用任何能够访问 内存的指令来执行 I/O 操作。否则，我们将需要单独 的指令和 I/O 端口的读写总线。 <div class="fragment"><div class="line">                   +---------------+</div>
+<div class="line">                   |    Address    |</div>
+<div class="line">                   |  +---------+  |</div>
+<div class="line">+-------+   addr   |  |   ROM   |  |</div>
+<div class="line">|       |---------&gt;|  +---------+  |</div>
+<div class="line">|  <a class="code hl_struct" href="structCPU__t.html">CPU</a>  |          |  |   RAM   |  |</div>
+<div class="line">|       |&lt;---------|  +---------+  |</div>
+<div class="line">+-------+   data   |  |   I/O   |  |</div>
+<div class="line">                   |  +---------+  |</div>
+<div class="line">                   |               |</div>
+<div class="line">                   +---------------+</div>
+<div class="ttc" id="astructCPU__t_html"><div class="ttname"><a href="structCPU__t.html">CPU_t</a></div><div class="ttdoc">中央处理器结构体</div><div class="ttdef"><b>Definition</b> cpu.h:35</div></div>
+</div><!-- fragment --></li>
+</ul>
+<h2><a class="anchor" id="autotoc_md5"></a>
+DRAM 功能</h2>
+<ul>
+<li>DRAM 是系统的内存。CPU 读取数据并从内存中取得指令， 也向内存中存/写数据。因此 DRAM 有两个基本操作： 从内存中读和写入内存。</li>
+<li>定义函数<code><a class="el" href="#a51d945650b12b721792ce09cd04c6f48" title="DRAM加载对应地址指定大小的数据">dram_load()</a></code>用于读取内存， 以及<code><a class="el" href="#ae8add16e706dfe7b4ab4e3e0cca5f1c1" title="DRAM存取对应地址指定大小的数据">dram_store()</a></code>用于写入内存。 </li>
+</ul>
+</div><h2 class="groupheader">函数说明</h2>
+<a id="a51d945650b12b721792ce09cd04c6f48" name="a51d945650b12b721792ce09cd04c6f48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51d945650b12b721792ce09cd04c6f48">&#9670;&#160;</a></span>dram_load()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">u64 dram_load </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a5c4f608d0cdf3a502dfe85d798e063ac">DRAM</a> *</td>          <td class="paramname"><span class="paramname"><em>dram</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">u64</td>          <td class="paramname"><span class="paramname"><em>addr</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">u64</td>          <td class="paramname"><span class="paramname"><em>size</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>DRAM加载对应地址指定大小的数据 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dram</td><td>DRAM结构体 </td></tr>
+    <tr><td class="paramname">addr</td><td>地址 </td></tr>
+    <tr><td class="paramname">size</td><td>数据大小 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>u64 数据</dd></dl>
+<dl class="section note"><dt>注解</dt><dd>为了获取<code>addr</code>参数给定的地址上的数据， 我们需要从<code>addr</code>中减去<code>DRAM_BASE</code>。 数据的实际起始地址为<code>mem[addr-DRAM_BASE]</code> </dd></dl>
+
+</div>
+</div>
+<a id="ae8add16e706dfe7b4ab4e3e0cca5f1c1" name="ae8add16e706dfe7b4ab4e3e0cca5f1c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8add16e706dfe7b4ab4e3e0cca5f1c1">&#9670;&#160;</a></span>dram_store()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void dram_store </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a5c4f608d0cdf3a502dfe85d798e063ac">DRAM</a> *</td>          <td class="paramname"><span class="paramname"><em>dram</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">u64</td>          <td class="paramname"><span class="paramname"><em>addr</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">u64</td>          <td class="paramname"><span class="paramname"><em>size</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">u64</td>          <td class="paramname"><span class="paramname"><em>value</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>DRAM存取对应地址指定大小的数据 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dram</td><td>DRAM结构体 </td></tr>
+    <tr><td class="paramname">addr</td><td>地址 </td></tr>
+    <tr><td class="paramname">size</td><td>数据大小 </td></tr>
+    <tr><td class="paramname">value</td><td>数据 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_1befa86077b13579493366c588abc311.html">cemu</a></li><li class="navelem"><a class="el" href="dram_8h.html">dram.h</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
+</body>
+</html>

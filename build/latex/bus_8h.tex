@@ -1,0 +1,94 @@
+\doxysection{src/cemu/bus.h 文件参考}
+\hypertarget{bus_8h}{}\label{bus_8h}\index{src/cemu/bus.h@{src/cemu/bus.h}}
+
+
+总线头文件  
+
+
+{\ttfamily \#include "{}dram.\+h"{}}\newline
+\doxysubsubsection*{类}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structBUS__t}{BUS\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{类型定义}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{bus_8h_ad0e10a9f954685738bab079b514f65d8}\label{bus_8h_ad0e10a9f954685738bab079b514f65d8} 
+typedef struct \mbox{\hyperlink{structBUS__t}{BUS\+\_\+t}} {\bfseries BUS}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+u64 \mbox{\hyperlink{bus_8h_a377843cd98367d78fa0d05e1583b84b7}{bus\+\_\+load}} (\mbox{\hyperlink{structBUS__t}{BUS}} \texorpdfstring{$\ast$}{*}bus, u64 addr, u64 size)
+\begin{DoxyCompactList}\small\item\em 总线加载数据 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bus_8h_a8bfe42458d7c798bd33e556a95ec7344}{bus\+\_\+store}} (\mbox{\hyperlink{structBUS__t}{BUS}} \texorpdfstring{$\ast$}{*}bus, u64 addr, u64 size, u64 value)
+\begin{DoxyCompactList}\small\item\em 总线存储数据 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+总线头文件 
+
+\begin{DoxyAuthor}{作者}
+lancer (\href{mailto:lancerstadium@163.com}{\texttt{ lancerstadium@163.\+com}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{版本}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{日期}
+2024-\/01-\/08 
+\end{DoxyDate}
+\begin{DoxyCopyright}{版权所有}
+Copyright (c) 2024
+\end{DoxyCopyright}
+\hypertarget{bus_8h_autotoc_md0}{}\doxysubsection{\texorpdfstring{总线介绍}{总线介绍}}\label{bus_8h_autotoc_md0}
+
+\begin{DoxyItemize}
+\item 总线只是为计算机提供了一条各个组件之间数据传输的路径。 对于的 RISC-\/V 模拟器，地址总线与数据总线是单一的 64 位 宽总线（对于 64 位实现）。
+\item 本例中的总线连接 CPU 与 DRAM。因此我们编写的总线结构 有一个 DRAM 对象，表示我们要连接到的 DRAM。 
+\end{DoxyItemize}
+
+\doxysubsection{函数说明}
+\Hypertarget{bus_8h_a377843cd98367d78fa0d05e1583b84b7}\label{bus_8h_a377843cd98367d78fa0d05e1583b84b7} 
+\index{bus.h@{bus.h}!bus\_load@{bus\_load}}
+\index{bus\_load@{bus\_load}!bus.h@{bus.h}}
+\doxysubsubsection{\texorpdfstring{bus\_load()}{bus\_load()}}
+{\footnotesize\ttfamily u64 bus\+\_\+load (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structBUS__t}{BUS}} \texorpdfstring{$\ast$}{*}}]{bus,  }\item[{u64}]{addr,  }\item[{u64}]{size }\end{DoxyParamCaption})}
+
+
+
+总线加载数据 
+
+
+\begin{DoxyParams}{参数}
+{\em bus} & 总线 \\
+\hline
+{\em addr} & 地址 \\
+\hline
+{\em size} & 数据大小 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+u64 数据 
+\end{DoxyReturn}
+\Hypertarget{bus_8h_a8bfe42458d7c798bd33e556a95ec7344}\label{bus_8h_a8bfe42458d7c798bd33e556a95ec7344} 
+\index{bus.h@{bus.h}!bus\_store@{bus\_store}}
+\index{bus\_store@{bus\_store}!bus.h@{bus.h}}
+\doxysubsubsection{\texorpdfstring{bus\_store()}{bus\_store()}}
+{\footnotesize\ttfamily void bus\+\_\+store (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structBUS__t}{BUS}} \texorpdfstring{$\ast$}{*}}]{bus,  }\item[{u64}]{addr,  }\item[{u64}]{size,  }\item[{u64}]{value }\end{DoxyParamCaption})}
+
+
+
+总线存储数据 
+
+
+\begin{DoxyParams}{参数}
+{\em bus} & 总线 \\
+\hline
+{\em addr} & 地址 \\
+\hline
+{\em size} & 数据大小 \\
+\hline
+{\em value} & 数据 \\
+\hline
+\end{DoxyParams}

@@ -1,0 +1,151 @@
+\doxysection{csr.\+h}
+\hypertarget{csr_8h_source}{}\label{csr_8h_source}\index{src/cemu/csr.h@{src/cemu/csr.h}}
+\mbox{\hyperlink{csr_8h}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#ifndef\ CSR\_H}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ CSR\_H}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Include}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{cpu_8h}{cpu.h}}"{}}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Define}}
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ \ \ \ \ \ Name\ \ \ \ \ \ \ \ Number\ \ \ Priv\ \ \ \ \ \ \ Description}}
+\DoxyCodeLine{00028\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ User\ Trap\ Setup}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ USTATUS\ \ \ \ \ 0x000\ }\textcolor{comment}{//\ URW\ User\ status\ register.}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ UIE\ \ \ \ \ \ \ \ \ 0x004\ }\textcolor{comment}{//\ URW\ User\ interrupt-\/enable\ register.}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ UTVEC\ \ \ \ \ \ \ 0x005\ }\textcolor{comment}{//\ URW\ User\ trap\ handler\ base\ address.}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{comment}{//User\ Trap\ Handling}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ USCRATCH\ \ \ \ 0x040\ }\textcolor{comment}{//\ URW\ Scratch\ register\ for\ user\ trap\ handlers.}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ UEPC\ \ \ \ \ \ \ \ 0x041\ }\textcolor{comment}{//\ URW\ User\ exception\ program\ counter.}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ UCAUSE\ \ \ \ \ \ 0x042\ }\textcolor{comment}{//\ URW\ User\ trap\ cause.}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ UTVAL\ \ \ \ \ \ \ 0x043\ }\textcolor{comment}{//\ URW\ User\ bad\ address\ or\ instruction.}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ UIP\ \ \ \ \ \ \ \ \ 0x044\ }\textcolor{comment}{//\ URW\ User\ interrupt\ pending.}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{comment}{//User\ Floating-\/Point\ CSRs}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ FFLAGS\ \ \ \ \ \ 0x001\ }\textcolor{comment}{//\ URW\ Floating-\/Point\ Accrued\ Exceptions.}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ FRM\ \ \ \ \ \ \ \ \ 0x002\ }\textcolor{comment}{//\ URW\ Floating-\/Point\ Dynamic\ Rounding\ Mode.}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ FCSR\ \ \ \ \ \ \ \ 0x003\ }\textcolor{comment}{//\ URW\ Floating-\/Point\ Control\ and\ Status\ Register\ (frm\ +\ fflags)}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{comment}{//User\ Counter/Timers}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ CYCLE\ \ \ \ \ \ \ 0xC00\ }\textcolor{comment}{//\ URO\ Cycle\ counter\ for\ RDCYCLE\ instruction.}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ TIME\ \ \ \ \ \ \ \ 0xC01\ }\textcolor{comment}{//\ URO\ Timer\ for\ RDTIME\ instruction.}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ INSTRET\ \ \ \ \ 0xC02\ }\textcolor{comment}{//\ URO\ Instructions-\/retired\ counter\ for\ RDINSTRET\ instruction.}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ HPMCOUNTER3\ 0xC03\ }\textcolor{comment}{//\ URO\ Performance-\/monitoring\ counter.}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ HPMCOUNTER4\ 0xC04\ }\textcolor{comment}{//\ URO\ Performance-\/monitoring\ counter.}}
+\DoxyCodeLine{00053\ \textcolor{comment}{//\ ...\ hpm\ counter\ 4-\/31\ (TODO)}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ HPMCOUNTER31\ 0xC1F\ }\textcolor{comment}{//\ URO\ Performance-\/monitoring\ counter.}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ CYCLEH\ \ \ \ \ \ 0xC80\ \ }\textcolor{comment}{//\ URO\ Upper\ 32\ bits\ of\ cycle,\ RV32I\ only.}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ TIMEH\ \ \ \ \ \ \ 0xC81\ \ }\textcolor{comment}{//\ URO\ Upper\ 32\ bits\ of\ time,\ RV32I\ only.}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ INSTRETH\ \ \ \ 0xC82\ \ }\textcolor{comment}{//\ URO\ Upper\ 32\ bits\ of\ instret,\ RV32I\ only.}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#define\ HPMCOUNTER3H\ 0xC83\ }\textcolor{comment}{//\ URO\ Upper\ 32\ bits\ of\ hpmcounter3,\ RV32I\ only.}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#define\ HPMCOUNTER4H\ 0xC84\ }\textcolor{comment}{//\ URO\ Upper\ 32\ bits\ of\ hpmcounter4,\ RV32I\ only.}}
+\DoxyCodeLine{00060\ \textcolor{comment}{//\ ...\ hpm\ counter\ 4-\/31\ (TODO)}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ HPMCOUNTER31H\ 0xC9F\ URO\ }}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{comment}{//Supervisor\ Trap\ Setup}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#define\ SSTATUS\ \ \ \ \ 0x100\ }\textcolor{comment}{//\ SRW\ Supervisor\ status\ register.}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#define\ SEDELEG\ \ \ \ \ 0x102\ }\textcolor{comment}{//\ SRW\ Supervisor\ exception\ delegation\ register.}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ SIDELEG\ \ \ \ \ 0x103\ }\textcolor{comment}{//\ SRW\ Supervisor\ interrupt\ delegation\ register.}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#define\ SIE\ \ \ \ \ \ \ \ \ 0x104\ }\textcolor{comment}{//\ SRW\ Supervisor\ interrupt-\/enable\ register.}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#define\ STVEC\ \ \ \ \ \ \ 0x105\ }\textcolor{comment}{//\ SRW\ Supervisor\ trap\ handler\ base\ address.}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#define\ SCOUNTEREN\ \ 0x106\ }\textcolor{comment}{//\ SRW\ Supervisor\ counter\ enable.}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{comment}{//Supervisor\ Trap\ Handling}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#define\ SSCRATCH\ \ \ \ 0x140\ }\textcolor{comment}{//\ SRW\ Scratch\ register\ for\ supervisor\ trap\ handlers.}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#define\ SEPC\ \ \ \ \ \ \ \ 0x141\ }\textcolor{comment}{//\ SRW\ Supervisor\ exception\ program\ counter.}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#define\ SCAUSE\ \ \ \ \ \ 0x142\ }\textcolor{comment}{//\ SRW\ Supervisor\ trap\ cause.}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#define\ STVAL\ \ \ \ \ \ \ 0x143\ }\textcolor{comment}{//\ SRW\ Supervisor\ bad\ address\ or\ instruction.}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#define\ SIP\ \ \ \ \ \ \ \ \ 0x144\ }\textcolor{comment}{//\ SRW\ Supervisor\ interrupt\ pending.}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{comment}{//Supervisor\ Protection\ and\ Translation}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#define\ SATP\ \ \ \ \ \ \ \ 0x180\ }\textcolor{comment}{//\ SRW\ Supervisor\ address\ translation\ and\ protection.}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{comment}{//Machine\ Information\ Registers}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#define\ MVENDORID\ \ \ 0xF11\ }\textcolor{comment}{//\ MRO\ Vendor\ ID.}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#define\ MARCHID\ \ \ \ \ 0xF12\ }\textcolor{comment}{//\ MRO\ Architecture\ ID.}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#define\ MIMPID\ \ \ \ \ \ 0xF13\ }\textcolor{comment}{//\ MRO\ Implementation\ ID.}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#define\ MHARTID\ \ \ \ \ 0xF14\ }\textcolor{comment}{//\ MRO\ Hardware\ thread\ ID.}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{comment}{//Machine\ Trap\ Setup}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#define\ MSTATUS\ \ \ \ \ 0x300\ }\textcolor{comment}{//\ MRW\ Machine\ status\ register.}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#define\ MISA\ \ \ \ \ \ \ \ 0x301\ }\textcolor{comment}{//\ MRW\ ISA\ and\ extensions}}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#define\ MEDELEG\ \ \ \ \ 0x302\ }\textcolor{comment}{//\ MRW\ Machine\ exception\ delegation\ register.}}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#define\ MIDELEG\ \ \ \ \ 0x303\ }\textcolor{comment}{//\ MRW\ Machine\ interrupt\ delegation\ register.}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#define\ MIE\ \ \ \ \ \ \ \ \ 0x304\ }\textcolor{comment}{//\ MRW\ Machine\ interrupt-\/enable\ register.}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#define\ MTVEC\ \ \ \ \ \ \ 0x305\ }\textcolor{comment}{//\ MRW\ Machine\ trap-\/handler\ base\ address.}}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#define\ MCOUNTEREN\ \ 0x306\ }\textcolor{comment}{//\ MRW\ Machine\ counter\ enable.}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{comment}{//Machine\ Trap\ Handling}}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#define\ MSCRATCH\ \ \ \ 0x340\ }\textcolor{comment}{//\ MRW\ Scratch\ register\ for\ machine\ trap\ handlers.}}
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\#define\ MEPC\ \ \ \ \ \ \ \ 0x341\ }\textcolor{comment}{//\ MRW\ Machine\ exception\ program\ counter.}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#define\ MCAUSE\ \ \ \ \ \ 0x342\ }\textcolor{comment}{//\ MRW\ Machine\ trap\ cause.}}
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#define\ MTVAL\ \ \ \ \ \ \ 0x343\ }\textcolor{comment}{//\ MRW\ Machine\ bad\ address\ or\ instruction.}}
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#define\ MIP\ \ \ \ \ \ \ \ \ 0x344\ }\textcolor{comment}{//\ MRW\ Machine\ interrupt\ pending.}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \textcolor{comment}{//Machine\ Memory\ Protection}}
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\#define\ PMPCFG0\ \ \ \ \ 0x3A0\ }\textcolor{comment}{//\ MRW\ Physical\ memory\ protection\ configuration.}}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#define\ PMPCFG1\ \ \ \ \ 0x3A1\ }\textcolor{comment}{//\ MRW\ Physical\ memory\ protection\ configuration,\ RV32\ only.}}
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#define\ PMPCFG2\ \ \ \ \ 0x3A2\ }\textcolor{comment}{//\ MRW\ Physical\ memory\ protection\ configuration.}}
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#define\ PMPCFG3\ \ \ \ \ 0x3A3\ }\textcolor{comment}{//\ MRW\ Physical\ memory\ protection\ configuration,\ RV32\ only.}}
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#define\ PMPADDR0\ \ \ \ 0x3B0\ }\textcolor{comment}{//\ MRW\ Physical\ memory\ protection\ address\ register.}}
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#define\ PMPADDR1\ \ \ \ 0x3B1\ }\textcolor{comment}{//\ MRW\ Physical\ memory\ protection\ address\ register.}}
+\DoxyCodeLine{00111\ \textcolor{comment}{//\ ...\ 2-\/15\ /TODO}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#define\ PMPADDR15\ \ \ 0x3BF\ }\textcolor{comment}{//\ MRW\ Physical\ memory\ protection\ address\ register.}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \textcolor{comment}{//Machine\ Counter/Timers}}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#define\ MCYCLE\ \ \ \ \ \ \ 0xB00\ }\textcolor{comment}{//\ MRW\ Machine\ cycle\ counter.}}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#define\ MINSTRET\ \ \ \ \ 0xB02\ }\textcolor{comment}{//\ MRW\ Machine\ instructions-\/retired\ counter.}}
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#define\ MHPMCOUNTER3\ 0xB03\ }\textcolor{comment}{//\ MRW\ Machine\ performance-\/monitoring\ counter.}}
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\#define\ MHPMCOUNTER4\ 0xB04\ }\textcolor{comment}{//\ MRW\ Machine\ performance-\/monitoring\ counter.}}
+\DoxyCodeLine{00119\ \textcolor{comment}{//\ \#define\ ...}}
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\#define\ MHPMCOUNTER31\ 0xB1F\ }\textcolor{comment}{//\ MRW\ Machine\ performance-\/monitoring\ counter.}}
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#define\ MCYCLEH\ \ \ \ \ \ \ 0xB80\ }\textcolor{comment}{//\ MRW\ Upper\ 32\ bits\ of\ mcycle,\ RV32I\ only.}}
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\#define\ MINSTRETH\ \ \ \ \ 0xB82\ }\textcolor{comment}{//\ MRW\ Upper\ 32\ bits\ of\ minstret,\ RV32I\ only.}}
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\#define\ MHPMCOUNTER3H\ 0xB83\ }\textcolor{comment}{//\ MRW\ Upper\ 32\ bits\ of\ mhpmcounter3,\ RV32I\ only.}}
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\#define\ MHPMCOUNTER4H\ 0xB84\ }\textcolor{comment}{//\ MRW\ Upper\ 32\ bits\ of\ mhpmcounter4,\ RV32I\ only.}}
+\DoxyCodeLine{00125\ \textcolor{comment}{//\ ...}}
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\#define\ MHPMCOUNTER31H\ 0xB9F\ }\textcolor{comment}{//\ MRW\ Upper\ 32\ bits\ of\ mhpmcounter31,\ RV32I\ only.}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \textcolor{comment}{//Machine\ Counter\ Setup}}
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\#define\ MCOUNTINHIBIT\ 0x320\ }\textcolor{comment}{//\ MRW\ Machine\ counter-\/inhibit\ register.}}
+\DoxyCodeLine{00130\ \textcolor{preprocessor}{\#define\ MHPMEVENT3\ \ \ \ 0x323\ }\textcolor{comment}{//\ MRW\ Machine\ performance-\/monitoring\ event\ selector.}}
+\DoxyCodeLine{00131\ \textcolor{preprocessor}{\#define\ MHPMEVENT4\ \ \ \ 0x324\ }\textcolor{comment}{//\ MRW\ Machine\ performance-\/monitoring\ event\ selector.}}
+\DoxyCodeLine{00132\ \textcolor{comment}{//\#define\ ...}}
+\DoxyCodeLine{00133\ \textcolor{preprocessor}{\#define\ MHPMEVENT31\ 0x33F\ }\textcolor{comment}{//\ MRW\ Machine\ performance-\/monitoring\ event\ selector.}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \textcolor{comment}{//Debug/Trace\ Registers\ (shared\ with\ Debug\ Mode)}}
+\DoxyCodeLine{00136\ \textcolor{preprocessor}{\#define\ TSELECT\ \ \ \ \ 0x7A0\ }\textcolor{comment}{//\ MRW\ Debug/Trace\ trigger\ register\ select.}}
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\#define\ TDATA1\ \ \ \ \ \ 0x7A1\ }\textcolor{comment}{//\ MRW\ First\ Debug/Trace\ trigger\ data\ register.}}
+\DoxyCodeLine{00138\ \textcolor{preprocessor}{\#define\ TDATA2\ \ \ \ \ \ 0x7A2\ }\textcolor{comment}{//\ MRW\ Second\ Debug/Trace\ trigger\ data\ register.}}
+\DoxyCodeLine{00139\ \textcolor{preprocessor}{\#define\ TDATA3\ \ \ \ \ \ 0x7A3\ }\textcolor{comment}{//\ MRW\ Third\ Debug/Trace\ trigger\ data\ register.}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \textcolor{comment}{//Debug\ Mode\ Registers}}
+\DoxyCodeLine{00142\ \textcolor{preprocessor}{\#define\ DCSR\ \ \ \ \ \ \ \ 0x7B0\ }\textcolor{comment}{//\ DRW\ Debug\ control\ and\ status\ register.}}
+\DoxyCodeLine{00143\ \textcolor{preprocessor}{\#define\ DPC\ \ \ \ \ \ \ \ \ 0x7B1\ }\textcolor{comment}{//\ DRW\ Debug\ PC.}}
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\#define\ DSCRATCH0\ \ \ 0x7B2\ }\textcolor{comment}{//\ DRW\ Debug\ scratch\ register\ 0.}}
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\#define\ DSCRATCH1\ \ \ 0x7B3\ }\textcolor{comment}{//\ DRW\ Debug\ scratch\ register\ 1.}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00149\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Declare\ API:\ CSR}}
+\DoxyCodeLine{00150\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ u64\ csr\_read(\mbox{\hyperlink{structCPU__t}{CPU}}*\ cpu,\ u64\ csr);}
+\DoxyCodeLine{00153\ \textcolor{keywordtype}{void}\ csr\_write(\mbox{\hyperlink{structCPU__t}{CPU}}*\ cpu,\ u64\ csr,\ u64\ value);}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

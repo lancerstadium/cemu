@@ -1,0 +1,270 @@
+\doxysection{src/cemu/csr.h 文件参考}
+\hypertarget{csr_8h}{}\label{csr_8h}\index{src/cemu/csr.h@{src/cemu/csr.h}}
+{\ttfamily \#include "{}cpu.\+h"{}}\newline
+\doxysubsubsection*{宏定义}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{csr_8h_a844f38672d5e4b63e73a9c348ed6e1bc}\label{csr_8h_a844f38672d5e4b63e73a9c348ed6e1bc} 
+\#define {\bfseries USTATUS}~0x000
+\item 
+\Hypertarget{csr_8h_a2c276876faf62c1b29fe2383ce4ccfda}\label{csr_8h_a2c276876faf62c1b29fe2383ce4ccfda} 
+\#define {\bfseries UIE}~0x004
+\item 
+\Hypertarget{csr_8h_a71f8a02e7b34dc5aecd6413f68d0cfa4}\label{csr_8h_a71f8a02e7b34dc5aecd6413f68d0cfa4} 
+\#define {\bfseries UTVEC}~0x005
+\item 
+\Hypertarget{csr_8h_ae5fc6adea50bb8d7f4dfdc1a281aa73e}\label{csr_8h_ae5fc6adea50bb8d7f4dfdc1a281aa73e} 
+\#define {\bfseries USCRATCH}~0x040
+\item 
+\Hypertarget{csr_8h_a7219fc16b617e42b8911bc493f29f45d}\label{csr_8h_a7219fc16b617e42b8911bc493f29f45d} 
+\#define {\bfseries UEPC}~0x041
+\item 
+\Hypertarget{csr_8h_a56f81f5daa4b5b4a68f2056960959864}\label{csr_8h_a56f81f5daa4b5b4a68f2056960959864} 
+\#define {\bfseries UCAUSE}~0x042
+\item 
+\Hypertarget{csr_8h_a318ab17b60b02cce946b9417cd5293b4}\label{csr_8h_a318ab17b60b02cce946b9417cd5293b4} 
+\#define {\bfseries UTVAL}~0x043
+\item 
+\Hypertarget{csr_8h_a3289eebd69837790d4aacaccd18d46db}\label{csr_8h_a3289eebd69837790d4aacaccd18d46db} 
+\#define {\bfseries UIP}~0x044
+\item 
+\Hypertarget{csr_8h_ad1ef8a84e399334075b9de84632fd37d}\label{csr_8h_ad1ef8a84e399334075b9de84632fd37d} 
+\#define {\bfseries FFLAGS}~0x001
+\item 
+\Hypertarget{csr_8h_afb819fa3c18de2a4bb3d349c1b9034b7}\label{csr_8h_afb819fa3c18de2a4bb3d349c1b9034b7} 
+\#define {\bfseries FRM}~0x002
+\item 
+\Hypertarget{csr_8h_acdd7ee09d9b800a9bc36af11ae79d143}\label{csr_8h_acdd7ee09d9b800a9bc36af11ae79d143} 
+\#define {\bfseries FCSR}~0x003
+\item 
+\Hypertarget{csr_8h_a78e81cc81d968960cf6089af8c033769}\label{csr_8h_a78e81cc81d968960cf6089af8c033769} 
+\#define {\bfseries CYCLE}~0x\+C00
+\item 
+\Hypertarget{csr_8h_a078b6c12f1ac6819cecef90ab5870276}\label{csr_8h_a078b6c12f1ac6819cecef90ab5870276} 
+\#define {\bfseries TIME}~0x\+C01
+\item 
+\Hypertarget{csr_8h_aa5cd8088a51f2649e0d7d1934f6dffb8}\label{csr_8h_aa5cd8088a51f2649e0d7d1934f6dffb8} 
+\#define {\bfseries INSTRET}~0x\+C02
+\item 
+\Hypertarget{csr_8h_a033ed61166e4d823414a45aa567be6c3}\label{csr_8h_a033ed61166e4d823414a45aa567be6c3} 
+\#define {\bfseries HPMCOUNTER3}~0x\+C03
+\item 
+\Hypertarget{csr_8h_ae4285598af317428288409b96cfabac3}\label{csr_8h_ae4285598af317428288409b96cfabac3} 
+\#define {\bfseries HPMCOUNTER4}~0x\+C04
+\item 
+\Hypertarget{csr_8h_a8a9d8c93c1e998e8522aa6c517821922}\label{csr_8h_a8a9d8c93c1e998e8522aa6c517821922} 
+\#define {\bfseries HPMCOUNTER31}~0x\+C1F
+\item 
+\Hypertarget{csr_8h_ad0d05e150b228c6028c39e7b9e301381}\label{csr_8h_ad0d05e150b228c6028c39e7b9e301381} 
+\#define {\bfseries CYCLEH}~0x\+C80
+\item 
+\Hypertarget{csr_8h_ab8c97c5f21612aa9585843d073eb3f87}\label{csr_8h_ab8c97c5f21612aa9585843d073eb3f87} 
+\#define {\bfseries TIMEH}~0x\+C81
+\item 
+\Hypertarget{csr_8h_ab2d13a7955ee784ee48d0e2159e78311}\label{csr_8h_ab2d13a7955ee784ee48d0e2159e78311} 
+\#define {\bfseries INSTRETH}~0x\+C82
+\item 
+\Hypertarget{csr_8h_a573b74f4f62afd3068ca33ddda0b8536}\label{csr_8h_a573b74f4f62afd3068ca33ddda0b8536} 
+\#define {\bfseries HPMCOUNTER3H}~0x\+C83
+\item 
+\Hypertarget{csr_8h_a7eeb10d022e6a10b34d80349c40ea53e}\label{csr_8h_a7eeb10d022e6a10b34d80349c40ea53e} 
+\#define {\bfseries HPMCOUNTER4H}~0x\+C84
+\item 
+\Hypertarget{csr_8h_a359a0181af9e7041c547ee0104e47ec5}\label{csr_8h_a359a0181af9e7041c547ee0104e47ec5} 
+\#define {\bfseries HPMCOUNTER31H}~0x\+C9F URO
+\item 
+\Hypertarget{csr_8h_aff05053bef3d6ac608f30d1057369e98}\label{csr_8h_aff05053bef3d6ac608f30d1057369e98} 
+\#define {\bfseries SSTATUS}~0x100
+\item 
+\Hypertarget{csr_8h_a6075f7130d2de71809ba8f59c4ddf528}\label{csr_8h_a6075f7130d2de71809ba8f59c4ddf528} 
+\#define {\bfseries SEDELEG}~0x102
+\item 
+\Hypertarget{csr_8h_afaf376a31076f138e83385d5c592fd1b}\label{csr_8h_afaf376a31076f138e83385d5c592fd1b} 
+\#define {\bfseries SIDELEG}~0x103
+\item 
+\Hypertarget{csr_8h_a52300700e6b6d66cfde1c051e4b4ba5b}\label{csr_8h_a52300700e6b6d66cfde1c051e4b4ba5b} 
+\#define {\bfseries SIE}~0x104
+\item 
+\Hypertarget{csr_8h_a46199e4684f9c2d7e3e35f57072f6d51}\label{csr_8h_a46199e4684f9c2d7e3e35f57072f6d51} 
+\#define {\bfseries STVEC}~0x105
+\item 
+\Hypertarget{csr_8h_a70966fa42f1ddfef45632dc504ce2b24}\label{csr_8h_a70966fa42f1ddfef45632dc504ce2b24} 
+\#define {\bfseries SCOUNTEREN}~0x106
+\item 
+\Hypertarget{csr_8h_a18c2300e29ea3d9d1c584d4e6af639e9}\label{csr_8h_a18c2300e29ea3d9d1c584d4e6af639e9} 
+\#define {\bfseries SSCRATCH}~0x140
+\item 
+\Hypertarget{csr_8h_aafebb291cd4c3379f347d502d491f945}\label{csr_8h_aafebb291cd4c3379f347d502d491f945} 
+\#define {\bfseries SEPC}~0x141
+\item 
+\Hypertarget{csr_8h_aa01e0f661a576b8a11394df4fff03a0f}\label{csr_8h_aa01e0f661a576b8a11394df4fff03a0f} 
+\#define {\bfseries SCAUSE}~0x142
+\item 
+\Hypertarget{csr_8h_a90658fc20c0fa1c9e7d1361634fe8326}\label{csr_8h_a90658fc20c0fa1c9e7d1361634fe8326} 
+\#define {\bfseries STVAL}~0x143
+\item 
+\Hypertarget{csr_8h_a10aa6e53ebd7deb75e43c565cc4eace3}\label{csr_8h_a10aa6e53ebd7deb75e43c565cc4eace3} 
+\#define {\bfseries SIP}~0x144
+\item 
+\Hypertarget{csr_8h_acede5cb3ee657e35acf96c3b6cc90c3c}\label{csr_8h_acede5cb3ee657e35acf96c3b6cc90c3c} 
+\#define {\bfseries SATP}~0x180
+\item 
+\Hypertarget{csr_8h_a0f544367d6d99423d5a1bae635204c5f}\label{csr_8h_a0f544367d6d99423d5a1bae635204c5f} 
+\#define {\bfseries MVENDORID}~0x\+F11
+\item 
+\Hypertarget{csr_8h_aae15270f425e696eed1accc16c87d600}\label{csr_8h_aae15270f425e696eed1accc16c87d600} 
+\#define {\bfseries MARCHID}~0x\+F12
+\item 
+\Hypertarget{csr_8h_ae0869ccfb851d5e11646d6343b7d36d9}\label{csr_8h_ae0869ccfb851d5e11646d6343b7d36d9} 
+\#define {\bfseries MIMPID}~0x\+F13
+\item 
+\Hypertarget{csr_8h_a619120fc8ace217e060bdf5fb6a8c193}\label{csr_8h_a619120fc8ace217e060bdf5fb6a8c193} 
+\#define {\bfseries MHARTID}~0x\+F14
+\item 
+\Hypertarget{csr_8h_a8db9cda93543db887f8dd3de1c5d2d97}\label{csr_8h_a8db9cda93543db887f8dd3de1c5d2d97} 
+\#define {\bfseries MSTATUS}~0x300
+\item 
+\Hypertarget{csr_8h_a2ab519cba7af31f6e934d89abbe1920c}\label{csr_8h_a2ab519cba7af31f6e934d89abbe1920c} 
+\#define {\bfseries MISA}~0x301
+\item 
+\Hypertarget{csr_8h_aedccd079df5fca0712513bb63609d019}\label{csr_8h_aedccd079df5fca0712513bb63609d019} 
+\#define {\bfseries MEDELEG}~0x302
+\item 
+\Hypertarget{csr_8h_a502c7eb330c537001abf35e5fd1f2250}\label{csr_8h_a502c7eb330c537001abf35e5fd1f2250} 
+\#define {\bfseries MIDELEG}~0x303
+\item 
+\Hypertarget{csr_8h_ac7f660c42a71ef71d56060507e976c6e}\label{csr_8h_ac7f660c42a71ef71d56060507e976c6e} 
+\#define {\bfseries MIE}~0x304
+\item 
+\Hypertarget{csr_8h_aba0c134b2ae1a8442e7471aa757e1816}\label{csr_8h_aba0c134b2ae1a8442e7471aa757e1816} 
+\#define {\bfseries MTVEC}~0x305
+\item 
+\Hypertarget{csr_8h_a67fd741c4b010378f36844d1518a8bec}\label{csr_8h_a67fd741c4b010378f36844d1518a8bec} 
+\#define {\bfseries MCOUNTEREN}~0x306
+\item 
+\Hypertarget{csr_8h_a7f1e47e16dfefb3fb1c04bf0c2d5ab1e}\label{csr_8h_a7f1e47e16dfefb3fb1c04bf0c2d5ab1e} 
+\#define {\bfseries MSCRATCH}~0x340
+\item 
+\Hypertarget{csr_8h_adb288fbf9ae291c39d3421ea987e12c0}\label{csr_8h_adb288fbf9ae291c39d3421ea987e12c0} 
+\#define {\bfseries MEPC}~0x341
+\item 
+\Hypertarget{csr_8h_aef78ca91211eb46a84c2c032ca6c14ff}\label{csr_8h_aef78ca91211eb46a84c2c032ca6c14ff} 
+\#define {\bfseries MCAUSE}~0x342
+\item 
+\Hypertarget{csr_8h_ac8b0dc4d66294e5048a166b0d7469d32}\label{csr_8h_ac8b0dc4d66294e5048a166b0d7469d32} 
+\#define {\bfseries MTVAL}~0x343
+\item 
+\Hypertarget{csr_8h_ac8b3151f285ea4d327843aa5f66fbebb}\label{csr_8h_ac8b3151f285ea4d327843aa5f66fbebb} 
+\#define {\bfseries MIP}~0x344
+\item 
+\Hypertarget{csr_8h_a7478d68590739e9d28b779aaaafac86d}\label{csr_8h_a7478d68590739e9d28b779aaaafac86d} 
+\#define {\bfseries PMPCFG0}~0x3\+A0
+\item 
+\Hypertarget{csr_8h_a2136cd209181e53e8c7706c28556c26c}\label{csr_8h_a2136cd209181e53e8c7706c28556c26c} 
+\#define {\bfseries PMPCFG1}~0x3\+A1
+\item 
+\Hypertarget{csr_8h_ad8de63f41d384a9a6977b12059bf2c7e}\label{csr_8h_ad8de63f41d384a9a6977b12059bf2c7e} 
+\#define {\bfseries PMPCFG2}~0x3\+A2
+\item 
+\Hypertarget{csr_8h_a0be72be89c1a0df00c6618f342785eb9}\label{csr_8h_a0be72be89c1a0df00c6618f342785eb9} 
+\#define {\bfseries PMPCFG3}~0x3\+A3
+\item 
+\Hypertarget{csr_8h_af156ab2f4715ecfa2b9a6f61f546bffc}\label{csr_8h_af156ab2f4715ecfa2b9a6f61f546bffc} 
+\#define {\bfseries PMPADDR0}~0x3\+B0
+\item 
+\Hypertarget{csr_8h_a71ed4ab21edd8b6de9ec4ab11a5bf018}\label{csr_8h_a71ed4ab21edd8b6de9ec4ab11a5bf018} 
+\#define {\bfseries PMPADDR1}~0x3\+B1
+\item 
+\Hypertarget{csr_8h_a252172f5cc1f1578a7bb9b48a0a4f423}\label{csr_8h_a252172f5cc1f1578a7bb9b48a0a4f423} 
+\#define {\bfseries PMPADDR15}~0x3\+BF
+\item 
+\Hypertarget{csr_8h_a90ed9c6dd04f500c97cfaa7a5bac8ac2}\label{csr_8h_a90ed9c6dd04f500c97cfaa7a5bac8ac2} 
+\#define {\bfseries MCYCLE}~0x\+B00
+\item 
+\Hypertarget{csr_8h_aeab534091fd28e1e2f4e190a4672f21e}\label{csr_8h_aeab534091fd28e1e2f4e190a4672f21e} 
+\#define {\bfseries MINSTRET}~0x\+B02
+\item 
+\Hypertarget{csr_8h_afe90bccf126b14097f7717180eb4a93d}\label{csr_8h_afe90bccf126b14097f7717180eb4a93d} 
+\#define {\bfseries MHPMCOUNTER3}~0x\+B03
+\item 
+\Hypertarget{csr_8h_a92d47db6ea12f8b4cc70fbe6e8419e8a}\label{csr_8h_a92d47db6ea12f8b4cc70fbe6e8419e8a} 
+\#define {\bfseries MHPMCOUNTER4}~0x\+B04
+\item 
+\Hypertarget{csr_8h_a13640ff442377a0f88a43b831fab5f82}\label{csr_8h_a13640ff442377a0f88a43b831fab5f82} 
+\#define {\bfseries MHPMCOUNTER31}~0x\+B1F
+\item 
+\Hypertarget{csr_8h_a47f4ce6350cd932e07b1512ba4abb893}\label{csr_8h_a47f4ce6350cd932e07b1512ba4abb893} 
+\#define {\bfseries MCYCLEH}~0x\+B80
+\item 
+\Hypertarget{csr_8h_acac91a16720ee3964866a2e15336e986}\label{csr_8h_acac91a16720ee3964866a2e15336e986} 
+\#define {\bfseries MINSTRETH}~0x\+B82
+\item 
+\Hypertarget{csr_8h_a7147db23b2067acf5442b695eba68fb6}\label{csr_8h_a7147db23b2067acf5442b695eba68fb6} 
+\#define {\bfseries MHPMCOUNTER3H}~0x\+B83
+\item 
+\Hypertarget{csr_8h_a30d285a35156f0d5e21aaef34dcb69e4}\label{csr_8h_a30d285a35156f0d5e21aaef34dcb69e4} 
+\#define {\bfseries MHPMCOUNTER4H}~0x\+B84
+\item 
+\Hypertarget{csr_8h_a0ebd1ab366c0873260a57f956cf367a5}\label{csr_8h_a0ebd1ab366c0873260a57f956cf367a5} 
+\#define {\bfseries MHPMCOUNTER31H}~0x\+B9F
+\item 
+\Hypertarget{csr_8h_ad5e6c199eac36d92c69ec14642143f51}\label{csr_8h_ad5e6c199eac36d92c69ec14642143f51} 
+\#define {\bfseries MCOUNTINHIBIT}~0x320
+\item 
+\Hypertarget{csr_8h_a309e6314e44f96cfbb2650179001417b}\label{csr_8h_a309e6314e44f96cfbb2650179001417b} 
+\#define {\bfseries MHPMEVENT3}~0x323
+\item 
+\Hypertarget{csr_8h_a4787bb7bc728837a9e141fbdd16259ed}\label{csr_8h_a4787bb7bc728837a9e141fbdd16259ed} 
+\#define {\bfseries MHPMEVENT4}~0x324
+\item 
+\Hypertarget{csr_8h_aab0f2831f569917c6b2596b595cdac99}\label{csr_8h_aab0f2831f569917c6b2596b595cdac99} 
+\#define {\bfseries MHPMEVENT31}~0x33F
+\item 
+\Hypertarget{csr_8h_a36894ca36a6ed652bf4539622f28ea2b}\label{csr_8h_a36894ca36a6ed652bf4539622f28ea2b} 
+\#define {\bfseries TSELECT}~0x7\+A0
+\item 
+\Hypertarget{csr_8h_aa3f15bcb2579c3af8f30d47d6c6902aa}\label{csr_8h_aa3f15bcb2579c3af8f30d47d6c6902aa} 
+\#define {\bfseries TDATA1}~0x7\+A1
+\item 
+\Hypertarget{csr_8h_aab56e43f4e61048bf153ee1e0a1896ec}\label{csr_8h_aab56e43f4e61048bf153ee1e0a1896ec} 
+\#define {\bfseries TDATA2}~0x7\+A2
+\item 
+\Hypertarget{csr_8h_ab648948c66b16287762a82edf8e34136}\label{csr_8h_ab648948c66b16287762a82edf8e34136} 
+\#define {\bfseries TDATA3}~0x7\+A3
+\item 
+\Hypertarget{csr_8h_afa2c20a1e246ddeba7d753af66ca2961}\label{csr_8h_afa2c20a1e246ddeba7d753af66ca2961} 
+\#define {\bfseries DCSR}~0x7\+B0
+\item 
+\Hypertarget{csr_8h_a6196fc20f3241b9b02cab748aa1cf031}\label{csr_8h_a6196fc20f3241b9b02cab748aa1cf031} 
+\#define {\bfseries DPC}~0x7\+B1
+\item 
+\Hypertarget{csr_8h_a1bcf4d8f75aff72820dd269e8faf3bdf}\label{csr_8h_a1bcf4d8f75aff72820dd269e8faf3bdf} 
+\#define {\bfseries DSCRATCH0}~0x7\+B2
+\item 
+\Hypertarget{csr_8h_a535ffe5cb04e072d756bf9f87216cd3a}\label{csr_8h_a535ffe5cb04e072d756bf9f87216cd3a} 
+\#define {\bfseries DSCRATCH1}~0x7\+B3
+\end{DoxyCompactItemize}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{csr_8h_a66f78d970ee76cbccedb9438a192fa43}\label{csr_8h_a66f78d970ee76cbccedb9438a192fa43} 
+u64 {\bfseries csr\+\_\+read} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u64 csr)
+\item 
+\Hypertarget{csr_8h_adcd7e45bad0f0fe47b0d65794c9ef880}\label{csr_8h_adcd7e45bad0f0fe47b0d65794c9ef880} 
+void {\bfseries csr\+\_\+write} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u64 csr, u64 value)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyAuthor}{作者}
+your name (\href{mailto:you@domain.com}{\texttt{ you@domain.\+com}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{版本}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{日期}
+2024-\/01-\/08
+\end{DoxyDate}
+\begin{DoxyCopyright}{版权所有}
+Copyright (c) 2024 
+\end{DoxyCopyright}

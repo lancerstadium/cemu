@@ -1,0 +1,36 @@
+\doxysection{bus.\+h}
+\hypertarget{bus_8h_source}{}\label{bus_8h_source}\index{src/cemu/bus.h@{src/cemu/bus.h}}
+\mbox{\hyperlink{bus_8h}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#ifndef\ BUS\_H}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ BUS\_H}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Include}}
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{dram_8h}{dram.h}}"{}}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Data:\ BUS}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structBUS__t}{BUS\_t}}\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{structDRAM__t}{DRAM}}\ dram;\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00034\ \}\ \mbox{\hyperlink{structBUS__t}{BUS}};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00038\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Declare\ API:\ BUS}}
+\DoxyCodeLine{00039\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00048\ u64\ \mbox{\hyperlink{bus_8h_a377843cd98367d78fa0d05e1583b84b7}{bus\_load}}(\mbox{\hyperlink{structBUS__t}{BUS}}*\ bus,\ u64\ addr,\ u64\ size);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00057\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{bus_8h_a8bfe42458d7c798bd33e556a95ec7344}{bus\_store}}(\mbox{\hyperlink{structBUS__t}{BUS}}*\ bus,\ u64\ addr,\ u64\ size,\ u64\ value);}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ BUS\_H}}
+
+\end{DoxyCode}

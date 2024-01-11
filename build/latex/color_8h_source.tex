@@ -1,0 +1,73 @@
+\doxysection{color.\+h}
+\hypertarget{color_8h_source}{}\label{color_8h_source}\index{src/utils/color.h@{src/utils/color.h}}
+\mbox{\hyperlink{color_8h}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#ifndef\ COLOR\_H}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ COLOR\_H}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ ANSI\_RESET\ "{}\(\backslash\)x1b[0m"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ ANSI\_BOLD\ "{}\(\backslash\)x1b[1m"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ ANSI\_DIM\ "{}\(\backslash\)x1b[2m"{}}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ ANSI\_ITALIC\ "{}\(\backslash\)x1b[3m"{}}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ ANSI\_UNDERLINE\ "{}\(\backslash\)x1b[4m"{}}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ ANSI\_BLINK\ "{}\(\backslash\)x1b[5m"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ ANSI\_INVERT\ "{}\(\backslash\)x1b[6m"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ ANSI\_REVERSE\ "{}\(\backslash\)x1b[7m"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ ANSI\_HIDDEN\ "{}\(\backslash\)x1b[8m"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ ANSI\_STRIKETHROUGH\ "{}\(\backslash\)x1b[9m"{}}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ ANSI\_BLACK\ "{}\(\backslash\)x1b[30m"{}}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ ANSI\_RED\ "{}\(\backslash\)x1b[31m"{}}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ ANSI\_GREEN\ "{}\(\backslash\)x1b[32m"{}}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ ANSI\_YELLOW\ "{}\(\backslash\)x1b[33m"{}}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ ANSI\_BLUE\ "{}\(\backslash\)x1b[34m"{}}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ ANSI\_MAGENTA\ "{}\(\backslash\)x1b[35m"{}}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ ANSI\_CYAN\ "{}\(\backslash\)x1b[36m"{}}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ ANSI\_WHITE\ "{}\(\backslash\)x1b[37m"{}}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ ANSI\_DEFAULT\ "{}\(\backslash\)x1b[39m"{}}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ ANSI\_BRIGHT\_BLACK\ "{}\(\backslash\)x1b[90m"{}}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ ANSI\_BRIGHT\_RED\ "{}\(\backslash\)x1b[91m"{}}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ ANSI\_BRIGHT\_GREEN\ "{}\(\backslash\)x1b[92m"{}}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ ANSI\_BRIGHT\_YELLOW\ "{}\(\backslash\)x1b[93m"{}}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ ANSI\_BRIGHT\_BLUE\ "{}\(\backslash\)x1b[94m"{}}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ ANSI\_BRIGHT\_MAGENTA\ "{}\(\backslash\)x1b[95m"{}}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ ANSI\_BRIGHT\_CYAN\ "{}\(\backslash\)x1b[96m"{}}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ ANSI\_BRIGHT\_WHITE\ "{}\(\backslash\)x1b[97m"{}}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ ANSI\_BRIGHT\_DEFAULT\ "{}\(\backslash\)x1b[99m"{}}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ ANSI\_BG\_BLACK\ "{}\(\backslash\)x1b[40m"{}}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ ANSI\_BG\_RED\ "{}\(\backslash\)x1b[41m"{}}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ ANSI\_BG\_GREEN\ "{}\(\backslash\)x1b[42m"{}}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ ANSI\_BG\_YELLOW\ "{}\(\backslash\)x1b[43m"{}}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ ANSI\_BG\_BLUE\ "{}\(\backslash\)x1b[44m"{}}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ ANSI\_BG\_MAGENTA\ "{}\(\backslash\)x1b[45m"{}}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ ANSI\_BG\_CYAN\ "{}\(\backslash\)x1b[46m"{}}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ ANSI\_BG\_WHITE\ "{}\(\backslash\)x1b[47m"{}}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ ANSI\_BG\_DEFAULT\ "{}\(\backslash\)x1b[49m"{}}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ ANSI\_FMT(msg,\ ...)\ ANSI\_RESET\ \_\_VA\_ARGS\_\_\ msg\ \ ANSI\_RESET}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#define\ \_white(s)\ ANSI\_FMT(s,\ ANSI\_WHITE)}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ \_black(s)\ ANSI\_FMT(s,\ ANSI\_BLACK)}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ \_green(s)\ ANSI\_FMT(s,\ ANSI\_GREEN)}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ \_blue(s)\ ANSI\_FMT(s,\ ANSI\_BLUE)}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ \_yellow(s)\ ANSI\_FMT(s,\ ANSI\_YELLOW)}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ \_red(s)\ ANSI\_FMT(s,\ ANSI\_RED)}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#define\ \_mag(s)\ ANSI\_FMT(s,\ ANSI\_MAGENTA)}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#define\ \_bold(s)\ ANSI\_FMT(s,\ ANSI\_BOLD\ ANSI\_WHITE)}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ \_ubold(s)\ ANSI\_FMT(s,\ ANSI\_UNDERLINE\ ANSI\_BOLD\ ANSI\_WHITE)}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#define\ \_bred(s)\ ANSI\_FMT(s,\ ANSI\_BOLD\ ANSI\_RED)}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#define\ \_bgreen(s)\ ANSI\_FMT(s,\ ANSI\_BOLD\ ANSI\_GREEN)}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#define\ \_byellow(s)\ ANSI\_FMT(s,\ ANSI\_BOLD\ ANSI\_YELLOW)}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ \_bblack(s)\ ANSI\_FMT(s,\ ANSI\_BOLD\ ANSI\_BLACK)}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#define\ \_bmag(s)\ ANSI\_FMT(s,\ ANSI\_BOLD\ ANSI\_MAGENTA)}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#define\ \_iblack(s)\ ANSI\_FMT(s,\ ANSI\_ITALIC\ ANSI\_BLACK)}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#define\ \_bblue(s)\ ANSI\_FMT(s,\ ANSI\_BRIGHT\_BLUE)}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{/*\ COLOR\_H\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

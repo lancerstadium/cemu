@@ -1,0 +1,112 @@
+\doxysection{opcode.\+h}
+\hypertarget{opcode_8h_source}{}\label{opcode_8h_source}\index{src/cemu/opcode.h@{src/cemu/opcode.h}}
+\mbox{\hyperlink{opcode_8h}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#ifndef\ OPCODE\_H}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ OPCODE\_H}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ LUI\ \ \ \ \ 0x37\ }}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ AUIPC\ \ \ 0x17\ }}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#define\ JAL\ \ \ \ \ 0x6f\ }}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ JALR\ \ \ \ 0x67\ }}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#define\ B\_TYPE\ \ 0x63}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\ \ \ \ \#define\ BEQ\ \ \ \ \ 0x0}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\ \ \ \ \#define\ BNE\ \ \ \ \ 0x1}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\ \ \ \ \#define\ BLT\ \ \ \ \ 0x4}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\ \ \ \ \#define\ BGE\ \ \ \ \ 0x5}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\ \ \ \ \#define\ BLTU\ \ \ \ 0x6}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\ \ \ \ \#define\ BGEU\ \ \ \ 0x7}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#define\ LOAD\ \ \ \ 0x03}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\ \ \ \ \#define\ LB\ \ \ \ \ \ 0x0}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\ \ \ \ \#define\ LH\ \ \ \ \ \ 0x1}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\ \ \ \ \#define\ LW\ \ \ \ \ \ 0x2}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\ \ \ \ \#define\ LD\ \ \ \ \ \ 0x3}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\ \ \ \ \#define\ LBU\ \ \ \ \ 0x4}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\ \ \ \ \#define\ LHU\ \ \ \ \ 0x5}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\ \ \ \ \#define\ LWU\ \ \ \ \ 0x6}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#define\ S\_TYPE\ \ 0x23}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\ \ \ \ \#define\ SB\ \ \ \ \ \ 0x0}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\ \ \ \ \#define\ SH\ \ \ \ \ \ 0x1}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\ \ \ \ \#define\ SW\ \ \ \ \ \ 0x2}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\ \ \ \ \#define\ SD\ \ \ \ \ \ 0x3}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#define\ I\_TYPE\ \ 0x13\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\ \ \ \ \#define\ ADDI\ \ \ \ 0x0\ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\ \ \ \ \#define\ SLLI\ \ \ \ 0x1\ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\ \ \ \ \#define\ SLTI\ \ \ \ 0x2\ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\ \ \ \ \#define\ SLTIU\ \ \ 0x3\ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\ \ \ \ \#define\ XORI\ \ \ \ 0x4\ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\ \ \ \ \#define\ SRI\ \ \ \ \ 0x5\ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ SRLI\ \ \ \ 0x00\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ SRAI\ \ \ \ 0x20\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\ \ \ \ \#define\ ORI\ \ \ \ \ 0x6\ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\ \ \ \ \#define\ ANDI\ \ \ \ 0x7\ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#define\ R\_TYPE\ \ 0x33}}
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\ \ \ \ \#define\ ADDSUB\ \ 0x0}}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ ADD\ \ \ \ \ 0x00}}
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ SUB\ \ \ \ \ 0x20}}
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\ \ \ \ \#define\ SLL\ \ \ \ \ 0x1}}
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\ \ \ \ \#define\ SLT\ \ \ \ \ 0x2}}
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\ \ \ \ \#define\ SLTU\ \ \ \ 0x3}}
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\ \ \ \ \#define\ XOR\ \ \ \ \ 0x4}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\ \ \ \ \#define\ SR\ \ \ \ \ \ 0x5}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ SRL\ \ \ \ \ 0x00}}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ SRA\ \ \ \ \ 0x20}}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\ \ \ \ \#define\ OR\ \ \ \ \ \ 0x6}}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\ \ \ \ \#define\ AND\ \ \ \ \ 0x7}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\#define\ FENCE\ \ \ 0x0f}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\#define\ I\_TYPE\_64\ 0x1b}}
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\ \ \ \ \#define\ ADDIW\ \ \ 0x0}}
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\ \ \ \ \#define\ SLLIW\ \ \ 0x1}}
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\ \ \ \ \#define\ SRIW\ \ \ \ 0x5}}
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ SRLIW\ \ \ 0x00}}
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ SRAIW\ \ \ 0x20}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\#define\ R\_TYPE\_64\ 0x3b}}
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\ \ \ \ \#define\ ADDSUB\ \ \ 0x0}}
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ ADDW\ \ \ \ 0x00}}
+\DoxyCodeLine{00130\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ MULW\ \ \ \ 0x01}}
+\DoxyCodeLine{00131\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ SUBW\ \ \ \ 0x20}}
+\DoxyCodeLine{00132\ \textcolor{preprocessor}{\ \ \ \ \#define\ DIVW\ \ \ \ 0x4}}
+\DoxyCodeLine{00133\ \textcolor{preprocessor}{\ \ \ \ \#define\ SLLW\ \ \ \ 0x1}}
+\DoxyCodeLine{00134\ \textcolor{preprocessor}{\ \ \ \ \#define\ SRW\ \ \ \ \ 0x5}}
+\DoxyCodeLine{00135\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ SRLW\ \ \ 0x00}}
+\DoxyCodeLine{00136\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ DIVUW\ \ \ 0x01}}
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ SRAW\ \ \ 0x20}}
+\DoxyCodeLine{00138\ \textcolor{preprocessor}{\ \ \ \ \#define\ REMW\ \ \ \ 0x6}}
+\DoxyCodeLine{00139\ \textcolor{preprocessor}{\ \ \ \ \#define\ REMUW\ \ \ 0x7}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \textcolor{preprocessor}{\#define\ CSR\ 0x73}}
+\DoxyCodeLine{00142\ \textcolor{preprocessor}{\ \ \ \ \#define\ ECALLBREAK\ \ \ \ 0x00\ \ \ \ \ }\textcolor{comment}{//\ contains\ both\ ECALL\ and\ EBREAK}}
+\DoxyCodeLine{00143\ \textcolor{preprocessor}{\ \ \ \ \#define\ CSRRW\ \ \ 0x01}}
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\ \ \ \ \#define\ CSRRS\ \ \ 0x02}}
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\ \ \ \ \#define\ CSRRC\ \ \ 0x03}}
+\DoxyCodeLine{00146\ \textcolor{preprocessor}{\ \ \ \ \#define\ CSRRWI\ \ 0x05}}
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\ \ \ \ \#define\ CSRRSI\ \ 0x06}}
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\ \ \ \ \#define\ CSRRCI\ \ 0x07}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\#define\ AMO\_W\ 0x2f}}
+\DoxyCodeLine{00151\ \textcolor{preprocessor}{\ \ \ \ \#define\ LR\_W\ \ \ \ \ \ \ \ 0x02}}
+\DoxyCodeLine{00152\ \textcolor{preprocessor}{\ \ \ \ \#define\ SC\_W\ \ \ \ \ \ \ \ 0x03}}
+\DoxyCodeLine{00153\ \textcolor{preprocessor}{\ \ \ \ \#define\ AMOSWAP\_W\ \ \ 0x01}}
+\DoxyCodeLine{00154\ \textcolor{preprocessor}{\ \ \ \ \#define\ AMOADD\_W\ \ \ \ 0x00}}
+\DoxyCodeLine{00155\ \textcolor{preprocessor}{\ \ \ \ \#define\ AMOXOR\_W\ \ \ \ 0x04}}
+\DoxyCodeLine{00156\ \textcolor{preprocessor}{\ \ \ \ \#define\ AMOAND\_W\ \ \ \ 0x0c}}
+\DoxyCodeLine{00157\ \textcolor{preprocessor}{\ \ \ \ \#define\ AMOOR\_W\ \ \ \ \ 0x08}}
+\DoxyCodeLine{00158\ \textcolor{preprocessor}{\ \ \ \ \#define\ AMOMIN\_W\ \ \ \ 0x10}}
+\DoxyCodeLine{00159\ \textcolor{preprocessor}{\ \ \ \ \#define\ AMOMAX\_W\ \ \ \ 0x14}}
+\DoxyCodeLine{00160\ \textcolor{preprocessor}{\ \ \ \ \#define\ AMOMINU\_W\ \ \ 0x18}}
+\DoxyCodeLine{00161\ \textcolor{preprocessor}{\ \ \ \ \#define\ AMOMAXU\_W\ \ \ 0x1c}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \textcolor{preprocessor}{\#endif\ OPCODE\_H}}
+
+\end{DoxyCode}

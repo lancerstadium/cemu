@@ -1,0 +1,52 @@
+\doxysection{CPU\+\_\+t结构体 参考}
+\hypertarget{structCPU__t}{}\label{structCPU__t}\index{CPU\_t@{CPU\_t}}
+
+
+中央处理器结构体  
+
+
+
+
+{\ttfamily \#include $<$cpu.\+h$>$}
+
+\doxysubsubsection*{Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structCPU__t_afaf26ff92ff509442a98f149c602d341}\label{structCPU__t_afaf26ff92ff509442a98f149c602d341} 
+u64 {\bfseries regs} \mbox{[}32\mbox{]}
+\item 
+u64 \mbox{\hyperlink{structCPU__t_a251803fbfa00d4d4d5fc51cbfd03baae}{pc}}
+\item 
+u64 \mbox{\hyperlink{structCPU__t_aee819b91f1021da5db35970f7fc5d8f4}{csr}} \mbox{[}4069\mbox{]}
+\item 
+\mbox{\hyperlink{structBUS__t}{BUS}} \mbox{\hyperlink{structCPU__t_a91af3477c9032c2146c561b67e4674a7}{bus}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+中央处理器结构体 
+
+\doxysubsection{类成员变量说明}
+\Hypertarget{structCPU__t_a91af3477c9032c2146c561b67e4674a7}\label{structCPU__t_a91af3477c9032c2146c561b67e4674a7} 
+\index{CPU\_t@{CPU\_t}!bus@{bus}}
+\index{bus@{bus}!CPU\_t@{CPU\_t}}
+\doxysubsubsection{\texorpdfstring{bus}{bus}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structBUS__t}{BUS}} CPU\+\_\+t\+::bus}
+
+存储 CSR 指令 \Hypertarget{structCPU__t_aee819b91f1021da5db35970f7fc5d8f4}\label{structCPU__t_aee819b91f1021da5db35970f7fc5d8f4} 
+\index{CPU\_t@{CPU\_t}!csr@{csr}}
+\index{csr@{csr}!CPU\_t@{CPU\_t}}
+\doxysubsubsection{\texorpdfstring{csr}{csr}}
+{\footnotesize\ttfamily u64 CPU\+\_\+t\+::csr\mbox{[}4069\mbox{]}}
+
+64-\/bit 程序计数器 \Hypertarget{structCPU__t_a251803fbfa00d4d4d5fc51cbfd03baae}\label{structCPU__t_a251803fbfa00d4d4d5fc51cbfd03baae} 
+\index{CPU\_t@{CPU\_t}!pc@{pc}}
+\index{pc@{pc}!CPU\_t@{CPU\_t}}
+\doxysubsubsection{\texorpdfstring{pc}{pc}}
+{\footnotesize\ttfamily u64 CPU\+\_\+t\+::pc}
+
+32/64-\/bit 寄存器（x0-\/x31） 
+
+该结构体的文档由以下文件生成\+:\begin{DoxyCompactItemize}
+\item 
+src/cemu/\mbox{\hyperlink{cpu_8h}{cpu.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,444 @@
+\doxysection{argparse-\/new.h}
+\hypertarget{argparse-new_8h_source}{}\label{argparse-new_8h_source}\index{src/utils/argparse-\/new.h@{src/utils/argparse-\/new.h}}
+\mbox{\hyperlink{argparse-new_8h}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#ifndef\ \_\_ARGPARSE\_H\_\_}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ \_\_ARGPARSE\_H\_\_}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{/*\ 解析器包含的子命令数\ */}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#ifndef\ AP\_MAX\_NCOMMAND}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ AP\_MAX\_NCOMMAND\ 10}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{comment}{/*\ 长参数名前的flag\ */}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#ifndef\ AP\_LONG\_FLAG}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ AP\_LONG\_FLAG\ "{}-\/-\/"{}}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{comment}{/*\ 短参数名前的flag\ */}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#ifndef\ AP\_SHORT\_FLAG}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ AP\_SHORT\_FLAG\ "{}-\/"{}}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ AP\_END\ \(\backslash\)}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ 0\ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\ \ \ \ \}}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ ap\_min(a,\ b)\ ((a)\ >\ (b)\ ?\ (b)\ :\ (a))}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ ap\_max(a,\ b)\ ((a)\ >\ (b)\ ?\ (a)\ :\ (b))}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ NOW\ (\&pp-\/>commands[pp-\/>command\_pos])}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{comment}{/*\ 错误提示\ */}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ \_green(s)\ "{}\(\backslash\)033[32m"{}\ s\ "{}\(\backslash\)033[0m"{}}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ \_red(s)\ "{}\(\backslash\)033[31m"{}\ s\ "{}\(\backslash\)033[0m"{}}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ ERROR\_MSG\ \_red("{}[ERROR]"{})}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ e(msg)\ (ERROR\_MSG\ "{}:\ "{}\ msg\ "{}\(\backslash\)n"{})}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{comment}{//\ 命令冲突}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#ifndef\ ERROR\_COMMAND\_CONFLICT}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ ERROR\_COMMAND\_CONFLICT\ e("{}Conflict."{})}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{comment}{//\ 没有传递子命令}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#ifndef\ ERROR\_NO\_SUBCOMMAND}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#define\ ERROR\_NO\_SUBCOMMAND\ e("{}Pass\ a\ subcommand."{})}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{comment}{//\ 没有传递参数值}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#ifndef\ ERROR\_LOST\_ARG\_VALUE}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ ERROR\_LOST\_ARG\_VALUE\ e("{}\(\backslash\)"{}\%s\(\backslash\)"{}\ lost\ arg\ value."{})}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#ifndef\ ERROR\_DONOT\_NEED\_VALUE}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#define\ ERROR\_DONOT\_NEED\_VALUE\ e("{}\(\backslash\)"{}\%s\(\backslash\)"{}\ does\ not\ need\ arg\ value."{})}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#ifndef\ ERROR\_ARG\_NOT\_EXIST}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#define\ ERROR\_ARG\_NOT\_EXIST\ e("{}Arg\ name\ \(\backslash\)"{}\%s\(\backslash\)"{}\ does\ not\ exist."{})}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#ifndef\ ERROR\_LOST\_ARG\_NAME}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#define\ ERROR\_LOST\_ARG\_NAME\ e("{}Except\ a\ arg\ name,\ but\ got\ \(\backslash\)"{}\%s\(\backslash\)"{}."{})}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#ifndef\ ERROR\_SUBCOMMAND\_NOT\_EXIST}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#define\ ERROR\_SUBCOMMAND\_NOT\_EXIST\ e("{}Subcommand\ \%s\ does\ not\ exist."{})}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{comment}{/*\ 是否跟随参数\ */}}
+\DoxyCodeLine{00084\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00085\ \ \ \ \ AP\_YES\ =\ 0,}
+\DoxyCodeLine{00086\ \ \ \ \ AP\_NO}
+\DoxyCodeLine{00087\ \}\ ArgValue;}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00090\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{comment}{/*\ 单短线参数名\ */}}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{char}*\ short\_arg;}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{comment}{/*\ 双短线参数名\ */}}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{char}*\ long\_arg;}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{comment}{/*\ 是否跟随参数值\ */}}
+\DoxyCodeLine{00096\ \ \ \ \ ArgValue\ arg\_have\_value;}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{comment}{/*\ 传递值\ */}}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{char}*\ value;}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{comment}{/*\ 初始值\ */}}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keyword}{union\ }\{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ i;}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ b;}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ f;}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}*\ s;}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ v;}
+\DoxyCodeLine{00106\ \ \ \ \ \}\ init;}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{comment}{/*\ 参数的说明\ */}}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordtype}{char}*\ help;}
+\DoxyCodeLine{00109\ \}\ \mbox{\hyperlink{structap__arg__t}{ap\_arg\_t}};}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{comment}{/*\ 定义参数用到的宏\ */}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#define\ ap\_defineArgs(name)\ static\ ap\_arg\_t\ name[]}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#define\ ap\_defineCallback(name)\ void\ name(int\ argc,\ char*\ argv[],\ char*\ env[])}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \textcolor{comment}{/*\ command对应的回调函数\ */}}
+\DoxyCodeLine{00116\ \textcolor{keyword}{typedef}\ void\ (*callback\_t)(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}*\ argv[],\ \textcolor{keywordtype}{char}*\ env[]);}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00119\ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{comment}{/*\ 命令名}}
+\DoxyCodeLine{00121\ \textcolor{comment}{\ \ \ \ \ *\ -\/\ 全局命令为NULL}}
+\DoxyCodeLine{00122\ \textcolor{comment}{\ \ \ \ \ *\ -\/\ 子命令时，为子命令名}}
+\DoxyCodeLine{00123\ \textcolor{comment}{\ \ \ \ \ **/}}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordtype}{char}*\ command;}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{comment}{/*\ 对命令的描述\ */}}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordtype}{char}*\ description;}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{comment}{/*\ 命令的用法\ */}}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordtype}{char}*\ usage;}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{comment}{/*\ 是否是子命令\ */}}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordtype}{int}\ subcommand;}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{comment}{/*\ 参数个数\ */}}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordtype}{int}\ nargs;}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{comment}{/*\ 命令的回调函数\ */}}
+\DoxyCodeLine{00134\ \ \ \ \ callback\_t\ callback;}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{comment}{/*\ 存储的参数\ */}}
+\DoxyCodeLine{00136\ \ \ \ \ \mbox{\hyperlink{structap__arg__t}{ap\_arg\_t}}*\ args;}
+\DoxyCodeLine{00137\ \}\ \mbox{\hyperlink{structap__command__t}{ap\_command\_t}};}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \textcolor{comment}{/*\ 打印command的回调函数\ */}}
+\DoxyCodeLine{00140\ \textcolor{keyword}{typedef}\ void\ (*print\_ap\_command\_t)(\mbox{\hyperlink{structap__command__t}{ap\_command\_t}}*);}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structParser}{Parser}}\ \mbox{\hyperlink{structParser}{Parser}};}
+\DoxyCodeLine{00143\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structParser}{Parser}}\ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{comment}{/*\ 程序开始运行打印的内容}}
+\DoxyCodeLine{00145\ \textcolor{comment}{\ \ \ \ \ *\ 可以是logo之类的}}
+\DoxyCodeLine{00146\ \textcolor{comment}{\ \ \ \ \ **/}}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordtype}{char}*\ print;}
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{comment}{/*\ 命令个数\ */}}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keywordtype}{int}\ ncommand;}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{comment}{/*\ 存储的命令\ */}}
+\DoxyCodeLine{00151\ \ \ \ \ \mbox{\hyperlink{structap__command__t}{ap\_command\_t}}\ commands[AP\_MAX\_NCOMMAND];}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{comment}{/*\ 当前命令行使用的command命令\ */}}
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keywordtype}{int}\ command\_pos;}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{comment}{/*\ 自定义打印command参数\ */}}
+\DoxyCodeLine{00155\ \ \ \ \ print\_ap\_command\_t\ print\_command;}
+\DoxyCodeLine{00156\ \}\ p\ =\ \{}
+\DoxyCodeLine{00157\ \ \ \ \ .ncommand\ =\ 0,}
+\DoxyCodeLine{00158\ \ \ \ \ .command\_pos\ =\ 0\},}
+\DoxyCodeLine{00159\ \ \ *pp\ =\ \&p;}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ have\_global\ =\ 0;}
+\DoxyCodeLine{00162\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ have\_subcommand\ =\ 0;}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00170\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00171\ \mbox{\hyperlink{argparse-new_8h_a482012b62ececbd29dabcf99962bf4c4}{ap\_init\_parser}}(\textcolor{keywordtype}{char}*\ print\_message,\ print\_ap\_command\_t\ print\_command)}
+\DoxyCodeLine{00172\ \{}
+\DoxyCodeLine{00173\ \ \ \ \ pp-\/>print\ =\ print\_message;}
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keywordflow}{if}\ (print\_command\ !=\ \mbox{\hyperlink{list_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}})\ \{}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ pp-\/>print\_command\ =\ print\_command;}
+\DoxyCodeLine{00176\ \ \ \ \ \}}
+\DoxyCodeLine{00177\ \}}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00188\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00189\ \mbox{\hyperlink{argparse-new_8h_ae10018c06215aadf0c791039cd13a64d}{ap\_add\_command}}(}
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keywordtype}{char}*\ command,}
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keywordtype}{char}*\ description,}
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keywordtype}{char}*\ usage,}
+\DoxyCodeLine{00193\ \ \ \ \ callback\_t\ callback,}
+\DoxyCodeLine{00194\ \ \ \ \ \mbox{\hyperlink{structap__arg__t}{ap\_arg\_t}}*\ args)}
+\DoxyCodeLine{00195\ \{}
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{keywordflow}{if}\ (command\ ==\ \mbox{\hyperlink{list_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}})\ \{}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ have\_global\ =\ 1;}
+\DoxyCodeLine{00198\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ have\_subcommand\ =\ 1;}
+\DoxyCodeLine{00200\ \ \ \ \ \}}
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{comment}{/*\ 全局命令和子命令有且只能存在一种}}
+\DoxyCodeLine{00202\ \textcolor{comment}{\ \ \ \ \ *\ 要么有一个全局命令}}
+\DoxyCodeLine{00203\ \textcolor{comment}{\ \ \ \ \ *\ 要么存在多个子命令}}
+\DoxyCodeLine{00204\ \textcolor{comment}{\ \ \ \ \ **/}}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keywordflow}{if}\ (have\_global\ \&\&\ have\_subcommand)\ \{}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ fprintf(stderr,\ ERROR\_COMMAND\_CONFLICT);}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ exit(1);}
+\DoxyCodeLine{00209\ \ \ \ \ \}}
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keywordflow}{if}\ (!(have\_global\ ||\ have\_subcommand))\ \{}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ fprintf(stderr,\ ERROR\_NO\_SUBCOMMAND);}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ exit(1);}
+\DoxyCodeLine{00213\ \ \ \ \ \}}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \ \ \ \ \textcolor{keywordflow}{if}\ (pp-\/>ncommand\ >\ AP\_MAX\_NCOMMAND\ -\/\ 1)\ \{}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ fprintf(stderr,\ \_red(\textcolor{stringliteral}{"{}[ERROR]:"{}})\ \textcolor{stringliteral}{"{}Too\ many\ commands.\ Change\ AP\_MAX\_NCOMMAND\ bigger.\(\backslash\)n"{}});}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ exit(1);}
+\DoxyCodeLine{00218\ \ \ \ \ \}}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \ \ \ \ pp-\/>commands[pp-\/>ncommand].command\ =\ command;}
+\DoxyCodeLine{00221\ \ \ \ \ pp-\/>commands[pp-\/>ncommand].description=\ (\textcolor{keywordtype}{char}\ *)malloc(strlen(description)\ +\ 1);}
+\DoxyCodeLine{00222\ \ \ \ \ strcpy(pp-\/>commands[pp-\/>ncommand].description,\ description\ ==\ \mbox{\hyperlink{list_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}}\ ?\ \textcolor{stringliteral}{"{}"{}}\ :\ description);}
+\DoxyCodeLine{00223\ \ \ \ \ pp-\/>commands[pp-\/>ncommand].usage\ =\ (\textcolor{keywordtype}{char}\ *)malloc(strlen(usage)\ +\ 1);}
+\DoxyCodeLine{00224\ \ \ \ \ strcpy(pp-\/>commands[pp-\/>ncommand].usage,\ usage\ ==\ \mbox{\hyperlink{list_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}}\ ?\ \textcolor{stringliteral}{"{}"{}}\ :\ usage);}
+\DoxyCodeLine{00225\ \ \ \ \ pp-\/>commands[pp-\/>ncommand].callback\ =\ callback;}
+\DoxyCodeLine{00226\ \ \ \ \ pp-\/>commands[pp-\/>ncommand].args\ =\ args;}
+\DoxyCodeLine{00227\ \ \ \ \ \textcolor{comment}{//\ 统计当前command有多少参数}}
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{keywordtype}{int}\ nargs\ =\ 0;}
+\DoxyCodeLine{00229\ \ \ \ \ \textcolor{keywordflow}{while}\ (1)\ \{}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (args[nargs].long\_arg\ ||\ args[nargs].short\_arg)\ \{}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (args[nargs].help\ ==\ \mbox{\hyperlink{list_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}})\ \{}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ args[nargs].help\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ nargs++;}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00238\ \ \ \ \ \}}
+\DoxyCodeLine{00239\ \ \ \ \ pp-\/>commands[pp-\/>ncommand].nargs\ =\ nargs;}
+\DoxyCodeLine{00240\ \ \ \ \ pp-\/>ncommand++;}
+\DoxyCodeLine{00241\ \}}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00250\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00251\ \mbox{\hyperlink{argparse-new_8h_a5e1a8853dabe0e0b815a47a83887e84d}{\_is\_eq}}(\textcolor{keywordtype}{char}*\ arg\_name,\ \mbox{\hyperlink{structap__arg__t}{ap\_arg\_t}}\ arg)}
+\DoxyCodeLine{00252\ \{}
+\DoxyCodeLine{00253\ \ \ \ \ \textcolor{keywordtype}{char}*\ short\_arg\ =\ arg.short\_arg;}
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{keywordtype}{char}*\ long\_arg\ =\ arg.long\_arg;}
+\DoxyCodeLine{00255\ \ \ \ \ \textcolor{keywordflow}{if}\ (strcmp(arg\_name,\ long\_arg)\ ==\ 0\ ||\ strcmp(arg\_name,\ short\_arg)\ ==\ 0)\ \{}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00257\ \ \ \ \ \}}
+\DoxyCodeLine{00258\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00259\ \}}
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00267\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{structap__arg__t}{ap\_arg\_t}}*}
+\DoxyCodeLine{00268\ \mbox{\hyperlink{argparse-new_8h_a08fab15af2e7e06cae1343e66cf50ead}{ap\_get}}(\textcolor{keywordtype}{char}*\ arg\_name)}
+\DoxyCodeLine{00269\ \{}
+\DoxyCodeLine{00270\ \ \ \ \ \textcolor{keywordflow}{if}\ ((NOW)\ ==\ \mbox{\hyperlink{list_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}})\ \{}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{list_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}};}
+\DoxyCodeLine{00272\ \ \ \ \ \}}
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00274\ \ \ \ \ \mbox{\hyperlink{structap__arg__t}{ap\_arg\_t}}*\ p\ =\ \mbox{\hyperlink{list_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}};}
+\DoxyCodeLine{00275\ \ \ \ \ \textcolor{keywordtype}{int}\ nargs\ =\ (NOW)-\/>nargs;}
+\DoxyCodeLine{00276\ \ \ \ \ \mbox{\hyperlink{structap__arg__t}{ap\_arg\_t}}*\ args\ =\ (NOW)-\/>args;}
+\DoxyCodeLine{00277\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ nargs;\ i++)\ \{}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{argparse-new_8h_a5e1a8853dabe0e0b815a47a83887e84d}{\_is\_eq}}(arg\_name,\ args[i]))\ \{}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ p\ =\ \&args[i];}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00282\ \ \ \ \ \}}
+\DoxyCodeLine{00283\ \ \ \ \ \textcolor{keywordflow}{return}\ p;}
+\DoxyCodeLine{00284\ \}}
+\DoxyCodeLine{00285\ }
+\DoxyCodeLine{00291\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00292\ \mbox{\hyperlink{argparse-new_8h_ab80b11e9205a0727eac26a88f6e3c3c9}{ap\_default\_print\_command}}(\mbox{\hyperlink{structap__command__t}{ap\_command\_t}}*\ c)}
+\DoxyCodeLine{00293\ \{}
+\DoxyCodeLine{00294\ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}\ \_green(\textcolor{stringliteral}{"{}\%s"{}})\ \textcolor{stringliteral}{"{}\(\backslash\)n\%s\(\backslash\)n"{}},\ c-\/>command,\ c-\/>description);}
+\DoxyCodeLine{00295\ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}\%s\(\backslash\)n"{}},\ c-\/>usage);}
+\DoxyCodeLine{00296\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ c-\/>nargs;\ i++)\ \{}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ fprintf(}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ stderr,}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\%s\%s\ \%s\%s\%4s\%s\(\backslash\)n"{}},}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ AP\_SHORT\_FLAG,}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ c-\/>args[i].short\_arg,}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ AP\_LONG\_FLAG,}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ c-\/>args[i].long\_arg,}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}},}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ c-\/>args[i].help);}
+\DoxyCodeLine{00306\ \ \ \ \ \}}
+\DoxyCodeLine{00307\ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00308\ \}}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00314\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00315\ \mbox{\hyperlink{argparse-new_8h_af1d84e1d8d2ede366d5cbf4d9889b9c9}{ap\_print\_parser}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00316\ \{}
+\DoxyCodeLine{00317\ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}\(\backslash\)n\%s\(\backslash\)n\(\backslash\)n"{}},\ pp-\/>print);}
+\DoxyCodeLine{00318\ \ \ \ \ \textcolor{keywordflow}{if}\ (pp-\/>ncommand\ >\ 1)\ \{}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}Commands:\(\backslash\)n"{}});}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ pp-\/>ncommand;\ i++)\ \{}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ fprintf(stderr,\ \_green(\textcolor{stringliteral}{"{}\%8s\ \ "{}})\ \textcolor{stringliteral}{"{}\%s\(\backslash\)n"{}},\ pp-\/>commands[i].command,\ pp-\/>commands[i].description);}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00323\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ pp-\/>print\_command(NOW);}
+\DoxyCodeLine{00325\ \ \ \ \ \}}
+\DoxyCodeLine{00326\ }
+\DoxyCodeLine{00327\ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00328\ \}}
+\DoxyCodeLine{00329\ }
+\DoxyCodeLine{00330\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00331\ ap\_print\_command(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00332\ \{}
+\DoxyCodeLine{00333\ \ \ \ \ \textcolor{keywordflow}{if}\ (!pp-\/>print\_command)\ \{}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{argparse-new_8h_ab80b11e9205a0727eac26a88f6e3c3c9}{ap\_default\_print\_command}}(NOW);}
+\DoxyCodeLine{00335\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ pp-\/>print\_command(NOW);}
+\DoxyCodeLine{00337\ \ \ \ \ \}}
+\DoxyCodeLine{00338\ \}}
+\DoxyCodeLine{00339\ }
+\DoxyCodeLine{00346\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00347\ \mbox{\hyperlink{argparse-new_8h_af7602482f9b9559ca73aa06b222053ce}{\_ap\_parser\_command\_line}}(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}*\ argv[])}
+\DoxyCodeLine{00348\ \{}
+\DoxyCodeLine{00349\ \ \ \ \ \textcolor{keywordflow}{if}\ (argc\ >\ 0)\ \{}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strcmp(argv[0],\ \textcolor{stringliteral}{"{}-\/h"{}})\ ==\ 0\ ||\ strcmp(argv[0],\ \textcolor{stringliteral}{"{}-\/-\/help"{}})\ ==\ 0)\ \{}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \ \ ap\_print\_command(\ );}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \ \ \ \ exit(0);}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00354\ \ \ \ \ \}}
+\DoxyCodeLine{00355\ \ \ \ \ \textcolor{comment}{//\ 当前是参数名状态，还是参数值状态}}
+\DoxyCodeLine{00356\ \ \ \ \ \textcolor{comment}{//\ 为0为参数名状态}}
+\DoxyCodeLine{00357\ \ \ \ \ \textcolor{comment}{//\ 为1为参数值状态}}
+\DoxyCodeLine{00358\ \ \ \ \ \textcolor{keywordtype}{int}\ status\ =\ 0;}
+\DoxyCodeLine{00359\ }
+\DoxyCodeLine{00360\ \ \ \ \ \textcolor{comment}{//\ 解析的位置}}
+\DoxyCodeLine{00361\ \ \ \ \ \textcolor{keywordtype}{int}\ count\ =\ 0;}
+\DoxyCodeLine{00362\ }
+\DoxyCodeLine{00363\ \ \ \ \ \textcolor{comment}{//\ 参数名的前缀长度}}
+\DoxyCodeLine{00364\ \ \ \ \ \textcolor{keywordtype}{int}\ short\_flag\_len\ =\ strlen(AP\_SHORT\_FLAG);}
+\DoxyCodeLine{00365\ \ \ \ \ \textcolor{keywordtype}{int}\ long\_flag\_len\ =\ strlen(AP\_LONG\_FLAG);}
+\DoxyCodeLine{00366\ }
+\DoxyCodeLine{00367\ \ \ \ \ \textcolor{comment}{//\ 准备装载的参数}}
+\DoxyCodeLine{00368\ \ \ \ \ \mbox{\hyperlink{structap__arg__t}{ap\_arg\_t}}*\ arg\ =\ \mbox{\hyperlink{list_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}};}
+\DoxyCodeLine{00369\ \ \ \ \ \textcolor{keywordtype}{char}*\ arg\_name\ =\ \mbox{\hyperlink{list_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}};}
+\DoxyCodeLine{00370\ \ \ \ \ \textcolor{keywordflow}{for}\ (;;)\ \{}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (count\ >=\ argc)\ \{}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00374\ }
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 解析器的位置}}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}*\ need\_parse\ =\ argv[count];}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ need\_parse\_len\ =\ strlen(need\_parse);}
+\DoxyCodeLine{00378\ }
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 判断是否为一个参数名}}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ is\_short\ =\ strncmp(need\_parse,\ AP\_SHORT\_FLAG,\ ap\_min(need\_parse\_len,\ short\_flag\_len))\ ==\ 0;}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ is\_long\ =\ strncmp(need\_parse,\ AP\_LONG\_FLAG,\ ap\_min(need\_parse\_len,\ long\_flag\_len))\ ==\ 0;}
+\DoxyCodeLine{00382\ }
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (is\_short\ ||\ is\_long)\ \{}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \ \ \ \ status\ =\ 0;}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 去掉参数名前面的prefix}}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ prefix;}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (is\_long)\ \{}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ prefix\ =\ AP\_LONG\_FLAG;}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ prefix\ =\ AP\_SHORT\_FLAG;}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ prefix\_len\ =\ strlen(prefix);}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \ \ \ \ arg\_name\ =\ need\_parse\ +\ prefix\_len;}
+\DoxyCodeLine{00394\ }
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 检查参数是否存在}}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ exist\ =\ 0;}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ (NOW)-\/>nargs;\ i++)\ \{}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ arg\ =\ \&((NOW)-\/>args[i]);}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ short\_succ\ =\ strcmp(arg\_name,\ arg-\/>short\_arg)\ ==\ 0;}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ long\_succ\ =\ strcmp(arg\_name,\ arg-\/>long\_arg)\ ==\ 0;}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (short\_succ\ ||\ long\_succ)\ \{}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ exist\ =\ 1;}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!exist)\ \{}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fprintf(stderr,\ ERROR\_ARG\_NOT\_EXIST,\ arg\_name\ -\/\ prefix\_len);}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ exit(1);}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 参数值/一个位置参数}}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \ \ \ \ status\ =\ 1;}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00414\ }
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (arg\ ==\ \mbox{\hyperlink{list_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}})\ \{}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \ \ \ \ fprintf(stderr,\ ERROR\_LOST\_ARG\_NAME,\ need\_parse);}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \ \ \ \ exit(1);}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00419\ }
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 根据status来进行下一步的处理}}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (status\ \&\&\ arg-\/>arg\_have\_value\ ==\ AP\_NO)\ \{}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 不需要参数值}}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \ \ \ \ fprintf(stderr,\ ERROR\_DONOT\_NEED\_VALUE,\ arg-\/>long\_arg);}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \ \ \ \ exit(1);}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00426\ }
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (status\ \&\&\ arg-\/>arg\_have\_value\ ==\ AP\_YES)\ \{}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \ \ \ \ arg-\/>value\ =\ need\_parse;}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \ \ \ \ arg\ =\ \mbox{\hyperlink{list_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}};}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00431\ }
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!status\ \&\&\ arg-\/>arg\_have\_value\ ==\ AP\_NO)\ \{}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \ \ \ \ arg-\/>init.b\ =\ 1;}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ count++;}
+\DoxyCodeLine{00436\ \ \ \ \ \}}
+\DoxyCodeLine{00437\ \ \ \ \ \textcolor{keywordflow}{if}\ (arg\ \&\&\ arg-\/>arg\_have\_value\ ==\ AP\_YES)\ \{}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ fprintf(stderr,\ ERROR\_LOST\_ARG\_VALUE,\ arg-\/>long\_arg);}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ exit(1);}
+\DoxyCodeLine{00440\ \ \ \ \ \}}
+\DoxyCodeLine{00441\ \}}
+\DoxyCodeLine{00442\ }
+\DoxyCodeLine{00449\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00450\ \mbox{\hyperlink{argparse-new_8h_a472462d3dd7b0f0a90e131a90487b651}{ap\_do\_parser}}(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}*\ argv[],\ \textcolor{keywordtype}{char}*\ env[])}
+\DoxyCodeLine{00451\ \{}
+\DoxyCodeLine{00452\ \ \ \ \ \textcolor{keywordtype}{int}\ argc\_copy\ =\ argc;}
+\DoxyCodeLine{00453\ \ \ \ \ \textcolor{keywordtype}{char}**\ argv\_copy\ =\ argv;}
+\DoxyCodeLine{00454\ \ \ \ \ \textcolor{keywordflow}{if}\ (argc\ >\ 1)\ \{}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strcmp(argv[1],\ \textcolor{stringliteral}{"{}-\/h"{}})\ ==\ 0\ ||\ strcmp(argv[1],\ \textcolor{stringliteral}{"{}-\/-\/help"{}})\ ==\ 0)\ \{}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{argparse-new_8h_af1d84e1d8d2ede366d5cbf4d9889b9c9}{ap\_print\_parser}}(\ );}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \ \ \ \ exit(0);}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00459\ \ \ \ \ \}}
+\DoxyCodeLine{00460\ }
+\DoxyCodeLine{00461\ \ \ \ \ \textcolor{comment}{//\ 跳过文件名}}
+\DoxyCodeLine{00462\ \ \ \ \ argc-\/-\/;}
+\DoxyCodeLine{00463\ \ \ \ \ argv++;}
+\DoxyCodeLine{00464\ \ \ \ \ \textcolor{keywordflow}{if}\ (have\_subcommand)\ \{}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}*\ subcommand;}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ exist\ =\ 0;}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!argc)\ \{}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{argparse-new_8h_af1d84e1d8d2ede366d5cbf4d9889b9c9}{ap\_print\_parser}}(\ );}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \ \ \ \ fprintf(stderr,\ ERROR\_NO\_SUBCOMMAND);}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \ \ \ \ exit(1);}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ subcommand\ =\ argv[0];}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 在这里自动装载子命令\ */}}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ pp-\/>ncommand;\ i++)\ \{}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strcmp(pp-\/>commands[i].command,\ subcommand)\ ==\ 0)\ \{}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pp-\/>commands[i].subcommand\ =\ 1;}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pp-\/>command\_pos\ =\ i;}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ exist\ =\ 1;}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!exist)\ \{}
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ \ \ \ \ fprintf(stderr,\ ERROR\_SUBCOMMAND\_NOT\_EXIST,\ subcommand);}
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \ \ \ \ exit(1);}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00486\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 只有全局命令}}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ pp-\/>command\_pos\ =\ 0;}
+\DoxyCodeLine{00489\ \ \ \ \ \}}
+\DoxyCodeLine{00490\ }
+\DoxyCodeLine{00491\ \ \ \ \ \textcolor{comment}{/*\ 开始解析命令行参数\ */}}
+\DoxyCodeLine{00492\ \ \ \ \ \mbox{\hyperlink{argparse-new_8h_af7602482f9b9559ca73aa06b222053ce}{\_ap\_parser\_command\_line}}(argc\ -\/\ have\_subcommand,\ argv\ +\ have\_subcommand);}
+\DoxyCodeLine{00493\ \ \ \ \ \textcolor{comment}{/*\ 开始调用回调函数\ */}}
+\DoxyCodeLine{00494\ \ \ \ \ (NOW)-\/>callback(argc\_copy,\ argv\_copy,\ env);}
+\DoxyCodeLine{00495\ \}}
+\DoxyCodeLine{00496\ }
+\DoxyCodeLine{00497\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,311 @@
+\doxysection{src/utils/argparse-\/new.h 文件参考}
+\hypertarget{argparse-new_8h}{}\label{argparse-new_8h}\index{src/utils/argparse-\/new.h@{src/utils/argparse-\/new.h}}
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\doxysubsubsection*{类}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structap__arg__t}{ap\+\_\+arg\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structap__command__t}{ap\+\_\+command\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structParser}{Parser}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{宏定义}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{argparse-new_8h_ae0beaae014b957dd399eab9537ebff30}\label{argparse-new_8h_ae0beaae014b957dd399eab9537ebff30} 
+\#define {\bfseries AP\+\_\+\+MAX\+\_\+\+NCOMMAND}~10
+\item 
+\Hypertarget{argparse-new_8h_a8c0bf99cbb12fd534567fa5f25a6eae0}\label{argparse-new_8h_a8c0bf99cbb12fd534567fa5f25a6eae0} 
+\#define {\bfseries AP\+\_\+\+LONG\+\_\+\+FLAG}~"{}-\/-\/"{}
+\item 
+\Hypertarget{argparse-new_8h_af4b200732fa37a3d3b6a184e44ac3f39}\label{argparse-new_8h_af4b200732fa37a3d3b6a184e44ac3f39} 
+\#define {\bfseries AP\+\_\+\+SHORT\+\_\+\+FLAG}~"{}-\/"{}
+\item 
+\#define \mbox{\hyperlink{argparse-new_8h_a01c6b9470e243e38e2e3a8184d391994}{AP\+\_\+\+END}}
+\item 
+\Hypertarget{argparse-new_8h_ac630e7a49acf31c99538caa29ebf9ac6}\label{argparse-new_8h_ac630e7a49acf31c99538caa29ebf9ac6} 
+\#define {\bfseries ap\+\_\+min}(a,  b)~((a) $>$ (b) ? (b) \+: (a))
+\item 
+\Hypertarget{argparse-new_8h_ac771d4159fb5c152a99bfb35cd0db349}\label{argparse-new_8h_ac771d4159fb5c152a99bfb35cd0db349} 
+\#define {\bfseries ap\+\_\+max}(a,  b)~((a) $>$ (b) ? (a) \+: (b))
+\item 
+\Hypertarget{argparse-new_8h_acc4a9ad83f9350a588d117e0c8916d45}\label{argparse-new_8h_acc4a9ad83f9350a588d117e0c8916d45} 
+\#define {\bfseries NOW}~(\&pp-\/$>$commands\mbox{[}pp-\/$>$command\+\_\+pos\mbox{]})
+\item 
+\Hypertarget{argparse-new_8h_ab34e2680f3f8fcf37e22c6f19abe99fc}\label{argparse-new_8h_ab34e2680f3f8fcf37e22c6f19abe99fc} 
+\#define {\bfseries \+\_\+green}(s)~"{}\textbackslash{}033\mbox{[}32m"{} s "{}\textbackslash{}033\mbox{[}0m"{}
+\item 
+\Hypertarget{argparse-new_8h_a28c28742f5345be428c6c4d6d7a2772a}\label{argparse-new_8h_a28c28742f5345be428c6c4d6d7a2772a} 
+\#define {\bfseries \+\_\+red}(s)~"{}\textbackslash{}033\mbox{[}31m"{} s "{}\textbackslash{}033\mbox{[}0m"{}
+\item 
+\Hypertarget{argparse-new_8h_a0de6e99a67f2badfa8e5445f749c72e1}\label{argparse-new_8h_a0de6e99a67f2badfa8e5445f749c72e1} 
+\#define {\bfseries ERROR\+\_\+\+MSG}~\+\_\+red("{}\mbox{[}ERROR\mbox{]}"{})
+\item 
+\Hypertarget{argparse-new_8h_a04f3cc7e3776ac7b97cd86b1eb769462}\label{argparse-new_8h_a04f3cc7e3776ac7b97cd86b1eb769462} 
+\#define {\bfseries e}(msg)~(ERROR\+\_\+\+MSG "{}\+: "{} msg "{}\textbackslash{}n"{})
+\item 
+\Hypertarget{argparse-new_8h_abb2cc3e0b5896c7c0751bfeb74337024}\label{argparse-new_8h_abb2cc3e0b5896c7c0751bfeb74337024} 
+\#define {\bfseries ERROR\+\_\+\+COMMAND\+\_\+\+CONFLICT}~e("{}Conflict."{})
+\item 
+\Hypertarget{argparse-new_8h_a22979a195aca7837e4d123fc796be0cd}\label{argparse-new_8h_a22979a195aca7837e4d123fc796be0cd} 
+\#define {\bfseries ERROR\+\_\+\+NO\+\_\+\+SUBCOMMAND}~e("{}Pass a subcommand."{})
+\item 
+\Hypertarget{argparse-new_8h_ae61c78328b10af48462c198e29862bdf}\label{argparse-new_8h_ae61c78328b10af48462c198e29862bdf} 
+\#define {\bfseries ERROR\+\_\+\+LOST\+\_\+\+ARG\+\_\+\+VALUE}~e("{}\textbackslash{}"{}\%s\textbackslash{}"{} lost arg value."{})
+\item 
+\Hypertarget{argparse-new_8h_a395a197845dc76936ca9cf4ac16f2a58}\label{argparse-new_8h_a395a197845dc76936ca9cf4ac16f2a58} 
+\#define {\bfseries ERROR\+\_\+\+DONOT\+\_\+\+NEED\+\_\+\+VALUE}~e("{}\textbackslash{}"{}\%s\textbackslash{}"{} does not need arg value."{})
+\item 
+\Hypertarget{argparse-new_8h_a091d1b217f38f1280f15fefe47827c24}\label{argparse-new_8h_a091d1b217f38f1280f15fefe47827c24} 
+\#define {\bfseries ERROR\+\_\+\+ARG\+\_\+\+NOT\+\_\+\+EXIST}~e("{}Arg name \textbackslash{}"{}\%s\textbackslash{}"{} does not exist."{})
+\item 
+\Hypertarget{argparse-new_8h_a9522de57358a4e82d27ef24319ab9f21}\label{argparse-new_8h_a9522de57358a4e82d27ef24319ab9f21} 
+\#define {\bfseries ERROR\+\_\+\+LOST\+\_\+\+ARG\+\_\+\+NAME}~e("{}Except a arg name, but got \textbackslash{}"{}\%s\textbackslash{}"{}."{})
+\item 
+\Hypertarget{argparse-new_8h_abf68c21ed2882b42848316adf437a0ac}\label{argparse-new_8h_abf68c21ed2882b42848316adf437a0ac} 
+\#define {\bfseries ERROR\+\_\+\+SUBCOMMAND\+\_\+\+NOT\+\_\+\+EXIST}~e("{}Subcommand \%s does not exist."{})
+\item 
+\Hypertarget{argparse-new_8h_a4eed2aaf6a15a414b67199603e020679}\label{argparse-new_8h_a4eed2aaf6a15a414b67199603e020679} 
+\#define {\bfseries ap\+\_\+define\+Args}(name)~static \mbox{\hyperlink{structap__arg__t}{ap\+\_\+arg\+\_\+t}} name\mbox{[}$\,$\mbox{]}
+\item 
+\Hypertarget{argparse-new_8h_ac382d6dbb6cc1c70d08a4ca13fb2eaea}\label{argparse-new_8h_ac382d6dbb6cc1c70d08a4ca13fb2eaea} 
+\#define {\bfseries ap\+\_\+define\+Callback}(name)~void name(int argc, char\texorpdfstring{$\ast$}{*} argv\mbox{[}$\,$\mbox{]}, char\texorpdfstring{$\ast$}{*} env\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{类型定义}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{argparse-new_8h_a3c87d381a1edcfb750616c9606000f9e}\label{argparse-new_8h_a3c87d381a1edcfb750616c9606000f9e} 
+typedef void(\texorpdfstring{$\ast$}{*} {\bfseries callback\+\_\+t}) (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]}, char \texorpdfstring{$\ast$}{*}env\mbox{[}$\,$\mbox{]})
+\item 
+\Hypertarget{argparse-new_8h_ab458db3fc02a65735942984f4e34ccc0}\label{argparse-new_8h_ab458db3fc02a65735942984f4e34ccc0} 
+typedef void(\texorpdfstring{$\ast$}{*} {\bfseries print\+\_\+ap\+\_\+command\+\_\+t}) (\mbox{\hyperlink{structap__command__t}{ap\+\_\+command\+\_\+t}} \texorpdfstring{$\ast$}{*})
+\item 
+\Hypertarget{argparse-new_8h_a32c6aca8cceda7984a398188caca4d3a}\label{argparse-new_8h_a32c6aca8cceda7984a398188caca4d3a} 
+typedef struct Parser {\bfseries Parser}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{枚举}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{argparse-new_8h_ab2e28d859934760467a5deff1c865f51}\label{argparse-new_8h_ab2e28d859934760467a5deff1c865f51} 
+enum {\bfseries Arg\+Value} \{ {\bfseries AP\+\_\+\+YES} = 0
+, {\bfseries AP\+\_\+\+NO}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{argparse-new_8h_a482012b62ececbd29dabcf99962bf4c4}{ap\+\_\+init\+\_\+parser}} (char \texorpdfstring{$\ast$}{*}print\+\_\+message, print\+\_\+ap\+\_\+command\+\_\+t print\+\_\+command)
+\begin{DoxyCompactList}\small\item\em 初始化解析器 \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{argparse-new_8h_ae10018c06215aadf0c791039cd13a64d}{ap\+\_\+add\+\_\+command}} (char \texorpdfstring{$\ast$}{*}command, char \texorpdfstring{$\ast$}{*}description, char \texorpdfstring{$\ast$}{*}usage, callback\+\_\+t callback, \mbox{\hyperlink{structap__arg__t}{ap\+\_\+arg\+\_\+t}} \texorpdfstring{$\ast$}{*}args)
+\begin{DoxyCompactList}\small\item\em 添加一个子命令 \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{argparse-new_8h_a5e1a8853dabe0e0b815a47a83887e84d}{\+\_\+is\+\_\+eq}} (char \texorpdfstring{$\ast$}{*}arg\+\_\+name, \mbox{\hyperlink{structap__arg__t}{ap\+\_\+arg\+\_\+t}} arg)
+\begin{DoxyCompactList}\small\item\em 判断当前参数名是否与command中的参数名相同 \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{structap__arg__t}{ap\+\_\+arg\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{argparse-new_8h_a08fab15af2e7e06cae1343e66cf50ead}{ap\+\_\+get}} (char \texorpdfstring{$\ast$}{*}arg\+\_\+name)
+\begin{DoxyCompactList}\small\item\em 根据参数名获取参数值 \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{argparse-new_8h_ab80b11e9205a0727eac26a88f6e3c3c9}{ap\+\_\+default\+\_\+print\+\_\+command}} (\mbox{\hyperlink{structap__command__t}{ap\+\_\+command\+\_\+t}} \texorpdfstring{$\ast$}{*}c)
+\begin{DoxyCompactList}\small\item\em 打印command \end{DoxyCompactList}\item 
+\Hypertarget{argparse-new_8h_af1d84e1d8d2ede366d5cbf4d9889b9c9}\label{argparse-new_8h_af1d84e1d8d2ede366d5cbf4d9889b9c9} 
+static void {\bfseries ap\+\_\+print\+\_\+parser} (void)
+\begin{DoxyCompactList}\small\item\em 打印解析器 \end{DoxyCompactList}\item 
+\Hypertarget{argparse-new_8h_af2a68ba1015726ef657807501b88bcd0}\label{argparse-new_8h_af2a68ba1015726ef657807501b88bcd0} 
+static void {\bfseries ap\+\_\+print\+\_\+command} (void)
+\item 
+static void \mbox{\hyperlink{argparse-new_8h_af7602482f9b9559ca73aa06b222053ce}{\+\_\+ap\+\_\+parser\+\_\+command\+\_\+line}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em 解析命令行，内部接口 \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{argparse-new_8h_a472462d3dd7b0f0a90e131a90487b651}{ap\+\_\+do\+\_\+parser}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]}, char \texorpdfstring{$\ast$}{*}env\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em 解析命令行 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{变量}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structParser}{Parser}} \mbox{\hyperlink{argparse-new_8h_a7485f4a724026e58f7335d0b14087a1d}{p}}
+\item 
+\Hypertarget{argparse-new_8h_a9f9d207e4b1cc579c4cf598b5faa87b7}\label{argparse-new_8h_a9f9d207e4b1cc579c4cf598b5faa87b7} 
+struct \mbox{\hyperlink{structParser}{Parser}} \texorpdfstring{$\ast$}{*} {\bfseries pp} = \&p
+\item 
+\Hypertarget{argparse-new_8h_a52351b134501c7cfd6de37e50db29266}\label{argparse-new_8h_a52351b134501c7cfd6de37e50db29266} 
+static int {\bfseries have\+\_\+global} = 0
+\item 
+\Hypertarget{argparse-new_8h_a7d50d1c1a6d986d729c0e0aa9bfab8ed}\label{argparse-new_8h_a7d50d1c1a6d986d729c0e0aa9bfab8ed} 
+static int {\bfseries have\+\_\+subcommand} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyAuthor}{作者}
+your name (\href{mailto:you@domain.com}{\texttt{ you@domain.\+com}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{版本}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{日期}
+2024-\/01-\/09
+\end{DoxyDate}
+\begin{DoxyCopyright}{版权所有}
+Copyright (c) 2024 
+\end{DoxyCopyright}
+
+
+\doxysubsection{宏定义说明}
+\Hypertarget{argparse-new_8h_a01c6b9470e243e38e2e3a8184d391994}\label{argparse-new_8h_a01c6b9470e243e38e2e3a8184d391994} 
+\index{argparse-\/new.h@{argparse-\/new.h}!AP\_END@{AP\_END}}
+\index{AP\_END@{AP\_END}!argparse-\/new.h@{argparse-\/new.h}}
+\doxysubsubsection{\texorpdfstring{AP\_END}{AP\_END}}
+{\footnotesize\ttfamily \#define AP\+\_\+\+END}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 0\ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{函数说明}
+\Hypertarget{argparse-new_8h_af7602482f9b9559ca73aa06b222053ce}\label{argparse-new_8h_af7602482f9b9559ca73aa06b222053ce} 
+\index{argparse-\/new.h@{argparse-\/new.h}!\_ap\_parser\_command\_line@{\_ap\_parser\_command\_line}}
+\index{\_ap\_parser\_command\_line@{\_ap\_parser\_command\_line}!argparse-\/new.h@{argparse-\/new.h}}
+\doxysubsubsection{\texorpdfstring{\_ap\_parser\_command\_line()}{\_ap\_parser\_command\_line()}}
+{\footnotesize\ttfamily static void \+\_\+ap\+\_\+parser\+\_\+command\+\_\+line (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+解析命令行，内部接口 
+
+
+\begin{DoxyParams}{参数}
+{\em argc} & \\
+\hline
+{\em argv} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{argparse-new_8h_a5e1a8853dabe0e0b815a47a83887e84d}\label{argparse-new_8h_a5e1a8853dabe0e0b815a47a83887e84d} 
+\index{argparse-\/new.h@{argparse-\/new.h}!\_is\_eq@{\_is\_eq}}
+\index{\_is\_eq@{\_is\_eq}!argparse-\/new.h@{argparse-\/new.h}}
+\doxysubsubsection{\texorpdfstring{\_is\_eq()}{\_is\_eq()}}
+{\footnotesize\ttfamily static int \+\_\+is\+\_\+eq (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{arg\+\_\+name,  }\item[{\mbox{\hyperlink{structap__arg__t}{ap\+\_\+arg\+\_\+t}}}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+判断当前参数名是否与command中的参数名相同 
+
+
+\begin{DoxyParams}{参数}
+{\em arg\+\_\+name} & \\
+\hline
+{\em arg} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+int 
+\end{DoxyReturn}
+\Hypertarget{argparse-new_8h_ae10018c06215aadf0c791039cd13a64d}\label{argparse-new_8h_ae10018c06215aadf0c791039cd13a64d} 
+\index{argparse-\/new.h@{argparse-\/new.h}!ap\_add\_command@{ap\_add\_command}}
+\index{ap\_add\_command@{ap\_add\_command}!argparse-\/new.h@{argparse-\/new.h}}
+\doxysubsubsection{\texorpdfstring{ap\_add\_command()}{ap\_add\_command()}}
+{\footnotesize\ttfamily static void ap\+\_\+add\+\_\+command (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{command,  }\item[{char \texorpdfstring{$\ast$}{*}}]{description,  }\item[{char \texorpdfstring{$\ast$}{*}}]{usage,  }\item[{callback\+\_\+t}]{callback,  }\item[{\mbox{\hyperlink{structap__arg__t}{ap\+\_\+arg\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+添加一个子命令 
+
+
+\begin{DoxyParams}{参数}
+{\em command} & \\
+\hline
+{\em description} & \\
+\hline
+{\em usage} & \\
+\hline
+{\em callback} & \\
+\hline
+{\em args} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{argparse-new_8h_ab80b11e9205a0727eac26a88f6e3c3c9}\label{argparse-new_8h_ab80b11e9205a0727eac26a88f6e3c3c9} 
+\index{argparse-\/new.h@{argparse-\/new.h}!ap\_default\_print\_command@{ap\_default\_print\_command}}
+\index{ap\_default\_print\_command@{ap\_default\_print\_command}!argparse-\/new.h@{argparse-\/new.h}}
+\doxysubsubsection{\texorpdfstring{ap\_default\_print\_command()}{ap\_default\_print\_command()}}
+{\footnotesize\ttfamily static void ap\+\_\+default\+\_\+print\+\_\+command (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structap__command__t}{ap\+\_\+command\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+打印command 
+
+
+\begin{DoxyParams}{参数}
+{\em c} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{argparse-new_8h_a472462d3dd7b0f0a90e131a90487b651}\label{argparse-new_8h_a472462d3dd7b0f0a90e131a90487b651} 
+\index{argparse-\/new.h@{argparse-\/new.h}!ap\_do\_parser@{ap\_do\_parser}}
+\index{ap\_do\_parser@{ap\_do\_parser}!argparse-\/new.h@{argparse-\/new.h}}
+\doxysubsubsection{\texorpdfstring{ap\_do\_parser()}{ap\_do\_parser()}}
+{\footnotesize\ttfamily static void ap\+\_\+do\+\_\+parser (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}}]{argv\mbox{[}$\,$\mbox{]},  }\item[{char \texorpdfstring{$\ast$}{*}}]{env\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+解析命令行 
+
+
+\begin{DoxyParams}{参数}
+{\em argc} & \\
+\hline
+{\em argv} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{argparse-new_8h_a08fab15af2e7e06cae1343e66cf50ead}\label{argparse-new_8h_a08fab15af2e7e06cae1343e66cf50ead} 
+\index{argparse-\/new.h@{argparse-\/new.h}!ap\_get@{ap\_get}}
+\index{ap\_get@{ap\_get}!argparse-\/new.h@{argparse-\/new.h}}
+\doxysubsubsection{\texorpdfstring{ap\_get()}{ap\_get()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{structap__arg__t}{ap\+\_\+arg\+\_\+t}} \texorpdfstring{$\ast$}{*} ap\+\_\+get (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{arg\+\_\+name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+根据参数名获取参数值 
+
+
+\begin{DoxyParams}{参数}
+{\em arg\+\_\+name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+void\texorpdfstring{$\ast$}{*} 
+\end{DoxyReturn}
+\Hypertarget{argparse-new_8h_a482012b62ececbd29dabcf99962bf4c4}\label{argparse-new_8h_a482012b62ececbd29dabcf99962bf4c4} 
+\index{argparse-\/new.h@{argparse-\/new.h}!ap\_init\_parser@{ap\_init\_parser}}
+\index{ap\_init\_parser@{ap\_init\_parser}!argparse-\/new.h@{argparse-\/new.h}}
+\doxysubsubsection{\texorpdfstring{ap\_init\_parser()}{ap\_init\_parser()}}
+{\footnotesize\ttfamily static void ap\+\_\+init\+\_\+parser (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{print\+\_\+message,  }\item[{print\+\_\+ap\+\_\+command\+\_\+t}]{print\+\_\+command }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+初始化解析器 
+
+
+\begin{DoxyParams}{参数}
+{\em print\+\_\+message} & \\
+\hline
+{\em print\+\_\+command} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{变量说明}
+\Hypertarget{argparse-new_8h_a7485f4a724026e58f7335d0b14087a1d}\label{argparse-new_8h_a7485f4a724026e58f7335d0b14087a1d} 
+\index{argparse-\/new.h@{argparse-\/new.h}!p@{p}}
+\index{p@{p}!argparse-\/new.h@{argparse-\/new.h}}
+\doxysubsubsection{\texorpdfstring{p}{p}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structParser}{Parser}} p}
+
+{\bfseries 初始值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ .ncommand\ =\ 0,}
+\DoxyCodeLine{\ \ \ \ .command\_pos\ =\ 0\}}
+
+\end{DoxyCode}

@@ -1,0 +1,543 @@
+\doxysection{obj.\+h}
+\hypertarget{obj_8h_source}{}\label{obj_8h_source}\index{src/utils/obj.h@{src/utils/obj.h}}
+\mbox{\hyperlink{obj_8h}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#ifndef\ \_\_OBJ\_H\_}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ \_\_OBJ\_H\_}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\ \ \ \ \#error\ "{}C++\ header\ is\ not\ supported,\ please\ use\ native\ OOP\ instead!"{}}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#ifndef\ \_\_EXPAND}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#define\ \_\_EXPAND(x)\ x}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#if\ defined(\_\_unix\_\_)\ ||\ defined(\_\_unix)\ ||\ defined(\_\_linux\_\_)\ ||\ (defined(\_\_APPLE\_\_)\ \&\&\ defined(\_\_MACH\_\_))}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#include\ <sys/mman.h>}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#include\ <sys/user.h>}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#define\ \_\_OBJ\_ACTIV(ptr,\ size)\ \(\backslash\)}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\ \ \ \ (mprotect((void\ *)(((size\_t)ptr\ >>\ PAGE\_SHIFT)\ <<\ PAGE\_SHIFT),\ size,\ PROT\_READ\ |\ PROT\_EXEC\ |\ PROT\_WRITE)\ ==\ 0)}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#elif\ defined(\_WIN32)}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#if\ defined\ (\_MSC\_VER)}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#pragma\ warning(disable\ :\ 4996)}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#pragma\ comment(lib,\ "{}kernel32.lib"{})}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#if\ ((defined(DEBUG)\ ||\ defined(\_DEBUG))\ \&\&\ \_MSC\_VER\ >=\ 1915)}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#pragma\ message\ ("{}warning:\ On\ Visual\ Studio\ 2017\ 15.8+,\ please\ disable\ Just\ My\ Code\ debugging!"{})}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#if\ !(defined(\_WINDOWS\_)\ ||\ defined(\_INC\_WINDOWS)\ ||\ defined(\_WINDOWS\_H)\ ||\ defined(\_MEMORYAPI\_H\_))}}
+\DoxyCodeLine{00089\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \_\_stdcall\ VirtualProtect(\textcolor{keywordtype}{void}\ *addr,\ \textcolor{keywordtype}{size\_t}\ size,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ newprot,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ *oldprot);}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#ifndef\ PAGE\_EXECUTE\_READWRITE}}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#define\ PAGE\_EXECUTE\_READWRITE\ \ 0x40}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#define\ \_\_OBJ\_ACTIV(ptr,\ size)\ \(\backslash\)}}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\ \ \ \ (VirtualProtect(ptr,\ size,\ PAGE\_EXECUTE\_READWRITE,\ \&((unsigned\ long)\{\ 0\ \}))\ !=\ 0)}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#error\ "{}This\ OS\ is\ not\ supported!"{}}}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#if\ defined(\_\_x86\_64\_\_)\ ||\ defined(\_\_x86\_64)\ ||\ defined(\_M\_X64)\ ||\ defined(\_M\_AMD64)}}
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#define\ \_\_OBJ\_X64\ \ \ 1}}
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#elif\ defined(\_\_i386)\ ||\ defined(\_\_i386\_\_)\ ||\ defined(\_M\_IX86)}}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#define\ \_\_OBJ\_X86\ \ \ 1}}
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\#error\ This\ architecture\ is\ not\ supported!}}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#define\ \_\_OBJ\_ERR(...)\ \(\backslash\)}}
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\ \ \ \ do\ \{\ \(\backslash\)}}
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ fprintf(stderr,\ "{}[obj.h]\ error:\ "{});\ \(\backslash\)}}
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ fprintf(stderr,\ \_\_VA\_ARGS\_\_);\ \(\backslash\)}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ fprintf(stderr,\ "{}\(\backslash\)n"{});\ \(\backslash\)}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\ \ \ \ \}\ while\ (0)}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#define\ \_\_OBJ\_MAXPHSIZE\ 1024}}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#if\ \_\_OBJ\_X64}}
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#define\ \_\_OBJ\_CLOFNNUM\ \ 0x58ffffbffdffffafULL}}
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\#elif\ \_\_OBJ\_X86}}
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#define\ \_\_OBJ\_CLOFNNUM\ \ 0x58ffffbfU}}
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ *\_\_OBJ\_clofn(\textcolor{keywordtype}{void}\ *prototype,\ \textcolor{keywordtype}{size\_t}\ *phsize,\ \textcolor{keywordtype}{void}\ *data)\ \{}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ uint8\_t\ *code;}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ offset;}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ ihsize;}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ offset\ =\ *phsize;}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordflow}{if}\ (offset\ ==\ 0)\ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (;\ offset\ <\ \_\_OBJ\_MAXPHSIZE;\ offset++)\ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (*(\textcolor{keywordtype}{size\_t}\ *)((uintptr\_t)prototype\ +\ offset)\ ==\ (\textcolor{keywordtype}{size\_t})\_\_OBJ\_CLOFNNUM)\ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (*phsize\ ==\ 0)\ *phsize\ =\ offset;}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{goto}\ \_mk;}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}could't\ find\ closure\ declaration\ at\ prototype\ function\ (\%p)!"{}},\ prototype);}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{list_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}};}
+\DoxyCodeLine{00139\ \ \ \ \ \}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \_mk:;}
+\DoxyCodeLine{00142\ \textcolor{preprocessor}{\#pragma\ pack(push,\ 1)}}
+\DoxyCodeLine{00143\ \textcolor{preprocessor}{\#if\ \_\_OBJ\_X64}}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{comment}{//\ push\ rax}}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{comment}{//\ mov\ \ rax,\ addr}}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{comment}{//\ jmp\ \ rax}}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ uintptr\_t\ \ \ data;}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ uint8\_t\ \ \ \ \ push\_rax;}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ uint8\_t\ \ \ \ \ mov\_rax[2];}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ uintptr\_t\ \ \ addr;}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ uint8\_t\ \ \ \ \ jmp\_rax[2];}
+\DoxyCodeLine{00153\ \ \ \ \ \}\ asmc\ =\ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ .push\_rax\ =\ 0x50,}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ .mov\_rax\ =\ \{\ 0x48,\ 0xB8\ \},}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ .jmp\_rax\ =\ \{\ 0xFF,\ 0xE0\ \}}
+\DoxyCodeLine{00157\ \ \ \ \ \};}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{comment}{//ihsize\ =\ offset\ +\ sizeof(void\ *)\ *\ 2\ +\ 5;}}
+\DoxyCodeLine{00159\ \textcolor{preprocessor}{\#elif\ \_\_OBJ\_X86}}
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{comment}{//\ jmp\ \ addr}}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ uintptr\_t\ \ \ data;}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ uint8\_t\ \ \ \ \ jmp;}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ uintptr\_t\ \ \ addr;}
+\DoxyCodeLine{00165\ \ \ \ \ \}\ asmc\ =\ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ .jmp\ =\ 0xE9}
+\DoxyCodeLine{00167\ \ \ \ \ \};}
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{comment}{//ihsize\ =\ offset\ +\ sizeof(void\ *)\ *\ 2\ +\ 1;}}
+\DoxyCodeLine{00169\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00170\ \textcolor{preprocessor}{\#pragma\ pack(pop)}}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ ihsize\ =\ offset\ +\ \textcolor{keyword}{sizeof}(asmc);}
+\DoxyCodeLine{00173\ \ \ \ \ code\ =\ (uint8\_t\ *)malloc(ihsize);}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\_\_OBJ\_ACTIV(code,\ ihsize))\ \{}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \_\_OBJ\_ERR(\textcolor{stringliteral}{"{}could't\ change\ memory\ type\ of\ C.malloc\ allocated!"{}});}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ free(code);}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{list_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}};}
+\DoxyCodeLine{00179\ \ \ \ \ \}}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \textcolor{preprocessor}{\#if\ \_\_OBJ\_X64}}
+\DoxyCodeLine{00182\ \ \ \ \ asmc.addr\ =\ (uintptr\_t)prototype\ +\ offset\ +\ \textcolor{keyword}{sizeof}(uintptr\_t)\ -\/\ 1;}
+\DoxyCodeLine{00183\ \textcolor{preprocessor}{\#elif\ \_\_OBJ\_X86}}
+\DoxyCodeLine{00184\ \ \ \ \ asmc.addr\ =\ ((uintptr\_t)prototype\ +\ offset\ +\ \textcolor{keyword}{sizeof}(uintptr\_t))\ -\/\ ((uintptr\_t)code\ +\ ihsize);}
+\DoxyCodeLine{00185\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ \ \ asmc.data\ =\ (uintptr\_t)data;}
+\DoxyCodeLine{00188\ \ \ \ \ memcpy(code,\ prototype,\ offset);}
+\DoxyCodeLine{00189\ \ \ \ \ memcpy(code\ +\ offset,\ \&asmc,\ \textcolor{keyword}{sizeof}(asmc));}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keywordtype}{void}\ *)code;}
+\DoxyCodeLine{00192\ \}}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \textcolor{preprocessor}{\#if\ defined(class)}}
+\DoxyCodeLine{00195\ \textcolor{preprocessor}{\#undef\ class}}
+\DoxyCodeLine{00196\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \textcolor{preprocessor}{\#if\ defined(classdef)}}
+\DoxyCodeLine{00199\ \textcolor{preprocessor}{\#undef\ classdef}}
+\DoxyCodeLine{00200\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \textcolor{preprocessor}{\#if\ defined(public)}}
+\DoxyCodeLine{00203\ \textcolor{preprocessor}{\#undef\ public}}
+\DoxyCodeLine{00204\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \textcolor{preprocessor}{\#if\ defined(private)}}
+\DoxyCodeLine{00207\ \textcolor{preprocessor}{\#undef\ private}}
+\DoxyCodeLine{00208\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \textcolor{preprocessor}{\#if\ defined(new)}}
+\DoxyCodeLine{00211\ \textcolor{preprocessor}{\#undef\ new}}
+\DoxyCodeLine{00212\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \textcolor{preprocessor}{\#if\ defined(extend)}}
+\DoxyCodeLine{00215\ \textcolor{preprocessor}{\#undef\ extend}}
+\DoxyCodeLine{00216\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \textcolor{preprocessor}{\#if\ defined(ctor)}}
+\DoxyCodeLine{00219\ \textcolor{preprocessor}{\#undef\ ctor}}
+\DoxyCodeLine{00220\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ \textcolor{preprocessor}{\#if\ defined(dtor)}}
+\DoxyCodeLine{00223\ \textcolor{preprocessor}{\#undef\ dtor}}
+\DoxyCodeLine{00224\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ \textcolor{comment}{//\ Set\ root\ name,\ default\ is\ "{}self"{}}}
+\DoxyCodeLine{00227\ \textcolor{comment}{//\ For\ "{}this"{},\ \#define\ obj\_use\ this}}
+\DoxyCodeLine{00228\ \textcolor{preprocessor}{\#if\ defined(obj\_use)}}
+\DoxyCodeLine{00229\ \textcolor{preprocessor}{\#define\ \_\_OBJ\_ROOT\ obj\_use}}
+\DoxyCodeLine{00230\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00231\ \textcolor{preprocessor}{\#define\ \_\_OBJ\_ROOT\ self}}
+\DoxyCodeLine{00232\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00234\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct____OBJ__entry}{\_\_OBJ\_entry}}\ \{}
+\DoxyCodeLine{00235\ \ \ \ \ \textcolor{keywordtype}{void}\ *ptr;}
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{keywordtype}{char}\ sub;}
+\DoxyCodeLine{00237\ \};}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct____OBJ__pool}{\_\_OBJ\_pool}}\ \{}
+\DoxyCodeLine{00240\ \ \ \ \ \textcolor{keywordtype}{int}\ count;}
+\DoxyCodeLine{00241\ \ \ \ \ \textcolor{keywordtype}{int}\ space;}
+\DoxyCodeLine{00242\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct____OBJ__entry}{\_\_OBJ\_entry}}\ *entries;}
+\DoxyCodeLine{00243\ \};}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00245\ \textcolor{comment}{//\ Class\ base}}
+\DoxyCodeLine{00246\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct____OBJ__base}{\_\_OBJ\_base}}\ \{}
+\DoxyCodeLine{00247\ \ \ \ \ \textcolor{keywordtype}{void}\ *(*alloc)(size\_t);}
+\DoxyCodeLine{00248\ \ \ \ \ \textcolor{keywordtype}{void}\ *(*realloc)(\textcolor{keywordtype}{void}\ *,\ size\_t);}
+\DoxyCodeLine{00249\ \ \ \ \ void\ (*free)(\textcolor{keywordtype}{void}\ *);}
+\DoxyCodeLine{00250\ \ \ \ \ void\ (*release)();}
+\DoxyCodeLine{00251\ \ \ \ \ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct____OBJ__pool}{\_\_OBJ\_pool}}\ *p;}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ *(*d)(\textcolor{keywordtype}{void}\ *);}
+\DoxyCodeLine{00254\ \ \ \ \ \}\ reserved;}
+\DoxyCodeLine{00255\ \};}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00257\ \textcolor{keyword}{static}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct____OBJ__pool}{\_\_OBJ\_pool}}\ *\_\_OBJ\_pool\_create()\ \{}
+\DoxyCodeLine{00258\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct____OBJ__pool}{\_\_OBJ\_pool}}\ *p\ =\ malloc(\textcolor{keyword}{sizeof}(\textcolor{keyword}{struct}\ \mbox{\hyperlink{struct____OBJ__pool}{\_\_OBJ\_pool}}));}
+\DoxyCodeLine{00259\ \ \ \ \ p-\/>count\ =\ 0;}
+\DoxyCodeLine{00260\ \ \ \ \ p-\/>space\ =\ 0;}
+\DoxyCodeLine{00261\ \ \ \ \ p-\/>entries\ =\ \mbox{\hyperlink{list_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}};}
+\DoxyCodeLine{00262\ \ \ \ \ \textcolor{keywordflow}{return}\ p;}
+\DoxyCodeLine{00263\ \}}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00265\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \_\_OBJ\_pool\_destroy(\textcolor{keyword}{struct}\ \mbox{\hyperlink{struct____OBJ__pool}{\_\_OBJ\_pool}}\ *p)\ \{}
+\DoxyCodeLine{00266\ \ \ \ \ \textcolor{keywordflow}{if}\ (p\ ==\ \mbox{\hyperlink{list_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00267\ \ \ \ \ \textcolor{keywordflow}{if}\ (p-\/>space\ >\ 0)\ \{}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ p-\/>space;\ i++)\ \{}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ free(p-\/>entries[i].ptr);}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ free(p-\/>entries);}
+\DoxyCodeLine{00272\ \ \ \ \ \}}
+\DoxyCodeLine{00273\ \ \ \ \ free(p);}
+\DoxyCodeLine{00274\ \}}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00276\ \textcolor{keyword}{static}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct____OBJ__entry}{\_\_OBJ\_entry}}\ *\_\_OBJ\_pool\_find(\textcolor{keyword}{struct}\ \mbox{\hyperlink{struct____OBJ__entry}{\_\_OBJ\_entry}}\ entries[],\ \textcolor{keywordtype}{int}\ space,\ \textcolor{keywordtype}{void}\ *ptr)\ \{}
+\DoxyCodeLine{00277\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ index\ =\ (uintptr\_t)ptr\ \%\ (space\ -\/\ 1);}
+\DoxyCodeLine{00278\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct____OBJ__entry}{\_\_OBJ\_entry}}\ *tombstone\ =\ \mbox{\hyperlink{list_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}};}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \ \ \ \ \textcolor{keywordflow}{for}\ (;;)\ \{}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct____OBJ__entry}{\_\_OBJ\_entry}}\ *entry\ =\ \&entries[index];}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (entry-\/>ptr\ ==\ \mbox{\hyperlink{list_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}})\ \{}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!entry-\/>sub)\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tombstone\ !=\ \mbox{\hyperlink{list_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}}\ ?\ tombstone\ :\ entry;}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (tombstone\ ==\ \mbox{\hyperlink{list_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}})\ tombstone\ =\ entry;}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (entry-\/>ptr\ ==\ ptr)\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ entry;}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ index\ =\ (index\ +\ 1)\ \%\ space;}
+\DoxyCodeLine{00296\ \ \ \ \ \}}
+\DoxyCodeLine{00297\ \}}
+\DoxyCodeLine{00298\ }
+\DoxyCodeLine{00299\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \_\_OBJ\_pool\_resize(\textcolor{keyword}{struct}\ \mbox{\hyperlink{struct____OBJ__pool}{\_\_OBJ\_pool}}\ *p,\ \textcolor{keywordtype}{int}\ space)\ \{}
+\DoxyCodeLine{00300\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct____OBJ__entry}{\_\_OBJ\_entry}}\ *entries\ =\ malloc(space\ *\ \textcolor{keyword}{sizeof}(\textcolor{keyword}{struct}\ \mbox{\hyperlink{struct____OBJ__entry}{\_\_OBJ\_entry}}));}
+\DoxyCodeLine{00301\ \ \ \ \ memset(entries,\ \textcolor{charliteral}{'\(\backslash\)0'},\ space\ *\ \textcolor{keyword}{sizeof}(\textcolor{keyword}{struct}\ \mbox{\hyperlink{struct____OBJ__entry}{\_\_OBJ\_entry}}));}
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00303\ \ \ \ \ p-\/>count\ =\ 0;}
+\DoxyCodeLine{00304\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ p-\/>space;\ i++)\ \{}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct____OBJ__entry}{\_\_OBJ\_entry}}\ *entry\ =\ \&p-\/>entries[i];}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (entry-\/>ptr\ ==\ \mbox{\hyperlink{list_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}})\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00307\ }
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ *\_\_OBJ\_pool\_find(entries,\ space,\ entry-\/>ptr)\ =\ *entry;}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ p-\/>count++;}
+\DoxyCodeLine{00310\ \ \ \ \ \}}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00312\ \ \ \ \ free(p-\/>entries);}
+\DoxyCodeLine{00313\ \ \ \ \ p-\/>space\ =\ space;}
+\DoxyCodeLine{00314\ \ \ \ \ p-\/>entries\ =\ entries;}
+\DoxyCodeLine{00315\ \}}
+\DoxyCodeLine{00316\ }
+\DoxyCodeLine{00317\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ *\_\_OBJ\_pool\_add(\textcolor{keyword}{struct}\ \mbox{\hyperlink{struct____OBJ__pool}{\_\_OBJ\_pool}}\ *p,\ \textcolor{keywordtype}{void}\ *ptr)\ \{}
+\DoxyCodeLine{00318\ \ \ \ \ \textcolor{keywordflow}{if}\ (ptr\ ==\ \mbox{\hyperlink{list_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}})\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{list_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}};}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00320\ \ \ \ \ \textcolor{keywordtype}{int}\ space\ =\ p-\/>space;}
+\DoxyCodeLine{00321\ \ \ \ \ \textcolor{keywordflow}{if}\ (p-\/>count\ >=\ space\ *\ 0.75)\ \{}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \_\_OBJ\_pool\_resize(p,\ space\ <\ 8\ ?\ 8\ :\ space\ *\ 2);}
+\DoxyCodeLine{00323\ \ \ \ \ \}}
+\DoxyCodeLine{00324\ }
+\DoxyCodeLine{00325\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct____OBJ__entry}{\_\_OBJ\_entry}}\ *entry\ =\ \_\_OBJ\_pool\_find(p-\/>entries,\ p-\/>space,\ ptr);}
+\DoxyCodeLine{00326\ \ \ \ \ \textcolor{keywordflow}{if}\ (entry-\/>ptr\ ==\ \mbox{\hyperlink{list_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}})\ \{}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ p-\/>count++;}
+\DoxyCodeLine{00328\ \ \ \ \ \}}
+\DoxyCodeLine{00329\ }
+\DoxyCodeLine{00330\ \ \ \ \ \textcolor{keywordflow}{return}\ entry-\/>ptr\ =\ ptr;}
+\DoxyCodeLine{00331\ \}}
+\DoxyCodeLine{00332\ }
+\DoxyCodeLine{00333\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \_\_OBJ\_pool\_remove(\textcolor{keyword}{struct}\ \mbox{\hyperlink{struct____OBJ__pool}{\_\_OBJ\_pool}}\ *p,\ \textcolor{keywordtype}{void}\ *ptr)\ \{}
+\DoxyCodeLine{00334\ \ \ \ \ \textcolor{keywordflow}{if}\ (p-\/>count\ ==\ 0\ ||\ ptr\ ==\ \mbox{\hyperlink{list_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}})\ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00335\ \ \ \ \ \textcolor{keywordtype}{int}\ space\ =\ p-\/>space;}
+\DoxyCodeLine{00336\ }
+\DoxyCodeLine{00337\ \ \ \ \ \textcolor{keywordflow}{if}\ (space\ >\ 8\ \&\&\ p-\/>count\ <\ space\ /\ 2)\ \{}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \_\_OBJ\_pool\_resize(p,\ space\ /=\ 2);}
+\DoxyCodeLine{00339\ \ \ \ \ \}}
+\DoxyCodeLine{00340\ }
+\DoxyCodeLine{00341\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct____OBJ__entry}{\_\_OBJ\_entry}}\ *entry\ =\ \_\_OBJ\_pool\_find(p-\/>entries,\ space,\ ptr);}
+\DoxyCodeLine{00342\ \ \ \ \ \textcolor{keywordflow}{if}\ (entry-\/>ptr\ ==\ \mbox{\hyperlink{list_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}})\ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00343\ }
+\DoxyCodeLine{00344\ \ \ \ \ entry-\/>sub\ =\ 1;}
+\DoxyCodeLine{00345\ \ \ \ \ entry-\/>ptr\ =\ \mbox{\hyperlink{list_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}};}
+\DoxyCodeLine{00346\ \ \ \ \ p-\/>count-\/-\/;}
+\DoxyCodeLine{00347\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00348\ \}}
+\DoxyCodeLine{00349\ }
+\DoxyCodeLine{00350\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ *\_\_OBJ\_pool\_alloc(\textcolor{keyword}{struct}\ \mbox{\hyperlink{struct____OBJ__pool}{\_\_OBJ\_pool}}\ *p,\ \textcolor{keywordtype}{size\_t}\ size)\ \{}
+\DoxyCodeLine{00351\ \ \ \ \ \textcolor{keywordtype}{void}\ *ptr\ =\ malloc(size);}
+\DoxyCodeLine{00352\ \ \ \ \ \textcolor{keywordflow}{return}\ \_\_OBJ\_pool\_add(p,\ ptr);}
+\DoxyCodeLine{00353\ \}}
+\DoxyCodeLine{00354\ }
+\DoxyCodeLine{00355\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ *\_\_OBJ\_pool\_realloc(\textcolor{keyword}{struct}\ \mbox{\hyperlink{struct____OBJ__pool}{\_\_OBJ\_pool}}\ *p,\ \textcolor{keywordtype}{void}\ *ptr,\ \textcolor{keywordtype}{size\_t}\ size)\ \{}
+\DoxyCodeLine{00356\ \ \ \ \ \_\_OBJ\_pool\_remove(p,\ ptr);}
+\DoxyCodeLine{00357\ \ \ \ \ ptr\ =\ realloc(ptr,\ size);}
+\DoxyCodeLine{00358\ \ \ \ \ \textcolor{keywordflow}{return}\ \_\_OBJ\_pool\_add(p,\ ptr);}
+\DoxyCodeLine{00359\ \}}
+\DoxyCodeLine{00360\ }
+\DoxyCodeLine{00361\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \_\_OBJ\_pool\_free(\textcolor{keyword}{struct}\ \mbox{\hyperlink{struct____OBJ__pool}{\_\_OBJ\_pool}}\ *p,\ \textcolor{keywordtype}{void}\ *ptr)\ \{}
+\DoxyCodeLine{00362\ \ \ \ \ \textcolor{keywordflow}{if}\ (\_\_OBJ\_pool\_remove(p,\ ptr))\ free(ptr);}
+\DoxyCodeLine{00363\ \}}
+\DoxyCodeLine{00364\ }
+\DoxyCodeLine{00365\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \_\_OBJ\_freebase(\textcolor{keyword}{struct}\ \mbox{\hyperlink{struct____OBJ__base}{\_\_OBJ\_base}}\ *base)\ \{}
+\DoxyCodeLine{00366\ \ \ \ \ free(base-\/>alloc);}
+\DoxyCodeLine{00367\ \ \ \ \ free(base-\/>realloc);}
+\DoxyCodeLine{00368\ \ \ \ \ free(base-\/>free);}
+\DoxyCodeLine{00369\ \ \ \ \ free(base-\/>release);}
+\DoxyCodeLine{00370\ \ \ \ \ \_\_OBJ\_pool\_destroy(base-\/>reserved.p);}
+\DoxyCodeLine{00371\ \ \ \ \ free(base);}
+\DoxyCodeLine{00372\ \}}
+\DoxyCodeLine{00373\ }
+\DoxyCodeLine{00374\ \textcolor{comment}{//\ base::alloc(size\_t)}}
+\DoxyCodeLine{00375\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{size\_t}\ \_\_OBJ\_alloc\_s\ =\ 0;}
+\DoxyCodeLine{00376\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ *\_\_OBJ\_alloc(\textcolor{keywordtype}{size\_t}\ size)\ \{}
+\DoxyCodeLine{00377\ \ \ \ \ \textcolor{keyword}{volatile}\ \textcolor{keywordtype}{size\_t}\ closn\ =\ \_\_OBJ\_CLOFNNUM;}
+\DoxyCodeLine{00378\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct____OBJ__base}{\_\_OBJ\_base}}\ *base\ =\ (\textcolor{keyword}{struct\ }\mbox{\hyperlink{struct____OBJ__base}{\_\_OBJ\_base}}\ *)closn;}
+\DoxyCodeLine{00379\ }
+\DoxyCodeLine{00380\ \ \ \ \ \textcolor{keywordflow}{return}\ \_\_OBJ\_pool\_alloc(base-\/>reserved.p,\ size);}
+\DoxyCodeLine{00381\ \}}
+\DoxyCodeLine{00382\ }
+\DoxyCodeLine{00383\ \textcolor{comment}{//\ base::realloc(void\ *,\ size\_t)}}
+\DoxyCodeLine{00384\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{size\_t}\ \_\_OBJ\_realloc\_s\ =\ 0;}
+\DoxyCodeLine{00385\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ *\_\_OBJ\_realloc(\textcolor{keywordtype}{void}\ *ptr,\ \textcolor{keywordtype}{size\_t}\ size)\ \{}
+\DoxyCodeLine{00386\ \ \ \ \ \textcolor{keyword}{volatile}\ \textcolor{keywordtype}{size\_t}\ closn\ =\ \_\_OBJ\_CLOFNNUM;}
+\DoxyCodeLine{00387\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct____OBJ__base}{\_\_OBJ\_base}}\ *base\ =\ (\textcolor{keyword}{struct\ }\mbox{\hyperlink{struct____OBJ__base}{\_\_OBJ\_base}}\ *)closn;}
+\DoxyCodeLine{00388\ }
+\DoxyCodeLine{00389\ \ \ \ \ \textcolor{keywordflow}{return}\ \_\_OBJ\_pool\_realloc(base-\/>reserved.p,\ ptr,\ size);}
+\DoxyCodeLine{00390\ \}}
+\DoxyCodeLine{00391\ }
+\DoxyCodeLine{00392\ \textcolor{comment}{//\ base::free(void\ *)}}
+\DoxyCodeLine{00393\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{size\_t}\ \_\_OBJ\_free\_s\ =\ 0;}
+\DoxyCodeLine{00394\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \_\_OBJ\_free(\textcolor{keywordtype}{void}\ *ptr)\ \{}
+\DoxyCodeLine{00395\ \ \ \ \ \textcolor{keyword}{volatile}\ \textcolor{keywordtype}{size\_t}\ closn\ =\ \_\_OBJ\_CLOFNNUM;}
+\DoxyCodeLine{00396\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct____OBJ__base}{\_\_OBJ\_base}}\ *base\ =\ (\textcolor{keyword}{struct\ }\mbox{\hyperlink{struct____OBJ__base}{\_\_OBJ\_base}}\ *)closn;}
+\DoxyCodeLine{00397\ }
+\DoxyCodeLine{00398\ \ \ \ \ \_\_OBJ\_pool\_free(base-\/>reserved.p,\ ptr);}
+\DoxyCodeLine{00399\ \}}
+\DoxyCodeLine{00400\ }
+\DoxyCodeLine{00401\ \textcolor{comment}{//\ base::release()}}
+\DoxyCodeLine{00402\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{size\_t}\ \_\_OBJ\_release\_s\ =\ 0;}
+\DoxyCodeLine{00403\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \_\_OBJ\_release()\ \{}
+\DoxyCodeLine{00404\ \ \ \ \ \textcolor{keyword}{volatile}\ \textcolor{keywordtype}{size\_t}\ closn\ =\ \_\_OBJ\_CLOFNNUM;}
+\DoxyCodeLine{00405\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct____OBJ__base}{\_\_OBJ\_base}}\ *base\ =\ (\textcolor{keyword}{struct\ }\mbox{\hyperlink{struct____OBJ__base}{\_\_OBJ\_base}}\ *)closn;}
+\DoxyCodeLine{00406\ }
+\DoxyCodeLine{00407\ \ \ \ \ void\ (*release)()\ =\ base-\/>release;}
+\DoxyCodeLine{00408\ \ \ \ \ base-\/>release\ =\ \mbox{\hyperlink{list_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}};}
+\DoxyCodeLine{00409\ }
+\DoxyCodeLine{00410\ \ \ \ \ \textcolor{keywordflow}{if}\ (base-\/>reserved.d\ !=\ \mbox{\hyperlink{list_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}})\ \{}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ base-\/>reserved.d(base);}
+\DoxyCodeLine{00412\ \ \ \ \ \}}
+\DoxyCodeLine{00413\ }
+\DoxyCodeLine{00414\ \ \ \ \ base-\/>release\ =\ release;}
+\DoxyCodeLine{00415\ \ \ \ \ \_\_OBJ\_freebase(base);}
+\DoxyCodeLine{00416\ \}}
+\DoxyCodeLine{00417\ }
+\DoxyCodeLine{00418\ \textcolor{comment}{//\ Some\ private\ macros}}
+\DoxyCodeLine{00419\ \textcolor{preprocessor}{\#define\ \_\_OBJ\_PUB(n)\ \ \ \ struct\ \_\_OBJ\_\_\#\#n}}
+\DoxyCodeLine{00420\ \textcolor{preprocessor}{\#define\ \_\_OBJ\_PRV(n)\ \ \ \ struct\ \_\_OBJ\_PRV\_\#\#n}}
+\DoxyCodeLine{00421\ \textcolor{preprocessor}{\#define\ \_\_OBJ\_INF(n)\ \ \ \ struct\ \_\_OBJ\_INF\_\#\#n}}
+\DoxyCodeLine{00422\ }
+\DoxyCodeLine{00423\ \textcolor{preprocessor}{\#define\ \_\_OBJ\_M(n,\ f)\ \ \ \_\_OBJ\_\_\#\#n\#\#\_\#\#f}}
+\DoxyCodeLine{00424\ \textcolor{preprocessor}{\#define\ \_\_OBJ\_S(n,\ f)\ \ \ \_\_OBJ\_S\_\#\#n\#\#\_\#\#f}}
+\DoxyCodeLine{00425\ \textcolor{preprocessor}{\#define\ \_\_OBJ\_H(n,\ f)\ \ \ \_\_OBJ\_H\_\#\#n\#\#\_\#\#f}}
+\DoxyCodeLine{00426\ }
+\DoxyCodeLine{00427\ \textcolor{preprocessor}{\#define\ \_\_OBJ\_CON(n)\ \ \ \ \_\_OBJ\_C\_\#\#n}}
+\DoxyCodeLine{00428\ \textcolor{preprocessor}{\#define\ \_\_OBJ\_DES(n)\ \ \ \ \_\_OBJ\_D\_\#\#n}}
+\DoxyCodeLine{00429\ }
+\DoxyCodeLine{00430\ \textcolor{comment}{//\ Public\ fields}}
+\DoxyCodeLine{00431\ \textcolor{preprocessor}{\#define\ public(...)\ \ \ \ \ \_\_VA\_ARGS\_\_}}
+\DoxyCodeLine{00432\ \textcolor{comment}{//\ Private\ fields}}
+\DoxyCodeLine{00433\ \textcolor{preprocessor}{\#define\ private(...)\ \ \ \ \_\_VA\_ARGS\_\_}}
+\DoxyCodeLine{00434\ }
+\DoxyCodeLine{00435\ \textcolor{comment}{//\ Extend\ a\ class}}
+\DoxyCodeLine{00436\ \textcolor{preprocessor}{\#define\ extend(super\_name)\ \(\backslash\)}}
+\DoxyCodeLine{00437\ \textcolor{preprocessor}{\ \ \ \ \_\_OBJ\_PUB(super\_name)\ super\_name}}
+\DoxyCodeLine{00438\ }
+\DoxyCodeLine{00439\ \textcolor{comment}{//\ Class\ declaration}}
+\DoxyCodeLine{00440\ \textcolor{preprocessor}{\#define\ classdef(name)\ \(\backslash\)}}
+\DoxyCodeLine{00441\ \textcolor{preprocessor}{\ \ \ \ typedef\ \_\_OBJ\_PUB(name)\ *name}}
+\DoxyCodeLine{00442\ }
+\DoxyCodeLine{00443\ \textcolor{comment}{//\ Class\ definition}}
+\DoxyCodeLine{00444\ \textcolor{preprocessor}{\#define\ class(name,\ public\_members,\ ...)\ \(\backslash\)}}
+\DoxyCodeLine{00445\ \textcolor{preprocessor}{\ \ \ \ \_\_OBJ\_PUB(name)\ \{\ \(\backslash\)}}
+\DoxyCodeLine{00446\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ struct\ \_\_OBJ\_base\ base;\ \(\backslash\)}}
+\DoxyCodeLine{00447\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ struct\ \{\ char\ :\ 0;\ public\_members\ \};\ \(\backslash\)}}
+\DoxyCodeLine{00448\ \textcolor{preprocessor}{\ \ \ \ \};\ \(\backslash\)}}
+\DoxyCodeLine{00449\ \textcolor{preprocessor}{\ \ \ \ \_\_OBJ\_PRV(name)\ \{\ \(\backslash\)}}
+\DoxyCodeLine{00450\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ struct\ \_\_OBJ\_base\ base;\ \(\backslash\)}}
+\DoxyCodeLine{00451\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ struct\ \{\ char\ :\ 0;\ public\_members\ \};\ \(\backslash\)}}
+\DoxyCodeLine{00452\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ struct\ \{\ char\ :\ 0;\ \_\_VA\_ARGS\_\_\ \};\ \(\backslash\)}}
+\DoxyCodeLine{00453\ \textcolor{preprocessor}{\ \ \ \ \}}}
+\DoxyCodeLine{00454\ }
+\DoxyCodeLine{00455\ \textcolor{comment}{//\ Constructor\ declaration}}
+\DoxyCodeLine{00456\ \textcolor{preprocessor}{\#define\ ctor(class\_name)\ \(\backslash\)}}
+\DoxyCodeLine{00457\ \textcolor{preprocessor}{\ \ \ \ \_\_OBJ\_PUB(class\_name)\ *class\_name\#\#\_new}}
+\DoxyCodeLine{00458\ }
+\DoxyCodeLine{00459\ \textcolor{comment}{//\ Destructor\ declaration}}
+\DoxyCodeLine{00460\ \textcolor{preprocessor}{\#define\ dtor(class\_name)\ \(\backslash\)}}
+\DoxyCodeLine{00461\ \textcolor{preprocessor}{\ \ \ \ void\ \_\_OBJ\_DES(class\_name)(\_\_OBJ\_PRV(class\_name)\ *\_\_OBJ\_ROOT)}}
+\DoxyCodeLine{00462\ }
+\DoxyCodeLine{00463\ \textcolor{comment}{//\ Method\ declaration}}
+\DoxyCodeLine{00464\ \textcolor{preprocessor}{\#define\ method(class\_name,\ return\_type,\ name)\ \(\backslash\)}}
+\DoxyCodeLine{00465\ \textcolor{preprocessor}{\ \ \ \ static\ size\_t\ \_\_OBJ\_S(class\_name,\ name);\ \(\backslash\)}}
+\DoxyCodeLine{00466\ \textcolor{preprocessor}{\ \ \ \ static\ return\_type\ \_\_OBJ\_M(class\_name,\ name)}}
+\DoxyCodeLine{00467\ }
+\DoxyCodeLine{00468\ \textcolor{comment}{//\ New\ instance}}
+\DoxyCodeLine{00469\ \textcolor{preprocessor}{\#define\ new(class\_name)\ \(\backslash\)}}
+\DoxyCodeLine{00470\ \textcolor{preprocessor}{\ \ \ \ class\_name\#\#\_new}}
+\DoxyCodeLine{00471\ }
+\DoxyCodeLine{00472\ \textcolor{comment}{//\ Prepare\ self}}
+\DoxyCodeLine{00473\ \textcolor{preprocessor}{\#define\ obj\_prepare(class\_name)\ \(\backslash\)}}
+\DoxyCodeLine{00474\ \textcolor{preprocessor}{\ \ \ \ volatile\ size\_t\ \_\_closn\ =\ (size\_t)\_\_OBJ\_CLOFNNUM;\ \(\backslash\)}}
+\DoxyCodeLine{00475\ \textcolor{preprocessor}{\ \ \ \ \_\_OBJ\_PRV(class\_name)\ *\_\_OBJ\_ROOT\ =\ (\_\_OBJ\_PRV(class\_name)*)\_\_closn}}
+\DoxyCodeLine{00476\ }
+\DoxyCodeLine{00477\ \textcolor{preprocessor}{\#define\ \_\_OBJ\_IMPL(class\_name,\ method\_name)\ \(\backslash\)}}
+\DoxyCodeLine{00478\ \textcolor{preprocessor}{\ \ \ \ do\ \{\ \(\backslash\)}}
+\DoxyCodeLine{00479\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ void\ *\_\_pf\ =\ \_\_OBJ\_clofn(\_\_OBJ\_M(class\_name,\ method\_name),\ \(\backslash\)}}
+\DoxyCodeLine{00480\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \&\_\_OBJ\_S(class\_name,\ method\_name),\ (void*)\_\_OBJ\_ROOT);\ \(\backslash\)}}
+\DoxyCodeLine{00481\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ if\ (\_\_pf)\ \{\ \(\backslash\)}}
+\DoxyCodeLine{00482\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \_\_OBJ\_ROOT-\/>method\_name\ =\ \_\_OBJ\_pool\_add(\_\_OBJ\_ROOT-\/>base.reserved.p,\ \_\_pf);\ \(\backslash\)}}
+\DoxyCodeLine{00483\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \}\ \(\backslash\)}}
+\DoxyCodeLine{00484\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ else\ \{\ \(\backslash\)}}
+\DoxyCodeLine{00485\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \_\_OBJ\_ERR("{}could't\ implement\ the\ method\ '\%s'!"{},\ \#method\_name);\ \(\backslash\)}}
+\DoxyCodeLine{00486\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ goto\ \_\_err\_\_;\ \(\backslash\)}}
+\DoxyCodeLine{00487\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \}\ \(\backslash\)}}
+\DoxyCodeLine{00488\ \textcolor{preprocessor}{\ \ \ \ \}\ while\ (0)}}
+\DoxyCodeLine{00489\ }
+\DoxyCodeLine{00490\ \textcolor{preprocessor}{\#define\ \_\_OBJ\_S2(n,\ \_1)\ \(\backslash\)}}
+\DoxyCodeLine{00491\ \textcolor{preprocessor}{\ \ \ \ \_\_OBJ\_IMPL(n,\ \_1)}}
+\DoxyCodeLine{00492\ \textcolor{preprocessor}{\#define\ \_\_OBJ\_S3(n,\ \_1,\ \_2)\ \(\backslash\)}}
+\DoxyCodeLine{00493\ \textcolor{preprocessor}{\ \ \ \ \_\_OBJ\_IMPL(n,\ \_1);\ \_\_OBJ\_IMPL(n,\ \_2)}}
+\DoxyCodeLine{00494\ \textcolor{preprocessor}{\#define\ \_\_OBJ\_S4(n,\ \_1,\ \_2,\ \_3)\ \(\backslash\)}}
+\DoxyCodeLine{00495\ \textcolor{preprocessor}{\ \ \ \ \_\_OBJ\_IMPL(n,\ \_1);\ \_\_OBJ\_IMPL(n,\ \_2);\ \_\_OBJ\_IMPL(n,\ \_3)}}
+\DoxyCodeLine{00496\ \textcolor{preprocessor}{\#define\ \_\_OBJ\_S5(n,\ \_1,\ \_2,\ \_3,\ \_4)\ \(\backslash\)}}
+\DoxyCodeLine{00497\ \textcolor{preprocessor}{\ \ \ \ \_\_OBJ\_IMPL(n,\ \_1);\ \_\_OBJ\_IMPL(n,\ \_2);\ \_\_OBJ\_IMPL(n,\ \_3);\ \(\backslash\)}}
+\DoxyCodeLine{00498\ \textcolor{preprocessor}{\ \ \ \ \_\_OBJ\_IMPL(n,\ \_4)}}
+\DoxyCodeLine{00499\ \textcolor{preprocessor}{\#define\ \_\_OBJ\_S6(n,\ \_1,\ \_2,\ \_3,\ \_4,\ \_5)\ \(\backslash\)}}
+\DoxyCodeLine{00500\ \textcolor{preprocessor}{\ \ \ \ \_\_OBJ\_IMPL(n,\ \_1);\ \_\_OBJ\_IMPL(n,\ \_2);\ \_\_OBJ\_IMPL(n,\ \_3);\ \(\backslash\)}}
+\DoxyCodeLine{00501\ \textcolor{preprocessor}{\ \ \ \ \_\_OBJ\_IMPL(n,\ \_4);\ \_\_OBJ\_IMPL(n,\ \_5)}}
+\DoxyCodeLine{00502\ \textcolor{preprocessor}{\#define\ \_\_OBJ\_S7(n,\ \_1,\ \_2,\ \_3,\ \_4,\ \_5,\ \_6)\ \(\backslash\)}}
+\DoxyCodeLine{00503\ \textcolor{preprocessor}{\ \ \ \ \_\_OBJ\_IMPL(n,\ \_1);\ \_\_OBJ\_IMPL(n,\ \_2);\ \_\_OBJ\_IMPL(n,\ \_3);\ \(\backslash\)}}
+\DoxyCodeLine{00504\ \textcolor{preprocessor}{\ \ \ \ \_\_OBJ\_IMPL(n,\ \_4);\ \_\_OBJ\_IMPL(n,\ \_5);\ \_\_OBJ\_IMPL(n,\ \_6)}}
+\DoxyCodeLine{00505\ \textcolor{preprocessor}{\#define\ \_\_OBJ\_S8(n,\ \_1,\ \_2,\ \_3,\ \_4,\ \_5,\ \_6,\ \_7)\ \(\backslash\)}}
+\DoxyCodeLine{00506\ \textcolor{preprocessor}{\ \ \ \ \_\_OBJ\_IMPL(n,\ \_1);\ \_\_OBJ\_IMPL(n,\ \_2);\ \_\_OBJ\_IMPL(n,\ \_3);\ \(\backslash\)}}
+\DoxyCodeLine{00507\ \textcolor{preprocessor}{\ \ \ \ \_\_OBJ\_IMPL(n,\ \_4);\ \_\_OBJ\_IMPL(n,\ \_5);\ \_\_OBJ\_IMPL(n,\ \_6);\ \(\backslash\)}}
+\DoxyCodeLine{00508\ \textcolor{preprocessor}{\ \ \ \ \_\_OBJ\_IMPL(n,\ \_7)}}
+\DoxyCodeLine{00509\ \textcolor{preprocessor}{\#define\ \_\_OBJ\_S9(n,\ \_1,\ \_2,\ \_3,\ \_4,\ \_5,\ \_6,\ \_7,\ \_8)\ \(\backslash\)}}
+\DoxyCodeLine{00510\ \textcolor{preprocessor}{\ \ \ \ \_\_OBJ\_IMPL(n,\ \_1);\ \_\_OBJ\_IMPL(n,\ \_2);\ \_\_OBJ\_IMPL(n,\ \_3);\ \(\backslash\)}}
+\DoxyCodeLine{00511\ \textcolor{preprocessor}{\ \ \ \ \_\_OBJ\_IMPL(n,\ \_4);\ \_\_OBJ\_IMPL(n,\ \_5);\ \_\_OBJ\_IMPL(n,\ \_6),\ \(\backslash\)}}
+\DoxyCodeLine{00512\ \textcolor{preprocessor}{\ \ \ \ \_\_OBJ\_IMPL(n,\ \_7);\ \_\_OBJ\_IMPL(n,\ \_8)}}
+\DoxyCodeLine{00513\ \textcolor{preprocessor}{\#define\ \_\_OBJ\_S10(n,\ \_1,\ \_2,\ \_3,\ \_4,\ \_5,\ \_6,\ \_7,\ \_8,\ \_9)\ \(\backslash\)}}
+\DoxyCodeLine{00514\ \textcolor{preprocessor}{\ \ \ \ \_\_OBJ\_IMPL(n,\ \_1);\ \_\_OBJ\_IMPL(n,\ \_2);\ \_\_OBJ\_IMPL(n,\ \_3);\ \(\backslash\)}}
+\DoxyCodeLine{00515\ \textcolor{preprocessor}{\ \ \ \ \_\_OBJ\_IMPL(n,\ \_4);\ \_\_OBJ\_IMPL(n,\ \_5);\ \_\_OBJ\_IMPL(n,\ \_6);\ \(\backslash\)}}
+\DoxyCodeLine{00516\ \textcolor{preprocessor}{\ \ \ \ \_\_OBJ\_IMPL(n,\ \_7);\ \_\_OBJ\_IMPL(n,\ \_8);\ \_\_OBJ\_IMPL(n,\ \_9)}}
+\DoxyCodeLine{00517\ \textcolor{preprocessor}{\#define\ \_\_OBJ\_S11(n,\ \_1,\ \_2,\ \_3,\ \_4,\ \_5,\ \_6,\ \_7,\ \_8,\ \_9,\ \_10)\ \(\backslash\)}}
+\DoxyCodeLine{00518\ \textcolor{preprocessor}{\ \ \ \ \_\_OBJ\_IMPL(n,\ \_1);\ \_\_OBJ\_IMPL(n,\ \_2);\ \_\_OBJ\_IMPL(n,\ \_3);\ \(\backslash\)}}
+\DoxyCodeLine{00519\ \textcolor{preprocessor}{\ \ \ \ \_\_OBJ\_IMPL(n,\ \_4);\ \_\_OBJ\_IMPL(n,\ \_5);\ \_\_OBJ\_IMPL(n,\ \_6);\ \(\backslash\)}}
+\DoxyCodeLine{00520\ \textcolor{preprocessor}{\ \ \ \ \_\_OBJ\_IMPL(n,\ \_7);\ \_\_OBJ\_IMPL(n,\ \_8);\ \_\_OBJ\_IMPL(n,\ \_9);\ \(\backslash\)}}
+\DoxyCodeLine{00521\ \textcolor{preprocessor}{\ \ \ \ \_\_OBJ\_IMPL(n,\ \_10)}}
+\DoxyCodeLine{00522\ \textcolor{preprocessor}{\#define\ \_\_OBJ\_S12(n,\ \_1,\ \_2,\ \_3,\ \_4,\ \_5,\ \_6,\ \_7,\ \_8,\ \_9,\ \_10,\ \_11)\ \(\backslash\)}}
+\DoxyCodeLine{00523\ \textcolor{preprocessor}{\ \ \ \ \_\_OBJ\_IMPL(n,\ \_1);\ \_\_OBJ\_IMPL(n,\ \_2);\ \_\_OBJ\_IMPL(n,\ \_3);\ \(\backslash\)}}
+\DoxyCodeLine{00524\ \textcolor{preprocessor}{\ \ \ \ \_\_OBJ\_IMPL(n,\ \_4);\ \_\_OBJ\_IMPL(n,\ \_5);\ \_\_OBJ\_IMPL(n,\ \_6);\ \(\backslash\)}}
+\DoxyCodeLine{00525\ \textcolor{preprocessor}{\ \ \ \ \_\_OBJ\_IMPL(n,\ \_7);\ \_\_OBJ\_IMPL(n,\ \_8);\ \_\_OBJ\_IMPL(n,\ \_9);\ \(\backslash\)}}
+\DoxyCodeLine{00526\ \textcolor{preprocessor}{\ \ \ \ \_\_OBJ\_IMPL(n,\ \_10);\ \_\_OBJ\_IMPL(n,\ \_11)}}
+\DoxyCodeLine{00527\ \textcolor{preprocessor}{\#define\ \_\_OBJ\_S13(n,\ \_1,\ \_2,\ \_3,\ \_4,\ \_5,\ \_6,\ \_7,\ \_8,\ \_9,\ \_10,\ \_11,\ \_12)\ \(\backslash\)}}
+\DoxyCodeLine{00528\ \textcolor{preprocessor}{\ \ \ \ \_\_OBJ\_IMPL(n,\ \_1);\ \_\_OBJ\_IMPL(n,\ \_2);\ \_\_OBJ\_IMPL(n,\ \_3);\ \(\backslash\)}}
+\DoxyCodeLine{00529\ \textcolor{preprocessor}{\ \ \ \ \_\_OBJ\_IMPL(n,\ \_4);\ \_\_OBJ\_IMPL(n,\ \_5);\ \_\_OBJ\_IMPL(n,\ \_6);\ \(\backslash\)}}
+\DoxyCodeLine{00530\ \textcolor{preprocessor}{\ \ \ \ \_\_OBJ\_IMPL(n,\ \_7);\ \_\_OBJ\_IMPL(n,\ \_8);\ \_\_OBJ\_IMPL(n,\ \_9);\ \(\backslash\)}}
+\DoxyCodeLine{00531\ \textcolor{preprocessor}{\ \ \ \ \_\_OBJ\_IMPL(n,\ \_10);\ \_\_OBJ\_IMPL(n,\ \_11);\ \_\_OBJ\_IMPL(n,\ \_12)}}
+\DoxyCodeLine{00532\ \textcolor{preprocessor}{\#define\ \_\_OBJ\_S14(n,\ \_1,\ \_2,\ \_3,\ \_4,\ \_5,\ \_6,\ \_7,\ \_8,\ \_9,\ \_10,\ \_11,\ \_12,\ \_13)\ \(\backslash\)}}
+\DoxyCodeLine{00533\ \textcolor{preprocessor}{\ \ \ \ \_\_OBJ\_IMPL(n,\ \_1);\ \_\_OBJ\_IMPL(n,\ \_2);\ \_\_OBJ\_IMPL(n,\ \_3);\ \(\backslash\)}}
+\DoxyCodeLine{00534\ \textcolor{preprocessor}{\ \ \ \ \_\_OBJ\_IMPL(n,\ \_4);\ \_\_OBJ\_IMPL(n,\ \_5);\ \_\_OBJ\_IMPL(n,\ \_6);\ \(\backslash\)}}
+\DoxyCodeLine{00535\ \textcolor{preprocessor}{\ \ \ \ \_\_OBJ\_IMPL(n,\ \_7);\ \_\_OBJ\_IMPL(n,\ \_8);\ \_\_OBJ\_IMPL(n,\ \_9);\ \(\backslash\)}}
+\DoxyCodeLine{00536\ \textcolor{preprocessor}{\ \ \ \ \_\_OBJ\_IMPL(n,\ \_10);\ \_\_OBJ\_IMPL(n,\ \_11);\ \_\_OBJ\_IMPL(n,\ \_12);\ \(\backslash\)}}
+\DoxyCodeLine{00537\ \textcolor{preprocessor}{\ \ \ \ \_\_OBJ\_IMPL(n,\ \_13)}}
+\DoxyCodeLine{00538\ }
+\DoxyCodeLine{00539\ \textcolor{preprocessor}{\#define\ \_\_OBJ\_FC(\_1,\ \_2,\ \_3,\ \_4,\ \_5,\ \_6,\ \_7,\ \_8,\ \_9,\ \_10,\ \_11,\ \_12,\ \_13,\ \_14,\ \_15,\ ...)\ \_15}}
+\DoxyCodeLine{00540\ \textcolor{preprocessor}{\#define\ \_\_OBJ\_FR(args)\ \_\_OBJ\_FC\ args}}
+\DoxyCodeLine{00541\ \textcolor{preprocessor}{\#define\ \_\_OBJ\_CFA(...)\ \_\_OBJ\_FR((\_\_VA\_ARGS\_\_,\ \(\backslash\)}}
+\DoxyCodeLine{00542\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \_\_OBJ\_S14,\ \_\_OBJ\_S13,\ \_\_OBJ\_S12,\ \(\backslash\)}}
+\DoxyCodeLine{00543\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \_\_OBJ\_S11,\ \_\_OBJ\_S10,\ \_\_OBJ\_S9,\ \_\_OBJ\_S8,\ \(\backslash\)}}
+\DoxyCodeLine{00544\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \_\_OBJ\_S7,\ \_\_OBJ\_S6,\ \_\_OBJ\_S5,\ \_\_OBJ\_S4,\ \(\backslash\)}}
+\DoxyCodeLine{00545\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \_\_OBJ\_S3,\ \_\_OBJ\_S2,\ ,\ ))}}
+\DoxyCodeLine{00546\ \textcolor{preprocessor}{\#define\ \_\_OBJ\_MC(...)\ \_\_OBJ\_CFA(\_\_VA\_ARGS\_\_\ ())}}
+\DoxyCodeLine{00547\ }
+\DoxyCodeLine{00548\ \textcolor{comment}{//\ Bind\ methods}}
+\DoxyCodeLine{00549\ \textcolor{preprocessor}{\#define\ obj\_bind(class\_name,\ ...)\ \ \_\_EXPAND(\_\_OBJ\_MC(class\_name,\ \_\_VA\_ARGS\_\_)(class\_name,\ \_\_VA\_ARGS\_\_))}}
+\DoxyCodeLine{00550\ }
+\DoxyCodeLine{00551\ \textcolor{comment}{//\ Constructor\ setup\ instance}}
+\DoxyCodeLine{00552\ \textcolor{preprocessor}{\#define\ obj\_setup(class\_name)\ \(\backslash\)}}
+\DoxyCodeLine{00553\ \textcolor{preprocessor}{\ \ \ \ \_\_OBJ\_PRV(class\_name)\ *\_\_OBJ\_ROOT\ =\ (\_\_OBJ\_PRV(class\_name)\ *)malloc(sizeof(\_\_OBJ\_PRV(class\_name)));\ \(\backslash\)}}
+\DoxyCodeLine{00554\ \textcolor{preprocessor}{\ \ \ \ do\ \{\ \(\backslash\)}}
+\DoxyCodeLine{00555\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ if\ (!\_\_OBJ\_ROOT)\ \{\ \(\backslash\)}}
+\DoxyCodeLine{00556\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \_\_OBJ\_ERR("{}could't\ create\ new\ class\ '\%s'\ instance!"{},\ \#class\_name);\ \(\backslash\)}}
+\DoxyCodeLine{00557\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ return\ NULL;\ \(\backslash\)}}
+\DoxyCodeLine{00558\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \}\ \(\backslash\)}}
+\DoxyCodeLine{00559\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \_\_OBJ\_ROOT-\/>base.reserved.d\ =\ NULL;\ \(\backslash\)}}
+\DoxyCodeLine{00560\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \_\_OBJ\_ROOT-\/>base.reserved.p\ =\ \_\_OBJ\_pool\_create();\ \(\backslash\)}}
+\DoxyCodeLine{00561\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \_\_OBJ\_ROOT-\/>base.alloc\ \ \ \ \ \ =\ \_\_OBJ\_clofn((void\ *)\_\_OBJ\_alloc,\ \&\_\_OBJ\_alloc\_s,\ (void\ *)\_\_OBJ\_ROOT);\ \(\backslash\)}}
+\DoxyCodeLine{00562\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \_\_OBJ\_ROOT-\/>base.realloc\ \ \ \ =\ \_\_OBJ\_clofn((void\ *)\_\_OBJ\_realloc,\ \&\_\_OBJ\_realloc\_s,\ (void\ *)\_\_OBJ\_ROOT);\ \(\backslash\)}}
+\DoxyCodeLine{00563\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \_\_OBJ\_ROOT-\/>base.free\ \ \ \ \ \ \ =\ \_\_OBJ\_clofn((void\ *)\_\_OBJ\_free,\ \&\_\_OBJ\_free\_s,\ (void\ *)\_\_OBJ\_ROOT);\ \(\backslash\)}}
+\DoxyCodeLine{00564\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \_\_OBJ\_ROOT-\/>base.release\ \ \ \ =\ \_\_OBJ\_clofn((void\ *)\_\_OBJ\_release,\ \&\_\_OBJ\_release\_s,\ (void\ *)\_\_OBJ\_ROOT);\ \(\backslash\)}}
+\DoxyCodeLine{00565\ \textcolor{preprocessor}{\ \ \ \ \}\ while\ (0)}}
+\DoxyCodeLine{00566\ }
+\DoxyCodeLine{00567\ \textcolor{comment}{//\ Constructor\ raiserror}}
+\DoxyCodeLine{00568\ \textcolor{preprocessor}{\#define\ obj\_error()\ \(\backslash\)}}
+\DoxyCodeLine{00569\ \textcolor{preprocessor}{\ \ \ \ goto\ \_\_err\_\_}}
+\DoxyCodeLine{00570\ }
+\DoxyCodeLine{00571\ \textcolor{comment}{//\ Constructor\ error\ handing}}
+\DoxyCodeLine{00572\ \textcolor{preprocessor}{\#define\ obj\_done(class\_name)\ \(\backslash\)}}
+\DoxyCodeLine{00573\ \textcolor{preprocessor}{\ \ \ \ return\ (class\_name)\_\_OBJ\_ROOT;\ \(\backslash\)}}
+\DoxyCodeLine{00574\ \textcolor{preprocessor}{\ \ \ \ \_\_err\_\_:;\ \(\backslash\)}}
+\DoxyCodeLine{00575\ \textcolor{preprocessor}{\ \ \ \ \_\_OBJ\_freebase(\&\_\_OBJ\_ROOT-\/>base);\ \(\backslash\)}}
+\DoxyCodeLine{00576\ \textcolor{preprocessor}{\ \ \ \ return\ NULL}}
+\DoxyCodeLine{00577\ }
+\DoxyCodeLine{00578\ \textcolor{comment}{//\ Bind\ deconstructor}}
+\DoxyCodeLine{00579\ \textcolor{preprocessor}{\#define\ obj\_dtor(class\_name)\ \(\backslash\)}}
+\DoxyCodeLine{00580\ \textcolor{preprocessor}{\ \ \ \ \_\_OBJ\_ROOT-\/>base.reserved.d\ =\ (void\ *)\_\_OBJ\_DES(class\_name)}}
+\DoxyCodeLine{00581\ }
+\DoxyCodeLine{00582\ \textcolor{comment}{//\ Override\ super's\ method}}
+\DoxyCodeLine{00583\ \textcolor{preprocessor}{\#define\ obj\_override(class\_name,\ super\_name,\ method\_name)\ \(\backslash\)}}
+\DoxyCodeLine{00584\ \textcolor{preprocessor}{\ \ \ \ do\ \{\ \(\backslash\)}}
+\DoxyCodeLine{00585\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ void\ *\_\_pf\ =\ \_\_OBJ\_clofn(\_\_OBJ\_M(class\_name,\ method\_name),\ \&\_\_OBJ\_S(class\_name,\ method\_name),\ (void*)\_\_OBJ\_ROOT);\ \(\backslash\)}}
+\DoxyCodeLine{00586\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ if\ (\_\_pf)\ \{\ \_\_OBJ\_ROOT-\/>super\_name.method\_name\ =\ \_\_OBJ\_pool\_add(\_\_OBJ\_ROOT-\/>base.reserved.p,\ \_\_pf);\ \}\ \(\backslash\)}}
+\DoxyCodeLine{00587\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ else\ \{\ \_\_OBJ\_ERR("{}could't\ override\ the\ method\ '\%s.\%s'!"{},\ \#super\_name,\ \#method\_name);\ goto\ \_\_err\_\_;\ \}\ \(\backslash\)}}
+\DoxyCodeLine{00588\ \textcolor{preprocessor}{\ \ \ \ \}\ while\ (0)}}
+\DoxyCodeLine{00589\ }
+\DoxyCodeLine{00590\ \textcolor{comment}{//\ Const\ cast}}
+\DoxyCodeLine{00591\ \textcolor{preprocessor}{\#define\ const\_cast(type,\ prop)\ \(\backslash\)}}
+\DoxyCodeLine{00592\ \textcolor{preprocessor}{\ \ \ \ *(type\ *)\&\_\_OBJ\_ROOT-\/>prop}}
+\DoxyCodeLine{00593\ }
+\DoxyCodeLine{00594\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

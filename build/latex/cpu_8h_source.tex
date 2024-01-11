@@ -1,0 +1,45 @@
+\doxysection{cpu.\+h}
+\hypertarget{cpu_8h_source}{}\label{cpu_8h_source}\index{src/cemu/cpu.h@{src/cemu/cpu.h}}
+\mbox{\hyperlink{cpu_8h}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#ifndef\ CPU\_H}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ CPU\_H}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Include}}
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{bus_8h}{bus.h}}"{}}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Data:\ CPU}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structCPU__t}{CPU\_t}}\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ u64\ regs[32];\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00037\ \ \ \ \ u64\ \mbox{\hyperlink{structCPU__t_a251803fbfa00d4d4d5fc51cbfd03baae}{pc}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00038\ \ \ \ \ u64\ \mbox{\hyperlink{structCPU__t_aee819b91f1021da5db35970f7fc5d8f4}{csr}}[4069];\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{structBUS__t}{BUS}}\ \mbox{\hyperlink{structCPU__t_a91af3477c9032c2146c561b67e4674a7}{bus}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00040\ \}\ \mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00043\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Declare\ API:\ CPU}}
+\DoxyCodeLine{00044\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00052\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{cpu_8h_acf95be96d2f1db5044b9d704edf739cd}{cpu\_init}}(\mbox{\hyperlink{structCPU__t}{CPU}}\ *cpu);}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00060\ u32\ \mbox{\hyperlink{cpu_8h_af31c0dc195290e2455b036c9198a23bb}{cpu\_fetch}}(\mbox{\hyperlink{structCPU__t}{CPU}}\ *cpu);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00069\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{cpu_8h_ae08f27bf9fb7d836bb92df902ef5828d}{cpu\_execute}}(\mbox{\hyperlink{structCPU__t}{CPU}}\ *cpu,\ u32\ inst);}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00077\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{cpu_8h_a24be27f18c18da0331c6ef74e8eb71bb}{cpu\_step}}(\mbox{\hyperlink{structCPU__t}{CPU}}*\ cpu,\ \textcolor{keywordtype}{int}\ step);}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00085\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{cpu_8h_aeb351583dd7a247f2d5a4d234489f20c}{cpu\_loop}}(\mbox{\hyperlink{structCPU__t}{CPU}}*\ cpu,\ \textcolor{keywordtype}{char}*\ filename);}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00091\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{cpu_8h_a7b8675bf8eb9edc2d2c07c74d5e21f9e}{cpu\_dump\_regs}}(\mbox{\hyperlink{structCPU__t}{CPU}}\ *cpu);}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ CPU\_H}}
+
+\end{DoxyCode}

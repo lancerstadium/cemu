@@ -1,0 +1,33 @@
+\doxysection{celf.\+h}
+\hypertarget{celf_8h_source}{}\label{celf_8h_source}\index{src/cemu/celf.h@{src/cemu/celf.h}}
+\mbox{\hyperlink{celf_8h}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#ifndef\ C\_ELF\_H}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ C\_ELF\_H}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Include}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <elf.h>}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{utils_8h}{utils.h}}"{}}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Declare:\ ELF}}
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keywordtype}{char}*\ elf\_arch(\textcolor{keywordtype}{int}\ arch);}
+\DoxyCodeLine{00032\ \textcolor{keywordtype}{char}*\ read\_section(\textcolor{keywordtype}{int}\ fd,\ Elf64\_Shdr\ sh,\ \textcolor{keywordtype}{int}\ buff);}
+\DoxyCodeLine{00033\ u16\ find\_segment(\textcolor{keywordtype}{void}\ *mmaped\_elf,\ \textcolor{keywordtype}{int}\ fsize);}
+\DoxyCodeLine{00034\ \textcolor{keywordtype}{int}\ get\_file\_size(\textcolor{keywordtype}{int}\ fd);}
+\DoxyCodeLine{00035\ \textcolor{keywordtype}{void}*\ map\_elf(\textcolor{keywordtype}{char}*\ file\_name,\ \textcolor{keywordtype}{void}*\ addr,\ \textcolor{keywordtype}{int}*\ file\_len);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ ELF\_H\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

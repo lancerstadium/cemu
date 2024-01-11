@@ -1,0 +1,43 @@
+\doxysection{dram.\+h}
+\hypertarget{dram_8h_source}{}\label{dram_8h_source}\index{src/cemu/dram.h@{src/cemu/dram.h}}
+\mbox{\hyperlink{dram_8h}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#ifndef\ DRAM\_H}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ DRAM\_H}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00057\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Include}}
+\DoxyCodeLine{00058\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{typedef_8h}{typedef.h}}"{}}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00064\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Defines}}
+\DoxyCodeLine{00065\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ DRAM\_SIZE\ 1024*1024*1\ \ \ }}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#define\ DRAM\_BASE\ 0x80000000\ \ \ \ }}
+\DoxyCodeLine{00073\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00074\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Data:\ DRAM}}
+\DoxyCodeLine{00075\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00080\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structDRAM__t}{DRAM\_t}}\ \{}
+\DoxyCodeLine{00082\ \ \ \ \ u8\ \mbox{\hyperlink{structDRAM__t_a83493b1fe45444bb6388e973ab0402fc}{mem}}[DRAM\_SIZE];}
+\DoxyCodeLine{00083\ \}\ \mbox{\hyperlink{dram_8h_a5c4f608d0cdf3a502dfe85d798e063ac}{DRAM}};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00087\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Declare\ API:\ DRAM}}
+\DoxyCodeLine{00088\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00097\ u64\ \mbox{\hyperlink{dram_8h_a51d945650b12b721792ce09cd04c6f48}{dram\_load}}(\mbox{\hyperlink{structDRAM__t}{DRAM}}*\ dram,\ u64\ addr,\ u64\ size);}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00106\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dram_8h_ae8add16e706dfe7b4ab4e3e0cca5f1c1}{dram\_store}}(\mbox{\hyperlink{structDRAM__t}{DRAM}}*\ dram,\ u64\ addr,\ u64\ size,\ u64\ value);}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ DRAM\_H}}
+
+\end{DoxyCode}

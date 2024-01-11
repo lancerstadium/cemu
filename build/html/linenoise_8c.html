@@ -1,0 +1,433 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>uemu: src/utils/linenoise.c 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">uemu
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('linenoise_8c.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">类</a> &#124;
+<a href="#define-members">宏定义</a> &#124;
+<a href="#enum-members">枚举</a> &#124;
+<a href="#func-members">函数</a> &#124;
+<a href="#var-members">变量</a>  </div>
+  <div class="headertitle"><div class="title">linenoise.c 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>REPL工具库实现  
+<a href="#details">更多...</a></p>
+<div class="textblock"><code>#include &lt;termios.h&gt;</code><br />
+<code>#include &lt;unistd.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;errno.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;ctype.h&gt;</code><br />
+<code>#include &lt;sys/stat.h&gt;</code><br />
+<code>#include &lt;sys/types.h&gt;</code><br />
+<code>#include &lt;sys/ioctl.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="linenoise_8h_source.html">linenoise.h</a>&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+类</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structabuf.html">abuf</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:a366c77abc06b106f49ff210eaf67e11b" id="r_a366c77abc06b106f49ff210eaf67e11b"><td class="memItemLeft" align="right" valign="top"><a id="a366c77abc06b106f49ff210eaf67e11b" name="a366c77abc06b106f49ff210eaf67e11b"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LINENOISE_DEFAULT_HISTORY_MAX_LEN</b>&#160;&#160;&#160;100</td></tr>
+<tr class="separator:a366c77abc06b106f49ff210eaf67e11b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:accd6f1b690e8e72f579a854d07018679" id="r_accd6f1b690e8e72f579a854d07018679"><td class="memItemLeft" align="right" valign="top"><a id="accd6f1b690e8e72f579a854d07018679" name="accd6f1b690e8e72f579a854d07018679"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LINENOISE_MAX_LINE</b>&#160;&#160;&#160;4096</td></tr>
+<tr class="separator:accd6f1b690e8e72f579a854d07018679"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1c74a662ace402f9a9515262ff651d9" id="r_aa1c74a662ace402f9a9515262ff651d9"><td class="memItemLeft" align="right" valign="top"><a id="aa1c74a662ace402f9a9515262ff651d9" name="aa1c74a662ace402f9a9515262ff651d9"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>REFRESH_CLEAN</b>&#160;&#160;&#160;(1&lt;&lt;0)</td></tr>
+<tr class="separator:aa1c74a662ace402f9a9515262ff651d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a346e04699b545d51f833de4d5cd661" id="r_a3a346e04699b545d51f833de4d5cd661"><td class="memItemLeft" align="right" valign="top"><a id="a3a346e04699b545d51f833de4d5cd661" name="a3a346e04699b545d51f833de4d5cd661"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>REFRESH_WRITE</b>&#160;&#160;&#160;(1&lt;&lt;1)</td></tr>
+<tr class="separator:a3a346e04699b545d51f833de4d5cd661"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aadd76e535ceccf416fd77c66ecb3500a" id="r_aadd76e535ceccf416fd77c66ecb3500a"><td class="memItemLeft" align="right" valign="top"><a id="aadd76e535ceccf416fd77c66ecb3500a" name="aadd76e535ceccf416fd77c66ecb3500a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>REFRESH_ALL</b>&#160;&#160;&#160;(REFRESH_CLEAN|REFRESH_WRITE)</td></tr>
+<tr class="separator:aadd76e535ceccf416fd77c66ecb3500a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07176c839cf1748013d8ad2396414883" id="r_a07176c839cf1748013d8ad2396414883"><td class="memItemLeft" align="right" valign="top"><a id="a07176c839cf1748013d8ad2396414883" name="a07176c839cf1748013d8ad2396414883"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>lndebug</b>(fmt, ...)</td></tr>
+<tr class="separator:a07176c839cf1748013d8ad2396414883"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3591ddbeee03990b4496d4c88529bf2d" id="r_a3591ddbeee03990b4496d4c88529bf2d"><td class="memItemLeft" align="right" valign="top"><a id="a3591ddbeee03990b4496d4c88529bf2d" name="a3591ddbeee03990b4496d4c88529bf2d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LINENOISE_HISTORY_NEXT</b>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:a3591ddbeee03990b4496d4c88529bf2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a663e19b94d27b369898a094b0d5ee623" id="r_a663e19b94d27b369898a094b0d5ee623"><td class="memItemLeft" align="right" valign="top"><a id="a663e19b94d27b369898a094b0d5ee623" name="a663e19b94d27b369898a094b0d5ee623"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LINENOISE_HISTORY_PREV</b>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:a663e19b94d27b369898a094b0d5ee623"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+枚举</h2></td></tr>
+<tr class="memitem:a85602e772502d49e7d6c75d43df11e75" id="r_a85602e772502d49e7d6c75d43df11e75"><td class="memItemLeft" align="right" valign="top"><a id="a85602e772502d49e7d6c75d43df11e75" name="a85602e772502d49e7d6c75d43df11e75"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>KEY_ACTION</b> { <br />
+&#160;&#160;<b>KEY_NULL</b> = 0
+, <b>CTRL_A</b> = 1
+, <b>CTRL_B</b> = 2
+, <b>CTRL_C</b> = 3
+, <br />
+&#160;&#160;<b>CTRL_D</b> = 4
+, <b>CTRL_E</b> = 5
+, <b>CTRL_F</b> = 6
+, <b>CTRL_H</b> = 8
+, <br />
+&#160;&#160;<b>TAB</b> = 9
+, <b>CTRL_K</b> = 11
+, <b>CTRL_L</b> = 12
+, <b>ENTER</b> = 13
+, <br />
+&#160;&#160;<b>CTRL_N</b> = 14
+, <b>CTRL_P</b> = 16
+, <b>CTRL_T</b> = 20
+, <b>CTRL_U</b> = 21
+, <br />
+&#160;&#160;<b>CTRL_W</b> = 23
+, <b>ESC</b> = 27
+, <b>BACKSPACE</b> = 127
+<br />
+ }</td></tr>
+<tr class="separator:a85602e772502d49e7d6c75d43df11e75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:afc313713954d648c0dfc32c1912e34c0" id="r_afc313713954d648c0dfc32c1912e34c0"><td class="memItemLeft" align="right" valign="top"><a id="afc313713954d648c0dfc32c1912e34c0" name="afc313713954d648c0dfc32c1912e34c0"></a>
+static char *&#160;</td><td class="memItemRight" valign="bottom"><b>linenoiseNoTTY</b> (void)</td></tr>
+<tr class="separator:afc313713954d648c0dfc32c1912e34c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca3f1541cbbcda20f6403e535245a851" id="r_aca3f1541cbbcda20f6403e535245a851"><td class="memItemLeft" align="right" valign="top"><a id="aca3f1541cbbcda20f6403e535245a851" name="aca3f1541cbbcda20f6403e535245a851"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>refreshLineWithCompletion</b> (struct <a class="el" href="structlinenoiseState.html">linenoiseState</a> *ls, <a class="el" href="structlinenoiseCompletions.html">linenoiseCompletions</a> *lc, int flags)</td></tr>
+<tr class="separator:aca3f1541cbbcda20f6403e535245a851"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5751632ed6bc823eb0e3c5b4df483893" id="r_a5751632ed6bc823eb0e3c5b4df483893"><td class="memItemLeft" align="right" valign="top"><a id="a5751632ed6bc823eb0e3c5b4df483893" name="a5751632ed6bc823eb0e3c5b4df483893"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>refreshLineWithFlags</b> (struct <a class="el" href="structlinenoiseState.html">linenoiseState</a> *l, int flags)</td></tr>
+<tr class="separator:a5751632ed6bc823eb0e3c5b4df483893"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75eed6dd55d6b8a45e596c6ddf6091cf" id="r_a75eed6dd55d6b8a45e596c6ddf6091cf"><td class="memItemLeft" align="right" valign="top"><a id="a75eed6dd55d6b8a45e596c6ddf6091cf" name="a75eed6dd55d6b8a45e596c6ddf6091cf"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>linenoiseAtExit</b> (void)</td></tr>
+<tr class="separator:a75eed6dd55d6b8a45e596c6ddf6091cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21ea9805fd7a20b554aa41d1c3bac9ab" id="r_a21ea9805fd7a20b554aa41d1c3bac9ab"><td class="memItemLeft" align="right" valign="top"><a id="a21ea9805fd7a20b554aa41d1c3bac9ab" name="a21ea9805fd7a20b554aa41d1c3bac9ab"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>linenoiseHistoryAdd</b> (const char *line)</td></tr>
+<tr class="separator:a21ea9805fd7a20b554aa41d1c3bac9ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4652ffd47448a594b68a10a45b73d19" id="r_af4652ffd47448a594b68a10a45b73d19"><td class="memItemLeft" align="right" valign="top"><a id="af4652ffd47448a594b68a10a45b73d19" name="af4652ffd47448a594b68a10a45b73d19"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>refreshLine</b> (struct <a class="el" href="structlinenoiseState.html">linenoiseState</a> *l)</td></tr>
+<tr class="separator:af4652ffd47448a594b68a10a45b73d19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14137bbf4834f26d30444d831f21a53f" id="r_a14137bbf4834f26d30444d831f21a53f"><td class="memItemLeft" align="right" valign="top"><a id="a14137bbf4834f26d30444d831f21a53f" name="a14137bbf4834f26d30444d831f21a53f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>linenoiseMaskModeEnable</b> (void)</td></tr>
+<tr class="separator:a14137bbf4834f26d30444d831f21a53f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a307d0a601f21bd469c7d8e5194c16f61" id="r_a307d0a601f21bd469c7d8e5194c16f61"><td class="memItemLeft" align="right" valign="top"><a id="a307d0a601f21bd469c7d8e5194c16f61" name="a307d0a601f21bd469c7d8e5194c16f61"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>linenoiseMaskModeDisable</b> (void)</td></tr>
+<tr class="separator:a307d0a601f21bd469c7d8e5194c16f61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ab532eaa7b04c971faca588d16181fd" id="r_a2ab532eaa7b04c971faca588d16181fd"><td class="memItemLeft" align="right" valign="top"><a id="a2ab532eaa7b04c971faca588d16181fd" name="a2ab532eaa7b04c971faca588d16181fd"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>linenoiseSetMultiLine</b> (int ml)</td></tr>
+<tr class="separator:a2ab532eaa7b04c971faca588d16181fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00afdc72f7be40417fea4488f4158fda" id="r_a00afdc72f7be40417fea4488f4158fda"><td class="memItemLeft" align="right" valign="top"><a id="a00afdc72f7be40417fea4488f4158fda" name="a00afdc72f7be40417fea4488f4158fda"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><b>isUnsupportedTerm</b> (void)</td></tr>
+<tr class="separator:a00afdc72f7be40417fea4488f4158fda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91be557f9548e7bc1caf3673674a77cd" id="r_a91be557f9548e7bc1caf3673674a77cd"><td class="memItemLeft" align="right" valign="top"><a id="a91be557f9548e7bc1caf3673674a77cd" name="a91be557f9548e7bc1caf3673674a77cd"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><b>enableRawMode</b> (int fd)</td></tr>
+<tr class="separator:a91be557f9548e7bc1caf3673674a77cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53b5aa8b9e946f6b335cf7c72434016e" id="r_a53b5aa8b9e946f6b335cf7c72434016e"><td class="memItemLeft" align="right" valign="top"><a id="a53b5aa8b9e946f6b335cf7c72434016e" name="a53b5aa8b9e946f6b335cf7c72434016e"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>disableRawMode</b> (int fd)</td></tr>
+<tr class="separator:a53b5aa8b9e946f6b335cf7c72434016e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a451720583279fc4afea67ee306157279" id="r_a451720583279fc4afea67ee306157279"><td class="memItemLeft" align="right" valign="top"><a id="a451720583279fc4afea67ee306157279" name="a451720583279fc4afea67ee306157279"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><b>getCursorPosition</b> (int ifd, int ofd)</td></tr>
+<tr class="separator:a451720583279fc4afea67ee306157279"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f10b7fac46fd26fd9c44679ac4d53e4" id="r_a4f10b7fac46fd26fd9c44679ac4d53e4"><td class="memItemLeft" align="right" valign="top"><a id="a4f10b7fac46fd26fd9c44679ac4d53e4" name="a4f10b7fac46fd26fd9c44679ac4d53e4"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><b>getColumns</b> (int ifd, int ofd)</td></tr>
+<tr class="separator:a4f10b7fac46fd26fd9c44679ac4d53e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a2931c798c8a6db5193f343c7eb33c0" id="r_a8a2931c798c8a6db5193f343c7eb33c0"><td class="memItemLeft" align="right" valign="top"><a id="a8a2931c798c8a6db5193f343c7eb33c0" name="a8a2931c798c8a6db5193f343c7eb33c0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>linenoiseClearScreen</b> (void)</td></tr>
+<tr class="separator:a8a2931c798c8a6db5193f343c7eb33c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73eb4ea1ae04e01fad5610416464fe2c" id="r_a73eb4ea1ae04e01fad5610416464fe2c"><td class="memItemLeft" align="right" valign="top"><a id="a73eb4ea1ae04e01fad5610416464fe2c" name="a73eb4ea1ae04e01fad5610416464fe2c"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>linenoiseBeep</b> (void)</td></tr>
+<tr class="separator:a73eb4ea1ae04e01fad5610416464fe2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d0904e0496ef4982962262cda9ef4ed" id="r_a7d0904e0496ef4982962262cda9ef4ed"><td class="memItemLeft" align="right" valign="top"><a id="a7d0904e0496ef4982962262cda9ef4ed" name="a7d0904e0496ef4982962262cda9ef4ed"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>freeCompletions</b> (<a class="el" href="structlinenoiseCompletions.html">linenoiseCompletions</a> *lc)</td></tr>
+<tr class="separator:a7d0904e0496ef4982962262cda9ef4ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0b7fdb995de9b4bcf9096747c4fd174" id="r_af0b7fdb995de9b4bcf9096747c4fd174"><td class="memItemLeft" align="right" valign="top"><a id="af0b7fdb995de9b4bcf9096747c4fd174" name="af0b7fdb995de9b4bcf9096747c4fd174"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><b>completeLine</b> (struct <a class="el" href="structlinenoiseState.html">linenoiseState</a> *ls, int keypressed)</td></tr>
+<tr class="separator:af0b7fdb995de9b4bcf9096747c4fd174"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a411a159f0f7319f455d0583581a7af2a" id="r_a411a159f0f7319f455d0583581a7af2a"><td class="memItemLeft" align="right" valign="top"><a id="a411a159f0f7319f455d0583581a7af2a" name="a411a159f0f7319f455d0583581a7af2a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>linenoiseSetCompletionCallback</b> (linenoiseCompletionCallback *fn)</td></tr>
+<tr class="separator:a411a159f0f7319f455d0583581a7af2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d95c54d9d9ed5888c8ee66c2b91a1b8" id="r_a4d95c54d9d9ed5888c8ee66c2b91a1b8"><td class="memItemLeft" align="right" valign="top"><a id="a4d95c54d9d9ed5888c8ee66c2b91a1b8" name="a4d95c54d9d9ed5888c8ee66c2b91a1b8"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>linenoiseSetHintsCallback</b> (linenoiseHintsCallback *fn)</td></tr>
+<tr class="separator:a4d95c54d9d9ed5888c8ee66c2b91a1b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade2a1a5cb660aaf1daa7d815963183a7" id="r_ade2a1a5cb660aaf1daa7d815963183a7"><td class="memItemLeft" align="right" valign="top"><a id="ade2a1a5cb660aaf1daa7d815963183a7" name="ade2a1a5cb660aaf1daa7d815963183a7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>linenoiseSetFreeHintsCallback</b> (linenoiseFreeHintsCallback *fn)</td></tr>
+<tr class="separator:ade2a1a5cb660aaf1daa7d815963183a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fb77550da1a7373c3bf96e9aca758bb" id="r_a7fb77550da1a7373c3bf96e9aca758bb"><td class="memItemLeft" align="right" valign="top"><a id="a7fb77550da1a7373c3bf96e9aca758bb" name="a7fb77550da1a7373c3bf96e9aca758bb"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>linenoiseAddCompletion</b> (<a class="el" href="structlinenoiseCompletions.html">linenoiseCompletions</a> *lc, const char *str)</td></tr>
+<tr class="separator:a7fb77550da1a7373c3bf96e9aca758bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41253fe330cc0b05ac0dae1d3af96039" id="r_a41253fe330cc0b05ac0dae1d3af96039"><td class="memItemLeft" align="right" valign="top"><a id="a41253fe330cc0b05ac0dae1d3af96039" name="a41253fe330cc0b05ac0dae1d3af96039"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>abInit</b> (struct <a class="el" href="structabuf.html">abuf</a> *ab)</td></tr>
+<tr class="separator:a41253fe330cc0b05ac0dae1d3af96039"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebf43986f179f988d1a518132f561912" id="r_aebf43986f179f988d1a518132f561912"><td class="memItemLeft" align="right" valign="top"><a id="aebf43986f179f988d1a518132f561912" name="aebf43986f179f988d1a518132f561912"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>abAppend</b> (struct <a class="el" href="structabuf.html">abuf</a> *ab, const char *s, int len)</td></tr>
+<tr class="separator:aebf43986f179f988d1a518132f561912"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a342886dec94eeb157807975933c7869f" id="r_a342886dec94eeb157807975933c7869f"><td class="memItemLeft" align="right" valign="top"><a id="a342886dec94eeb157807975933c7869f" name="a342886dec94eeb157807975933c7869f"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>abFree</b> (struct <a class="el" href="structabuf.html">abuf</a> *ab)</td></tr>
+<tr class="separator:a342886dec94eeb157807975933c7869f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3c778327163dd6951adbfe944401a13" id="r_ab3c778327163dd6951adbfe944401a13"><td class="memItemLeft" align="right" valign="top"><a id="ab3c778327163dd6951adbfe944401a13" name="ab3c778327163dd6951adbfe944401a13"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>refreshShowHints</b> (struct <a class="el" href="structabuf.html">abuf</a> *ab, struct <a class="el" href="structlinenoiseState.html">linenoiseState</a> *l, int plen)</td></tr>
+<tr class="separator:ab3c778327163dd6951adbfe944401a13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f1a9518e6f16e24f02156bf0ab9e260" id="r_a2f1a9518e6f16e24f02156bf0ab9e260"><td class="memItemLeft" align="right" valign="top"><a id="a2f1a9518e6f16e24f02156bf0ab9e260" name="a2f1a9518e6f16e24f02156bf0ab9e260"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>refreshSingleLine</b> (struct <a class="el" href="structlinenoiseState.html">linenoiseState</a> *l, int flags)</td></tr>
+<tr class="separator:a2f1a9518e6f16e24f02156bf0ab9e260"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab471a97d8677f5a1a19bad4e46b5c8d" id="r_aab471a97d8677f5a1a19bad4e46b5c8d"><td class="memItemLeft" align="right" valign="top"><a id="aab471a97d8677f5a1a19bad4e46b5c8d" name="aab471a97d8677f5a1a19bad4e46b5c8d"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>refreshMultiLine</b> (struct <a class="el" href="structlinenoiseState.html">linenoiseState</a> *l, int flags)</td></tr>
+<tr class="separator:aab471a97d8677f5a1a19bad4e46b5c8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3432a2fd897f1d7f87366f9ca968067e" id="r_a3432a2fd897f1d7f87366f9ca968067e"><td class="memItemLeft" align="right" valign="top"><a id="a3432a2fd897f1d7f87366f9ca968067e" name="a3432a2fd897f1d7f87366f9ca968067e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>linenoiseHide</b> (struct <a class="el" href="structlinenoiseState.html">linenoiseState</a> *l)</td></tr>
+<tr class="separator:a3432a2fd897f1d7f87366f9ca968067e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0fb06148ab3b1ccbf72d7ece45bcef83" id="r_a0fb06148ab3b1ccbf72d7ece45bcef83"><td class="memItemLeft" align="right" valign="top"><a id="a0fb06148ab3b1ccbf72d7ece45bcef83" name="a0fb06148ab3b1ccbf72d7ece45bcef83"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>linenoiseShow</b> (struct <a class="el" href="structlinenoiseState.html">linenoiseState</a> *l)</td></tr>
+<tr class="separator:a0fb06148ab3b1ccbf72d7ece45bcef83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cce541e761370e498d13581d3d91112" id="r_a6cce541e761370e498d13581d3d91112"><td class="memItemLeft" align="right" valign="top"><a id="a6cce541e761370e498d13581d3d91112" name="a6cce541e761370e498d13581d3d91112"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>linenoiseEditInsert</b> (struct <a class="el" href="structlinenoiseState.html">linenoiseState</a> *l, char c)</td></tr>
+<tr class="separator:a6cce541e761370e498d13581d3d91112"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0bd595848eaff5742e695218948313d5" id="r_a0bd595848eaff5742e695218948313d5"><td class="memItemLeft" align="right" valign="top"><a id="a0bd595848eaff5742e695218948313d5" name="a0bd595848eaff5742e695218948313d5"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>linenoiseEditMoveLeft</b> (struct <a class="el" href="structlinenoiseState.html">linenoiseState</a> *l)</td></tr>
+<tr class="separator:a0bd595848eaff5742e695218948313d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a302cb2d86446120e7673181ce332bfbb" id="r_a302cb2d86446120e7673181ce332bfbb"><td class="memItemLeft" align="right" valign="top"><a id="a302cb2d86446120e7673181ce332bfbb" name="a302cb2d86446120e7673181ce332bfbb"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>linenoiseEditMoveRight</b> (struct <a class="el" href="structlinenoiseState.html">linenoiseState</a> *l)</td></tr>
+<tr class="separator:a302cb2d86446120e7673181ce332bfbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa05144c45f7553d17dcd0e468d6b24d2" id="r_aa05144c45f7553d17dcd0e468d6b24d2"><td class="memItemLeft" align="right" valign="top"><a id="aa05144c45f7553d17dcd0e468d6b24d2" name="aa05144c45f7553d17dcd0e468d6b24d2"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>linenoiseEditMoveHome</b> (struct <a class="el" href="structlinenoiseState.html">linenoiseState</a> *l)</td></tr>
+<tr class="separator:aa05144c45f7553d17dcd0e468d6b24d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43cc194deb4cd2dff39ec34d1d0c3d6f" id="r_a43cc194deb4cd2dff39ec34d1d0c3d6f"><td class="memItemLeft" align="right" valign="top"><a id="a43cc194deb4cd2dff39ec34d1d0c3d6f" name="a43cc194deb4cd2dff39ec34d1d0c3d6f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>linenoiseEditMoveEnd</b> (struct <a class="el" href="structlinenoiseState.html">linenoiseState</a> *l)</td></tr>
+<tr class="separator:a43cc194deb4cd2dff39ec34d1d0c3d6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7e878ce34125f9913f4544048661906" id="r_aa7e878ce34125f9913f4544048661906"><td class="memItemLeft" align="right" valign="top"><a id="aa7e878ce34125f9913f4544048661906" name="aa7e878ce34125f9913f4544048661906"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>linenoiseEditHistoryNext</b> (struct <a class="el" href="structlinenoiseState.html">linenoiseState</a> *l, int dir)</td></tr>
+<tr class="separator:aa7e878ce34125f9913f4544048661906"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed102174d6974691762fd69af8602c77" id="r_aed102174d6974691762fd69af8602c77"><td class="memItemLeft" align="right" valign="top"><a id="aed102174d6974691762fd69af8602c77" name="aed102174d6974691762fd69af8602c77"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>linenoiseEditDelete</b> (struct <a class="el" href="structlinenoiseState.html">linenoiseState</a> *l)</td></tr>
+<tr class="separator:aed102174d6974691762fd69af8602c77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0ebfc4bf6270b7b04d8b8d94e94aaff" id="r_ab0ebfc4bf6270b7b04d8b8d94e94aaff"><td class="memItemLeft" align="right" valign="top"><a id="ab0ebfc4bf6270b7b04d8b8d94e94aaff" name="ab0ebfc4bf6270b7b04d8b8d94e94aaff"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>linenoiseEditBackspace</b> (struct <a class="el" href="structlinenoiseState.html">linenoiseState</a> *l)</td></tr>
+<tr class="separator:ab0ebfc4bf6270b7b04d8b8d94e94aaff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad36c0da98feb0537fb534a9168804adc" id="r_ad36c0da98feb0537fb534a9168804adc"><td class="memItemLeft" align="right" valign="top"><a id="ad36c0da98feb0537fb534a9168804adc" name="ad36c0da98feb0537fb534a9168804adc"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>linenoiseEditDeletePrevWord</b> (struct <a class="el" href="structlinenoiseState.html">linenoiseState</a> *l)</td></tr>
+<tr class="separator:ad36c0da98feb0537fb534a9168804adc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2df90335af58c0ed1be25af3b9dc2027" id="r_a2df90335af58c0ed1be25af3b9dc2027"><td class="memItemLeft" align="right" valign="top"><a id="a2df90335af58c0ed1be25af3b9dc2027" name="a2df90335af58c0ed1be25af3b9dc2027"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>linenoiseEditStart</b> (struct <a class="el" href="structlinenoiseState.html">linenoiseState</a> *l, int stdin_fd, int stdout_fd, char *buf, size_t buflen, const char *prompt)</td></tr>
+<tr class="separator:a2df90335af58c0ed1be25af3b9dc2027"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adac7250f0973d2a66ae45d142efc2de0" id="r_adac7250f0973d2a66ae45d142efc2de0"><td class="memItemLeft" align="right" valign="top"><a id="adac7250f0973d2a66ae45d142efc2de0" name="adac7250f0973d2a66ae45d142efc2de0"></a>
+char *&#160;</td><td class="memItemRight" valign="bottom"><b>linenoiseEditFeed</b> (struct <a class="el" href="structlinenoiseState.html">linenoiseState</a> *l)</td></tr>
+<tr class="separator:adac7250f0973d2a66ae45d142efc2de0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34ad9db5b4cd67eeb3d3f44f85edd0ea" id="r_a34ad9db5b4cd67eeb3d3f44f85edd0ea"><td class="memItemLeft" align="right" valign="top"><a id="a34ad9db5b4cd67eeb3d3f44f85edd0ea" name="a34ad9db5b4cd67eeb3d3f44f85edd0ea"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>linenoiseEditStop</b> (struct <a class="el" href="structlinenoiseState.html">linenoiseState</a> *l)</td></tr>
+<tr class="separator:a34ad9db5b4cd67eeb3d3f44f85edd0ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99925635233446de02c056bf9788bb21" id="r_a99925635233446de02c056bf9788bb21"><td class="memItemLeft" align="right" valign="top"><a id="a99925635233446de02c056bf9788bb21" name="a99925635233446de02c056bf9788bb21"></a>
+static char *&#160;</td><td class="memItemRight" valign="bottom"><b>linenoiseBlockingEdit</b> (int stdin_fd, int stdout_fd, char *buf, size_t buflen, const char *prompt)</td></tr>
+<tr class="separator:a99925635233446de02c056bf9788bb21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8eb234c23d55ede4247447a195068e08" id="r_a8eb234c23d55ede4247447a195068e08"><td class="memItemLeft" align="right" valign="top"><a id="a8eb234c23d55ede4247447a195068e08" name="a8eb234c23d55ede4247447a195068e08"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>linenoisePrintKeyCodes</b> (void)</td></tr>
+<tr class="separator:a8eb234c23d55ede4247447a195068e08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c28429b3e025fd370160c1489651e3c" id="r_a2c28429b3e025fd370160c1489651e3c"><td class="memItemLeft" align="right" valign="top"><a id="a2c28429b3e025fd370160c1489651e3c" name="a2c28429b3e025fd370160c1489651e3c"></a>
+char *&#160;</td><td class="memItemRight" valign="bottom"><b>linenoise</b> (const char *prompt)</td></tr>
+<tr class="separator:a2c28429b3e025fd370160c1489651e3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3386098538a759114bb03f62b320ff01" id="r_a3386098538a759114bb03f62b320ff01"><td class="memItemLeft" align="right" valign="top"><a id="a3386098538a759114bb03f62b320ff01" name="a3386098538a759114bb03f62b320ff01"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>linenoiseFree</b> (void *ptr)</td></tr>
+<tr class="separator:a3386098538a759114bb03f62b320ff01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abba0267c7e85732a2be5866e8e456b9e" id="r_abba0267c7e85732a2be5866e8e456b9e"><td class="memItemLeft" align="right" valign="top"><a id="abba0267c7e85732a2be5866e8e456b9e" name="abba0267c7e85732a2be5866e8e456b9e"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>freeHistory</b> (void)</td></tr>
+<tr class="separator:abba0267c7e85732a2be5866e8e456b9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac34da7161471aaaf132d3041f95abf40" id="r_ac34da7161471aaaf132d3041f95abf40"><td class="memItemLeft" align="right" valign="top"><a id="ac34da7161471aaaf132d3041f95abf40" name="ac34da7161471aaaf132d3041f95abf40"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>linenoiseHistorySetMaxLen</b> (int len)</td></tr>
+<tr class="separator:ac34da7161471aaaf132d3041f95abf40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a971464006a6bdf1cbf0a30a3554179a0" id="r_a971464006a6bdf1cbf0a30a3554179a0"><td class="memItemLeft" align="right" valign="top"><a id="a971464006a6bdf1cbf0a30a3554179a0" name="a971464006a6bdf1cbf0a30a3554179a0"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>linenoiseHistorySave</b> (const char *filename)</td></tr>
+<tr class="separator:a971464006a6bdf1cbf0a30a3554179a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10c078eea5725c7bcabe5676cb019f9d" id="r_a10c078eea5725c7bcabe5676cb019f9d"><td class="memItemLeft" align="right" valign="top"><a id="a10c078eea5725c7bcabe5676cb019f9d" name="a10c078eea5725c7bcabe5676cb019f9d"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>linenoiseHistoryLoad</b> (const char *filename)</td></tr>
+<tr class="separator:a10c078eea5725c7bcabe5676cb019f9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+变量</h2></td></tr>
+<tr class="memitem:a345b183946ff3fce7e39360217e589d1" id="r_a345b183946ff3fce7e39360217e589d1"><td class="memItemLeft" align="right" valign="top"><a id="a345b183946ff3fce7e39360217e589d1" name="a345b183946ff3fce7e39360217e589d1"></a>
+static char *&#160;</td><td class="memItemRight" valign="bottom"><b>unsupported_term</b> [] = {&quot;dumb&quot;,&quot;cons25&quot;,&quot;emacs&quot;,<a class="el" href="list_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>}</td></tr>
+<tr class="separator:a345b183946ff3fce7e39360217e589d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a647f2b6851795cd63665cf90aa7a6374" id="r_a647f2b6851795cd63665cf90aa7a6374"><td class="memItemLeft" align="right" valign="top"><a id="a647f2b6851795cd63665cf90aa7a6374" name="a647f2b6851795cd63665cf90aa7a6374"></a>
+static linenoiseCompletionCallback *&#160;</td><td class="memItemRight" valign="bottom"><b>completionCallback</b> = <a class="el" href="list_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td></tr>
+<tr class="separator:a647f2b6851795cd63665cf90aa7a6374"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa068c5a1eb827443ec79da7d938f2bac" id="r_aa068c5a1eb827443ec79da7d938f2bac"><td class="memItemLeft" align="right" valign="top"><a id="aa068c5a1eb827443ec79da7d938f2bac" name="aa068c5a1eb827443ec79da7d938f2bac"></a>
+static linenoiseHintsCallback *&#160;</td><td class="memItemRight" valign="bottom"><b>hintsCallback</b> = <a class="el" href="list_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td></tr>
+<tr class="separator:aa068c5a1eb827443ec79da7d938f2bac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afac1cc7c690a284fa7a37c5b324e6b1c" id="r_afac1cc7c690a284fa7a37c5b324e6b1c"><td class="memItemLeft" align="right" valign="top"><a id="afac1cc7c690a284fa7a37c5b324e6b1c" name="afac1cc7c690a284fa7a37c5b324e6b1c"></a>
+static linenoiseFreeHintsCallback *&#160;</td><td class="memItemRight" valign="bottom"><b>freeHintsCallback</b> = <a class="el" href="list_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td></tr>
+<tr class="separator:afac1cc7c690a284fa7a37c5b324e6b1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1705dee0e4e822859804bec377506fb5" id="r_a1705dee0e4e822859804bec377506fb5"><td class="memItemLeft" align="right" valign="top"><a id="a1705dee0e4e822859804bec377506fb5" name="a1705dee0e4e822859804bec377506fb5"></a>
+static struct termios&#160;</td><td class="memItemRight" valign="bottom"><b>orig_termios</b></td></tr>
+<tr class="separator:a1705dee0e4e822859804bec377506fb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb7c7e9c8e0f1e9032752e5ca10400ce" id="r_adb7c7e9c8e0f1e9032752e5ca10400ce"><td class="memItemLeft" align="right" valign="top"><a id="adb7c7e9c8e0f1e9032752e5ca10400ce" name="adb7c7e9c8e0f1e9032752e5ca10400ce"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><b>maskmode</b> = 0</td></tr>
+<tr class="separator:adb7c7e9c8e0f1e9032752e5ca10400ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09a46d3636dc1d18db7ecc0c99f3030a" id="r_a09a46d3636dc1d18db7ecc0c99f3030a"><td class="memItemLeft" align="right" valign="top"><a id="a09a46d3636dc1d18db7ecc0c99f3030a" name="a09a46d3636dc1d18db7ecc0c99f3030a"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><b>rawmode</b> = 0</td></tr>
+<tr class="separator:a09a46d3636dc1d18db7ecc0c99f3030a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aacd6f69e82c17a81342819fb4fb87c45" id="r_aacd6f69e82c17a81342819fb4fb87c45"><td class="memItemLeft" align="right" valign="top"><a id="aacd6f69e82c17a81342819fb4fb87c45" name="aacd6f69e82c17a81342819fb4fb87c45"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><b>mlmode</b> = 0</td></tr>
+<tr class="separator:aacd6f69e82c17a81342819fb4fb87c45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6e7549c682adc3f0f0cd413324458ad" id="r_aa6e7549c682adc3f0f0cd413324458ad"><td class="memItemLeft" align="right" valign="top"><a id="aa6e7549c682adc3f0f0cd413324458ad" name="aa6e7549c682adc3f0f0cd413324458ad"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><b>atexit_registered</b> = 0</td></tr>
+<tr class="separator:aa6e7549c682adc3f0f0cd413324458ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a672ecc5d530e05194396a0ab99313821" id="r_a672ecc5d530e05194396a0ab99313821"><td class="memItemLeft" align="right" valign="top"><a id="a672ecc5d530e05194396a0ab99313821" name="a672ecc5d530e05194396a0ab99313821"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><b>history_max_len</b> = LINENOISE_DEFAULT_HISTORY_MAX_LEN</td></tr>
+<tr class="separator:a672ecc5d530e05194396a0ab99313821"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4e3ac76ad034d20159490126e4f010d" id="r_ac4e3ac76ad034d20159490126e4f010d"><td class="memItemLeft" align="right" valign="top"><a id="ac4e3ac76ad034d20159490126e4f010d" name="ac4e3ac76ad034d20159490126e4f010d"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><b>history_len</b> = 0</td></tr>
+<tr class="separator:ac4e3ac76ad034d20159490126e4f010d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f9f02d4391a83cb01df97fe1ea2b6c5" id="r_a5f9f02d4391a83cb01df97fe1ea2b6c5"><td class="memItemLeft" align="right" valign="top"><a id="a5f9f02d4391a83cb01df97fe1ea2b6c5" name="a5f9f02d4391a83cb01df97fe1ea2b6c5"></a>
+static char **&#160;</td><td class="memItemRight" valign="bottom"><b>history</b> = <a class="el" href="list_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td></tr>
+<tr class="separator:a5f9f02d4391a83cb01df97fe1ea2b6c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4f8746f64275403a95c2ccefa30c81a" id="r_ac4f8746f64275403a95c2ccefa30c81a"><td class="memItemLeft" align="right" valign="top"><a id="ac4f8746f64275403a95c2ccefa30c81a" name="ac4f8746f64275403a95c2ccefa30c81a"></a>
+char *&#160;</td><td class="memItemRight" valign="bottom"><b>linenoiseEditMore</b> = &quot;If you see this, you are misusing the API: when linenoiseEditFeed() is called, if it returns linenoiseEditMore the user is yet editing the line. See the README file for more information.&quot;</td></tr>
+<tr class="separator:ac4f8746f64275403a95c2ccefa30c81a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>REPL工具库实现 </p>
+<dl class="section author"><dt>作者</dt><dd>lancer (<a href="#" onclick="location.href='mai'+'lto:'+'lan'+'ce'+'rst'+'ad'+'ium'+'@1'+'63.'+'co'+'m'; return false;">lance<span class="obfuscator">.nosp@m.</span>rsta<span class="obfuscator">.nosp@m.</span>dium@<span class="obfuscator">.nosp@m.</span>163.<span class="obfuscator">.nosp@m.</span>com</a>) </dd></dl>
+<dl class="section version"><dt>版本</dt><dd>0.1 </dd></dl>
+<dl class="section date"><dt>日期</dt><dd>2023-12-28</dd></dl>
+<dl class="section copyright"><dt>版权所有</dt><dd>Copyright (c) 2023 </dd></dl>
+<dl class="section note"><dt>注解</dt><dd>参考项目：<a href="https://github.com/antirez/linenoise">Github | linenoise</a></dd></dl>
+<h1><a class="anchor" id="autotoc_md8"></a>
+Introduce</h1>
+<p><a class="el" href="linenoise_8c.html" title="REPL工具库实现">linenoise.c</a> &ndash; guerrilla line editing library against the idea that a line editing lib needs to be 20,000 lines of C code.</p>
+<p>You can find the latest source code at:</p>
+<p><a href="http://github.com/antirez/linenoise">http://github.com/antirez/linenoise</a></p>
+<p>Does a number of crazy assumptions that happen to be true in 99.9999% of the 2010 UNIX computers around.</p>
+<hr  />
+<p>Copyright (c) 2010-2023, Salvatore Sanfilippo &lt;antirez at gmail dot com&gt; Copyright (c) 2010-2013, Pieter Noordhuis &lt;pcnoordhuis at gmail dot com&gt;</p>
+<p>All rights reserved.</p>
+<p>Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</p>
+<ul>
+<li>Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.</li>
+<li>Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.</li>
+</ul>
+<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+<hr  />
+<p>References:</p><ul>
+<li><a href="http://invisible-island.net/xterm/ctlseqs/ctlseqs.html">http://invisible-island.net/xterm/ctlseqs/ctlseqs.html</a></li>
+<li><a href="http://www.3waylabs.com/nw/WWW/products/wizcon/vt220.html">http://www.3waylabs.com/nw/WWW/products/wizcon/vt220.html</a></li>
+</ul>
+<p>Todo list:</p><ul>
+<li>Filter bogus Ctrl+&lt;char&gt; combinations.</li>
+<li>Win32 support</li>
+</ul>
+<p>Bloat:</p><ul>
+<li>History search like Ctrl+r in readline?</li>
+</ul>
+<p>List of escape sequences used by this program, we do everything just with three sequences. In order to be so cheap we may have some flickering effect with some slow terminal, but the lesser sequences the more compatible.</p>
+<p>EL (Erase Line) Sequence: ESC [ n K Effect: if n is 0 or missing, clear from cursor to end of line Effect: if n is 1, clear from beginning of line to cursor Effect: if n is 2, clear entire line</p>
+<p>CUF (CUrsor Forward) Sequence: ESC [ n C Effect: moves cursor forward n chars</p>
+<p>CUB (CUrsor Backward) Sequence: ESC [ n D Effect: moves cursor backward n chars</p>
+<p>The following is used to get the terminal width if getting the width with the TIOCGWINSZ ioctl fails</p>
+<p>DSR (Device Status Report) Sequence: ESC [ 6 n Effect: reports the current cusor position as ESC [ n ; m R where n is the row and m is the column</p>
+<p>When multi line mode is enabled, we also use an additional escape sequence. However multi line editing is disabled by default.</p>
+<p>CUU (Cursor Up) Sequence: ESC [ n A Effect: moves cursor up of n chars.</p>
+<p>CUD (Cursor Down) Sequence: ESC [ n B Effect: moves cursor down of n chars.</p>
+<p>When linenoiseClearScreen() is called, two additional escape sequences are used in order to clear the screen and position the cursor at home position.</p>
+<p>CUP (Cursor position) Sequence: ESC [ H Effect: moves the cursor to upper left corner</p>
+<p>ED (Erase display) Sequence: ESC [ 2 J Effect: clear the whole screen </p>
+</div></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_313caf1132e152dd9b58bea13a4052ca.html">utils</a></li><li class="navelem"><a class="el" href="linenoise_8c.html">linenoise.c</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
+</body>
+</html>

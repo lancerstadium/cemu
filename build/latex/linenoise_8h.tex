@@ -1,0 +1,142 @@
+\doxysection{src/utils/linenoise.h 文件参考}
+\hypertarget{linenoise_8h}{}\label{linenoise_8h}\index{src/utils/linenoise.h@{src/utils/linenoise.h}}
+
+
+REPL工具库头文件  
+
+
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+\doxysubsubsection*{类}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structlinenoiseState}{linenoise\+State}}
+\item 
+struct \mbox{\hyperlink{structlinenoiseCompletions}{linenoise\+Completions}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{类型定义}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{linenoise_8h_ac910792e203989883a76044651a4f99b}\label{linenoise_8h_ac910792e203989883a76044651a4f99b} 
+typedef struct linenoise\+Completions {\bfseries linenoise\+Completions}
+\item 
+\Hypertarget{linenoise_8h_a765d0e8a8ddbd03fc00bdf69a3fcc579}\label{linenoise_8h_a765d0e8a8ddbd03fc00bdf69a3fcc579} 
+typedef void {\bfseries linenoise\+Completion\+Callback}(const char \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{structlinenoiseCompletions}{linenoise\+Completions}} \texorpdfstring{$\ast$}{*})
+\item 
+\Hypertarget{linenoise_8h_a528b40695c74ef5913e635643535d82a}\label{linenoise_8h_a528b40695c74ef5913e635643535d82a} 
+typedef char \texorpdfstring{$\ast$}{*} {\bfseries linenoise\+Hints\+Callback}(const char \texorpdfstring{$\ast$}{*}, int \texorpdfstring{$\ast$}{*}color, int \texorpdfstring{$\ast$}{*}bold)
+\item 
+\Hypertarget{linenoise_8h_a94aed9dc3779175789c65a1691732b1e}\label{linenoise_8h_a94aed9dc3779175789c65a1691732b1e} 
+typedef void {\bfseries linenoise\+Free\+Hints\+Callback}(void \texorpdfstring{$\ast$}{*})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{linenoise_8h_a2df90335af58c0ed1be25af3b9dc2027}\label{linenoise_8h_a2df90335af58c0ed1be25af3b9dc2027} 
+int {\bfseries linenoise\+Edit\+Start} (struct \mbox{\hyperlink{structlinenoiseState}{linenoise\+State}} \texorpdfstring{$\ast$}{*}l, int stdin\+\_\+fd, int stdout\+\_\+fd, char \texorpdfstring{$\ast$}{*}buf, size\+\_\+t buflen, const char \texorpdfstring{$\ast$}{*}prompt)
+\item 
+\Hypertarget{linenoise_8h_adac7250f0973d2a66ae45d142efc2de0}\label{linenoise_8h_adac7250f0973d2a66ae45d142efc2de0} 
+char \texorpdfstring{$\ast$}{*} {\bfseries linenoise\+Edit\+Feed} (struct \mbox{\hyperlink{structlinenoiseState}{linenoise\+State}} \texorpdfstring{$\ast$}{*}l)
+\item 
+\Hypertarget{linenoise_8h_a34ad9db5b4cd67eeb3d3f44f85edd0ea}\label{linenoise_8h_a34ad9db5b4cd67eeb3d3f44f85edd0ea} 
+void {\bfseries linenoise\+Edit\+Stop} (struct \mbox{\hyperlink{structlinenoiseState}{linenoise\+State}} \texorpdfstring{$\ast$}{*}l)
+\item 
+\Hypertarget{linenoise_8h_a3432a2fd897f1d7f87366f9ca968067e}\label{linenoise_8h_a3432a2fd897f1d7f87366f9ca968067e} 
+void {\bfseries linenoise\+Hide} (struct \mbox{\hyperlink{structlinenoiseState}{linenoise\+State}} \texorpdfstring{$\ast$}{*}l)
+\item 
+\Hypertarget{linenoise_8h_a0fb06148ab3b1ccbf72d7ece45bcef83}\label{linenoise_8h_a0fb06148ab3b1ccbf72d7ece45bcef83} 
+void {\bfseries linenoise\+Show} (struct \mbox{\hyperlink{structlinenoiseState}{linenoise\+State}} \texorpdfstring{$\ast$}{*}l)
+\item 
+\Hypertarget{linenoise_8h_a2c28429b3e025fd370160c1489651e3c}\label{linenoise_8h_a2c28429b3e025fd370160c1489651e3c} 
+char \texorpdfstring{$\ast$}{*} {\bfseries linenoise} (const char \texorpdfstring{$\ast$}{*}prompt)
+\item 
+\Hypertarget{linenoise_8h_a3386098538a759114bb03f62b320ff01}\label{linenoise_8h_a3386098538a759114bb03f62b320ff01} 
+void {\bfseries linenoise\+Free} (void \texorpdfstring{$\ast$}{*}ptr)
+\item 
+\Hypertarget{linenoise_8h_a900ac5b1386d2a2346af2e683abf2683}\label{linenoise_8h_a900ac5b1386d2a2346af2e683abf2683} 
+void {\bfseries linenoise\+Set\+Completion\+Callback} (linenoise\+Completion\+Callback \texorpdfstring{$\ast$}{*})
+\item 
+\Hypertarget{linenoise_8h_a57ea4c20b882556d2e22f1aa25c9041c}\label{linenoise_8h_a57ea4c20b882556d2e22f1aa25c9041c} 
+void {\bfseries linenoise\+Set\+Hints\+Callback} (linenoise\+Hints\+Callback \texorpdfstring{$\ast$}{*})
+\item 
+\Hypertarget{linenoise_8h_a7870b3553cfed8cc22ac8b5d2c6dfae6}\label{linenoise_8h_a7870b3553cfed8cc22ac8b5d2c6dfae6} 
+void {\bfseries linenoise\+Set\+Free\+Hints\+Callback} (linenoise\+Free\+Hints\+Callback \texorpdfstring{$\ast$}{*})
+\item 
+\Hypertarget{linenoise_8h_afc9c82cbee21b3e760b0fce4fac9f132}\label{linenoise_8h_afc9c82cbee21b3e760b0fce4fac9f132} 
+void {\bfseries linenoise\+Add\+Completion} (\mbox{\hyperlink{structlinenoiseCompletions}{linenoise\+Completions}} \texorpdfstring{$\ast$}{*}, const char \texorpdfstring{$\ast$}{*})
+\item 
+\Hypertarget{linenoise_8h_a21ea9805fd7a20b554aa41d1c3bac9ab}\label{linenoise_8h_a21ea9805fd7a20b554aa41d1c3bac9ab} 
+int {\bfseries linenoise\+History\+Add} (const char \texorpdfstring{$\ast$}{*}line)
+\item 
+\Hypertarget{linenoise_8h_ac34da7161471aaaf132d3041f95abf40}\label{linenoise_8h_ac34da7161471aaaf132d3041f95abf40} 
+int {\bfseries linenoise\+History\+Set\+Max\+Len} (int len)
+\item 
+\Hypertarget{linenoise_8h_a971464006a6bdf1cbf0a30a3554179a0}\label{linenoise_8h_a971464006a6bdf1cbf0a30a3554179a0} 
+int {\bfseries linenoise\+History\+Save} (const char \texorpdfstring{$\ast$}{*}filename)
+\item 
+\Hypertarget{linenoise_8h_a10c078eea5725c7bcabe5676cb019f9d}\label{linenoise_8h_a10c078eea5725c7bcabe5676cb019f9d} 
+int {\bfseries linenoise\+History\+Load} (const char \texorpdfstring{$\ast$}{*}filename)
+\item 
+\Hypertarget{linenoise_8h_a8a2931c798c8a6db5193f343c7eb33c0}\label{linenoise_8h_a8a2931c798c8a6db5193f343c7eb33c0} 
+void {\bfseries linenoise\+Clear\+Screen} (void)
+\item 
+\Hypertarget{linenoise_8h_a2ab532eaa7b04c971faca588d16181fd}\label{linenoise_8h_a2ab532eaa7b04c971faca588d16181fd} 
+void {\bfseries linenoise\+Set\+Multi\+Line} (int ml)
+\item 
+\Hypertarget{linenoise_8h_a8eb234c23d55ede4247447a195068e08}\label{linenoise_8h_a8eb234c23d55ede4247447a195068e08} 
+void {\bfseries linenoise\+Print\+Key\+Codes} (void)
+\item 
+\Hypertarget{linenoise_8h_a14137bbf4834f26d30444d831f21a53f}\label{linenoise_8h_a14137bbf4834f26d30444d831f21a53f} 
+void {\bfseries linenoise\+Mask\+Mode\+Enable} (void)
+\item 
+\Hypertarget{linenoise_8h_a307d0a601f21bd469c7d8e5194c16f61}\label{linenoise_8h_a307d0a601f21bd469c7d8e5194c16f61} 
+void {\bfseries linenoise\+Mask\+Mode\+Disable} (void)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{变量}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{linenoise_8h_ac4f8746f64275403a95c2ccefa30c81a}\label{linenoise_8h_ac4f8746f64275403a95c2ccefa30c81a} 
+char \texorpdfstring{$\ast$}{*} {\bfseries linenoise\+Edit\+More}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+REPL工具库头文件 
+
+\begin{DoxyAuthor}{作者}
+lancer (\href{mailto:lancerstadium@163.com}{\texttt{ lancerstadium@163.\+com}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{版本}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{日期}
+2023-\/12-\/28
+\end{DoxyDate}
+\begin{DoxyCopyright}{版权所有}
+Copyright (c) 2023 
+\end{DoxyCopyright}
+\begin{DoxyNote}{注解}
+参考项目：\href{https://github.com/antirez/linenoise}{\texttt{ Github \texorpdfstring{$\vert$}{|} linenoise}}
+\end{DoxyNote}
+\hypertarget{linenoise_8h_autotoc_md11}{}\doxysubsection{\texorpdfstring{Introduce}{Introduce}}\label{linenoise_8h_autotoc_md11}
+\doxylink{linenoise_8h}{linenoise.\+h} -- VERSION 1.\+0
+
+Guerrilla line editing library against the idea that a line editing lib needs to be 20,000 lines of C code.
+
+See \doxylink{linenoise_8c}{linenoise.\+c} for more information.
+
+\DoxyHorRuler{0}
+
+
+Copyright (c) 2010-\/2023, Salvatore Sanfilippo $<$antirez at gmail dot com$>$ Copyright (c) 2010-\/2013, Pieter Noordhuis $<$pcnoordhuis at gmail dot com$>$
+
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met\+:
+
+
+\begin{DoxyItemize}
+\item Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+\item Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+\end{DoxyItemize}
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "{}\+AS IS"{} AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 

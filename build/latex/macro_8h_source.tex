@@ -1,0 +1,21 @@
+\doxysection{macro.\+h}
+\hypertarget{macro_8h_source}{}\label{macro_8h_source}\index{src/utils/macro.h@{src/utils/macro.h}}
+\mbox{\hyperlink{macro_8h}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#ifndef\ MACRO\_H}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ MACRO\_H}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ MAX(a,\ b)\ \ \ (((a)\ >\ (b))\ ?\ (a)\ :\ (b))}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ MIN(a,\ b)\ \ \ (((a)\ <\ (b))\ ?\ (a)\ :\ (b))}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ 定义一个宏，用于获取可变参数的第一个参数}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ FIRST\_ARG(first,\ ...)\ first}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ 定义一个宏，用于获取可变参数的剩余参数}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ REST\_ARGS(first,\ ...)\ \_\_VA\_ARGS\_\_}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ MACRO\_H}}
+
+\end{DoxyCode}

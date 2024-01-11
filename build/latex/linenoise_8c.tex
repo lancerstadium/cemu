@@ -1,0 +1,364 @@
+\doxysection{src/utils/linenoise.c 文件参考}
+\hypertarget{linenoise_8c}{}\label{linenoise_8c}\index{src/utils/linenoise.c@{src/utils/linenoise.c}}
+
+
+REPL工具库实现  
+
+
+{\ttfamily \#include $<$termios.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include $<$sys/ioctl.\+h$>$}\newline
+{\ttfamily \#include "{}linenoise.\+h"{}}\newline
+\doxysubsubsection*{类}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structabuf}{abuf}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{宏定义}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{linenoise_8c_a366c77abc06b106f49ff210eaf67e11b}\label{linenoise_8c_a366c77abc06b106f49ff210eaf67e11b} 
+\#define {\bfseries LINENOISE\+\_\+\+DEFAULT\+\_\+\+HISTORY\+\_\+\+MAX\+\_\+\+LEN}~100
+\item 
+\Hypertarget{linenoise_8c_accd6f1b690e8e72f579a854d07018679}\label{linenoise_8c_accd6f1b690e8e72f579a854d07018679} 
+\#define {\bfseries LINENOISE\+\_\+\+MAX\+\_\+\+LINE}~4096
+\item 
+\Hypertarget{linenoise_8c_aa1c74a662ace402f9a9515262ff651d9}\label{linenoise_8c_aa1c74a662ace402f9a9515262ff651d9} 
+\#define {\bfseries REFRESH\+\_\+\+CLEAN}~(1$<$$<$0)
+\item 
+\Hypertarget{linenoise_8c_a3a346e04699b545d51f833de4d5cd661}\label{linenoise_8c_a3a346e04699b545d51f833de4d5cd661} 
+\#define {\bfseries REFRESH\+\_\+\+WRITE}~(1$<$$<$1)
+\item 
+\Hypertarget{linenoise_8c_aadd76e535ceccf416fd77c66ecb3500a}\label{linenoise_8c_aadd76e535ceccf416fd77c66ecb3500a} 
+\#define {\bfseries REFRESH\+\_\+\+ALL}~(REFRESH\+\_\+\+CLEAN\texorpdfstring{$\vert$}{|}REFRESH\+\_\+\+WRITE)
+\item 
+\Hypertarget{linenoise_8c_a07176c839cf1748013d8ad2396414883}\label{linenoise_8c_a07176c839cf1748013d8ad2396414883} 
+\#define {\bfseries lndebug}(fmt, ...)
+\item 
+\Hypertarget{linenoise_8c_a3591ddbeee03990b4496d4c88529bf2d}\label{linenoise_8c_a3591ddbeee03990b4496d4c88529bf2d} 
+\#define {\bfseries LINENOISE\+\_\+\+HISTORY\+\_\+\+NEXT}~0
+\item 
+\Hypertarget{linenoise_8c_a663e19b94d27b369898a094b0d5ee623}\label{linenoise_8c_a663e19b94d27b369898a094b0d5ee623} 
+\#define {\bfseries LINENOISE\+\_\+\+HISTORY\+\_\+\+PREV}~1
+\end{DoxyCompactItemize}
+\doxysubsubsection*{枚举}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{linenoise_8c_a85602e772502d49e7d6c75d43df11e75}\label{linenoise_8c_a85602e772502d49e7d6c75d43df11e75} 
+enum {\bfseries KEY\+\_\+\+ACTION} \{ \newline
+{\bfseries KEY\+\_\+\+NULL} = 0
+, {\bfseries CTRL\+\_\+A} = 1
+, {\bfseries CTRL\+\_\+B} = 2
+, {\bfseries CTRL\+\_\+C} = 3
+, \newline
+{\bfseries CTRL\+\_\+D} = 4
+, {\bfseries CTRL\+\_\+E} = 5
+, {\bfseries CTRL\+\_\+F} = 6
+, {\bfseries CTRL\+\_\+H} = 8
+, \newline
+{\bfseries TAB} = 9
+, {\bfseries CTRL\+\_\+K} = 11
+, {\bfseries CTRL\+\_\+L} = 12
+, {\bfseries ENTER} = 13
+, \newline
+{\bfseries CTRL\+\_\+N} = 14
+, {\bfseries CTRL\+\_\+P} = 16
+, {\bfseries CTRL\+\_\+T} = 20
+, {\bfseries CTRL\+\_\+U} = 21
+, \newline
+{\bfseries CTRL\+\_\+W} = 23
+, {\bfseries ESC} = 27
+, {\bfseries BACKSPACE} = 127
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{linenoise_8c_afc313713954d648c0dfc32c1912e34c0}\label{linenoise_8c_afc313713954d648c0dfc32c1912e34c0} 
+static char \texorpdfstring{$\ast$}{*} {\bfseries linenoise\+No\+TTY} (void)
+\item 
+\Hypertarget{linenoise_8c_aca3f1541cbbcda20f6403e535245a851}\label{linenoise_8c_aca3f1541cbbcda20f6403e535245a851} 
+static void {\bfseries refresh\+Line\+With\+Completion} (struct \mbox{\hyperlink{structlinenoiseState}{linenoise\+State}} \texorpdfstring{$\ast$}{*}ls, \mbox{\hyperlink{structlinenoiseCompletions}{linenoise\+Completions}} \texorpdfstring{$\ast$}{*}lc, int flags)
+\item 
+\Hypertarget{linenoise_8c_a5751632ed6bc823eb0e3c5b4df483893}\label{linenoise_8c_a5751632ed6bc823eb0e3c5b4df483893} 
+static void {\bfseries refresh\+Line\+With\+Flags} (struct \mbox{\hyperlink{structlinenoiseState}{linenoise\+State}} \texorpdfstring{$\ast$}{*}l, int flags)
+\item 
+\Hypertarget{linenoise_8c_a75eed6dd55d6b8a45e596c6ddf6091cf}\label{linenoise_8c_a75eed6dd55d6b8a45e596c6ddf6091cf} 
+static void {\bfseries linenoise\+At\+Exit} (void)
+\item 
+\Hypertarget{linenoise_8c_a21ea9805fd7a20b554aa41d1c3bac9ab}\label{linenoise_8c_a21ea9805fd7a20b554aa41d1c3bac9ab} 
+int {\bfseries linenoise\+History\+Add} (const char \texorpdfstring{$\ast$}{*}line)
+\item 
+\Hypertarget{linenoise_8c_af4652ffd47448a594b68a10a45b73d19}\label{linenoise_8c_af4652ffd47448a594b68a10a45b73d19} 
+static void {\bfseries refresh\+Line} (struct \mbox{\hyperlink{structlinenoiseState}{linenoise\+State}} \texorpdfstring{$\ast$}{*}l)
+\item 
+\Hypertarget{linenoise_8c_a14137bbf4834f26d30444d831f21a53f}\label{linenoise_8c_a14137bbf4834f26d30444d831f21a53f} 
+void {\bfseries linenoise\+Mask\+Mode\+Enable} (void)
+\item 
+\Hypertarget{linenoise_8c_a307d0a601f21bd469c7d8e5194c16f61}\label{linenoise_8c_a307d0a601f21bd469c7d8e5194c16f61} 
+void {\bfseries linenoise\+Mask\+Mode\+Disable} (void)
+\item 
+\Hypertarget{linenoise_8c_a2ab532eaa7b04c971faca588d16181fd}\label{linenoise_8c_a2ab532eaa7b04c971faca588d16181fd} 
+void {\bfseries linenoise\+Set\+Multi\+Line} (int ml)
+\item 
+\Hypertarget{linenoise_8c_a00afdc72f7be40417fea4488f4158fda}\label{linenoise_8c_a00afdc72f7be40417fea4488f4158fda} 
+static int {\bfseries is\+Unsupported\+Term} (void)
+\item 
+\Hypertarget{linenoise_8c_a91be557f9548e7bc1caf3673674a77cd}\label{linenoise_8c_a91be557f9548e7bc1caf3673674a77cd} 
+static int {\bfseries enable\+Raw\+Mode} (int fd)
+\item 
+\Hypertarget{linenoise_8c_a53b5aa8b9e946f6b335cf7c72434016e}\label{linenoise_8c_a53b5aa8b9e946f6b335cf7c72434016e} 
+static void {\bfseries disable\+Raw\+Mode} (int fd)
+\item 
+\Hypertarget{linenoise_8c_a451720583279fc4afea67ee306157279}\label{linenoise_8c_a451720583279fc4afea67ee306157279} 
+static int {\bfseries get\+Cursor\+Position} (int ifd, int ofd)
+\item 
+\Hypertarget{linenoise_8c_a4f10b7fac46fd26fd9c44679ac4d53e4}\label{linenoise_8c_a4f10b7fac46fd26fd9c44679ac4d53e4} 
+static int {\bfseries get\+Columns} (int ifd, int ofd)
+\item 
+\Hypertarget{linenoise_8c_a8a2931c798c8a6db5193f343c7eb33c0}\label{linenoise_8c_a8a2931c798c8a6db5193f343c7eb33c0} 
+void {\bfseries linenoise\+Clear\+Screen} (void)
+\item 
+\Hypertarget{linenoise_8c_a73eb4ea1ae04e01fad5610416464fe2c}\label{linenoise_8c_a73eb4ea1ae04e01fad5610416464fe2c} 
+static void {\bfseries linenoise\+Beep} (void)
+\item 
+\Hypertarget{linenoise_8c_a7d0904e0496ef4982962262cda9ef4ed}\label{linenoise_8c_a7d0904e0496ef4982962262cda9ef4ed} 
+static void {\bfseries free\+Completions} (\mbox{\hyperlink{structlinenoiseCompletions}{linenoise\+Completions}} \texorpdfstring{$\ast$}{*}lc)
+\item 
+\Hypertarget{linenoise_8c_af0b7fdb995de9b4bcf9096747c4fd174}\label{linenoise_8c_af0b7fdb995de9b4bcf9096747c4fd174} 
+static int {\bfseries complete\+Line} (struct \mbox{\hyperlink{structlinenoiseState}{linenoise\+State}} \texorpdfstring{$\ast$}{*}ls, int keypressed)
+\item 
+\Hypertarget{linenoise_8c_a411a159f0f7319f455d0583581a7af2a}\label{linenoise_8c_a411a159f0f7319f455d0583581a7af2a} 
+void {\bfseries linenoise\+Set\+Completion\+Callback} (linenoise\+Completion\+Callback \texorpdfstring{$\ast$}{*}fn)
+\item 
+\Hypertarget{linenoise_8c_a4d95c54d9d9ed5888c8ee66c2b91a1b8}\label{linenoise_8c_a4d95c54d9d9ed5888c8ee66c2b91a1b8} 
+void {\bfseries linenoise\+Set\+Hints\+Callback} (linenoise\+Hints\+Callback \texorpdfstring{$\ast$}{*}fn)
+\item 
+\Hypertarget{linenoise_8c_ade2a1a5cb660aaf1daa7d815963183a7}\label{linenoise_8c_ade2a1a5cb660aaf1daa7d815963183a7} 
+void {\bfseries linenoise\+Set\+Free\+Hints\+Callback} (linenoise\+Free\+Hints\+Callback \texorpdfstring{$\ast$}{*}fn)
+\item 
+\Hypertarget{linenoise_8c_a7fb77550da1a7373c3bf96e9aca758bb}\label{linenoise_8c_a7fb77550da1a7373c3bf96e9aca758bb} 
+void {\bfseries linenoise\+Add\+Completion} (\mbox{\hyperlink{structlinenoiseCompletions}{linenoise\+Completions}} \texorpdfstring{$\ast$}{*}lc, const char \texorpdfstring{$\ast$}{*}str)
+\item 
+\Hypertarget{linenoise_8c_a41253fe330cc0b05ac0dae1d3af96039}\label{linenoise_8c_a41253fe330cc0b05ac0dae1d3af96039} 
+static void {\bfseries ab\+Init} (struct \mbox{\hyperlink{structabuf}{abuf}} \texorpdfstring{$\ast$}{*}ab)
+\item 
+\Hypertarget{linenoise_8c_aebf43986f179f988d1a518132f561912}\label{linenoise_8c_aebf43986f179f988d1a518132f561912} 
+static void {\bfseries ab\+Append} (struct \mbox{\hyperlink{structabuf}{abuf}} \texorpdfstring{$\ast$}{*}ab, const char \texorpdfstring{$\ast$}{*}s, int len)
+\item 
+\Hypertarget{linenoise_8c_a342886dec94eeb157807975933c7869f}\label{linenoise_8c_a342886dec94eeb157807975933c7869f} 
+static void {\bfseries ab\+Free} (struct \mbox{\hyperlink{structabuf}{abuf}} \texorpdfstring{$\ast$}{*}ab)
+\item 
+\Hypertarget{linenoise_8c_ab3c778327163dd6951adbfe944401a13}\label{linenoise_8c_ab3c778327163dd6951adbfe944401a13} 
+void {\bfseries refresh\+Show\+Hints} (struct \mbox{\hyperlink{structabuf}{abuf}} \texorpdfstring{$\ast$}{*}ab, struct \mbox{\hyperlink{structlinenoiseState}{linenoise\+State}} \texorpdfstring{$\ast$}{*}l, int plen)
+\item 
+\Hypertarget{linenoise_8c_a2f1a9518e6f16e24f02156bf0ab9e260}\label{linenoise_8c_a2f1a9518e6f16e24f02156bf0ab9e260} 
+static void {\bfseries refresh\+Single\+Line} (struct \mbox{\hyperlink{structlinenoiseState}{linenoise\+State}} \texorpdfstring{$\ast$}{*}l, int flags)
+\item 
+\Hypertarget{linenoise_8c_aab471a97d8677f5a1a19bad4e46b5c8d}\label{linenoise_8c_aab471a97d8677f5a1a19bad4e46b5c8d} 
+static void {\bfseries refresh\+Multi\+Line} (struct \mbox{\hyperlink{structlinenoiseState}{linenoise\+State}} \texorpdfstring{$\ast$}{*}l, int flags)
+\item 
+\Hypertarget{linenoise_8c_a3432a2fd897f1d7f87366f9ca968067e}\label{linenoise_8c_a3432a2fd897f1d7f87366f9ca968067e} 
+void {\bfseries linenoise\+Hide} (struct \mbox{\hyperlink{structlinenoiseState}{linenoise\+State}} \texorpdfstring{$\ast$}{*}l)
+\item 
+\Hypertarget{linenoise_8c_a0fb06148ab3b1ccbf72d7ece45bcef83}\label{linenoise_8c_a0fb06148ab3b1ccbf72d7ece45bcef83} 
+void {\bfseries linenoise\+Show} (struct \mbox{\hyperlink{structlinenoiseState}{linenoise\+State}} \texorpdfstring{$\ast$}{*}l)
+\item 
+\Hypertarget{linenoise_8c_a6cce541e761370e498d13581d3d91112}\label{linenoise_8c_a6cce541e761370e498d13581d3d91112} 
+int {\bfseries linenoise\+Edit\+Insert} (struct \mbox{\hyperlink{structlinenoiseState}{linenoise\+State}} \texorpdfstring{$\ast$}{*}l, char c)
+\item 
+\Hypertarget{linenoise_8c_a0bd595848eaff5742e695218948313d5}\label{linenoise_8c_a0bd595848eaff5742e695218948313d5} 
+void {\bfseries linenoise\+Edit\+Move\+Left} (struct \mbox{\hyperlink{structlinenoiseState}{linenoise\+State}} \texorpdfstring{$\ast$}{*}l)
+\item 
+\Hypertarget{linenoise_8c_a302cb2d86446120e7673181ce332bfbb}\label{linenoise_8c_a302cb2d86446120e7673181ce332bfbb} 
+void {\bfseries linenoise\+Edit\+Move\+Right} (struct \mbox{\hyperlink{structlinenoiseState}{linenoise\+State}} \texorpdfstring{$\ast$}{*}l)
+\item 
+\Hypertarget{linenoise_8c_aa05144c45f7553d17dcd0e468d6b24d2}\label{linenoise_8c_aa05144c45f7553d17dcd0e468d6b24d2} 
+void {\bfseries linenoise\+Edit\+Move\+Home} (struct \mbox{\hyperlink{structlinenoiseState}{linenoise\+State}} \texorpdfstring{$\ast$}{*}l)
+\item 
+\Hypertarget{linenoise_8c_a43cc194deb4cd2dff39ec34d1d0c3d6f}\label{linenoise_8c_a43cc194deb4cd2dff39ec34d1d0c3d6f} 
+void {\bfseries linenoise\+Edit\+Move\+End} (struct \mbox{\hyperlink{structlinenoiseState}{linenoise\+State}} \texorpdfstring{$\ast$}{*}l)
+\item 
+\Hypertarget{linenoise_8c_aa7e878ce34125f9913f4544048661906}\label{linenoise_8c_aa7e878ce34125f9913f4544048661906} 
+void {\bfseries linenoise\+Edit\+History\+Next} (struct \mbox{\hyperlink{structlinenoiseState}{linenoise\+State}} \texorpdfstring{$\ast$}{*}l, int dir)
+\item 
+\Hypertarget{linenoise_8c_aed102174d6974691762fd69af8602c77}\label{linenoise_8c_aed102174d6974691762fd69af8602c77} 
+void {\bfseries linenoise\+Edit\+Delete} (struct \mbox{\hyperlink{structlinenoiseState}{linenoise\+State}} \texorpdfstring{$\ast$}{*}l)
+\item 
+\Hypertarget{linenoise_8c_ab0ebfc4bf6270b7b04d8b8d94e94aaff}\label{linenoise_8c_ab0ebfc4bf6270b7b04d8b8d94e94aaff} 
+void {\bfseries linenoise\+Edit\+Backspace} (struct \mbox{\hyperlink{structlinenoiseState}{linenoise\+State}} \texorpdfstring{$\ast$}{*}l)
+\item 
+\Hypertarget{linenoise_8c_ad36c0da98feb0537fb534a9168804adc}\label{linenoise_8c_ad36c0da98feb0537fb534a9168804adc} 
+void {\bfseries linenoise\+Edit\+Delete\+Prev\+Word} (struct \mbox{\hyperlink{structlinenoiseState}{linenoise\+State}} \texorpdfstring{$\ast$}{*}l)
+\item 
+\Hypertarget{linenoise_8c_a2df90335af58c0ed1be25af3b9dc2027}\label{linenoise_8c_a2df90335af58c0ed1be25af3b9dc2027} 
+int {\bfseries linenoise\+Edit\+Start} (struct \mbox{\hyperlink{structlinenoiseState}{linenoise\+State}} \texorpdfstring{$\ast$}{*}l, int stdin\+\_\+fd, int stdout\+\_\+fd, char \texorpdfstring{$\ast$}{*}buf, size\+\_\+t buflen, const char \texorpdfstring{$\ast$}{*}prompt)
+\item 
+\Hypertarget{linenoise_8c_adac7250f0973d2a66ae45d142efc2de0}\label{linenoise_8c_adac7250f0973d2a66ae45d142efc2de0} 
+char \texorpdfstring{$\ast$}{*} {\bfseries linenoise\+Edit\+Feed} (struct \mbox{\hyperlink{structlinenoiseState}{linenoise\+State}} \texorpdfstring{$\ast$}{*}l)
+\item 
+\Hypertarget{linenoise_8c_a34ad9db5b4cd67eeb3d3f44f85edd0ea}\label{linenoise_8c_a34ad9db5b4cd67eeb3d3f44f85edd0ea} 
+void {\bfseries linenoise\+Edit\+Stop} (struct \mbox{\hyperlink{structlinenoiseState}{linenoise\+State}} \texorpdfstring{$\ast$}{*}l)
+\item 
+\Hypertarget{linenoise_8c_a99925635233446de02c056bf9788bb21}\label{linenoise_8c_a99925635233446de02c056bf9788bb21} 
+static char \texorpdfstring{$\ast$}{*} {\bfseries linenoise\+Blocking\+Edit} (int stdin\+\_\+fd, int stdout\+\_\+fd, char \texorpdfstring{$\ast$}{*}buf, size\+\_\+t buflen, const char \texorpdfstring{$\ast$}{*}prompt)
+\item 
+\Hypertarget{linenoise_8c_a8eb234c23d55ede4247447a195068e08}\label{linenoise_8c_a8eb234c23d55ede4247447a195068e08} 
+void {\bfseries linenoise\+Print\+Key\+Codes} (void)
+\item 
+\Hypertarget{linenoise_8c_a2c28429b3e025fd370160c1489651e3c}\label{linenoise_8c_a2c28429b3e025fd370160c1489651e3c} 
+char \texorpdfstring{$\ast$}{*} {\bfseries linenoise} (const char \texorpdfstring{$\ast$}{*}prompt)
+\item 
+\Hypertarget{linenoise_8c_a3386098538a759114bb03f62b320ff01}\label{linenoise_8c_a3386098538a759114bb03f62b320ff01} 
+void {\bfseries linenoise\+Free} (void \texorpdfstring{$\ast$}{*}ptr)
+\item 
+\Hypertarget{linenoise_8c_abba0267c7e85732a2be5866e8e456b9e}\label{linenoise_8c_abba0267c7e85732a2be5866e8e456b9e} 
+static void {\bfseries free\+History} (void)
+\item 
+\Hypertarget{linenoise_8c_ac34da7161471aaaf132d3041f95abf40}\label{linenoise_8c_ac34da7161471aaaf132d3041f95abf40} 
+int {\bfseries linenoise\+History\+Set\+Max\+Len} (int len)
+\item 
+\Hypertarget{linenoise_8c_a971464006a6bdf1cbf0a30a3554179a0}\label{linenoise_8c_a971464006a6bdf1cbf0a30a3554179a0} 
+int {\bfseries linenoise\+History\+Save} (const char \texorpdfstring{$\ast$}{*}filename)
+\item 
+\Hypertarget{linenoise_8c_a10c078eea5725c7bcabe5676cb019f9d}\label{linenoise_8c_a10c078eea5725c7bcabe5676cb019f9d} 
+int {\bfseries linenoise\+History\+Load} (const char \texorpdfstring{$\ast$}{*}filename)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{变量}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{linenoise_8c_a345b183946ff3fce7e39360217e589d1}\label{linenoise_8c_a345b183946ff3fce7e39360217e589d1} 
+static char \texorpdfstring{$\ast$}{*} {\bfseries unsupported\+\_\+term} \mbox{[}$\,$\mbox{]} = \{"{}dumb"{},"{}cons25"{},"{}emacs"{},\mbox{\hyperlink{list_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}}\}
+\item 
+\Hypertarget{linenoise_8c_a647f2b6851795cd63665cf90aa7a6374}\label{linenoise_8c_a647f2b6851795cd63665cf90aa7a6374} 
+static linenoise\+Completion\+Callback \texorpdfstring{$\ast$}{*} {\bfseries completion\+Callback} = \mbox{\hyperlink{list_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}}
+\item 
+\Hypertarget{linenoise_8c_aa068c5a1eb827443ec79da7d938f2bac}\label{linenoise_8c_aa068c5a1eb827443ec79da7d938f2bac} 
+static linenoise\+Hints\+Callback \texorpdfstring{$\ast$}{*} {\bfseries hints\+Callback} = \mbox{\hyperlink{list_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}}
+\item 
+\Hypertarget{linenoise_8c_afac1cc7c690a284fa7a37c5b324e6b1c}\label{linenoise_8c_afac1cc7c690a284fa7a37c5b324e6b1c} 
+static linenoise\+Free\+Hints\+Callback \texorpdfstring{$\ast$}{*} {\bfseries free\+Hints\+Callback} = \mbox{\hyperlink{list_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}}
+\item 
+\Hypertarget{linenoise_8c_a1705dee0e4e822859804bec377506fb5}\label{linenoise_8c_a1705dee0e4e822859804bec377506fb5} 
+static struct termios {\bfseries orig\+\_\+termios}
+\item 
+\Hypertarget{linenoise_8c_adb7c7e9c8e0f1e9032752e5ca10400ce}\label{linenoise_8c_adb7c7e9c8e0f1e9032752e5ca10400ce} 
+static int {\bfseries maskmode} = 0
+\item 
+\Hypertarget{linenoise_8c_a09a46d3636dc1d18db7ecc0c99f3030a}\label{linenoise_8c_a09a46d3636dc1d18db7ecc0c99f3030a} 
+static int {\bfseries rawmode} = 0
+\item 
+\Hypertarget{linenoise_8c_aacd6f69e82c17a81342819fb4fb87c45}\label{linenoise_8c_aacd6f69e82c17a81342819fb4fb87c45} 
+static int {\bfseries mlmode} = 0
+\item 
+\Hypertarget{linenoise_8c_aa6e7549c682adc3f0f0cd413324458ad}\label{linenoise_8c_aa6e7549c682adc3f0f0cd413324458ad} 
+static int {\bfseries atexit\+\_\+registered} = 0
+\item 
+\Hypertarget{linenoise_8c_a672ecc5d530e05194396a0ab99313821}\label{linenoise_8c_a672ecc5d530e05194396a0ab99313821} 
+static int {\bfseries history\+\_\+max\+\_\+len} = LINENOISE\+\_\+\+DEFAULT\+\_\+\+HISTORY\+\_\+\+MAX\+\_\+\+LEN
+\item 
+\Hypertarget{linenoise_8c_ac4e3ac76ad034d20159490126e4f010d}\label{linenoise_8c_ac4e3ac76ad034d20159490126e4f010d} 
+static int {\bfseries history\+\_\+len} = 0
+\item 
+\Hypertarget{linenoise_8c_a5f9f02d4391a83cb01df97fe1ea2b6c5}\label{linenoise_8c_a5f9f02d4391a83cb01df97fe1ea2b6c5} 
+static char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} {\bfseries history} = \mbox{\hyperlink{list_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}}
+\item 
+\Hypertarget{linenoise_8c_ac4f8746f64275403a95c2ccefa30c81a}\label{linenoise_8c_ac4f8746f64275403a95c2ccefa30c81a} 
+char \texorpdfstring{$\ast$}{*} {\bfseries linenoise\+Edit\+More} = "{}If you see this, you are misusing the API\+: when linenoise\+Edit\+Feed() is called, if it returns linenoise\+Edit\+More the user is yet editing the line. See the README file for more information."{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+REPL工具库实现 
+
+\begin{DoxyAuthor}{作者}
+lancer (\href{mailto:lancerstadium@163.com}{\texttt{ lancerstadium@163.\+com}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{版本}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{日期}
+2023-\/12-\/28
+\end{DoxyDate}
+\begin{DoxyCopyright}{版权所有}
+Copyright (c) 2023 
+\end{DoxyCopyright}
+\begin{DoxyNote}{注解}
+参考项目：\href{https://github.com/antirez/linenoise}{\texttt{ Github \texorpdfstring{$\vert$}{|} linenoise}}
+\end{DoxyNote}
+\hypertarget{linenoise_8c_autotoc_md8}{}\doxysubsection{\texorpdfstring{Introduce}{Introduce}}\label{linenoise_8c_autotoc_md8}
+\doxylink{linenoise_8c}{linenoise.\+c} -- guerrilla line editing library against the idea that a line editing lib needs to be 20,000 lines of C code.
+
+You can find the latest source code at\+:
+
+\href{http://github.com/antirez/linenoise}{\texttt{ http\+://github.\+com/antirez/linenoise}}
+
+Does a number of crazy assumptions that happen to be true in 99.\+9999\% of the 2010 UNIX computers around.
+
+\DoxyHorRuler{0}
+
+
+Copyright (c) 2010-\/2023, Salvatore Sanfilippo $<$antirez at gmail dot com$>$ Copyright (c) 2010-\/2013, Pieter Noordhuis $<$pcnoordhuis at gmail dot com$>$
+
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met\+:
+
+
+\begin{DoxyItemize}
+\item Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+\item Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+\end{DoxyItemize}
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "{}\+AS IS"{} AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+\DoxyHorRuler{0}
+
+
+References\+:
+\begin{DoxyItemize}
+\item \href{http://invisible-island.net/xterm/ctlseqs/ctlseqs.html}{\texttt{ http\+://invisible-\/island.\+net/xterm/ctlseqs/ctlseqs.\+html}}
+\item \href{http://www.3waylabs.com/nw/WWW/products/wizcon/vt220.html}{\texttt{ http\+://www.\+3waylabs.\+com/nw/\+WWW/products/wizcon/vt220.\+html}}
+\end{DoxyItemize}
+
+Todo list\+:
+\begin{DoxyItemize}
+\item Filter bogus Ctrl+$<$char$>$ combinations.
+\item Win32 support
+\end{DoxyItemize}
+
+Bloat\+:
+\begin{DoxyItemize}
+\item History search like Ctrl+r in readline?
+\end{DoxyItemize}
+
+List of escape sequences used by this program, we do everything just with three sequences. In order to be so cheap we may have some flickering effect with some slow terminal, but the lesser sequences the more compatible.
+
+EL (Erase Line) Sequence\+: ESC \mbox{[} n K Effect\+: if n is 0 or missing, clear from cursor to end of line Effect\+: if n is 1, clear from beginning of line to cursor Effect\+: if n is 2, clear entire line
+
+CUF (CUrsor Forward) Sequence\+: ESC \mbox{[} n C Effect\+: moves cursor forward n chars
+
+CUB (CUrsor Backward) Sequence\+: ESC \mbox{[} n D Effect\+: moves cursor backward n chars
+
+The following is used to get the terminal width if getting the width with the TIOCGWINSZ ioctl fails
+
+DSR (Device Status Report) Sequence\+: ESC \mbox{[} 6 n Effect\+: reports the current cusor position as ESC \mbox{[} n ; m R where n is the row and m is the column
+
+When multi line mode is enabled, we also use an additional escape sequence. However multi line editing is disabled by default.
+
+CUU (Cursor Up) Sequence\+: ESC \mbox{[} n A Effect\+: moves cursor up of n chars.
+
+CUD (Cursor Down) Sequence\+: ESC \mbox{[} n B Effect\+: moves cursor down of n chars.
+
+When linenoise\+Clear\+Screen() is called, two additional escape sequences are used in order to clear the screen and position the cursor at home position.
+
+CUP (Cursor position) Sequence\+: ESC \mbox{[} H Effect\+: moves the cursor to upper left corner
+
+ED (Erase display) Sequence\+: ESC \mbox{[} 2 J Effect\+: clear the whole screen 

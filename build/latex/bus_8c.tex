@@ -1,0 +1,78 @@
+\doxysection{src/cemu/bus.c 文件参考}
+\hypertarget{bus_8c}{}\label{bus_8c}\index{src/cemu/bus.c@{src/cemu/bus.c}}
+
+
+总线功能实现  
+
+
+{\ttfamily \#include "{}bus.\+h"{}}\newline
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+u64 \mbox{\hyperlink{bus_8c_a377843cd98367d78fa0d05e1583b84b7}{bus\+\_\+load}} (\mbox{\hyperlink{structBUS__t}{BUS}} \texorpdfstring{$\ast$}{*}bus, u64 addr, u64 size)
+\begin{DoxyCompactList}\small\item\em 总线加载数据 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bus_8c_a8bfe42458d7c798bd33e556a95ec7344}{bus\+\_\+store}} (\mbox{\hyperlink{structBUS__t}{BUS}} \texorpdfstring{$\ast$}{*}bus, u64 addr, u64 size, u64 value)
+\begin{DoxyCompactList}\small\item\em 总线存储数据 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+总线功能实现 
+
+\begin{DoxyAuthor}{作者}
+lancer (\href{mailto:lancerstadium@163.com}{\texttt{ lancerstadium@163.\+com}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{版本}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{日期}
+2024-\/01-\/08 
+\end{DoxyDate}
+\begin{DoxyCopyright}{版权所有}
+Copyright (c) 2024 
+\end{DoxyCopyright}
+
+
+\doxysubsection{函数说明}
+\Hypertarget{bus_8c_a377843cd98367d78fa0d05e1583b84b7}\label{bus_8c_a377843cd98367d78fa0d05e1583b84b7} 
+\index{bus.c@{bus.c}!bus\_load@{bus\_load}}
+\index{bus\_load@{bus\_load}!bus.c@{bus.c}}
+\doxysubsubsection{\texorpdfstring{bus\_load()}{bus\_load()}}
+{\footnotesize\ttfamily u64 bus\+\_\+load (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structBUS__t}{BUS}} \texorpdfstring{$\ast$}{*}}]{bus,  }\item[{u64}]{addr,  }\item[{u64}]{size }\end{DoxyParamCaption})}
+
+
+
+总线加载数据 
+
+
+\begin{DoxyParams}{参数}
+{\em bus} & 总线 \\
+\hline
+{\em addr} & 地址 \\
+\hline
+{\em size} & 数据大小 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+u64 数据 
+\end{DoxyReturn}
+\Hypertarget{bus_8c_a8bfe42458d7c798bd33e556a95ec7344}\label{bus_8c_a8bfe42458d7c798bd33e556a95ec7344} 
+\index{bus.c@{bus.c}!bus\_store@{bus\_store}}
+\index{bus\_store@{bus\_store}!bus.c@{bus.c}}
+\doxysubsubsection{\texorpdfstring{bus\_store()}{bus\_store()}}
+{\footnotesize\ttfamily void bus\+\_\+store (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structBUS__t}{BUS}} \texorpdfstring{$\ast$}{*}}]{bus,  }\item[{u64}]{addr,  }\item[{u64}]{size,  }\item[{u64}]{value }\end{DoxyParamCaption})}
+
+
+
+总线存储数据 
+
+
+\begin{DoxyParams}{参数}
+{\em bus} & 总线 \\
+\hline
+{\em addr} & 地址 \\
+\hline
+{\em size} & 数据大小 \\
+\hline
+{\em value} & 数据 \\
+\hline
+\end{DoxyParams}

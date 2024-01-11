@@ -1,0 +1,110 @@
+\doxysection{src/utils/list.c 文件参考}
+\hypertarget{list_8c}{}\label{list_8c}\index{src/utils/list.c@{src/utils/list.c}}
+{\ttfamily \#include "{}list.\+h"{}}\newline
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{list_8c_a4dd22d618e45eaaa38615ef8c6052f7e}\label{list_8c_a4dd22d618e45eaaa38615ef8c6052f7e} 
+void {\bfseries \+\_\+\+\_\+list\+\_\+add} (struct \mbox{\hyperlink{structlist__head}{list\+\_\+head}} \texorpdfstring{$\ast$}{*}l\+\_\+new, struct \mbox{\hyperlink{structlist__head}{list\+\_\+head}} \texorpdfstring{$\ast$}{*}prev, struct \mbox{\hyperlink{structlist__head}{list\+\_\+head}} \texorpdfstring{$\ast$}{*}next)
+\item 
+void \mbox{\hyperlink{list_8c_aa32af9918e8de622bc4437124a8f432a}{list\+\_\+add}} (struct \mbox{\hyperlink{structlist__head}{list\+\_\+head}} \texorpdfstring{$\ast$}{*}l\+\_\+new, struct \mbox{\hyperlink{structlist__head}{list\+\_\+head}} \texorpdfstring{$\ast$}{*}head)
+\item 
+void \mbox{\hyperlink{list_8c_ab34b372a39b7345029f4f8d979df712f}{list\+\_\+add\+\_\+tail}} (struct \mbox{\hyperlink{structlist__head}{list\+\_\+head}} \texorpdfstring{$\ast$}{*}l\+\_\+new, struct \mbox{\hyperlink{structlist__head}{list\+\_\+head}} \texorpdfstring{$\ast$}{*}head)
+\item 
+\Hypertarget{list_8c_af2b1f6f4d814855e7f5c8044edfb4d60}\label{list_8c_af2b1f6f4d814855e7f5c8044edfb4d60} 
+void {\bfseries \+\_\+\+\_\+list\+\_\+del} (struct \mbox{\hyperlink{structlist__head}{list\+\_\+head}} \texorpdfstring{$\ast$}{*}prev, struct \mbox{\hyperlink{structlist__head}{list\+\_\+head}} \texorpdfstring{$\ast$}{*}next)
+\item 
+void \mbox{\hyperlink{list_8c_ac32a18fe87fa883f9679ca4bc4b88693}{list\+\_\+del}} (struct \mbox{\hyperlink{structlist__head}{list\+\_\+head}} \texorpdfstring{$\ast$}{*}entry)
+\item 
+void \mbox{\hyperlink{list_8c_a90c598c7e340b11c3ae9f9cbb415a4d7}{list\+\_\+del\+\_\+init}} (struct \mbox{\hyperlink{structlist__head}{list\+\_\+head}} \texorpdfstring{$\ast$}{*}entry)
+\item 
+int \mbox{\hyperlink{list_8c_a4e4fb53df346702e31a3c03b23769cb2}{list\+\_\+empty}} (struct \mbox{\hyperlink{structlist__head}{list\+\_\+head}} \texorpdfstring{$\ast$}{*}head)
+\item 
+void \mbox{\hyperlink{list_8c_a7e38879a26fc719d2b92c15de261c206}{list\+\_\+splice}} (struct \mbox{\hyperlink{structlist__head}{list\+\_\+head}} \texorpdfstring{$\ast$}{*}list, struct \mbox{\hyperlink{structlist__head}{list\+\_\+head}} \texorpdfstring{$\ast$}{*}head)
+\item 
+\Hypertarget{list_8c_a167c5c3fe3b88a3e499210033585c6d8}\label{list_8c_a167c5c3fe3b88a3e499210033585c6d8} 
+static void {\bfseries \+\_\+\+\_\+hlist\+\_\+del} (struct \mbox{\hyperlink{structhlist__node}{hlist\+\_\+node}} \texorpdfstring{$\ast$}{*}n)
+\item 
+\Hypertarget{list_8c_a249f829d7216ab7fc5f005444a3901d1}\label{list_8c_a249f829d7216ab7fc5f005444a3901d1} 
+void {\bfseries hlist\+\_\+del} (struct \mbox{\hyperlink{structhlist__node}{hlist\+\_\+node}} \texorpdfstring{$\ast$}{*}n)
+\item 
+\Hypertarget{list_8c_a17e29d64f92e2381654257e749751795}\label{list_8c_a17e29d64f92e2381654257e749751795} 
+void {\bfseries hlist\+\_\+del\+\_\+init} (struct \mbox{\hyperlink{structhlist__node}{hlist\+\_\+node}} \texorpdfstring{$\ast$}{*}n)
+\item 
+\Hypertarget{list_8c_ae680ea02166decb99a630d968bed79a7}\label{list_8c_ae680ea02166decb99a630d968bed79a7} 
+void {\bfseries hlist\+\_\+add\+\_\+head} (struct \mbox{\hyperlink{structhlist__node}{hlist\+\_\+node}} \texorpdfstring{$\ast$}{*}n, struct \mbox{\hyperlink{structhlist__head}{hlist\+\_\+head}} \texorpdfstring{$\ast$}{*}h)
+\item 
+\Hypertarget{list_8c_a8e4d5ed7df7c77bda76d869b2b27e011}\label{list_8c_a8e4d5ed7df7c77bda76d869b2b27e011} 
+void {\bfseries hlist\+\_\+add\+\_\+before} (struct \mbox{\hyperlink{structhlist__node}{hlist\+\_\+node}} \texorpdfstring{$\ast$}{*}n, struct \mbox{\hyperlink{structhlist__node}{hlist\+\_\+node}} \texorpdfstring{$\ast$}{*}next)
+\item 
+\Hypertarget{list_8c_a33b9c47fa8bdcfa77d7a09e83737a470}\label{list_8c_a33b9c47fa8bdcfa77d7a09e83737a470} 
+void {\bfseries hlist\+\_\+add\+\_\+behind} (struct \mbox{\hyperlink{structhlist__node}{hlist\+\_\+node}} \texorpdfstring{$\ast$}{*}n, struct \mbox{\hyperlink{structhlist__node}{hlist\+\_\+node}} \texorpdfstring{$\ast$}{*}prev)
+\item 
+\Hypertarget{list_8c_ad7ad91ed6dd20b01cdc40498de5a7490}\label{list_8c_ad7ad91ed6dd20b01cdc40498de5a7490} 
+void {\bfseries hlist\+\_\+add\+\_\+fake} (struct \mbox{\hyperlink{structhlist__node}{hlist\+\_\+node}} \texorpdfstring{$\ast$}{*}n)
+\item 
+\Hypertarget{list_8c_ab1816f93b14ef5cc7e57a9506df3cf27}\label{list_8c_ab1816f93b14ef5cc7e57a9506df3cf27} 
+int {\bfseries hlist\+\_\+fake} (struct \mbox{\hyperlink{structhlist__node}{hlist\+\_\+node}} \texorpdfstring{$\ast$}{*}h)
+\item 
+\Hypertarget{list_8c_af1243b6b84a2f531b9c2f7e91ad777d8}\label{list_8c_af1243b6b84a2f531b9c2f7e91ad777d8} 
+void {\bfseries hlist\+\_\+move\+\_\+list} (struct \mbox{\hyperlink{structhlist__head}{hlist\+\_\+head}} \texorpdfstring{$\ast$}{*}old, struct \mbox{\hyperlink{structhlist__head}{hlist\+\_\+head}} \texorpdfstring{$\ast$}{*}l\+\_\+new)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyAuthor}{作者}
+your name (\href{mailto:you@domain.com}{\texttt{ you@domain.\+com}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{版本}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{日期}
+2024-\/01-\/08
+\end{DoxyDate}
+\begin{DoxyCopyright}{版权所有}
+Copyright (c) 2024 
+\end{DoxyCopyright}
+
+
+\doxysubsection{函数说明}
+\Hypertarget{list_8c_aa32af9918e8de622bc4437124a8f432a}\label{list_8c_aa32af9918e8de622bc4437124a8f432a} 
+\index{list.c@{list.c}!list\_add@{list\_add}}
+\index{list\_add@{list\_add}!list.c@{list.c}}
+\doxysubsubsection{\texorpdfstring{list\_add()}{list\_add()}}
+{\footnotesize\ttfamily void list\+\_\+add (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structlist__head}{list\+\_\+head}} \texorpdfstring{$\ast$}{*}}]{l\+\_\+new,  }\item[{struct \mbox{\hyperlink{structlist__head}{list\+\_\+head}} \texorpdfstring{$\ast$}{*}}]{head }\end{DoxyParamCaption})}
+
+list\+\_\+add -\/ add a l\+\_\+new entry @l\+\_\+new\+: l\+\_\+new entry to be added @head\+: list head to add it after
+
+Insert a l\+\_\+new entry after the specified head. This is good for implementing stacks. \Hypertarget{list_8c_ab34b372a39b7345029f4f8d979df712f}\label{list_8c_ab34b372a39b7345029f4f8d979df712f} 
+\index{list.c@{list.c}!list\_add\_tail@{list\_add\_tail}}
+\index{list\_add\_tail@{list\_add\_tail}!list.c@{list.c}}
+\doxysubsubsection{\texorpdfstring{list\_add\_tail()}{list\_add\_tail()}}
+{\footnotesize\ttfamily void list\+\_\+add\+\_\+tail (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structlist__head}{list\+\_\+head}} \texorpdfstring{$\ast$}{*}}]{l\+\_\+new,  }\item[{struct \mbox{\hyperlink{structlist__head}{list\+\_\+head}} \texorpdfstring{$\ast$}{*}}]{head }\end{DoxyParamCaption})}
+
+list\+\_\+add\+\_\+tail -\/ add a l\+\_\+new entry @l\+\_\+new\+: l\+\_\+new entry to be added @head\+: list head to add it before
+
+Insert a l\+\_\+new entry before the specified head. This is useful for implementing queues. \Hypertarget{list_8c_ac32a18fe87fa883f9679ca4bc4b88693}\label{list_8c_ac32a18fe87fa883f9679ca4bc4b88693} 
+\index{list.c@{list.c}!list\_del@{list\_del}}
+\index{list\_del@{list\_del}!list.c@{list.c}}
+\doxysubsubsection{\texorpdfstring{list\_del()}{list\_del()}}
+{\footnotesize\ttfamily void list\+\_\+del (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structlist__head}{list\+\_\+head}} \texorpdfstring{$\ast$}{*}}]{entry }\end{DoxyParamCaption})}
+
+list\+\_\+del -\/ deletes entry from list. @entry\+: the element to delete from the list. Note\+: list\+\_\+empty on entry does not return true after this, the entry is in an undefined state. \Hypertarget{list_8c_a90c598c7e340b11c3ae9f9cbb415a4d7}\label{list_8c_a90c598c7e340b11c3ae9f9cbb415a4d7} 
+\index{list.c@{list.c}!list\_del\_init@{list\_del\_init}}
+\index{list\_del\_init@{list\_del\_init}!list.c@{list.c}}
+\doxysubsubsection{\texorpdfstring{list\_del\_init()}{list\_del\_init()}}
+{\footnotesize\ttfamily void list\+\_\+del\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structlist__head}{list\+\_\+head}} \texorpdfstring{$\ast$}{*}}]{entry }\end{DoxyParamCaption})}
+
+list\+\_\+del\+\_\+init -\/ deletes entry from list and reinitialize it. @entry\+: the element to delete from the list. \Hypertarget{list_8c_a4e4fb53df346702e31a3c03b23769cb2}\label{list_8c_a4e4fb53df346702e31a3c03b23769cb2} 
+\index{list.c@{list.c}!list\_empty@{list\_empty}}
+\index{list\_empty@{list\_empty}!list.c@{list.c}}
+\doxysubsubsection{\texorpdfstring{list\_empty()}{list\_empty()}}
+{\footnotesize\ttfamily int list\+\_\+empty (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structlist__head}{list\+\_\+head}} \texorpdfstring{$\ast$}{*}}]{head }\end{DoxyParamCaption})}
+
+list\+\_\+empty -\/ tests whether a list is empty @head\+: the list to test. \Hypertarget{list_8c_a7e38879a26fc719d2b92c15de261c206}\label{list_8c_a7e38879a26fc719d2b92c15de261c206} 
+\index{list.c@{list.c}!list\_splice@{list\_splice}}
+\index{list\_splice@{list\_splice}!list.c@{list.c}}
+\doxysubsubsection{\texorpdfstring{list\_splice()}{list\_splice()}}
+{\footnotesize\ttfamily void list\+\_\+splice (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structlist__head}{list\+\_\+head}} \texorpdfstring{$\ast$}{*}}]{list,  }\item[{struct \mbox{\hyperlink{structlist__head}{list\+\_\+head}} \texorpdfstring{$\ast$}{*}}]{head }\end{DoxyParamCaption})}
+
+list\+\_\+splice -\/ join two lists @list\+: the l\+\_\+new list to add. @head\+: the place to add it in the first list. 

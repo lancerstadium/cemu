@@ -1,0 +1,291 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>uemu: src/cemu/list.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">uemu
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('list_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">list.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="list_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#ifndef LIST_H</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#define LIST_H</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#ifndef NULL</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="list_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">   22</a></span><span class="preprocessor">#define NULL 0</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment"> * These are non-NULL pointers that will result in page faults</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="comment"> * under normal circumstances, used to verify that nobody uses</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="comment"> * non-initialized list entries.</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#define LIST_POISON1  ((void *) 0x00100100)</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#define LIST_POISON2  ((void *) 0x00200200)</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="comment"> * Simple doubly linked list implementation.</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="comment"> * Some of the internal functions (&quot;__xxx&quot;) are useful when</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="comment"> * manipulating whole lists rather than single entries, as</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="comment"> * sometimes we already know the next/prev entries and we can</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment"> * generate better code by using them directly rather than</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="comment"> * using the generic single-entry routines.</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="foldopen" id="foldopen00043" data-start="{" data-end="};">
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="structlist__head.html">   43</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structlist__head.html">list_head</a> {</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structlist__head.html">list_head</a> *next, *prev;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>};</div>
+</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="preprocessor">#define LIST_HEAD_INIT(name) { &amp;(name), &amp;(name) }</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="preprocessor">#define LIST_HEAD(name) \</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="preprocessor">    struct list_head name = LIST_HEAD_INIT(name)</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="preprocessor">#define INIT_LIST_HEAD(ptr) do { \</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="preprocessor">    (ptr)-&gt;next = (ptr); (ptr)-&gt;prev = (ptr); \</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="preprocessor">} while (0)</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="comment"> * Insert a l_new entry between two known consecutive entries. </span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="comment"> * This is only for internal list manipulation where we know</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="comment"> * the prev/next entries already!</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="keywordtype">void</span> __list_add(<span class="keyword">struct</span> <a class="code hl_struct" href="structlist__head.html">list_head</a> * l_new,</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keyword">struct</span> <a class="code hl_struct" href="structlist__head.html">list_head</a> * prev,</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keyword">struct</span> <a class="code hl_struct" href="structlist__head.html">list_head</a> * next);</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="keywordtype">void</span> <a class="code hl_function" href="list_8h.html#aa32af9918e8de622bc4437124a8f432a">list_add</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structlist__head.html">list_head</a> *l_new, <span class="keyword">struct</span> <a class="code hl_struct" href="structlist__head.html">list_head</a> *head);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="keywordtype">void</span> <a class="code hl_function" href="list_8h.html#ab34b372a39b7345029f4f8d979df712f">list_add_tail</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structlist__head.html">list_head</a> *l_new, <span class="keyword">struct</span> <a class="code hl_struct" href="structlist__head.html">list_head</a> *head);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="comment"> * Delete a list entry by making the prev/next entries</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="comment"> * point to each other.</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="comment"> * This is only for internal list manipulation where we know</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="comment"> * the prev/next entries already!</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="keywordtype">void</span> __list_del(<span class="keyword">struct</span> <a class="code hl_struct" href="structlist__head.html">list_head</a> * prev,</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>                  <span class="keyword">struct</span> <a class="code hl_struct" href="structlist__head.html">list_head</a> * next);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="keywordtype">void</span> <a class="code hl_function" href="list_8h.html#ac32a18fe87fa883f9679ca4bc4b88693">list_del</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structlist__head.html">list_head</a> *entry);</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="keywordtype">void</span> <a class="code hl_function" href="list_8h.html#a90c598c7e340b11c3ae9f9cbb415a4d7">list_del_init</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structlist__head.html">list_head</a> *entry);</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="keywordtype">int</span> <a class="code hl_function" href="list_8h.html#a4e4fb53df346702e31a3c03b23769cb2">list_empty</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structlist__head.html">list_head</a> *head);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="keywordtype">void</span> <a class="code hl_function" href="list_8h.html#a7e38879a26fc719d2b92c15de261c206">list_splice</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structlist__head.html">list_head</a> *list, <span class="keyword">struct</span> <a class="code hl_struct" href="structlist__head.html">list_head</a> *head);</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="foldopen" id="foldopen00128" data-start="" data-end="">
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="list_8h.html#a26c976b7f654e70df318c1843e5094de">  128</a></span><span class="preprocessor">#define list_entry(ptr, type, member) \</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span><span class="preprocessor">    ((type *)((char *)(ptr)-(unsigned long)(&amp;((type *)0)-&gt;member)))</span></div>
+</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
+<div class="foldopen" id="foldopen00139" data-start="" data-end="">
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno"><a class="line" href="list_8h.html#a29b80cf9d55392a4949d2071b7db4d5c">  139</a></span><span class="preprocessor">#define list_first_entry(ptr, type, member) \</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span><span class="preprocessor">    list_entry((ptr)-&gt;next, type, member)</span></div>
+</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span> </div>
+<div class="foldopen" id="foldopen00150" data-start="" data-end="">
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno"><a class="line" href="list_8h.html#a7d4aa6766f2ceda84f6b833d40ce97a6">  150</a></span><span class="preprocessor">#define list_last_entry(ptr, type, member) \</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span><span class="preprocessor">    list_entry((ptr)-&gt;prev, type, member)</span></div>
+</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span> </div>
+<div class="foldopen" id="foldopen00161" data-start="" data-end="">
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno"><a class="line" href="list_8h.html#ad6b018d18f465feee8964831d3c858c2">  161</a></span><span class="preprocessor">#define list_first_entry_or_null(ptr, type, member) \</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span><span class="preprocessor">    (!list_empty(ptr) ? list_first_entry(ptr, type, member) : NULL)</span></div>
+</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
+<div class="foldopen" id="foldopen00169" data-start="" data-end="">
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno"><a class="line" href="list_8h.html#ab8b24e6660ab3760c923e4b4db3fa502">  169</a></span><span class="preprocessor">#define list_for_each(pos, head) \</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span><span class="preprocessor">    for (pos = (head)-&gt;next; pos != (head); pos = pos-&gt;next)</span></div>
+</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>            </div>
+<div class="foldopen" id="foldopen00178" data-start="" data-end="">
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno"><a class="line" href="list_8h.html#a9e4b9328744994b9d3878f5dad75c09f">  178</a></span><span class="preprocessor">#define list_for_each_safe(pos, n, head) \</span></div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span><span class="preprocessor">    for (pos = (head)-&gt;next, n = pos-&gt;next; pos != (head); \</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span><span class="preprocessor">        pos = n, n = pos-&gt;next)</span></div>
+</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
+<div class="foldopen" id="foldopen00187" data-start="" data-end="">
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno"><a class="line" href="list_8h.html#a19fc06b83f3502a83ce566b8887e6aec">  187</a></span><span class="preprocessor">#define list_for_each_prev(pos, head) \</span></div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span><span class="preprocessor">    for (pos = (head)-&gt;prev; pos != (head); pos = pos-&gt;prev)</span></div>
+</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>         </div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span><span class="comment"> * Double linked lists with a single pointer list head.</span></div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span><span class="comment"> * Mostly useful for hash tables where the two pointer list head is</span></div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span><span class="comment"> * too wasteful.</span></div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span><span class="comment"> * You lose the ability to access the tail in O(1).</span></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span> </div>
+<div class="foldopen" id="foldopen00197" data-start="{" data-end="};">
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno"><a class="line" href="structhlist__node.html">  197</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structhlist__node.html">hlist_node</a> {</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structhlist__node.html">hlist_node</a> *next, **pprev;</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>};</div>
+</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span> </div>
+<div class="foldopen" id="foldopen00201" data-start="{" data-end="};">
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno"><a class="line" href="structhlist__head.html">  201</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structhlist__head.html">hlist_head</a> {</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structhlist__node.html">hlist_node</a> *first;</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>};</div>
+</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span> </div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span><span class="preprocessor">#define INIT_HLIST_HEAD(ptr) ((ptr)-&gt;first = NULL)</span></div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span><span class="preprocessor">#define INIT_HLIST_NODE(h) \</span></div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span><span class="preprocessor">{ \</span></div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span><span class="preprocessor">    h-&gt;next = NULL; \</span></div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span><span class="preprocessor">    h-&gt;pprev = NULL; \</span></div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span><span class="preprocessor">}</span></div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span><span class="preprocessor">#define hlist_unhashed(h) (!h-&gt;pprev)</span></div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span> </div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span><span class="preprocessor">#define hlist_empty(h) (!h-&gt;first)</span></div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span> </div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span><span class="keywordtype">void</span> hlist_del(<span class="keyword">struct</span> <a class="code hl_struct" href="structhlist__node.html">hlist_node</a> *n);</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span><span class="keywordtype">void</span> hlist_del_init(<span class="keyword">struct</span> <a class="code hl_struct" href="structhlist__node.html">hlist_node</a> *n);</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span><span class="keywordtype">void</span> hlist_add_head(<span class="keyword">struct</span> <a class="code hl_struct" href="structhlist__node.html">hlist_node</a> *n, <span class="keyword">struct</span> <a class="code hl_struct" href="structhlist__head.html">hlist_head</a> *h);</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span> </div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span><span class="comment">/* next must be != NULL */</span></div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span><span class="keywordtype">void</span> hlist_add_before(<span class="keyword">struct</span> <a class="code hl_struct" href="structhlist__node.html">hlist_node</a> *n, <span class="keyword">struct</span> <a class="code hl_struct" href="structhlist__node.html">hlist_node</a> *next);</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span><span class="keywordtype">void</span> hlist_add_behind(<span class="keyword">struct</span> <a class="code hl_struct" href="structhlist__node.html">hlist_node</a> *n, <span class="keyword">struct</span> <a class="code hl_struct" href="structhlist__node.html">hlist_node</a> *prev);</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span><span class="comment">/* after that we&#39;ll appear to be on some hlist and hlist_del will work */</span></div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span><span class="keywordtype">void</span> hlist_add_fake(<span class="keyword">struct</span> <a class="code hl_struct" href="structhlist__node.html">hlist_node</a> *n);</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span><span class="keywordtype">int</span> hlist_fake(<span class="keyword">struct</span> <a class="code hl_struct" href="structhlist__node.html">hlist_node</a> *h);</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span> </div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span><span class="comment"> * Move a list from one list head to another. Fixup the pprev</span></div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span><span class="comment"> * reference of the first entry if it exists.</span></div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span><span class="keywordtype">void</span> hlist_move_list(<span class="keyword">struct</span> <a class="code hl_struct" href="structhlist__head.html">hlist_head</a> *old, <span class="keyword">struct</span> <a class="code hl_struct" href="structhlist__head.html">hlist_head</a> *l_new);</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span> </div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span><span class="preprocessor">#define hlist_entry(ptr, type, member) \</span></div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span><span class="preprocessor">    ((type *)((char *)(ptr)-(unsigned long)(&amp;((type *)0)-&gt;member)))</span></div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span> </div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span><span class="preprocessor">#define hlist_for_each(pos, head) \</span></div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span><span class="preprocessor">    for (pos = (head)-&gt;first; pos ; pos = pos-&gt;next)</span></div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span> </div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span><span class="preprocessor">#define hlist_for_each_safe(pos, n, head) \</span></div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span><span class="preprocessor">    for (pos = (head)-&gt;first; pos &amp;&amp; ({ n = pos-&gt;next; 1; }); pos = n)</span></div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span> </div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span> </div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span><span class="preprocessor">#endif </span><span class="comment">// _WHEELC_LIST_H_</span></div>
+<div class="ttc" id="alist_8h_html_a4e4fb53df346702e31a3c03b23769cb2"><div class="ttname"><a href="list_8h.html#a4e4fb53df346702e31a3c03b23769cb2">list_empty</a></div><div class="ttdeci">int list_empty(struct list_head *head)</div><div class="ttdef"><b>Definition</b> list.c:95</div></div>
+<div class="ttc" id="alist_8h_html_a7e38879a26fc719d2b92c15de261c206"><div class="ttname"><a href="list_8h.html#a7e38879a26fc719d2b92c15de261c206">list_splice</a></div><div class="ttdeci">void list_splice(struct list_head *list, struct list_head *head)</div><div class="ttdef"><b>Definition</b> list.c:105</div></div>
+<div class="ttc" id="alist_8h_html_a90c598c7e340b11c3ae9f9cbb415a4d7"><div class="ttname"><a href="list_8h.html#a90c598c7e340b11c3ae9f9cbb415a4d7">list_del_init</a></div><div class="ttdeci">void list_del_init(struct list_head *entry)</div><div class="ttdef"><b>Definition</b> list.c:85</div></div>
+<div class="ttc" id="alist_8h_html_aa32af9918e8de622bc4437124a8f432a"><div class="ttname"><a href="list_8h.html#aa32af9918e8de622bc4437124a8f432a">list_add</a></div><div class="ttdeci">void list_add(struct list_head *l_new, struct list_head *head)</div><div class="ttdef"><b>Definition</b> list.c:39</div></div>
+<div class="ttc" id="alist_8h_html_ab34b372a39b7345029f4f8d979df712f"><div class="ttname"><a href="list_8h.html#ab34b372a39b7345029f4f8d979df712f">list_add_tail</a></div><div class="ttdeci">void list_add_tail(struct list_head *l_new, struct list_head *head)</div><div class="ttdef"><b>Definition</b> list.c:52</div></div>
+<div class="ttc" id="alist_8h_html_ac32a18fe87fa883f9679ca4bc4b88693"><div class="ttname"><a href="list_8h.html#ac32a18fe87fa883f9679ca4bc4b88693">list_del</a></div><div class="ttdeci">void list_del(struct list_head *entry)</div><div class="ttdef"><b>Definition</b> list.c:76</div></div>
+<div class="ttc" id="astructhlist__head_html"><div class="ttname"><a href="structhlist__head.html">hlist_head</a></div><div class="ttdef"><b>Definition</b> list.h:201</div></div>
+<div class="ttc" id="astructhlist__node_html"><div class="ttname"><a href="structhlist__node.html">hlist_node</a></div><div class="ttdef"><b>Definition</b> list.h:197</div></div>
+<div class="ttc" id="astructlist__head_html"><div class="ttname"><a href="structlist__head.html">list_head</a></div><div class="ttdef"><b>Definition</b> list.h:43</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_1befa86077b13579493366c588abc311.html">cemu</a></li><li class="navelem"><a class="el" href="list_8h.html">list.h</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
+</body>
+</html>

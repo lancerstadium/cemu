@@ -1,0 +1,180 @@
+\doxysection{src/cemu/cpu.h 文件参考}
+\hypertarget{cpu_8h}{}\label{cpu_8h}\index{src/cemu/cpu.h@{src/cemu/cpu.h}}
+
+
+中央处理器头文件  
+
+
+{\ttfamily \#include "{}bus.\+h"{}}\newline
+\doxysubsubsection*{类}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structCPU__t}{CPU\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em 中央处理器结构体 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{类型定义}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}\label{cpu_8h_a3ad72e5a5cce962e7b286804249b8585} 
+typedef struct \mbox{\hyperlink{structCPU__t}{CPU\+\_\+t}} {\bfseries CPU}
+\begin{DoxyCompactList}\small\item\em 中央处理器结构体 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{cpu_8h_acf95be96d2f1db5044b9d704edf739cd}{cpu\+\_\+init}} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu)
+\begin{DoxyCompactList}\small\item\em 处理器初始化给定的{\ttfamily CPU}， 将指针指向的{\ttfamily CPU}中的寄存器全部置 0， 并将程序寄存器{\ttfamily pc}的值设为内存的起始地址。 \end{DoxyCompactList}\item 
+u32 \mbox{\hyperlink{cpu_8h_af31c0dc195290e2455b036c9198a23bb}{cpu\+\_\+fetch}} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu)
+\begin{DoxyCompactList}\small\item\em 处理器从内存（\+DRAM）中读取指令用于执行， 并将其存入指令变量{\ttfamily inst}中。 \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{cpu_8h_ae08f27bf9fb7d836bb92df902ef5828d}{cpu\+\_\+execute}} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, u32 inst)
+\begin{DoxyCompactList}\small\item\em 处理器将从{\ttfamily DRAM}中取得并存放 在{\ttfamily inst}变量中的指令解码并执行。本质上是 ALU 和指令译码器的组合。 \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{cpu_8h_a24be27f18c18da0331c6ef74e8eb71bb}{cpu\+\_\+step}} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, int step)
+\begin{DoxyCompactList}\small\item\em 处理器步进执行 \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{cpu_8h_aeb351583dd7a247f2d5a4d234489f20c}{cpu\+\_\+loop}} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu, char \texorpdfstring{$\ast$}{*}filename)
+\begin{DoxyCompactList}\small\item\em 处理器循环执行 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{cpu_8h_a7b8675bf8eb9edc2d2c07c74d5e21f9e}{cpu\+\_\+dump\+\_\+regs}} (\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}cpu)
+\begin{DoxyCompactList}\small\item\em 处理器查看寄存器的值 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+中央处理器头文件 
+
+\begin{DoxyAuthor}{作者}
+lancer (\href{mailto:lancerstadium@163.com}{\texttt{ lancerstadium@163.\+com}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{版本}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{日期}
+2024-\/01-\/08 
+\end{DoxyDate}
+\begin{DoxyCopyright}{版权所有}
+Copyright (c) 2024
+\end{DoxyCopyright}
+\hypertarget{cpu_8h_autotoc_md1}{}\doxysubsection{\texorpdfstring{CPU 介绍}{CPU 介绍}}\label{cpu_8h_autotoc_md1}
+\hypertarget{cpu_8h_autotoc_md2}{}\doxysubsubsection{\texorpdfstring{CPU 取指与执行循环}{CPU 取指与执行循环}}\label{cpu_8h_autotoc_md2}
+在这个实现中，我们有 3 级流水线用于执行所有指令，它们是：
+\begin{DoxyEnumerate}
+\item 第 1 级流水线（取指）：cpu 从 DRAM 的特定地址（存放在程序计数器 pc 中）中取得指令；
+\item 第 2 级流水线（译码）：指令被译码为操作码，目标寄存器与源寄存器等；
+\item 第 3 级流水线（执行）：此时指令按照译码后的结果在 ALU 中执行。 
+\end{DoxyEnumerate}
+
+\doxysubsection{函数说明}
+\Hypertarget{cpu_8h_a7b8675bf8eb9edc2d2c07c74d5e21f9e}\label{cpu_8h_a7b8675bf8eb9edc2d2c07c74d5e21f9e} 
+\index{cpu.h@{cpu.h}!cpu\_dump\_regs@{cpu\_dump\_regs}}
+\index{cpu\_dump\_regs@{cpu\_dump\_regs}!cpu.h@{cpu.h}}
+\doxysubsubsection{\texorpdfstring{cpu\_dump\_regs()}{cpu\_dump\_regs()}}
+{\footnotesize\ttfamily void cpu\+\_\+dump\+\_\+regs (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}}]{cpu }\end{DoxyParamCaption})}
+
+
+
+处理器查看寄存器的值 
+
+
+\begin{DoxyParams}{参数}
+{\em cpu} & 中央处理器 \\
+\hline
+\end{DoxyParams}
+\Hypertarget{cpu_8h_ae08f27bf9fb7d836bb92df902ef5828d}\label{cpu_8h_ae08f27bf9fb7d836bb92df902ef5828d} 
+\index{cpu.h@{cpu.h}!cpu\_execute@{cpu\_execute}}
+\index{cpu\_execute@{cpu\_execute}!cpu.h@{cpu.h}}
+\doxysubsubsection{\texorpdfstring{cpu\_execute()}{cpu\_execute()}}
+{\footnotesize\ttfamily int cpu\+\_\+execute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}}]{cpu,  }\item[{u32}]{inst }\end{DoxyParamCaption})}
+
+
+
+处理器将从{\ttfamily DRAM}中取得并存放 在{\ttfamily inst}变量中的指令解码并执行。本质上是 ALU 和指令译码器的组合。 
+
+
+\begin{DoxyParams}{参数}
+{\em cpu} & 中央处理器 \\
+\hline
+{\em inst} & 32-\/bit 指令数据 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+int 错误代码
+\end{DoxyReturn}
+\begin{DoxyNote}{注解}
+操作码告诉我们要对给定的地址和寄存器进行什么操作。 具体要进行什么操作取决于 3 个值： 操作码 opcode，funct3 和 funct7。 根据指令映射， 我们用以下 cpu\+\_\+execute 函数对这 3 个部分进行译码。 
+\end{DoxyNote}
+\Hypertarget{cpu_8h_af31c0dc195290e2455b036c9198a23bb}\label{cpu_8h_af31c0dc195290e2455b036c9198a23bb} 
+\index{cpu.h@{cpu.h}!cpu\_fetch@{cpu\_fetch}}
+\index{cpu\_fetch@{cpu\_fetch}!cpu.h@{cpu.h}}
+\doxysubsubsection{\texorpdfstring{cpu\_fetch()}{cpu\_fetch()}}
+{\footnotesize\ttfamily u32 cpu\+\_\+fetch (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}}]{cpu }\end{DoxyParamCaption})}
+
+
+
+处理器从内存（\+DRAM）中读取指令用于执行， 并将其存入指令变量{\ttfamily inst}中。 
+
+
+\begin{DoxyParams}{参数}
+{\em cpu} & 中央处理器 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+u32 32-\/bit 指令数据 
+\end{DoxyReturn}
+\Hypertarget{cpu_8h_acf95be96d2f1db5044b9d704edf739cd}\label{cpu_8h_acf95be96d2f1db5044b9d704edf739cd} 
+\index{cpu.h@{cpu.h}!cpu\_init@{cpu\_init}}
+\index{cpu\_init@{cpu\_init}!cpu.h@{cpu.h}}
+\doxysubsubsection{\texorpdfstring{cpu\_init()}{cpu\_init()}}
+{\footnotesize\ttfamily void cpu\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}}]{cpu }\end{DoxyParamCaption})}
+
+
+
+处理器初始化给定的{\ttfamily CPU}， 将指针指向的{\ttfamily CPU}中的寄存器全部置 0， 并将程序寄存器{\ttfamily pc}的值设为内存的起始地址。 
+
+
+\begin{DoxyParams}{参数}
+{\em cpu} & 中央处理器 \\
+\hline
+\end{DoxyParams}
+\Hypertarget{cpu_8h_aeb351583dd7a247f2d5a4d234489f20c}\label{cpu_8h_aeb351583dd7a247f2d5a4d234489f20c} 
+\index{cpu.h@{cpu.h}!cpu\_loop@{cpu\_loop}}
+\index{cpu\_loop@{cpu\_loop}!cpu.h@{cpu.h}}
+\doxysubsubsection{\texorpdfstring{cpu\_loop()}{cpu\_loop()}}
+{\footnotesize\ttfamily int cpu\+\_\+loop (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}}]{cpu,  }\item[{char \texorpdfstring{$\ast$}{*}}]{filename }\end{DoxyParamCaption})}
+
+
+
+处理器循环执行 
+
+
+\begin{DoxyParams}{参数}
+{\em cpu} & 中央处理器 \\
+\hline
+{\em filename} & 文件名 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+int 错误代码
+\end{DoxyReturn}
+\begin{DoxyNote}{注解}
+三级流水线\+CPU
+\begin{DoxyItemize}
+\item 第 1 级流水线由函数{\ttfamily \doxylink{cpu_8c_af31c0dc195290e2455b036c9198a23bb}{cpu\+\_\+fetch()}}处理。
+\item 第 2、3 级流水线由定义在{\ttfamily \doxylink{cpu_8h}{cpu.\+h}}中的函数{\ttfamily \doxylink{cpu_8c_ae08f27bf9fb7d836bb92df902ef5828d}{cpu\+\_\+execute()}}一并处理。
+\item 程序计数器{\ttfamily pc}在每次循环后增加 4 个字节（32 位，因为每个 RISC-\/V 指令长度都为 32 位）， 以获取下一条指令。因此 CPU 执行循环可以被写为下面这样： 
+\end{DoxyItemize}
+\end{DoxyNote}
+\Hypertarget{cpu_8h_a24be27f18c18da0331c6ef74e8eb71bb}\label{cpu_8h_a24be27f18c18da0331c6ef74e8eb71bb} 
+\index{cpu.h@{cpu.h}!cpu\_step@{cpu\_step}}
+\index{cpu\_step@{cpu\_step}!cpu.h@{cpu.h}}
+\doxysubsubsection{\texorpdfstring{cpu\_step()}{cpu\_step()}}
+{\footnotesize\ttfamily int cpu\+\_\+step (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{cpu_8h_a3ad72e5a5cce962e7b286804249b8585}{CPU}} \texorpdfstring{$\ast$}{*}}]{cpu,  }\item[{int}]{step }\end{DoxyParamCaption})}
+
+
+
+处理器步进执行 
+
+
+\begin{DoxyParams}{参数}
+{\em cpu} & 中央处理器 \\
+\hline
+{\em step} & 步数 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+int 错误代码 
+\end{DoxyReturn}

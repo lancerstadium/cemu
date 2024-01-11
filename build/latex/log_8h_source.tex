@@ -1,0 +1,144 @@
+\doxysection{log.\+h}
+\hypertarget{log_8h_source}{}\label{log_8h_source}\index{src/utils/log.h@{src/utils/log.h}}
+\mbox{\hyperlink{log_8h}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#ifndef\ LOG\_H}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ LOG\_H}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Include}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <stdarg.h>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{color_8h}{color.h}}"{}}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Define}}
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ LOG\_VERSION\ "{}0.1.0"{}}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ MAX\_CALLBACKS\ 32}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ LOG\_USE\_COLOR}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00043\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Data:\ Log}}
+\DoxyCodeLine{00044\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00050\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ va\_list\ \mbox{\hyperlink{structlog__Event_adeb420d9154c0bff0fbdca8bb0c3a985}{ap}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{structlog__Event_a2917e4ca45c418b9b3301252237deac8}{fmt}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{structlog__Event_a969b190548f8944aa795256527851507}{file}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{struct\ }tm\ *\mbox{\hyperlink{structlog__Event_a6c12994b7b84ac38e52e10f45d06ff33}{time}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{void}\ *\mbox{\hyperlink{structlog__Event_a63bd6c3fc18873d4291dbd851b00aca3}{udata}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structlog__Event_ae414a8da0ccc8e0f766025a8b23b34a4}{line}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structlog__Event_a296a68f4ae9bb0411f2157dcb4a862c4}{level}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00058\ \}\ \mbox{\hyperlink{structlog__Event}{log\_Event}};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00064\ \textcolor{keyword}{typedef}\ void\ (*\mbox{\hyperlink{log_8h_a4e1a7e636a6cabe43a851e125ea86a28}{log\_LogFn}})(\mbox{\hyperlink{structlog__Event}{log\_Event}}\ *ev);}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00071\ \textcolor{keyword}{typedef}\ void\ (*\mbox{\hyperlink{log_8h_af1c7dea93a5ff832ba11a7a4e3a46c45}{log\_LockFn}})(\textcolor{keywordtype}{bool}\ \mbox{\hyperlink{log_8h_a9b4d82bfadfae80fd7e08baefd26f006}{lock}},\ \textcolor{keywordtype}{void}\ *udata);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00077\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{log_8h_aea98dd9af6733b8d171b2039d23161a6}{log\_Level}}\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ LOG\_TRACE,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00079\ \ \ \ \ \mbox{\hyperlink{log_8h_aea98dd9af6733b8d171b2039d23161a6ab9f002c6ffbfd511da8090213227454e}{LOG\_DEBUG}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00080\ \ \ \ \ \mbox{\hyperlink{log_8h_aea98dd9af6733b8d171b2039d23161a6a6e98ff471e3ce6c4ef2d75c37ee51837}{LOG\_INFO}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00081\ \ \ \ \ \mbox{\hyperlink{log_8h_aea98dd9af6733b8d171b2039d23161a6ac8041ffa22bc823d4726701cdb13fc13}{LOG\_WARN}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00082\ \ \ \ \ \mbox{\hyperlink{log_8h_aea98dd9af6733b8d171b2039d23161a6a230506cce5c68c3bac5a821c42ed3473}{LOG\_ERROR}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00083\ \ \ \ \ \mbox{\hyperlink{log_8h_aea98dd9af6733b8d171b2039d23161a6ac630750884d91cb9767ef2200bbb048b}{LOG\_FATAL}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00084\ \ \ \ \ \mbox{\hyperlink{log_8h_aea98dd9af6733b8d171b2039d23161a6af8bda40ed64647a30bbf1c39a2845cea}{LOG\_ASSERT\_1}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00085\ \ \ \ \ \mbox{\hyperlink{log_8h_aea98dd9af6733b8d171b2039d23161a6a62e4d52c0d516c82a2207048a3b40d25}{LOG\_ASSERT\_0}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00086\ \};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00091\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00092\ \ \ \ \ \mbox{\hyperlink{log_8h_a4e1a7e636a6cabe43a851e125ea86a28}{log\_LogFn}}\ \mbox{\hyperlink{structCallback_a14a0a0dda819be431520a0a4a1a9b2e3}{fn}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{void}\ *\mbox{\hyperlink{structCallback_a8e866a6b66ae600e71a6b280057d8541}{udata}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structCallback_ae2d14d16fd04cb9d7aeadae7f17a63d5}{level}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00095\ \}\ \mbox{\hyperlink{structCallback}{Callback}};}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00102\ \textcolor{keyword}{static}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{void}\ *udata;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00104\ \ \ \ \ \mbox{\hyperlink{log_8h_af1c7dea93a5ff832ba11a7a4e3a46c45}{log\_LockFn}}\ \mbox{\hyperlink{log_8h_a9b4d82bfadfae80fd7e08baefd26f006}{lock}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{log_8h_acf4d33ee4cff36f69b924471174dcb11}{level}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{log_8h_ae4426f467d61ae456b95844d4d9c2dcd}{quiet}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00107\ \ \ \ \ \mbox{\hyperlink{structCallback}{Callback}}\ \mbox{\hyperlink{log_8h_a38367a766a6e5583a1d7cd3552a45585}{callbacks}}[\mbox{\hyperlink{log_8h_aea0bffe478318f476a4bedee63256b2c}{MAX\_CALLBACKS}}];\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00108\ \}\ \mbox{\hyperlink{log_8h_a9919b7b41755c343453a62e07fe06ec5}{L}};}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00113\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Declare\ API:\ Log}}
+\DoxyCodeLine{00114\ \textcolor{comment}{//\ ====================================================================\ //}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00121\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{log_8h_a3704c95c6a034b8e4b85429055bcf6d3}{filename\_from\_path}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *path)\ \{}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *bname\ =\ strrchr(path,\ \textcolor{charliteral}{'/'});}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordflow}{return}\ (bname\ !=\ \mbox{\hyperlink{list_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}})\ ?\ bname\ +\ 1\ :\ path;}
+\DoxyCodeLine{00124\ \}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\#define\ log\_trace(...)\ log\_log(LOG\_TRACE,\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ \_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00130\ \textcolor{preprocessor}{\#define\ log\_debug(...)\ log\_log(LOG\_DEBUG,\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ \_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00133\ \textcolor{preprocessor}{\#define\ log\_info(...)\ log\_log(LOG\_INFO,\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ \_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00136\ \textcolor{preprocessor}{\#define\ log\_warn(...)\ log\_log(LOG\_WARN,\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ \_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00139\ \textcolor{preprocessor}{\#define\ log\_error(...)\ log\_log(LOG\_ERROR,\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ \_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00142\ \textcolor{preprocessor}{\#define\ log\_fatal(...)\ \(\backslash\)}}
+\DoxyCodeLine{00143\ \textcolor{preprocessor}{\ \ \ \ do\ \{\ \(\backslash\)}}
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ log\_log(LOG\_FATAL,\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ \_\_VA\_ARGS\_\_);\ \(\backslash\)}}
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ exit(1);\ \(\backslash\)}}
+\DoxyCodeLine{00146\ \textcolor{preprocessor}{\ \ \ \ \}\ while(0)}}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00149\ \textcolor{preprocessor}{\#define\ log\_assert(condition,\ ...)\ \(\backslash\)}}
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\ \ \ \ do\ \{\ \(\backslash\)}}
+\DoxyCodeLine{00151\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ if\ (!(condition))\ \{\ \(\backslash\)}}
+\DoxyCodeLine{00152\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ log\_log(LOG\_ASSERT\_0,\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ \_red(\#condition)\ "{}\ "{}\ \_\_VA\_ARGS\_\_);\ \(\backslash\)}}
+\DoxyCodeLine{00153\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ exit(1);\ \(\backslash\)}}
+\DoxyCodeLine{00154\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \}\ else\ \{\ \(\backslash\)}}
+\DoxyCodeLine{00155\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ log\_log(LOG\_ASSERT\_1,\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ \_green(\#condition)\ "{}\ "{}\ \_\_VA\_ARGS\_\_);\ \(\backslash\)}}
+\DoxyCodeLine{00156\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \}\ \(\backslash\)}}
+\DoxyCodeLine{00157\ \textcolor{preprocessor}{\ \ \ \ \}\ while(0)}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00165\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{log_8h_a10736458177293d86f211aadeff89501}{log\_level\_string}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{log_8h_acf4d33ee4cff36f69b924471174dcb11}{level}});}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00172\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{log_8h_a18259d7b87158a91089fd1d081617715}{log\_set\_lock}}(\mbox{\hyperlink{log_8h_af1c7dea93a5ff832ba11a7a4e3a46c45}{log\_LockFn}}\ fn,\ \textcolor{keywordtype}{void}\ *udata);}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00179\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{log_8h_af2493e94f152a28b2ba4e3a2e2bba65d}{log\_set\_level}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{log_8h_acf4d33ee4cff36f69b924471174dcb11}{level}});}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00204\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{log_8h_a6de5d12252f1b48279d28769b7c130eb}{log\_set\_quiet}}(\textcolor{keywordtype}{bool}\ enable);}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00215\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{log_8h_a4196855e1cd42700557b6e4fa0715a35}{log\_add\_callback}}(\mbox{\hyperlink{log_8h_a4e1a7e636a6cabe43a851e125ea86a28}{log\_LogFn}}\ fn,\ \textcolor{keywordtype}{void}\ *udata,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{log_8h_acf4d33ee4cff36f69b924471174dcb11}{level}});}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00226\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{log_8h_afcf2da85fa8a21494dc461d546c50e4b}{log\_add\_fp}}(FILE\ *fp,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{log_8h_acf4d33ee4cff36f69b924471174dcb11}{level}});}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00236\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{log_8h_ac008ecbde449b2dd1bc4f8671d9a0e07}{log\_log}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{log_8h_acf4d33ee4cff36f69b924471174dcb11}{level}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *file,\ \textcolor{keywordtype}{int}\ line,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *fmt,\ ...);}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00243\ \}}
+\DoxyCodeLine{00244\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{/*\ LOG\_H\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}
