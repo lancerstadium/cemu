@@ -1,7 +1,8 @@
 # cemu
 
 - `cemu` is a Pure C emulator for riscv.
-
+- More item detail for [Docs Page](https://lancerstadium.github.io/cemu/html/indec)
+- README introduce for [Website](https://lancerstadium.github.io/cemu)
 
 
 ## Usage
@@ -161,6 +162,11 @@ cd doxygen-awesome-css
 git checkout v2.3.1
 
 git submodule add https://github.com/unicorn-engine/unicorn.git
+
+git stash
+git checkout <branch_name>
+git stash apply
+
 ```
 
 
