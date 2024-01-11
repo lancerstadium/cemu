@@ -1,7 +1,8 @@
 # cemu
 
 - `cemu` is a Pure C emulator for riscv.
-
+- More item detail for [Docs Page](https://lancerstadium.github.io/cemu/html/index.html)
+- README introduce for [Website](https://lancerstadium.github.io/cemu)
 
 
 ## Usage
