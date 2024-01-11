@@ -1,6 +1,6 @@
 add_rules("mode.debug", "mode.release")
 
-set_languages("c11", "c++11")
+set_languages("gnu11", "c++11")
 add_ldflags("-static", {force = true})
 
 host_arch = os.arch()
@@ -26,26 +26,25 @@ host_arch = os.arch()
 -- add_requires("vcpkg::elfio", {alias = "elfio"})
 
 -- Package Set: Unicorn
-package("unicorn")
-    add_deps("cmake")
-    set_sourcedir(path.join(os.scriptdir(), "package/unicorn"))
-    on_install(function (package)
-        local configs = {}
-        table.insert(configs, "-DCMAKE_BUILD_TYPE=" .. (package:debug() and "Debug" or "Release"))
-        table.insert(configs, "-DBUILD_SHARED_LIBS=" .. (package:config("shared") and "ON" or "OFF"))
-        import("package.tools.cmake").install(package, configs)
-    end)
-package_end()
+-- package("unicorn")
+--     add_deps("cmake")
+--     set_sourcedir(path.join(os.scriptdir(), "package/unicorn"))
+--     on_install(function (package)
+--         local configs = {}
+--         table.insert(configs, "-DCMAKE_BUILD_TYPE=" .. (package:debug() and "Debug" or "Release"))
+--         table.insert(configs, "-DBUILD_SHARED_LIBS=" .. (package:config("shared") and "ON" or "OFF"))
+--         import("package.tools.cmake").install(package, configs)
+--     end)
+-- package_end()
 
-
-add_requires("unicorn")
+-- add_requires("unicorn")
 
 target("cemu")
     set_kind("binary")
-    add_files("src/*.c")
-    add_packages("unicorn")
+    add_files("src/cemu/*.c", "src/utils/*.c")
+    add_includedirs("src/cemu", "src/utils")
+    -- add_packages("unicorn")
     
-
 
 --
 -- If you want to known more usage about xmake, please see https://xmake.io

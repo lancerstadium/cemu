@@ -4,7 +4,6 @@
  * @brief 日志库头文件
  * @version 0.1.0
  * @date 2023-12-25
- * 
  * @copyright Copyright (c) 2023
  * @note 参考项目：[Github | log.c](https://github.com/rxi/log.c)
  * 
@@ -13,18 +12,39 @@
 #ifndef LOG_H
 #define LOG_H
 
+// ==================================================================== //
+//                              Include
+// ==================================================================== //
+
+#ifdef __cplusplus
+	extern "C" {
+#endif
+
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdbool.h>
-#include <time.h>
+#include <string.h>
+#include "color.h"
+
+
+// ==================================================================== //
+//                               Define
+// ==================================================================== //
 
 /** 日志库版本 */
 #define LOG_VERSION "0.1.0"
+/**< 最大回调函数数量 */
+#define MAX_CALLBACKS 32
+/**< 开启日志颜色 */
+#define LOG_USE_COLOR
 
+
+// ==================================================================== //
+//                              Data: Log
+// ==================================================================== //
 
 /**
  * @brief 日志事件结构体
- * 
  */
 typedef struct
 {
@@ -53,58 +73,92 @@ typedef void (*log_LockFn)(bool lock, void *udata);
 
 /**
  * @brief 日志级别枚举类
- * 
  */
-enum log_Level
-{
-    LOG_TRACE,                                      /**< 跟踪级别 */
-    LOG_DEBUG,                                      /**< 调试级别 */
-    LOG_INFO,                                       /**< 信息级别 */
-    LOG_WARN,                                       /**< 警告级别 */
-    LOG_ERROR,                                      /**< 错误级别 */
-    LOG_FATAL                                       /**< 致命级别 */
+enum log_Level {
+    LOG_TRACE,                                      /** 跟踪级别 */
+    LOG_DEBUG,                                      /** 调试级别 */
+    LOG_INFO,                                       /** 信息级别 */
+    LOG_WARN,                                       /** 警告级别 */
+    LOG_ERROR,                                      /** 错误级别 */
+    LOG_FATAL,                                      /** 致命级别 */
+    LOG_ASSERT_1,                                   /** 断言级别 */
+    LOG_ASSERT_0,                                   /** 断言级别 */
 };
 
 /**
- * @brief 日志跟踪级别输出
- * 
+ * @brief 日志回调结构体
  */
+typedef struct {
+    log_LogFn fn;                                   /**< 回调函数 */
+    void *udata;                                    /**< 用户数据 */
+    int level;                                      /**< 日志级别 */
+} Callback;
+
+
+/**
+ * @brief 日志库全局变量结构体
+ * @param L 日志库全局变量
+ */
+static struct {
+    void *udata;                                    /** 用户数据 */
+    log_LockFn lock;                                /** 锁函数 */
+    int level;                                      /** 日志级别 */
+    bool quiet;                                     /** 是否静默 */
+    Callback callbacks[MAX_CALLBACKS];              /** 回调函数 */
+} L;
+
+
+
+// ==================================================================== //
+//                            Declare API: Log
+// ==================================================================== //
+
+/**
+ * @brief 获得文件路径内的文件名
+ * @param path 文件路径
+ * @return const char* 文件名
+ */
+static inline const char *filename_from_path(const char *path) {
+    const char *bname = strrchr(path, '/');
+    return (bname != NULL) ? bname + 1 : path;
+}
+
+/** 日志跟踪级别输出 */
 #define log_trace(...) log_log(LOG_TRACE, __FILE__, __LINE__, __VA_ARGS__)
 
-/**
- * @brief 日志调试级别输出
- * 
- */
+/** 日志调试级别输出 */
 #define log_debug(...) log_log(LOG_DEBUG, __FILE__, __LINE__, __VA_ARGS__)
 
-/**
- * @brief 日志信息级别输出
- * 
- */
+/** 日志信息级别输出 */
 #define log_info(...) log_log(LOG_INFO, __FILE__, __LINE__, __VA_ARGS__)
 
-/**
- * @brief 日志警告级别输出
- * 
- */
+/** 日志警告级别输出 */
 #define log_warn(...) log_log(LOG_WARN, __FILE__, __LINE__, __VA_ARGS__)
 
-/**
- * @brief 日志错误级别输出
- * 
- */
+/** 日志错误级别输出 */
 #define log_error(...) log_log(LOG_ERROR, __FILE__, __LINE__, __VA_ARGS__)
 
-/**
- * @brief 日志致命级别输出
- * 
- */
-#define log_fatal(...) log_log(LOG_FATAL, __FILE__, __LINE__, __VA_ARGS__)
+/** 日志致命级别输出 */
+#define log_fatal(...) \
+    do { \
+        log_log(LOG_FATAL, __FILE__, __LINE__, __VA_ARGS__); \
+        exit(1); \
+    } while(0)
+
+/** 日志断言级别输出 */
+#define log_assert(condition, ...) \
+    do { \
+        if (!(condition)) { \
+            log_log(LOG_ASSERT_0, __FILE__, __LINE__, _red(#condition) " " __VA_ARGS__); \
+            exit(1); \
+        } else { \
+            log_log(LOG_ASSERT_1, __FILE__, __LINE__, _green(#condition) " " __VA_ARGS__); \
+        } \
+    } while(0)
 
 
 /**
  * @brief 获取日志级别的字符串
- * 
  * @param level 日志级别枚举类型，参考 `log_Level`
  * @return const char* 日志级别对应的字符串指针
  */
@@ -112,7 +166,6 @@ const char *log_level_string(int level);
 
 /**
  * @brief 设置日志锁
- * 
  * @param fn 日志锁回调函数，参考 `log_LockFn`
  * @param udata 用户数据
  */
@@ -121,7 +174,6 @@ void log_set_lock(log_LockFn fn, void *udata);
 
 /**
  * @brief 设置日志级别
- * 
  * @param level 日志级别枚举类型，参考 `log_Level`
  */
 void log_set_level(int level);
@@ -129,7 +181,6 @@ void log_set_level(int level);
 
 /**
  * @brief 设置日志是否静默
- * 
  * @param enable 布尔值：`true` 为静默，`false` 为不静默
  * @note 将日志库全局变量 `L` 中的 `quiet` 字段设置为 `enable`
  * 1. 对于同一段日志输出函数 `log_info` ：
@@ -154,7 +205,6 @@ void log_set_quiet(bool enable);
 
 /**
  * @brief 添加日志回调
- * 
  * @param fn 日志锁回调函数，参考 `log_LockFn`
  * @param udata 用户数据
  * @param level 日志级别枚举类型，参考 `log_Level`
@@ -166,7 +216,6 @@ int log_add_callback(log_LogFn fn, void *udata, int level);
 
 /**
  * @brief 添加日志文件和级别
- * 
  * @param fp 文件指针
  * @param level 日志级别枚举类型，参考 `log_Level`
  * @return int 是否成功添加日志文件
@@ -178,7 +227,6 @@ int log_add_fp(FILE *fp, int level);
 
 /**
  * @brief 日志输出
- * 
  * @param level 日志级别枚举类型，参考 `log_Level`
  * @param file 文件名
  * @param line 文件行号
@@ -186,5 +234,13 @@ int log_add_fp(FILE *fp, int level);
  * @param ... 其他参数
  */
 void log_log(int level, const char *file, int line, const char *fmt, ...);
+
+
+
+
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif  /* LOG_H */

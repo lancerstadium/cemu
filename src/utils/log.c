@@ -1,61 +1,44 @@
 /**
  * @file log.c
  * @author lancer (lancerstadium@163.com)
- * @brief 日志库功能实现
+ * @brief 日志库头文件实现
  * @version 0.1
- * @date 2023-12-25
- * 
+ * @date 2024-01-08
  * @copyright Copyright (c) 2023
  * @note 参考项目：[Github | log.c](https://github.com/rxi/log.c)
- * 
  */
+
+// ==================================================================== //
+//                              Include
+// ==================================================================== //
+
 #include "log.h"
-#include "color.h"
-
-/**< 最大回调函数数量 */
-#define MAX_CALLBACKS 32
-/**< 开启日志颜色 */
-#define LOG_USE_COLOR
+#include <time.h>
 
 
-/**
- * @brief 日志回调结构体
- * 
- */
-typedef struct
-{
-    log_LogFn fn;                                   /**< 回调函数 */
-    void *udata;                                    /**< 用户数据 */
-    int level;                                      /**< 日志级别 */
-} Callback;
 
-
-/**
- * @brief 日志库全局变量结构体
- * 
- * @param L 日志库全局变量
- */
-static struct
-{
-    void *udata;                                    /**< 用户数据 */
-    log_LockFn lock;                                /**< 锁函数 */
-    int level;                                      /**< 日志级别 */
-    bool quiet;                                     /**< 是否静默 */
-    Callback callbacks[MAX_CALLBACKS];              /**< 回调函数 */
-} L;
-
+// ==================================================================== //
+//                               Data
+// ==================================================================== //
 
 /**
  * @brief 日志级别枚举字符串
  * @note 对应日志枚举类型 `log_Level`
  */
 static const char *level_strings[] = {
-    "TRACE", "DEBUG", "INFO", "WARN", "ERROR", "FATAL"};
+    "TRAC", "DEBU", "INFO", "WARN", "ERRO", "FATA", "ASSE", "ASSE"};
 
 #ifdef LOG_USE_COLOR
 static const char *level_colors[] = {
-    ANSI_BRIGHT_BLUE, ANSI_CYAN, ANSI_GREEN, ANSI_YELLOW, ANSI_RED, ANSI_MAGENTA};
+    ANSI_BRIGHT_BLUE, ANSI_CYAN, ANSI_GREEN, ANSI_YELLOW, ANSI_RED, ANSI_MAGENTA, ANSI_BRIGHT_GREEN, ANSI_BRIGHT_RED};
 #endif
+
+
+// ==================================================================== //
+//                            Func API: LOG
+// ==================================================================== //
+
+
 
 static void stdout_callback(log_Event *ev)
 {
@@ -63,12 +46,12 @@ static void stdout_callback(log_Event *ev)
     buf[strftime(buf, sizeof(buf), "%H:%M:%S", ev->time)] = '\0';
 #ifdef LOG_USE_COLOR
     fprintf(
-        ev->udata, "%s %s%5s" ANSI_FMT(" %s:%d: ", ANSI_BRIGHT_BLACK),
+        ev->udata, "%s %s%-4s" ANSI_FMT(" %s:%d: ", ANSI_BRIGHT_BLACK),
         buf, level_colors[ev->level], level_strings[ev->level],
         ev->file, ev->line);
 #else
     fprintf(
-        ev->udata, "%s %-5s %s:%d: ",
+        ev->udata, "%s %-4s %s:%d: ",
         buf, level_strings[ev->level], ev->file, ev->line);
 #endif
     vfprintf(ev->udata, ev->fmt, ev->ap);
@@ -81,7 +64,7 @@ static void file_callback(log_Event *ev)
     char buf[64];
     buf[strftime(buf, sizeof(buf), "%Y-%m-%d %H:%M:%S", ev->time)] = '\0';
     fprintf(
-        ev->udata, "%s %-5s %s:%d: ",
+        ev->udata, "%s %-4s %s:%d: ",
         buf, level_strings[ev->level], ev->file, ev->line);
     vfprintf(ev->udata, ev->fmt, ev->ap);
     fprintf(ev->udata, "\n");

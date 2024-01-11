@@ -56,13 +56,18 @@
 
 #define ANSI_FMT(msg, ...) ANSI_RESET __VA_ARGS__ msg  ANSI_RESET
 
+#define _white(s) ANSI_FMT(s, ANSI_WHITE)
 #define _black(s) ANSI_FMT(s, ANSI_BLACK)
 #define _green(s) ANSI_FMT(s, ANSI_GREEN)
+#define _blue(s) ANSI_FMT(s, ANSI_BLUE)
+#define _yellow(s) ANSI_FMT(s, ANSI_YELLOW)
 #define _red(s) ANSI_FMT(s, ANSI_RED)
+#define _mag(s) ANSI_FMT(s, ANSI_MAGENTA)
 #define _bold(s) ANSI_FMT(s, ANSI_BOLD ANSI_WHITE)
 #define _ubold(s) ANSI_FMT(s, ANSI_UNDERLINE ANSI_BOLD ANSI_WHITE)
 #define _bred(s) ANSI_FMT(s, ANSI_BOLD ANSI_RED)
 #define _bgreen(s) ANSI_FMT(s, ANSI_BOLD ANSI_GREEN)
+#define _byellow(s) ANSI_FMT(s, ANSI_BOLD ANSI_YELLOW)
 #define _bblack(s) ANSI_FMT(s, ANSI_BOLD ANSI_BLACK)
 #define _bmag(s) ANSI_FMT(s, ANSI_BOLD ANSI_MAGENTA)
 #define _iblack(s) ANSI_FMT(s, ANSI_ITALIC ANSI_BLACK)

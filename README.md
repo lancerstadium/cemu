@@ -1,4 +1,15 @@
+# cemu
 
+- `cemu` is a Pure C emulator for riscv.
+
+
+
+## Usage
+
+```
+riscv64-linux-gnu-gcc-12 ./test/temp_01.c -o ./test/temp_01.out
+
+```
 
 
 ## Project Management
@@ -6,9 +17,13 @@
 - Create Project:
 
 ```
+# ==== Install cemu ==== #
+wget https://xmake.io/shget.text -O - | bash
+git submodule update --init --recursive
+
 # ==== Install xmake ==== #
 # zsh <(wget https://xmake.io/shget.text -O -)
-bash <(wget https://xmake.io/shget.text -O -)
+# bash <(wget https://xmake.io/shget.text -O -)
 source ~/.xmake/profile
 xmake --help
 xmake update
@@ -34,6 +49,17 @@ xmake -v
 # xmake r
 qemu-aarch64 ./build/linux/aarch64/release/uemu        # emulate
 
+```
+
+
+- Riscv Tool Chain
+```
+cd package
+git submodule add -f https://github.com/riscv/riscv-gnu-toolchain
+cd riscv-gnu-toolchain
+./configure --prefix=/opt/riscv
+make && make linux
+export PATH=$PATH:/opt/riscv/bin/
 ```
 
 
