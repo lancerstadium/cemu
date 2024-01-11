@@ -1,0 +1,373 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>cemu: src/cemu/csr.h 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">cemu
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('csr_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#define-members">宏定义</a> &#124;
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle"><div class="title">csr.h 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="cpu_8h_source.html">cpu.h</a>&quot;</code><br />
+</div>
+<p><a href="csr_8h_source.html">浏览源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:a844f38672d5e4b63e73a9c348ed6e1bc" id="r_a844f38672d5e4b63e73a9c348ed6e1bc"><td class="memItemLeft" align="right" valign="top"><a id="a844f38672d5e4b63e73a9c348ed6e1bc" name="a844f38672d5e4b63e73a9c348ed6e1bc"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>USTATUS</b>&#160;&#160;&#160;0x000</td></tr>
+<tr class="separator:a844f38672d5e4b63e73a9c348ed6e1bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c276876faf62c1b29fe2383ce4ccfda" id="r_a2c276876faf62c1b29fe2383ce4ccfda"><td class="memItemLeft" align="right" valign="top"><a id="a2c276876faf62c1b29fe2383ce4ccfda" name="a2c276876faf62c1b29fe2383ce4ccfda"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>UIE</b>&#160;&#160;&#160;0x004</td></tr>
+<tr class="separator:a2c276876faf62c1b29fe2383ce4ccfda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71f8a02e7b34dc5aecd6413f68d0cfa4" id="r_a71f8a02e7b34dc5aecd6413f68d0cfa4"><td class="memItemLeft" align="right" valign="top"><a id="a71f8a02e7b34dc5aecd6413f68d0cfa4" name="a71f8a02e7b34dc5aecd6413f68d0cfa4"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>UTVEC</b>&#160;&#160;&#160;0x005</td></tr>
+<tr class="separator:a71f8a02e7b34dc5aecd6413f68d0cfa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5fc6adea50bb8d7f4dfdc1a281aa73e" id="r_ae5fc6adea50bb8d7f4dfdc1a281aa73e"><td class="memItemLeft" align="right" valign="top"><a id="ae5fc6adea50bb8d7f4dfdc1a281aa73e" name="ae5fc6adea50bb8d7f4dfdc1a281aa73e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>USCRATCH</b>&#160;&#160;&#160;0x040</td></tr>
+<tr class="separator:ae5fc6adea50bb8d7f4dfdc1a281aa73e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7219fc16b617e42b8911bc493f29f45d" id="r_a7219fc16b617e42b8911bc493f29f45d"><td class="memItemLeft" align="right" valign="top"><a id="a7219fc16b617e42b8911bc493f29f45d" name="a7219fc16b617e42b8911bc493f29f45d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>UEPC</b>&#160;&#160;&#160;0x041</td></tr>
+<tr class="separator:a7219fc16b617e42b8911bc493f29f45d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56f81f5daa4b5b4a68f2056960959864" id="r_a56f81f5daa4b5b4a68f2056960959864"><td class="memItemLeft" align="right" valign="top"><a id="a56f81f5daa4b5b4a68f2056960959864" name="a56f81f5daa4b5b4a68f2056960959864"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>UCAUSE</b>&#160;&#160;&#160;0x042</td></tr>
+<tr class="separator:a56f81f5daa4b5b4a68f2056960959864"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a318ab17b60b02cce946b9417cd5293b4" id="r_a318ab17b60b02cce946b9417cd5293b4"><td class="memItemLeft" align="right" valign="top"><a id="a318ab17b60b02cce946b9417cd5293b4" name="a318ab17b60b02cce946b9417cd5293b4"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>UTVAL</b>&#160;&#160;&#160;0x043</td></tr>
+<tr class="separator:a318ab17b60b02cce946b9417cd5293b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3289eebd69837790d4aacaccd18d46db" id="r_a3289eebd69837790d4aacaccd18d46db"><td class="memItemLeft" align="right" valign="top"><a id="a3289eebd69837790d4aacaccd18d46db" name="a3289eebd69837790d4aacaccd18d46db"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>UIP</b>&#160;&#160;&#160;0x044</td></tr>
+<tr class="separator:a3289eebd69837790d4aacaccd18d46db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1ef8a84e399334075b9de84632fd37d" id="r_ad1ef8a84e399334075b9de84632fd37d"><td class="memItemLeft" align="right" valign="top"><a id="ad1ef8a84e399334075b9de84632fd37d" name="ad1ef8a84e399334075b9de84632fd37d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>FFLAGS</b>&#160;&#160;&#160;0x001</td></tr>
+<tr class="separator:ad1ef8a84e399334075b9de84632fd37d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb819fa3c18de2a4bb3d349c1b9034b7" id="r_afb819fa3c18de2a4bb3d349c1b9034b7"><td class="memItemLeft" align="right" valign="top"><a id="afb819fa3c18de2a4bb3d349c1b9034b7" name="afb819fa3c18de2a4bb3d349c1b9034b7"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>FRM</b>&#160;&#160;&#160;0x002</td></tr>
+<tr class="separator:afb819fa3c18de2a4bb3d349c1b9034b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdd7ee09d9b800a9bc36af11ae79d143" id="r_acdd7ee09d9b800a9bc36af11ae79d143"><td class="memItemLeft" align="right" valign="top"><a id="acdd7ee09d9b800a9bc36af11ae79d143" name="acdd7ee09d9b800a9bc36af11ae79d143"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>FCSR</b>&#160;&#160;&#160;0x003</td></tr>
+<tr class="separator:acdd7ee09d9b800a9bc36af11ae79d143"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78e81cc81d968960cf6089af8c033769" id="r_a78e81cc81d968960cf6089af8c033769"><td class="memItemLeft" align="right" valign="top"><a id="a78e81cc81d968960cf6089af8c033769" name="a78e81cc81d968960cf6089af8c033769"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CYCLE</b>&#160;&#160;&#160;0xC00</td></tr>
+<tr class="separator:a78e81cc81d968960cf6089af8c033769"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a078b6c12f1ac6819cecef90ab5870276" id="r_a078b6c12f1ac6819cecef90ab5870276"><td class="memItemLeft" align="right" valign="top"><a id="a078b6c12f1ac6819cecef90ab5870276" name="a078b6c12f1ac6819cecef90ab5870276"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TIME</b>&#160;&#160;&#160;0xC01</td></tr>
+<tr class="separator:a078b6c12f1ac6819cecef90ab5870276"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5cd8088a51f2649e0d7d1934f6dffb8" id="r_aa5cd8088a51f2649e0d7d1934f6dffb8"><td class="memItemLeft" align="right" valign="top"><a id="aa5cd8088a51f2649e0d7d1934f6dffb8" name="aa5cd8088a51f2649e0d7d1934f6dffb8"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>INSTRET</b>&#160;&#160;&#160;0xC02</td></tr>
+<tr class="separator:aa5cd8088a51f2649e0d7d1934f6dffb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a033ed61166e4d823414a45aa567be6c3" id="r_a033ed61166e4d823414a45aa567be6c3"><td class="memItemLeft" align="right" valign="top"><a id="a033ed61166e4d823414a45aa567be6c3" name="a033ed61166e4d823414a45aa567be6c3"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HPMCOUNTER3</b>&#160;&#160;&#160;0xC03</td></tr>
+<tr class="separator:a033ed61166e4d823414a45aa567be6c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4285598af317428288409b96cfabac3" id="r_ae4285598af317428288409b96cfabac3"><td class="memItemLeft" align="right" valign="top"><a id="ae4285598af317428288409b96cfabac3" name="ae4285598af317428288409b96cfabac3"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HPMCOUNTER4</b>&#160;&#160;&#160;0xC04</td></tr>
+<tr class="separator:ae4285598af317428288409b96cfabac3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a9d8c93c1e998e8522aa6c517821922" id="r_a8a9d8c93c1e998e8522aa6c517821922"><td class="memItemLeft" align="right" valign="top"><a id="a8a9d8c93c1e998e8522aa6c517821922" name="a8a9d8c93c1e998e8522aa6c517821922"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HPMCOUNTER31</b>&#160;&#160;&#160;0xC1F</td></tr>
+<tr class="separator:a8a9d8c93c1e998e8522aa6c517821922"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0d05e150b228c6028c39e7b9e301381" id="r_ad0d05e150b228c6028c39e7b9e301381"><td class="memItemLeft" align="right" valign="top"><a id="ad0d05e150b228c6028c39e7b9e301381" name="ad0d05e150b228c6028c39e7b9e301381"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CYCLEH</b>&#160;&#160;&#160;0xC80</td></tr>
+<tr class="separator:ad0d05e150b228c6028c39e7b9e301381"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8c97c5f21612aa9585843d073eb3f87" id="r_ab8c97c5f21612aa9585843d073eb3f87"><td class="memItemLeft" align="right" valign="top"><a id="ab8c97c5f21612aa9585843d073eb3f87" name="ab8c97c5f21612aa9585843d073eb3f87"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TIMEH</b>&#160;&#160;&#160;0xC81</td></tr>
+<tr class="separator:ab8c97c5f21612aa9585843d073eb3f87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2d13a7955ee784ee48d0e2159e78311" id="r_ab2d13a7955ee784ee48d0e2159e78311"><td class="memItemLeft" align="right" valign="top"><a id="ab2d13a7955ee784ee48d0e2159e78311" name="ab2d13a7955ee784ee48d0e2159e78311"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>INSTRETH</b>&#160;&#160;&#160;0xC82</td></tr>
+<tr class="separator:ab2d13a7955ee784ee48d0e2159e78311"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a573b74f4f62afd3068ca33ddda0b8536" id="r_a573b74f4f62afd3068ca33ddda0b8536"><td class="memItemLeft" align="right" valign="top"><a id="a573b74f4f62afd3068ca33ddda0b8536" name="a573b74f4f62afd3068ca33ddda0b8536"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HPMCOUNTER3H</b>&#160;&#160;&#160;0xC83</td></tr>
+<tr class="separator:a573b74f4f62afd3068ca33ddda0b8536"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7eeb10d022e6a10b34d80349c40ea53e" id="r_a7eeb10d022e6a10b34d80349c40ea53e"><td class="memItemLeft" align="right" valign="top"><a id="a7eeb10d022e6a10b34d80349c40ea53e" name="a7eeb10d022e6a10b34d80349c40ea53e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HPMCOUNTER4H</b>&#160;&#160;&#160;0xC84</td></tr>
+<tr class="separator:a7eeb10d022e6a10b34d80349c40ea53e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a359a0181af9e7041c547ee0104e47ec5" id="r_a359a0181af9e7041c547ee0104e47ec5"><td class="memItemLeft" align="right" valign="top"><a id="a359a0181af9e7041c547ee0104e47ec5" name="a359a0181af9e7041c547ee0104e47ec5"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HPMCOUNTER31H</b>&#160;&#160;&#160;0xC9F URO</td></tr>
+<tr class="separator:a359a0181af9e7041c547ee0104e47ec5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff05053bef3d6ac608f30d1057369e98" id="r_aff05053bef3d6ac608f30d1057369e98"><td class="memItemLeft" align="right" valign="top"><a id="aff05053bef3d6ac608f30d1057369e98" name="aff05053bef3d6ac608f30d1057369e98"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SSTATUS</b>&#160;&#160;&#160;0x100</td></tr>
+<tr class="separator:aff05053bef3d6ac608f30d1057369e98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6075f7130d2de71809ba8f59c4ddf528" id="r_a6075f7130d2de71809ba8f59c4ddf528"><td class="memItemLeft" align="right" valign="top"><a id="a6075f7130d2de71809ba8f59c4ddf528" name="a6075f7130d2de71809ba8f59c4ddf528"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SEDELEG</b>&#160;&#160;&#160;0x102</td></tr>
+<tr class="separator:a6075f7130d2de71809ba8f59c4ddf528"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afaf376a31076f138e83385d5c592fd1b" id="r_afaf376a31076f138e83385d5c592fd1b"><td class="memItemLeft" align="right" valign="top"><a id="afaf376a31076f138e83385d5c592fd1b" name="afaf376a31076f138e83385d5c592fd1b"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SIDELEG</b>&#160;&#160;&#160;0x103</td></tr>
+<tr class="separator:afaf376a31076f138e83385d5c592fd1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52300700e6b6d66cfde1c051e4b4ba5b" id="r_a52300700e6b6d66cfde1c051e4b4ba5b"><td class="memItemLeft" align="right" valign="top"><a id="a52300700e6b6d66cfde1c051e4b4ba5b" name="a52300700e6b6d66cfde1c051e4b4ba5b"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SIE</b>&#160;&#160;&#160;0x104</td></tr>
+<tr class="separator:a52300700e6b6d66cfde1c051e4b4ba5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46199e4684f9c2d7e3e35f57072f6d51" id="r_a46199e4684f9c2d7e3e35f57072f6d51"><td class="memItemLeft" align="right" valign="top"><a id="a46199e4684f9c2d7e3e35f57072f6d51" name="a46199e4684f9c2d7e3e35f57072f6d51"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>STVEC</b>&#160;&#160;&#160;0x105</td></tr>
+<tr class="separator:a46199e4684f9c2d7e3e35f57072f6d51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70966fa42f1ddfef45632dc504ce2b24" id="r_a70966fa42f1ddfef45632dc504ce2b24"><td class="memItemLeft" align="right" valign="top"><a id="a70966fa42f1ddfef45632dc504ce2b24" name="a70966fa42f1ddfef45632dc504ce2b24"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SCOUNTEREN</b>&#160;&#160;&#160;0x106</td></tr>
+<tr class="separator:a70966fa42f1ddfef45632dc504ce2b24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18c2300e29ea3d9d1c584d4e6af639e9" id="r_a18c2300e29ea3d9d1c584d4e6af639e9"><td class="memItemLeft" align="right" valign="top"><a id="a18c2300e29ea3d9d1c584d4e6af639e9" name="a18c2300e29ea3d9d1c584d4e6af639e9"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SSCRATCH</b>&#160;&#160;&#160;0x140</td></tr>
+<tr class="separator:a18c2300e29ea3d9d1c584d4e6af639e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aafebb291cd4c3379f347d502d491f945" id="r_aafebb291cd4c3379f347d502d491f945"><td class="memItemLeft" align="right" valign="top"><a id="aafebb291cd4c3379f347d502d491f945" name="aafebb291cd4c3379f347d502d491f945"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SEPC</b>&#160;&#160;&#160;0x141</td></tr>
+<tr class="separator:aafebb291cd4c3379f347d502d491f945"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa01e0f661a576b8a11394df4fff03a0f" id="r_aa01e0f661a576b8a11394df4fff03a0f"><td class="memItemLeft" align="right" valign="top"><a id="aa01e0f661a576b8a11394df4fff03a0f" name="aa01e0f661a576b8a11394df4fff03a0f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SCAUSE</b>&#160;&#160;&#160;0x142</td></tr>
+<tr class="separator:aa01e0f661a576b8a11394df4fff03a0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90658fc20c0fa1c9e7d1361634fe8326" id="r_a90658fc20c0fa1c9e7d1361634fe8326"><td class="memItemLeft" align="right" valign="top"><a id="a90658fc20c0fa1c9e7d1361634fe8326" name="a90658fc20c0fa1c9e7d1361634fe8326"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>STVAL</b>&#160;&#160;&#160;0x143</td></tr>
+<tr class="separator:a90658fc20c0fa1c9e7d1361634fe8326"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10aa6e53ebd7deb75e43c565cc4eace3" id="r_a10aa6e53ebd7deb75e43c565cc4eace3"><td class="memItemLeft" align="right" valign="top"><a id="a10aa6e53ebd7deb75e43c565cc4eace3" name="a10aa6e53ebd7deb75e43c565cc4eace3"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SIP</b>&#160;&#160;&#160;0x144</td></tr>
+<tr class="separator:a10aa6e53ebd7deb75e43c565cc4eace3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acede5cb3ee657e35acf96c3b6cc90c3c" id="r_acede5cb3ee657e35acf96c3b6cc90c3c"><td class="memItemLeft" align="right" valign="top"><a id="acede5cb3ee657e35acf96c3b6cc90c3c" name="acede5cb3ee657e35acf96c3b6cc90c3c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SATP</b>&#160;&#160;&#160;0x180</td></tr>
+<tr class="separator:acede5cb3ee657e35acf96c3b6cc90c3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f544367d6d99423d5a1bae635204c5f" id="r_a0f544367d6d99423d5a1bae635204c5f"><td class="memItemLeft" align="right" valign="top"><a id="a0f544367d6d99423d5a1bae635204c5f" name="a0f544367d6d99423d5a1bae635204c5f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MVENDORID</b>&#160;&#160;&#160;0xF11</td></tr>
+<tr class="separator:a0f544367d6d99423d5a1bae635204c5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae15270f425e696eed1accc16c87d600" id="r_aae15270f425e696eed1accc16c87d600"><td class="memItemLeft" align="right" valign="top"><a id="aae15270f425e696eed1accc16c87d600" name="aae15270f425e696eed1accc16c87d600"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MARCHID</b>&#160;&#160;&#160;0xF12</td></tr>
+<tr class="separator:aae15270f425e696eed1accc16c87d600"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0869ccfb851d5e11646d6343b7d36d9" id="r_ae0869ccfb851d5e11646d6343b7d36d9"><td class="memItemLeft" align="right" valign="top"><a id="ae0869ccfb851d5e11646d6343b7d36d9" name="ae0869ccfb851d5e11646d6343b7d36d9"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MIMPID</b>&#160;&#160;&#160;0xF13</td></tr>
+<tr class="separator:ae0869ccfb851d5e11646d6343b7d36d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a619120fc8ace217e060bdf5fb6a8c193" id="r_a619120fc8ace217e060bdf5fb6a8c193"><td class="memItemLeft" align="right" valign="top"><a id="a619120fc8ace217e060bdf5fb6a8c193" name="a619120fc8ace217e060bdf5fb6a8c193"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MHARTID</b>&#160;&#160;&#160;0xF14</td></tr>
+<tr class="separator:a619120fc8ace217e060bdf5fb6a8c193"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8db9cda93543db887f8dd3de1c5d2d97" id="r_a8db9cda93543db887f8dd3de1c5d2d97"><td class="memItemLeft" align="right" valign="top"><a id="a8db9cda93543db887f8dd3de1c5d2d97" name="a8db9cda93543db887f8dd3de1c5d2d97"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MSTATUS</b>&#160;&#160;&#160;0x300</td></tr>
+<tr class="separator:a8db9cda93543db887f8dd3de1c5d2d97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ab519cba7af31f6e934d89abbe1920c" id="r_a2ab519cba7af31f6e934d89abbe1920c"><td class="memItemLeft" align="right" valign="top"><a id="a2ab519cba7af31f6e934d89abbe1920c" name="a2ab519cba7af31f6e934d89abbe1920c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MISA</b>&#160;&#160;&#160;0x301</td></tr>
+<tr class="separator:a2ab519cba7af31f6e934d89abbe1920c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aedccd079df5fca0712513bb63609d019" id="r_aedccd079df5fca0712513bb63609d019"><td class="memItemLeft" align="right" valign="top"><a id="aedccd079df5fca0712513bb63609d019" name="aedccd079df5fca0712513bb63609d019"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MEDELEG</b>&#160;&#160;&#160;0x302</td></tr>
+<tr class="separator:aedccd079df5fca0712513bb63609d019"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a502c7eb330c537001abf35e5fd1f2250" id="r_a502c7eb330c537001abf35e5fd1f2250"><td class="memItemLeft" align="right" valign="top"><a id="a502c7eb330c537001abf35e5fd1f2250" name="a502c7eb330c537001abf35e5fd1f2250"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MIDELEG</b>&#160;&#160;&#160;0x303</td></tr>
+<tr class="separator:a502c7eb330c537001abf35e5fd1f2250"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7f660c42a71ef71d56060507e976c6e" id="r_ac7f660c42a71ef71d56060507e976c6e"><td class="memItemLeft" align="right" valign="top"><a id="ac7f660c42a71ef71d56060507e976c6e" name="ac7f660c42a71ef71d56060507e976c6e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MIE</b>&#160;&#160;&#160;0x304</td></tr>
+<tr class="separator:ac7f660c42a71ef71d56060507e976c6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba0c134b2ae1a8442e7471aa757e1816" id="r_aba0c134b2ae1a8442e7471aa757e1816"><td class="memItemLeft" align="right" valign="top"><a id="aba0c134b2ae1a8442e7471aa757e1816" name="aba0c134b2ae1a8442e7471aa757e1816"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MTVEC</b>&#160;&#160;&#160;0x305</td></tr>
+<tr class="separator:aba0c134b2ae1a8442e7471aa757e1816"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67fd741c4b010378f36844d1518a8bec" id="r_a67fd741c4b010378f36844d1518a8bec"><td class="memItemLeft" align="right" valign="top"><a id="a67fd741c4b010378f36844d1518a8bec" name="a67fd741c4b010378f36844d1518a8bec"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MCOUNTEREN</b>&#160;&#160;&#160;0x306</td></tr>
+<tr class="separator:a67fd741c4b010378f36844d1518a8bec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f1e47e16dfefb3fb1c04bf0c2d5ab1e" id="r_a7f1e47e16dfefb3fb1c04bf0c2d5ab1e"><td class="memItemLeft" align="right" valign="top"><a id="a7f1e47e16dfefb3fb1c04bf0c2d5ab1e" name="a7f1e47e16dfefb3fb1c04bf0c2d5ab1e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MSCRATCH</b>&#160;&#160;&#160;0x340</td></tr>
+<tr class="separator:a7f1e47e16dfefb3fb1c04bf0c2d5ab1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb288fbf9ae291c39d3421ea987e12c0" id="r_adb288fbf9ae291c39d3421ea987e12c0"><td class="memItemLeft" align="right" valign="top"><a id="adb288fbf9ae291c39d3421ea987e12c0" name="adb288fbf9ae291c39d3421ea987e12c0"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MEPC</b>&#160;&#160;&#160;0x341</td></tr>
+<tr class="separator:adb288fbf9ae291c39d3421ea987e12c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef78ca91211eb46a84c2c032ca6c14ff" id="r_aef78ca91211eb46a84c2c032ca6c14ff"><td class="memItemLeft" align="right" valign="top"><a id="aef78ca91211eb46a84c2c032ca6c14ff" name="aef78ca91211eb46a84c2c032ca6c14ff"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MCAUSE</b>&#160;&#160;&#160;0x342</td></tr>
+<tr class="separator:aef78ca91211eb46a84c2c032ca6c14ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8b0dc4d66294e5048a166b0d7469d32" id="r_ac8b0dc4d66294e5048a166b0d7469d32"><td class="memItemLeft" align="right" valign="top"><a id="ac8b0dc4d66294e5048a166b0d7469d32" name="ac8b0dc4d66294e5048a166b0d7469d32"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MTVAL</b>&#160;&#160;&#160;0x343</td></tr>
+<tr class="separator:ac8b0dc4d66294e5048a166b0d7469d32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8b3151f285ea4d327843aa5f66fbebb" id="r_ac8b3151f285ea4d327843aa5f66fbebb"><td class="memItemLeft" align="right" valign="top"><a id="ac8b3151f285ea4d327843aa5f66fbebb" name="ac8b3151f285ea4d327843aa5f66fbebb"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MIP</b>&#160;&#160;&#160;0x344</td></tr>
+<tr class="separator:ac8b3151f285ea4d327843aa5f66fbebb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7478d68590739e9d28b779aaaafac86d" id="r_a7478d68590739e9d28b779aaaafac86d"><td class="memItemLeft" align="right" valign="top"><a id="a7478d68590739e9d28b779aaaafac86d" name="a7478d68590739e9d28b779aaaafac86d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>PMPCFG0</b>&#160;&#160;&#160;0x3A0</td></tr>
+<tr class="separator:a7478d68590739e9d28b779aaaafac86d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2136cd209181e53e8c7706c28556c26c" id="r_a2136cd209181e53e8c7706c28556c26c"><td class="memItemLeft" align="right" valign="top"><a id="a2136cd209181e53e8c7706c28556c26c" name="a2136cd209181e53e8c7706c28556c26c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>PMPCFG1</b>&#160;&#160;&#160;0x3A1</td></tr>
+<tr class="separator:a2136cd209181e53e8c7706c28556c26c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8de63f41d384a9a6977b12059bf2c7e" id="r_ad8de63f41d384a9a6977b12059bf2c7e"><td class="memItemLeft" align="right" valign="top"><a id="ad8de63f41d384a9a6977b12059bf2c7e" name="ad8de63f41d384a9a6977b12059bf2c7e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>PMPCFG2</b>&#160;&#160;&#160;0x3A2</td></tr>
+<tr class="separator:ad8de63f41d384a9a6977b12059bf2c7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0be72be89c1a0df00c6618f342785eb9" id="r_a0be72be89c1a0df00c6618f342785eb9"><td class="memItemLeft" align="right" valign="top"><a id="a0be72be89c1a0df00c6618f342785eb9" name="a0be72be89c1a0df00c6618f342785eb9"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>PMPCFG3</b>&#160;&#160;&#160;0x3A3</td></tr>
+<tr class="separator:a0be72be89c1a0df00c6618f342785eb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af156ab2f4715ecfa2b9a6f61f546bffc" id="r_af156ab2f4715ecfa2b9a6f61f546bffc"><td class="memItemLeft" align="right" valign="top"><a id="af156ab2f4715ecfa2b9a6f61f546bffc" name="af156ab2f4715ecfa2b9a6f61f546bffc"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>PMPADDR0</b>&#160;&#160;&#160;0x3B0</td></tr>
+<tr class="separator:af156ab2f4715ecfa2b9a6f61f546bffc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71ed4ab21edd8b6de9ec4ab11a5bf018" id="r_a71ed4ab21edd8b6de9ec4ab11a5bf018"><td class="memItemLeft" align="right" valign="top"><a id="a71ed4ab21edd8b6de9ec4ab11a5bf018" name="a71ed4ab21edd8b6de9ec4ab11a5bf018"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>PMPADDR1</b>&#160;&#160;&#160;0x3B1</td></tr>
+<tr class="separator:a71ed4ab21edd8b6de9ec4ab11a5bf018"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a252172f5cc1f1578a7bb9b48a0a4f423" id="r_a252172f5cc1f1578a7bb9b48a0a4f423"><td class="memItemLeft" align="right" valign="top"><a id="a252172f5cc1f1578a7bb9b48a0a4f423" name="a252172f5cc1f1578a7bb9b48a0a4f423"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>PMPADDR15</b>&#160;&#160;&#160;0x3BF</td></tr>
+<tr class="separator:a252172f5cc1f1578a7bb9b48a0a4f423"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90ed9c6dd04f500c97cfaa7a5bac8ac2" id="r_a90ed9c6dd04f500c97cfaa7a5bac8ac2"><td class="memItemLeft" align="right" valign="top"><a id="a90ed9c6dd04f500c97cfaa7a5bac8ac2" name="a90ed9c6dd04f500c97cfaa7a5bac8ac2"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MCYCLE</b>&#160;&#160;&#160;0xB00</td></tr>
+<tr class="separator:a90ed9c6dd04f500c97cfaa7a5bac8ac2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeab534091fd28e1e2f4e190a4672f21e" id="r_aeab534091fd28e1e2f4e190a4672f21e"><td class="memItemLeft" align="right" valign="top"><a id="aeab534091fd28e1e2f4e190a4672f21e" name="aeab534091fd28e1e2f4e190a4672f21e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MINSTRET</b>&#160;&#160;&#160;0xB02</td></tr>
+<tr class="separator:aeab534091fd28e1e2f4e190a4672f21e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe90bccf126b14097f7717180eb4a93d" id="r_afe90bccf126b14097f7717180eb4a93d"><td class="memItemLeft" align="right" valign="top"><a id="afe90bccf126b14097f7717180eb4a93d" name="afe90bccf126b14097f7717180eb4a93d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MHPMCOUNTER3</b>&#160;&#160;&#160;0xB03</td></tr>
+<tr class="separator:afe90bccf126b14097f7717180eb4a93d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92d47db6ea12f8b4cc70fbe6e8419e8a" id="r_a92d47db6ea12f8b4cc70fbe6e8419e8a"><td class="memItemLeft" align="right" valign="top"><a id="a92d47db6ea12f8b4cc70fbe6e8419e8a" name="a92d47db6ea12f8b4cc70fbe6e8419e8a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MHPMCOUNTER4</b>&#160;&#160;&#160;0xB04</td></tr>
+<tr class="separator:a92d47db6ea12f8b4cc70fbe6e8419e8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13640ff442377a0f88a43b831fab5f82" id="r_a13640ff442377a0f88a43b831fab5f82"><td class="memItemLeft" align="right" valign="top"><a id="a13640ff442377a0f88a43b831fab5f82" name="a13640ff442377a0f88a43b831fab5f82"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MHPMCOUNTER31</b>&#160;&#160;&#160;0xB1F</td></tr>
+<tr class="separator:a13640ff442377a0f88a43b831fab5f82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47f4ce6350cd932e07b1512ba4abb893" id="r_a47f4ce6350cd932e07b1512ba4abb893"><td class="memItemLeft" align="right" valign="top"><a id="a47f4ce6350cd932e07b1512ba4abb893" name="a47f4ce6350cd932e07b1512ba4abb893"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MCYCLEH</b>&#160;&#160;&#160;0xB80</td></tr>
+<tr class="separator:a47f4ce6350cd932e07b1512ba4abb893"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acac91a16720ee3964866a2e15336e986" id="r_acac91a16720ee3964866a2e15336e986"><td class="memItemLeft" align="right" valign="top"><a id="acac91a16720ee3964866a2e15336e986" name="acac91a16720ee3964866a2e15336e986"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MINSTRETH</b>&#160;&#160;&#160;0xB82</td></tr>
+<tr class="separator:acac91a16720ee3964866a2e15336e986"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7147db23b2067acf5442b695eba68fb6" id="r_a7147db23b2067acf5442b695eba68fb6"><td class="memItemLeft" align="right" valign="top"><a id="a7147db23b2067acf5442b695eba68fb6" name="a7147db23b2067acf5442b695eba68fb6"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MHPMCOUNTER3H</b>&#160;&#160;&#160;0xB83</td></tr>
+<tr class="separator:a7147db23b2067acf5442b695eba68fb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30d285a35156f0d5e21aaef34dcb69e4" id="r_a30d285a35156f0d5e21aaef34dcb69e4"><td class="memItemLeft" align="right" valign="top"><a id="a30d285a35156f0d5e21aaef34dcb69e4" name="a30d285a35156f0d5e21aaef34dcb69e4"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MHPMCOUNTER4H</b>&#160;&#160;&#160;0xB84</td></tr>
+<tr class="separator:a30d285a35156f0d5e21aaef34dcb69e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ebd1ab366c0873260a57f956cf367a5" id="r_a0ebd1ab366c0873260a57f956cf367a5"><td class="memItemLeft" align="right" valign="top"><a id="a0ebd1ab366c0873260a57f956cf367a5" name="a0ebd1ab366c0873260a57f956cf367a5"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MHPMCOUNTER31H</b>&#160;&#160;&#160;0xB9F</td></tr>
+<tr class="separator:a0ebd1ab366c0873260a57f956cf367a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5e6c199eac36d92c69ec14642143f51" id="r_ad5e6c199eac36d92c69ec14642143f51"><td class="memItemLeft" align="right" valign="top"><a id="ad5e6c199eac36d92c69ec14642143f51" name="ad5e6c199eac36d92c69ec14642143f51"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MCOUNTINHIBIT</b>&#160;&#160;&#160;0x320</td></tr>
+<tr class="separator:ad5e6c199eac36d92c69ec14642143f51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a309e6314e44f96cfbb2650179001417b" id="r_a309e6314e44f96cfbb2650179001417b"><td class="memItemLeft" align="right" valign="top"><a id="a309e6314e44f96cfbb2650179001417b" name="a309e6314e44f96cfbb2650179001417b"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MHPMEVENT3</b>&#160;&#160;&#160;0x323</td></tr>
+<tr class="separator:a309e6314e44f96cfbb2650179001417b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4787bb7bc728837a9e141fbdd16259ed" id="r_a4787bb7bc728837a9e141fbdd16259ed"><td class="memItemLeft" align="right" valign="top"><a id="a4787bb7bc728837a9e141fbdd16259ed" name="a4787bb7bc728837a9e141fbdd16259ed"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MHPMEVENT4</b>&#160;&#160;&#160;0x324</td></tr>
+<tr class="separator:a4787bb7bc728837a9e141fbdd16259ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab0f2831f569917c6b2596b595cdac99" id="r_aab0f2831f569917c6b2596b595cdac99"><td class="memItemLeft" align="right" valign="top"><a id="aab0f2831f569917c6b2596b595cdac99" name="aab0f2831f569917c6b2596b595cdac99"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MHPMEVENT31</b>&#160;&#160;&#160;0x33F</td></tr>
+<tr class="separator:aab0f2831f569917c6b2596b595cdac99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36894ca36a6ed652bf4539622f28ea2b" id="r_a36894ca36a6ed652bf4539622f28ea2b"><td class="memItemLeft" align="right" valign="top"><a id="a36894ca36a6ed652bf4539622f28ea2b" name="a36894ca36a6ed652bf4539622f28ea2b"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TSELECT</b>&#160;&#160;&#160;0x7A0</td></tr>
+<tr class="separator:a36894ca36a6ed652bf4539622f28ea2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3f15bcb2579c3af8f30d47d6c6902aa" id="r_aa3f15bcb2579c3af8f30d47d6c6902aa"><td class="memItemLeft" align="right" valign="top"><a id="aa3f15bcb2579c3af8f30d47d6c6902aa" name="aa3f15bcb2579c3af8f30d47d6c6902aa"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TDATA1</b>&#160;&#160;&#160;0x7A1</td></tr>
+<tr class="separator:aa3f15bcb2579c3af8f30d47d6c6902aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab56e43f4e61048bf153ee1e0a1896ec" id="r_aab56e43f4e61048bf153ee1e0a1896ec"><td class="memItemLeft" align="right" valign="top"><a id="aab56e43f4e61048bf153ee1e0a1896ec" name="aab56e43f4e61048bf153ee1e0a1896ec"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TDATA2</b>&#160;&#160;&#160;0x7A2</td></tr>
+<tr class="separator:aab56e43f4e61048bf153ee1e0a1896ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab648948c66b16287762a82edf8e34136" id="r_ab648948c66b16287762a82edf8e34136"><td class="memItemLeft" align="right" valign="top"><a id="ab648948c66b16287762a82edf8e34136" name="ab648948c66b16287762a82edf8e34136"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TDATA3</b>&#160;&#160;&#160;0x7A3</td></tr>
+<tr class="separator:ab648948c66b16287762a82edf8e34136"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa2c20a1e246ddeba7d753af66ca2961" id="r_afa2c20a1e246ddeba7d753af66ca2961"><td class="memItemLeft" align="right" valign="top"><a id="afa2c20a1e246ddeba7d753af66ca2961" name="afa2c20a1e246ddeba7d753af66ca2961"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>DCSR</b>&#160;&#160;&#160;0x7B0</td></tr>
+<tr class="separator:afa2c20a1e246ddeba7d753af66ca2961"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6196fc20f3241b9b02cab748aa1cf031" id="r_a6196fc20f3241b9b02cab748aa1cf031"><td class="memItemLeft" align="right" valign="top"><a id="a6196fc20f3241b9b02cab748aa1cf031" name="a6196fc20f3241b9b02cab748aa1cf031"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>DPC</b>&#160;&#160;&#160;0x7B1</td></tr>
+<tr class="separator:a6196fc20f3241b9b02cab748aa1cf031"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bcf4d8f75aff72820dd269e8faf3bdf" id="r_a1bcf4d8f75aff72820dd269e8faf3bdf"><td class="memItemLeft" align="right" valign="top"><a id="a1bcf4d8f75aff72820dd269e8faf3bdf" name="a1bcf4d8f75aff72820dd269e8faf3bdf"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>DSCRATCH0</b>&#160;&#160;&#160;0x7B2</td></tr>
+<tr class="separator:a1bcf4d8f75aff72820dd269e8faf3bdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a535ffe5cb04e072d756bf9f87216cd3a" id="r_a535ffe5cb04e072d756bf9f87216cd3a"><td class="memItemLeft" align="right" valign="top"><a id="a535ffe5cb04e072d756bf9f87216cd3a" name="a535ffe5cb04e072d756bf9f87216cd3a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>DSCRATCH1</b>&#160;&#160;&#160;0x7B3</td></tr>
+<tr class="separator:a535ffe5cb04e072d756bf9f87216cd3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:a66f78d970ee76cbccedb9438a192fa43" id="r_a66f78d970ee76cbccedb9438a192fa43"><td class="memItemLeft" align="right" valign="top"><a id="a66f78d970ee76cbccedb9438a192fa43" name="a66f78d970ee76cbccedb9438a192fa43"></a>
+u64&#160;</td><td class="memItemRight" valign="bottom"><b>csr_read</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u64 csr)</td></tr>
+<tr class="separator:a66f78d970ee76cbccedb9438a192fa43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcd7e45bad0f0fe47b0d65794c9ef880" id="r_adcd7e45bad0f0fe47b0d65794c9ef880"><td class="memItemLeft" align="right" valign="top"><a id="adcd7e45bad0f0fe47b0d65794c9ef880" name="adcd7e45bad0f0fe47b0d65794c9ef880"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>csr_write</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u64 csr, u64 value)</td></tr>
+<tr class="separator:adcd7e45bad0f0fe47b0d65794c9ef880"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><dl class="section author"><dt>作者</dt><dd>your name (<a href="#" onclick="location.href='mai'+'lto:'+'you'+'@d'+'oma'+'in'+'.co'+'m'; return false;">you@d<span class="obfuscator">.nosp@m.</span>omai<span class="obfuscator">.nosp@m.</span>n.com</a>) </dd></dl>
+<dl class="section version"><dt>版本</dt><dd>0.1 </dd></dl>
+<dl class="section date"><dt>日期</dt><dd>2024-01-08</dd></dl>
+<dl class="section copyright"><dt>版权所有</dt><dd>Copyright (c) 2024 </dd></dl>
+</div></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_1befa86077b13579493366c588abc311.html">cemu</a></li><li class="navelem"><a class="el" href="csr_8h.html">csr.h</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
+</body>
+</html>

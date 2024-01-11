@@ -1,0 +1,336 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>cemu: src/utils/unittest.h 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">cemu
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('unittest_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">类</a> &#124;
+<a href="#define-members">宏定义</a> &#124;
+<a href="#var-members">变量</a>  </div>
+  <div class="headertitle"><div class="title">unittest.h 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>单元测试头文件  
+<a href="#details">更多...</a></p>
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="color_8h_source.html">color.h</a>&quot;</code><br />
+</div>
+<p><a href="unittest_8h_source.html">浏览源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+类</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structunittest__t.html">unittest_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:a054174a95de8922c6e8c9055adda7122" id="r_a054174a95de8922c6e8c9055adda7122"><td class="memItemLeft" align="right" valign="top"><a id="a054174a95de8922c6e8c9055adda7122" name="a054174a95de8922c6e8c9055adda7122"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>VA_NARG</b>(args...)&#160;&#160;&#160;VA_NARG_(0, ##args, VA_RSEQ_N())</td></tr>
+<tr class="separator:a054174a95de8922c6e8c9055adda7122"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0bcdb0c04efabb50ee66b92e27546fb" id="r_ab0bcdb0c04efabb50ee66b92e27546fb"><td class="memItemLeft" align="right" valign="top"><a id="ab0bcdb0c04efabb50ee66b92e27546fb" name="ab0bcdb0c04efabb50ee66b92e27546fb"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>VA_NARG_</b>(args...)&#160;&#160;&#160;VA_ARG_N(args)</td></tr>
+<tr class="separator:ab0bcdb0c04efabb50ee66b92e27546fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabb43e8e561a76aa232be1a920061cc2" id="r_aabb43e8e561a76aa232be1a920061cc2"><td class="memItemLeft" align="right" valign="top"><a id="aabb43e8e561a76aa232be1a920061cc2" name="aabb43e8e561a76aa232be1a920061cc2"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>VA_ARG_N</b>(_0,  a,  b,  c,  d,  e,  f,  g,  h,  i,  j,  k,  l,  m,  n,  o,  p,  N, ...)&#160;&#160;&#160;N</td></tr>
+<tr class="separator:aabb43e8e561a76aa232be1a920061cc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7dd8b56db63a0a21cec14df769c1fbd0" id="r_a7dd8b56db63a0a21cec14df769c1fbd0"><td class="memItemLeft" align="right" valign="top"><a id="a7dd8b56db63a0a21cec14df769c1fbd0" name="a7dd8b56db63a0a21cec14df769c1fbd0"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>VA_RSEQ_N</b>()&#160;&#160;&#160;16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0</td></tr>
+<tr class="separator:a7dd8b56db63a0a21cec14df769c1fbd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a862316201d8f4975db616927a2716091" id="r_a862316201d8f4975db616927a2716091"><td class="memItemLeft" align="right" valign="top"><a id="a862316201d8f4975db616927a2716091" name="a862316201d8f4975db616927a2716091"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>VA_FIRST</b>(args...)&#160;&#160;&#160;VA_FIRST_(args)</td></tr>
+<tr class="separator:a862316201d8f4975db616927a2716091"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ee6c6e6227f42247036d0852bdaaa8d" id="r_a7ee6c6e6227f42247036d0852bdaaa8d"><td class="memItemLeft" align="right" valign="top"><a id="a7ee6c6e6227f42247036d0852bdaaa8d" name="a7ee6c6e6227f42247036d0852bdaaa8d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>VA_FIRST_</b>(F, ...)&#160;&#160;&#160;F</td></tr>
+<tr class="separator:a7ee6c6e6227f42247036d0852bdaaa8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f1e0c59a816cb972a1de12fa0081dd4" id="r_a4f1e0c59a816cb972a1de12fa0081dd4"><td class="memItemLeft" align="right" valign="top"><a id="a4f1e0c59a816cb972a1de12fa0081dd4" name="a4f1e0c59a816cb972a1de12fa0081dd4"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>VA_FIRST_STR</b>(args...)&#160;&#160;&#160;VA_FIRST_STR_(args)</td></tr>
+<tr class="separator:a4f1e0c59a816cb972a1de12fa0081dd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8d213f2591cb5892f09f0029889c274" id="r_ae8d213f2591cb5892f09f0029889c274"><td class="memItemLeft" align="right" valign="top"><a id="ae8d213f2591cb5892f09f0029889c274" name="ae8d213f2591cb5892f09f0029889c274"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>VA_FIRST_STR_</b>(F, ...)&#160;&#160;&#160;#F</td></tr>
+<tr class="separator:ae8d213f2591cb5892f09f0029889c274"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c44a7220a1a4a396d690d81abf4eb03" id="r_a8c44a7220a1a4a396d690d81abf4eb03"><td class="memItemLeft" align="right" valign="top"><a id="a8c44a7220a1a4a396d690d81abf4eb03" name="a8c44a7220a1a4a396d690d81abf4eb03"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>VA_REST_</b>(F,  args...)&#160;&#160;&#160;args</td></tr>
+<tr class="separator:a8c44a7220a1a4a396d690d81abf4eb03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83765ee7108beb23b1ea5dbefd111771" id="r_a83765ee7108beb23b1ea5dbefd111771"><td class="memItemLeft" align="right" valign="top"><a id="a83765ee7108beb23b1ea5dbefd111771" name="a83765ee7108beb23b1ea5dbefd111771"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>VA_REST</b>(args...)&#160;&#160;&#160;VA_REST_(args)</td></tr>
+<tr class="separator:a83765ee7108beb23b1ea5dbefd111771"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5cfed449e1e4c60d312ae742439c14cf" id="r_a5cfed449e1e4c60d312ae742439c14cf"><td class="memItemLeft" align="right" valign="top"><a id="a5cfed449e1e4c60d312ae742439c14cf" name="a5cfed449e1e4c60d312ae742439c14cf"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>UT_FAIL</b>&#160;&#160;&#160;&quot;FAIL&quot;</td></tr>
+<tr class="separator:a5cfed449e1e4c60d312ae742439c14cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af625c20907a231abfd6f405f17846700" id="r_af625c20907a231abfd6f405f17846700"><td class="memItemLeft" align="right" valign="top"><a id="af625c20907a231abfd6f405f17846700" name="af625c20907a231abfd6f405f17846700"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>UT_PASS</b>&#160;&#160;&#160;&quot;PASS&quot;</td></tr>
+<tr class="separator:af625c20907a231abfd6f405f17846700"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0bccacff7ac8aae6ec271c0dc25d5ec" id="r_ab0bccacff7ac8aae6ec271c0dc25d5ec"><td class="memItemLeft" align="right" valign="top"><a id="ab0bccacff7ac8aae6ec271c0dc25d5ec" name="ab0bccacff7ac8aae6ec271c0dc25d5ec"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>ut_set_quiet</b>(num)&#160;&#160;&#160;    <a class="el" href="log_8h.html#ae4426f467d61ae456b95844d4d9c2dcd">ut.quiet</a> = num;</td></tr>
+<tr class="separator:ab0bccacff7ac8aae6ec271c0dc25d5ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85ee0eaf813c1bfc0b46dfb8620e9fa7" id="r_a85ee0eaf813c1bfc0b46dfb8620e9fa7"><td class="memItemLeft" align="right" valign="top"><a id="a85ee0eaf813c1bfc0b46dfb8620e9fa7" name="a85ee0eaf813c1bfc0b46dfb8620e9fa7"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>ut_assert</b>(test...)</td></tr>
+<tr class="separator:a85ee0eaf813c1bfc0b46dfb8620e9fa7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bbbc439eb5154398aa82de02f895c44" id="r_a1bbbc439eb5154398aa82de02f895c44"><td class="memItemLeft" align="right" valign="top"><a id="a1bbbc439eb5154398aa82de02f895c44" name="a1bbbc439eb5154398aa82de02f895c44"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>ut_dec_test</b>(testname)&#160;&#160;&#160;    int testname##_test()</td></tr>
+<tr class="separator:a1bbbc439eb5154398aa82de02f895c44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3fe828f1ee18ef01fd1562ade7d36b8" id="r_ae3fe828f1ee18ef01fd1562ade7d36b8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae3fe828f1ee18ef01fd1562ade7d36b8">ut_def_test</a>(testname, ...)</td></tr>
+<tr class="separator:ae3fe828f1ee18ef01fd1562ade7d36b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0cb7941c30077aeb4400af1dedf32c9f" id="r_a0cb7941c30077aeb4400af1dedf32c9f"><td class="memItemLeft" align="right" valign="top"><a id="a0cb7941c30077aeb4400af1dedf32c9f" name="a0cb7941c30077aeb4400af1dedf32c9f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>ut_run_test</b>(testname)</td></tr>
+<tr class="separator:a0cb7941c30077aeb4400af1dedf32c9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37fea7e004bb1569f18a25c6f7b05c2d" id="r_a37fea7e004bb1569f18a25c6f7b05c2d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a37fea7e004bb1569f18a25c6f7b05c2d">ut_print_test</a>()</td></tr>
+<tr class="separator:a37fea7e004bb1569f18a25c6f7b05c2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+变量</h2></td></tr>
+<tr class="memitem:a6bf3f332463a705dcb1d2b18951fe1e7" id="r_a6bf3f332463a705dcb1d2b18951fe1e7"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structunittest__t.html">unittest_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6bf3f332463a705dcb1d2b18951fe1e7">ut</a></td></tr>
+<tr class="separator:a6bf3f332463a705dcb1d2b18951fe1e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>单元测试头文件 </p>
+<dl class="section author"><dt>作者</dt><dd>lancer (<a href="#" onclick="location.href='mai'+'lto:'+'lan'+'ce'+'rst'+'ad'+'ium'+'@1'+'63.'+'co'+'m'; return false;">lance<span class="obfuscator">.nosp@m.</span>rsta<span class="obfuscator">.nosp@m.</span>dium@<span class="obfuscator">.nosp@m.</span>163.<span class="obfuscator">.nosp@m.</span>com</a>) </dd></dl>
+<dl class="section version"><dt>版本</dt><dd>0.1 </dd></dl>
+<dl class="section date"><dt>日期</dt><dd>2023-12-28</dd></dl>
+<dl class="section copyright"><dt>版权所有</dt><dd>Copyright (c) 2023 </dd></dl>
+<dl class="section note"><dt>注解</dt><dd>参考项目：<a href="https://gitee.com/zhuangbo/MiniUnit">Gitee | MiniUnit</a></dd></dl>
+<p>A small unit test framework for C/C++.</p>
+<p>Origin author: Bo Zhuang <a href="#" onclick="location.href='mai'+'lto:'+'sdz'+'hu'+'ang'+'bo'+'@ho'+'tm'+'ail'+'.c'+'om'; return false;">sdzhu<span class="obfuscator">.nosp@m.</span>angb<span class="obfuscator">.nosp@m.</span>o@hot<span class="obfuscator">.nosp@m.</span>mail<span class="obfuscator">.nosp@m.</span>.com</a> Features:</p><ul>
+<li><code>ut_assert(expr)</code> assertion fail if <code>expr</code> false</li>
+<li><code>ut_assert(expr, message)</code> assertion with message</li>
+<li><code>ut_assert(expr, message, args...)</code> assertion with message and args</li>
+<li><code>ut_run_test(test)</code> to run a test function in form <code>int f()</code> return 0 if passed</li>
+<li><code>ut_test_results()</code> to display the test results</li>
+<li><code>#define MU_NOCOLOR</code> if ANSI escape code not supported</li>
+</ul>
+<p>For example, </p><div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="unittest_8h.html">unittest.h</a>&quot;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> test_one() {</div>
+<div class="line">  ut_assert(2 + 2 == 4);</div>
+<div class="line">  <span class="keywordflow">return</span> 0; <span class="comment">// 0 means test passed</span></div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> test_two() {</div>
+<div class="line">  <span class="keywordtype">int</span> a = 3, b = 5;</div>
+<div class="line">  ut_assert(a == 3);</div>
+<div class="line">  ut_assert(b == 5, <span class="stringliteral">&quot;b is 5&quot;</span>);</div>
+<div class="line">  ut_assert(a + b == 7, <span class="stringliteral">&quot;should be %d&quot;</span>, a + b); <span class="comment">// fail</span></div>
+<div class="line">  <span class="keywordflow">return</span> 0;</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> <a class="code hl_function" href="cemu_8c.html#adedb285b02c41bde2158ded9cc9fd7ac">main</a>()</div>
+<div class="line">{</div>
+<div class="line">  ut_run_test(test_one);</div>
+<div class="line">  ut_run_test(test_two);</div>
+<div class="line"> </div>
+<div class="line">  ut_test_results();</div>
+<div class="line"> </div>
+<div class="line">  <span class="keywordflow">return</span> 0;</div>
+<div class="line">}</div>
+<div class="ttc" id="acemu_8c_html_adedb285b02c41bde2158ded9cc9fd7ac"><div class="ttname"><a href="cemu_8c.html#adedb285b02c41bde2158ded9cc9fd7ac">main</a></div><div class="ttdeci">int main(int argc, char *argv[], char *envp[])</div><div class="ttdoc">主函数</div><div class="ttdef"><b>Definition</b> cemu.c:30</div></div>
+<div class="ttc" id="aunittest_8h_html"><div class="ttname"><a href="unittest_8h.html">unittest.h</a></div><div class="ttdoc">单元测试头文件</div></div>
+</div><!-- fragment --> </div><h2 class="groupheader">宏定义说明</h2>
+<a id="ae3fe828f1ee18ef01fd1562ade7d36b8" name="ae3fe828f1ee18ef01fd1562ade7d36b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3fe828f1ee18ef01fd1562ade7d36b8">&#9670;&#160;</a></span>ut_def_test</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ut_def_test</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname">testname, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>...</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line">    <span class="keywordtype">int</span> testname##_test()                                 \</div>
+<div class="line">    {                                                     \</div>
+<div class="line">        ut.flag = 0;                                      \</div>
+<div class="line">        ut.u_t = 0, ut.u_p = 0, ut.u_f = 0;               \</div>
+<div class="line">        __VA_ARGS__                                       \</div>
+<div class="line">        if (ut.quiet &lt; 3)                                 \</div>
+<div class="line">        {                                                 \</div>
+<div class="line">            printf(<span class="stringliteral">&quot;\n&quot;</span>                                   \</div>
+<div class="line">                   <span class="stringliteral">&quot;|-&quot;</span> _bgreen(<span class="stringliteral">&quot; %d &quot;</span> UT_PASS) <span class="stringliteral">&quot; - &quot;</span>,    \</div>
+<div class="line">                   ut.u_p);                               \</div>
+<div class="line">            printf(_bred(<span class="stringliteral">&quot;%d &quot;</span> UT_FAIL), ut.u_f);         \</div>
+<div class="line">            printf(<span class="stringliteral">&quot; - &quot;</span> _bold(<span class="stringliteral">&quot;%d all&quot;</span>) <span class="stringliteral">&quot; \n|&quot;</span>, ut.u_t); \</div>
+<div class="line">        }                                                 \</div>
+<div class="line">        <span class="keywordflow">return</span> ut.flag;                                   \</div>
+<div class="line">    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a37fea7e004bb1569f18a25c6f7b05c2d" name="a37fea7e004bb1569f18a25c6f7b05c2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37fea7e004bb1569f18a25c6f7b05c2d">&#9670;&#160;</a></span>ut_print_test</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ut_print_test</td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line">    <span class="keywordflow">do</span>                                                                              \</div>
+<div class="line">    {                                                                               \</div>
+<div class="line">        if (ut.quiet &lt; 6)                                                           \</div>
+<div class="line">        {                                                                           \</div>
+<div class="line">            printf(<span class="stringliteral">&quot;\n&quot;</span>                                                             \</div>
+<div class="line">                   <span class="stringliteral">&quot;|============== Test Result ==============&quot;</span>);                   \</div>
+<div class="line">            printf(<span class="stringliteral">&quot;\n&quot;</span>                                                             \</div>
+<div class="line">                   <span class="stringliteral">&quot;| &quot;</span> _bgreen(<span class="stringliteral">&quot;%d &quot;</span> UT_PASS) <span class="stringliteral">&quot; and &quot;</span>,                             \</div>
+<div class="line">                   ut.n_pass);                                                      \</div>
+<div class="line">            printf(_bred(<span class="stringliteral">&quot;%d &quot;</span> UT_FAIL), ut.n_fail);                                \</div>
+<div class="line">            printf(<span class="stringliteral">&quot; in &quot;</span> _bold(<span class="stringliteral">&quot;%d TEST(S)&quot;</span>), ut.n_test);                          \</div>
+<div class="line">            if (ut.n_pass == ut.n_test)                                             \</div>
+<div class="line">                printf(<span class="stringliteral">&quot;\n&quot;</span>                                                         \</div>
+<div class="line">                       <span class="stringliteral">&quot;|============&quot;</span> _green(<span class="stringliteral">&quot; ALL TESTS PASSED &quot;</span>) <span class="stringliteral">&quot;===========&quot;</span>); \</div>
+<div class="line">            else                                                                    \</div>
+<div class="line">                printf(<span class="stringliteral">&quot;\n&quot;</span>                                                         \</div>
+<div class="line">                       <span class="stringliteral">&quot;|===========&quot;</span> _red(<span class="stringliteral">&quot; %d TEST(S) FAILED &quot;</span>) <span class="stringliteral">&quot;============&quot;</span>    \</div>
+<div class="line">                                                                  <span class="stringliteral">&quot;\n&quot;</span>,             \</div>
+<div class="line">                       ut.n_fail);                                                  \</div>
+<div class="line">        }                                                                           \</div>
+<div class="line">    } <span class="keywordflow">while</span> (0)</div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">变量说明</h2>
+<a id="a6bf3f332463a705dcb1d2b18951fe1e7" name="a6bf3f332463a705dcb1d2b18951fe1e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6bf3f332463a705dcb1d2b18951fe1e7">&#9670;&#160;</a></span>ut</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="structunittest__t.html">unittest_t</a> ut</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>初始值:</b><div class="fragment"><div class="line">= {</div>
+<div class="line">    .n_fail = 0,</div>
+<div class="line">    .n_pass = 0,</div>
+<div class="line">    .n_test = 0,</div>
+<div class="line">    .u_f = 0,</div>
+<div class="line">    .u_p = 0,</div>
+<div class="line">    .u_t = 0,</div>
+<div class="line">    .flag = 0,</div>
+<div class="line">    .quiet = 0</div>
+<div class="line">}</div>
+</div><!-- fragment -->
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_313caf1132e152dd9b58bea13a4052ca.html">utils</a></li><li class="navelem"><a class="el" href="unittest_8h.html">unittest.h</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
+</body>
+</html>

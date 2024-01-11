@@ -1,0 +1,809 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>cemu: src/cemu/cpu.c 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">cemu
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('cpu_8c.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#define-members">宏定义</a> &#124;
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle"><div class="title">cpu.c 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>中央处理器实现  
+<a href="#details">更多...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="csr_8h_source.html">csr.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="opcode_8h_source.html">opcode.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="utils_8h_source.html">utils.h</a>&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:afd1733fb30da26e893dc5ed32987f63e" id="r_afd1733fb30da26e893dc5ed32987f63e"><td class="memItemLeft" align="right" valign="top"><a id="afd1733fb30da26e893dc5ed32987f63e" name="afd1733fb30da26e893dc5ed32987f63e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>ADDR_MISALIGNED</b>(addr)&#160;&#160;&#160;(addr &amp; 0x3)</td></tr>
+<tr class="separator:afd1733fb30da26e893dc5ed32987f63e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3fa59841b9f27c7ebc9c1cd2e9777268" id="r_a3fa59841b9f27c7ebc9c1cd2e9777268"><td class="memItemLeft" align="right" valign="top"><a id="a3fa59841b9f27c7ebc9c1cd2e9777268" name="a3fa59841b9f27c7ebc9c1cd2e9777268"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MAX_CPU_STEP</b>&#160;&#160;&#160;10</td></tr>
+<tr class="separator:a3fa59841b9f27c7ebc9c1cd2e9777268"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:afe50d05d75efdfd2bf769d566cc8e675" id="r_afe50d05d75efdfd2bf769d566cc8e675"><td class="memItemLeft" align="right" valign="top">static u64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afe50d05d75efdfd2bf769d566cc8e675">cpu_load</a> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u64 addr, u64 size)</td></tr>
+<tr class="memdesc:afe50d05d75efdfd2bf769d566cc8e675"><td class="mdescLeft">&#160;</td><td class="mdescRight">*处理器加载数据  <br /></td></tr>
+<tr class="separator:afe50d05d75efdfd2bf769d566cc8e675"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9d268797991f00ce0c99da19c12589a" id="r_ab9d268797991f00ce0c99da19c12589a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab9d268797991f00ce0c99da19c12589a">cpu_store</a> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u64 addr, u64 size, u64 value)</td></tr>
+<tr class="memdesc:ab9d268797991f00ce0c99da19c12589a"><td class="mdescLeft">&#160;</td><td class="mdescRight">*处理器存储数据  <br /></td></tr>
+<tr class="separator:ab9d268797991f00ce0c99da19c12589a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06ad5cd47e7b12911352840f3975e22b" id="r_a06ad5cd47e7b12911352840f3975e22b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a06ad5cd47e7b12911352840f3975e22b">print_op</a> (char *s)</td></tr>
+<tr class="memdesc:a06ad5cd47e7b12911352840f3975e22b"><td class="mdescLeft">&#160;</td><td class="mdescRight">打印操作码  <br /></td></tr>
+<tr class="separator:a06ad5cd47e7b12911352840f3975e22b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa006396b01c7e478ae12120fb81f58e6" id="r_aa006396b01c7e478ae12120fb81f58e6"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa006396b01c7e478ae12120fb81f58e6">cpu_step_one</a> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu)</td></tr>
+<tr class="memdesc:aa006396b01c7e478ae12120fb81f58e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">处理器执行一条指令  <br /></td></tr>
+<tr class="separator:aa006396b01c7e478ae12120fb81f58e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a934ca1fb8f419f68671c94afa391d3ec" id="r_a934ca1fb8f419f68671c94afa391d3ec"><td class="memItemLeft" align="right" valign="top"><a id="a934ca1fb8f419f68671c94afa391d3ec" name="a934ca1fb8f419f68671c94afa391d3ec"></a>
+static u64&#160;</td><td class="memItemRight" valign="bottom"><b>rd</b> (u32 inst)</td></tr>
+<tr class="separator:a934ca1fb8f419f68671c94afa391d3ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac30323b6bf33744ecd7f6f3896722304" id="r_ac30323b6bf33744ecd7f6f3896722304"><td class="memItemLeft" align="right" valign="top"><a id="ac30323b6bf33744ecd7f6f3896722304" name="ac30323b6bf33744ecd7f6f3896722304"></a>
+static u64&#160;</td><td class="memItemRight" valign="bottom"><b>rs1</b> (u32 inst)</td></tr>
+<tr class="separator:ac30323b6bf33744ecd7f6f3896722304"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abee51ea5c3949da3c0ab29141bf56ddd" id="r_abee51ea5c3949da3c0ab29141bf56ddd"><td class="memItemLeft" align="right" valign="top"><a id="abee51ea5c3949da3c0ab29141bf56ddd" name="abee51ea5c3949da3c0ab29141bf56ddd"></a>
+static u64&#160;</td><td class="memItemRight" valign="bottom"><b>rs2</b> (u32 inst)</td></tr>
+<tr class="separator:abee51ea5c3949da3c0ab29141bf56ddd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a537cd0dde77b07b69debfae793675772" id="r_a537cd0dde77b07b69debfae793675772"><td class="memItemLeft" align="right" valign="top"><a id="a537cd0dde77b07b69debfae793675772" name="a537cd0dde77b07b69debfae793675772"></a>
+static u64&#160;</td><td class="memItemRight" valign="bottom"><b>imm_I</b> (u32 inst)</td></tr>
+<tr class="separator:a537cd0dde77b07b69debfae793675772"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1645c852f104c9e09fa6501e0dca98fb" id="r_a1645c852f104c9e09fa6501e0dca98fb"><td class="memItemLeft" align="right" valign="top"><a id="a1645c852f104c9e09fa6501e0dca98fb" name="a1645c852f104c9e09fa6501e0dca98fb"></a>
+static u64&#160;</td><td class="memItemRight" valign="bottom"><b>imm_S</b> (u32 inst)</td></tr>
+<tr class="separator:a1645c852f104c9e09fa6501e0dca98fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9322093aab808a9689629cf3c751d5d5" id="r_a9322093aab808a9689629cf3c751d5d5"><td class="memItemLeft" align="right" valign="top"><a id="a9322093aab808a9689629cf3c751d5d5" name="a9322093aab808a9689629cf3c751d5d5"></a>
+static u64&#160;</td><td class="memItemRight" valign="bottom"><b>imm_B</b> (u32 inst)</td></tr>
+<tr class="separator:a9322093aab808a9689629cf3c751d5d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d05b815cb23fa8a0cdce2e18b1a7ae0" id="r_a3d05b815cb23fa8a0cdce2e18b1a7ae0"><td class="memItemLeft" align="right" valign="top"><a id="a3d05b815cb23fa8a0cdce2e18b1a7ae0" name="a3d05b815cb23fa8a0cdce2e18b1a7ae0"></a>
+static u64&#160;</td><td class="memItemRight" valign="bottom"><b>imm_U</b> (u32 inst)</td></tr>
+<tr class="separator:a3d05b815cb23fa8a0cdce2e18b1a7ae0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8741e64c3c3a2f3ab094c7294f8471ae" id="r_a8741e64c3c3a2f3ab094c7294f8471ae"><td class="memItemLeft" align="right" valign="top"><a id="a8741e64c3c3a2f3ab094c7294f8471ae" name="a8741e64c3c3a2f3ab094c7294f8471ae"></a>
+static u64&#160;</td><td class="memItemRight" valign="bottom"><b>imm_J</b> (u32 inst)</td></tr>
+<tr class="separator:a8741e64c3c3a2f3ab094c7294f8471ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55e8862cb2d0d531235fd1635cb52d5e" id="r_a55e8862cb2d0d531235fd1635cb52d5e"><td class="memItemLeft" align="right" valign="top"><a id="a55e8862cb2d0d531235fd1635cb52d5e" name="a55e8862cb2d0d531235fd1635cb52d5e"></a>
+static u32&#160;</td><td class="memItemRight" valign="bottom"><b>shamt</b> (u32 inst)</td></tr>
+<tr class="separator:a55e8862cb2d0d531235fd1635cb52d5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b7962054a871b959cd163c487c3ce99" id="r_a7b7962054a871b959cd163c487c3ce99"><td class="memItemLeft" align="right" valign="top"><a id="a7b7962054a871b959cd163c487c3ce99" name="a7b7962054a871b959cd163c487c3ce99"></a>
+static u64&#160;</td><td class="memItemRight" valign="bottom"><b>csr</b> (u32 inst)</td></tr>
+<tr class="separator:a7b7962054a871b959cd163c487c3ce99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8f91bb1ede7ce2ee12e691dae368267" id="r_ae8f91bb1ede7ce2ee12e691dae368267"><td class="memItemLeft" align="right" valign="top"><a id="ae8f91bb1ede7ce2ee12e691dae368267" name="ae8f91bb1ede7ce2ee12e691dae368267"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_LUI</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:ae8f91bb1ede7ce2ee12e691dae368267"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:accf4ed929349cd38477e5c1246394bca" id="r_accf4ed929349cd38477e5c1246394bca"><td class="memItemLeft" align="right" valign="top"><a id="accf4ed929349cd38477e5c1246394bca" name="accf4ed929349cd38477e5c1246394bca"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_AUIPC</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:accf4ed929349cd38477e5c1246394bca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a750069b3e5b064f3974281c7666cb7c7" id="r_a750069b3e5b064f3974281c7666cb7c7"><td class="memItemLeft" align="right" valign="top"><a id="a750069b3e5b064f3974281c7666cb7c7" name="a750069b3e5b064f3974281c7666cb7c7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_JAL</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a750069b3e5b064f3974281c7666cb7c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c735426da2c0d5fdb63ae19caf4b9cd" id="r_a9c735426da2c0d5fdb63ae19caf4b9cd"><td class="memItemLeft" align="right" valign="top"><a id="a9c735426da2c0d5fdb63ae19caf4b9cd" name="a9c735426da2c0d5fdb63ae19caf4b9cd"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_JALR</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a9c735426da2c0d5fdb63ae19caf4b9cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd886de243e6b99e24495c9c55c524fa" id="r_acd886de243e6b99e24495c9c55c524fa"><td class="memItemLeft" align="right" valign="top"><a id="acd886de243e6b99e24495c9c55c524fa" name="acd886de243e6b99e24495c9c55c524fa"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_BEQ</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:acd886de243e6b99e24495c9c55c524fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19c8b0aa6f6ab7a214500f44178374e7" id="r_a19c8b0aa6f6ab7a214500f44178374e7"><td class="memItemLeft" align="right" valign="top"><a id="a19c8b0aa6f6ab7a214500f44178374e7" name="a19c8b0aa6f6ab7a214500f44178374e7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_BNE</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a19c8b0aa6f6ab7a214500f44178374e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2506ce67e280f41572928f3f33be6507" id="r_a2506ce67e280f41572928f3f33be6507"><td class="memItemLeft" align="right" valign="top"><a id="a2506ce67e280f41572928f3f33be6507" name="a2506ce67e280f41572928f3f33be6507"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_BLT</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a2506ce67e280f41572928f3f33be6507"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e0a192fdf90d33dd9de7f70fea6642d" id="r_a1e0a192fdf90d33dd9de7f70fea6642d"><td class="memItemLeft" align="right" valign="top"><a id="a1e0a192fdf90d33dd9de7f70fea6642d" name="a1e0a192fdf90d33dd9de7f70fea6642d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_BGE</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a1e0a192fdf90d33dd9de7f70fea6642d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a579abd1f69ed30fe8276eb8035df8cd0" id="r_a579abd1f69ed30fe8276eb8035df8cd0"><td class="memItemLeft" align="right" valign="top"><a id="a579abd1f69ed30fe8276eb8035df8cd0" name="a579abd1f69ed30fe8276eb8035df8cd0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_BLTU</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a579abd1f69ed30fe8276eb8035df8cd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3d57e51821cb3c1b06c4e03c9c6972d" id="r_ac3d57e51821cb3c1b06c4e03c9c6972d"><td class="memItemLeft" align="right" valign="top"><a id="ac3d57e51821cb3c1b06c4e03c9c6972d" name="ac3d57e51821cb3c1b06c4e03c9c6972d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_BGEU</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:ac3d57e51821cb3c1b06c4e03c9c6972d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a520bc5df4382236df2fec8043b0c7a01" id="r_a520bc5df4382236df2fec8043b0c7a01"><td class="memItemLeft" align="right" valign="top"><a id="a520bc5df4382236df2fec8043b0c7a01" name="a520bc5df4382236df2fec8043b0c7a01"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_LB</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a520bc5df4382236df2fec8043b0c7a01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b1ad6f8a5cb4593d8631ae508538550" id="r_a0b1ad6f8a5cb4593d8631ae508538550"><td class="memItemLeft" align="right" valign="top"><a id="a0b1ad6f8a5cb4593d8631ae508538550" name="a0b1ad6f8a5cb4593d8631ae508538550"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_LH</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a0b1ad6f8a5cb4593d8631ae508538550"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c5fb9cbf66d53496c2f75c2b2e2ecd5" id="r_a3c5fb9cbf66d53496c2f75c2b2e2ecd5"><td class="memItemLeft" align="right" valign="top"><a id="a3c5fb9cbf66d53496c2f75c2b2e2ecd5" name="a3c5fb9cbf66d53496c2f75c2b2e2ecd5"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_LW</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a3c5fb9cbf66d53496c2f75c2b2e2ecd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcb79bb73722bc79e7c84a0e582e058b" id="r_abcb79bb73722bc79e7c84a0e582e058b"><td class="memItemLeft" align="right" valign="top"><a id="abcb79bb73722bc79e7c84a0e582e058b" name="abcb79bb73722bc79e7c84a0e582e058b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_LD</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:abcb79bb73722bc79e7c84a0e582e058b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea4c13b3026823790571806529e9d2a6" id="r_aea4c13b3026823790571806529e9d2a6"><td class="memItemLeft" align="right" valign="top"><a id="aea4c13b3026823790571806529e9d2a6" name="aea4c13b3026823790571806529e9d2a6"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_LBU</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:aea4c13b3026823790571806529e9d2a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6598a6ac3637069d2efd6585a556461a" id="r_a6598a6ac3637069d2efd6585a556461a"><td class="memItemLeft" align="right" valign="top"><a id="a6598a6ac3637069d2efd6585a556461a" name="a6598a6ac3637069d2efd6585a556461a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_LHU</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a6598a6ac3637069d2efd6585a556461a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a149d88b721746981d67cd4056f2220d3" id="r_a149d88b721746981d67cd4056f2220d3"><td class="memItemLeft" align="right" valign="top"><a id="a149d88b721746981d67cd4056f2220d3" name="a149d88b721746981d67cd4056f2220d3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_LWU</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a149d88b721746981d67cd4056f2220d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1c4be90d12d404915bc55cb831cb7d6" id="r_ad1c4be90d12d404915bc55cb831cb7d6"><td class="memItemLeft" align="right" valign="top"><a id="ad1c4be90d12d404915bc55cb831cb7d6" name="ad1c4be90d12d404915bc55cb831cb7d6"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_SB</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:ad1c4be90d12d404915bc55cb831cb7d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a658c2eec97d07a15064009e939dd9972" id="r_a658c2eec97d07a15064009e939dd9972"><td class="memItemLeft" align="right" valign="top"><a id="a658c2eec97d07a15064009e939dd9972" name="a658c2eec97d07a15064009e939dd9972"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_SH</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a658c2eec97d07a15064009e939dd9972"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4a932e5bb3cc1aa8048ddc3409e2509" id="r_ab4a932e5bb3cc1aa8048ddc3409e2509"><td class="memItemLeft" align="right" valign="top"><a id="ab4a932e5bb3cc1aa8048ddc3409e2509" name="ab4a932e5bb3cc1aa8048ddc3409e2509"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_SW</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:ab4a932e5bb3cc1aa8048ddc3409e2509"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a796477c29cceac7ec9501f229a7dfcce" id="r_a796477c29cceac7ec9501f229a7dfcce"><td class="memItemLeft" align="right" valign="top"><a id="a796477c29cceac7ec9501f229a7dfcce" name="a796477c29cceac7ec9501f229a7dfcce"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_SD</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a796477c29cceac7ec9501f229a7dfcce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2bab798e5d090c5ce8e11f51221f8a2c" id="r_a2bab798e5d090c5ce8e11f51221f8a2c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2bab798e5d090c5ce8e11f51221f8a2c">exec_ADDI</a> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="memdesc:a2bab798e5d090c5ce8e11f51221f8a2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">立即数相加  <br /></td></tr>
+<tr class="separator:a2bab798e5d090c5ce8e11f51221f8a2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f9e4acc8a1acf3008985e537ffdebc8" id="r_a5f9e4acc8a1acf3008985e537ffdebc8"><td class="memItemLeft" align="right" valign="top"><a id="a5f9e4acc8a1acf3008985e537ffdebc8" name="a5f9e4acc8a1acf3008985e537ffdebc8"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_SLLI</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a5f9e4acc8a1acf3008985e537ffdebc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1396629e749705bd8c3ac0f8a8108586" id="r_a1396629e749705bd8c3ac0f8a8108586"><td class="memItemLeft" align="right" valign="top"><a id="a1396629e749705bd8c3ac0f8a8108586" name="a1396629e749705bd8c3ac0f8a8108586"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_SLTI</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a1396629e749705bd8c3ac0f8a8108586"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad00c60dd998358c909eac7ff9685211e" id="r_ad00c60dd998358c909eac7ff9685211e"><td class="memItemLeft" align="right" valign="top"><a id="ad00c60dd998358c909eac7ff9685211e" name="ad00c60dd998358c909eac7ff9685211e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_SLTIU</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:ad00c60dd998358c909eac7ff9685211e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9dbd3b8b16b78ad0cbdf6611055f2a06" id="r_a9dbd3b8b16b78ad0cbdf6611055f2a06"><td class="memItemLeft" align="right" valign="top"><a id="a9dbd3b8b16b78ad0cbdf6611055f2a06" name="a9dbd3b8b16b78ad0cbdf6611055f2a06"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_XORI</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a9dbd3b8b16b78ad0cbdf6611055f2a06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b497c6fbe7a2e15021a1bc44333da78" id="r_a8b497c6fbe7a2e15021a1bc44333da78"><td class="memItemLeft" align="right" valign="top"><a id="a8b497c6fbe7a2e15021a1bc44333da78" name="a8b497c6fbe7a2e15021a1bc44333da78"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_SRLI</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a8b497c6fbe7a2e15021a1bc44333da78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e046421b0b7b687771e5889b6f731e0" id="r_a2e046421b0b7b687771e5889b6f731e0"><td class="memItemLeft" align="right" valign="top"><a id="a2e046421b0b7b687771e5889b6f731e0" name="a2e046421b0b7b687771e5889b6f731e0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_SRAI</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a2e046421b0b7b687771e5889b6f731e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a902417c8530fb9d45fabd8ffb1f8cbe6" id="r_a902417c8530fb9d45fabd8ffb1f8cbe6"><td class="memItemLeft" align="right" valign="top"><a id="a902417c8530fb9d45fabd8ffb1f8cbe6" name="a902417c8530fb9d45fabd8ffb1f8cbe6"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_ORI</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a902417c8530fb9d45fabd8ffb1f8cbe6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc979708e718bb789f48ab537bf94ea5" id="r_acc979708e718bb789f48ab537bf94ea5"><td class="memItemLeft" align="right" valign="top"><a id="acc979708e718bb789f48ab537bf94ea5" name="acc979708e718bb789f48ab537bf94ea5"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_ANDI</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:acc979708e718bb789f48ab537bf94ea5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a023e5ce2fa5faae81163ca53b51134e4" id="r_a023e5ce2fa5faae81163ca53b51134e4"><td class="memItemLeft" align="right" valign="top"><a id="a023e5ce2fa5faae81163ca53b51134e4" name="a023e5ce2fa5faae81163ca53b51134e4"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_ADD</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a023e5ce2fa5faae81163ca53b51134e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7249bf886830038f5363a7a301bbc187" id="r_a7249bf886830038f5363a7a301bbc187"><td class="memItemLeft" align="right" valign="top"><a id="a7249bf886830038f5363a7a301bbc187" name="a7249bf886830038f5363a7a301bbc187"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_SUB</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a7249bf886830038f5363a7a301bbc187"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29b8ca57f70d140e98e0a03dbaf9a8e1" id="r_a29b8ca57f70d140e98e0a03dbaf9a8e1"><td class="memItemLeft" align="right" valign="top"><a id="a29b8ca57f70d140e98e0a03dbaf9a8e1" name="a29b8ca57f70d140e98e0a03dbaf9a8e1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_SLL</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a29b8ca57f70d140e98e0a03dbaf9a8e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecef9d13fd865eaf7e94087621ccf7e8" id="r_aecef9d13fd865eaf7e94087621ccf7e8"><td class="memItemLeft" align="right" valign="top"><a id="aecef9d13fd865eaf7e94087621ccf7e8" name="aecef9d13fd865eaf7e94087621ccf7e8"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_SLT</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:aecef9d13fd865eaf7e94087621ccf7e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cd1be168351aae6c87228ad5495b643" id="r_a4cd1be168351aae6c87228ad5495b643"><td class="memItemLeft" align="right" valign="top"><a id="a4cd1be168351aae6c87228ad5495b643" name="a4cd1be168351aae6c87228ad5495b643"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_SLTU</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a4cd1be168351aae6c87228ad5495b643"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f898515755c96ee35cf0ba4854b101a" id="r_a4f898515755c96ee35cf0ba4854b101a"><td class="memItemLeft" align="right" valign="top"><a id="a4f898515755c96ee35cf0ba4854b101a" name="a4f898515755c96ee35cf0ba4854b101a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_XOR</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a4f898515755c96ee35cf0ba4854b101a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18eff4303ff3ea455d8180129b890ae9" id="r_a18eff4303ff3ea455d8180129b890ae9"><td class="memItemLeft" align="right" valign="top"><a id="a18eff4303ff3ea455d8180129b890ae9" name="a18eff4303ff3ea455d8180129b890ae9"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_SRL</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a18eff4303ff3ea455d8180129b890ae9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3cd0c3dc242996400feefd822f2e618" id="r_ab3cd0c3dc242996400feefd822f2e618"><td class="memItemLeft" align="right" valign="top"><a id="ab3cd0c3dc242996400feefd822f2e618" name="ab3cd0c3dc242996400feefd822f2e618"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_SRA</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:ab3cd0c3dc242996400feefd822f2e618"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22350ab389c662d513616d7ff07b0c58" id="r_a22350ab389c662d513616d7ff07b0c58"><td class="memItemLeft" align="right" valign="top"><a id="a22350ab389c662d513616d7ff07b0c58" name="a22350ab389c662d513616d7ff07b0c58"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_OR</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a22350ab389c662d513616d7ff07b0c58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a0166963b6e0b514b8de28e637925f0" id="r_a2a0166963b6e0b514b8de28e637925f0"><td class="memItemLeft" align="right" valign="top"><a id="a2a0166963b6e0b514b8de28e637925f0" name="a2a0166963b6e0b514b8de28e637925f0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_AND</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a2a0166963b6e0b514b8de28e637925f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13881990333d454eceab627fd13d48b2" id="r_a13881990333d454eceab627fd13d48b2"><td class="memItemLeft" align="right" valign="top"><a id="a13881990333d454eceab627fd13d48b2" name="a13881990333d454eceab627fd13d48b2"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_FENCE</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a13881990333d454eceab627fd13d48b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51024a4df01d73e825fba5e5456a04cd" id="r_a51024a4df01d73e825fba5e5456a04cd"><td class="memItemLeft" align="right" valign="top"><a id="a51024a4df01d73e825fba5e5456a04cd" name="a51024a4df01d73e825fba5e5456a04cd"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_ECALL</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a51024a4df01d73e825fba5e5456a04cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affdb7f0b02e40b3f8d5f32510faf0065" id="r_affdb7f0b02e40b3f8d5f32510faf0065"><td class="memItemLeft" align="right" valign="top"><a id="affdb7f0b02e40b3f8d5f32510faf0065" name="affdb7f0b02e40b3f8d5f32510faf0065"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_EBREAK</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:affdb7f0b02e40b3f8d5f32510faf0065"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe90d99cb0cc119f0586b0f6139e3cdc" id="r_afe90d99cb0cc119f0586b0f6139e3cdc"><td class="memItemLeft" align="right" valign="top"><a id="afe90d99cb0cc119f0586b0f6139e3cdc" name="afe90d99cb0cc119f0586b0f6139e3cdc"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_ECALLBREAK</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:afe90d99cb0cc119f0586b0f6139e3cdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a992bbb0656dabaea47eccb8d691ee0e4" id="r_a992bbb0656dabaea47eccb8d691ee0e4"><td class="memItemLeft" align="right" valign="top"><a id="a992bbb0656dabaea47eccb8d691ee0e4" name="a992bbb0656dabaea47eccb8d691ee0e4"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_ADDIW</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a992bbb0656dabaea47eccb8d691ee0e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc1b2892100f33be774d91714bbe3349" id="r_afc1b2892100f33be774d91714bbe3349"><td class="memItemLeft" align="right" valign="top"><a id="afc1b2892100f33be774d91714bbe3349" name="afc1b2892100f33be774d91714bbe3349"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_SLLIW</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:afc1b2892100f33be774d91714bbe3349"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acccfe67134eb04cbaa6c04da2b79902e" id="r_acccfe67134eb04cbaa6c04da2b79902e"><td class="memItemLeft" align="right" valign="top"><a id="acccfe67134eb04cbaa6c04da2b79902e" name="acccfe67134eb04cbaa6c04da2b79902e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_SRLIW</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:acccfe67134eb04cbaa6c04da2b79902e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d47cdb313c4b7392705c5b7fc08a920" id="r_a5d47cdb313c4b7392705c5b7fc08a920"><td class="memItemLeft" align="right" valign="top"><a id="a5d47cdb313c4b7392705c5b7fc08a920" name="a5d47cdb313c4b7392705c5b7fc08a920"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_SRAIW</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a5d47cdb313c4b7392705c5b7fc08a920"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a069c3c8d3042b1c5308e94344ab22f07" id="r_a069c3c8d3042b1c5308e94344ab22f07"><td class="memItemLeft" align="right" valign="top"><a id="a069c3c8d3042b1c5308e94344ab22f07" name="a069c3c8d3042b1c5308e94344ab22f07"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_ADDW</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a069c3c8d3042b1c5308e94344ab22f07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a161b75097c94920d4f910fd07a031809" id="r_a161b75097c94920d4f910fd07a031809"><td class="memItemLeft" align="right" valign="top"><a id="a161b75097c94920d4f910fd07a031809" name="a161b75097c94920d4f910fd07a031809"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_MULW</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a161b75097c94920d4f910fd07a031809"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46edff150db7fe9ef37978581fd8a96f" id="r_a46edff150db7fe9ef37978581fd8a96f"><td class="memItemLeft" align="right" valign="top"><a id="a46edff150db7fe9ef37978581fd8a96f" name="a46edff150db7fe9ef37978581fd8a96f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_SUBW</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a46edff150db7fe9ef37978581fd8a96f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ae2986f265ed5b16f0e60a71394531e" id="r_a5ae2986f265ed5b16f0e60a71394531e"><td class="memItemLeft" align="right" valign="top"><a id="a5ae2986f265ed5b16f0e60a71394531e" name="a5ae2986f265ed5b16f0e60a71394531e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_DIVW</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a5ae2986f265ed5b16f0e60a71394531e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b3dcdae354c278a79c4b9e3633d8680" id="r_a9b3dcdae354c278a79c4b9e3633d8680"><td class="memItemLeft" align="right" valign="top"><a id="a9b3dcdae354c278a79c4b9e3633d8680" name="a9b3dcdae354c278a79c4b9e3633d8680"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_SLLW</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a9b3dcdae354c278a79c4b9e3633d8680"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a298924a4e5de555ee0d6f12259582547" id="r_a298924a4e5de555ee0d6f12259582547"><td class="memItemLeft" align="right" valign="top"><a id="a298924a4e5de555ee0d6f12259582547" name="a298924a4e5de555ee0d6f12259582547"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_SRLW</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a298924a4e5de555ee0d6f12259582547"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaab91360b7f44368186d3665c3adcd38" id="r_aaab91360b7f44368186d3665c3adcd38"><td class="memItemLeft" align="right" valign="top"><a id="aaab91360b7f44368186d3665c3adcd38" name="aaab91360b7f44368186d3665c3adcd38"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_DIVUW</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:aaab91360b7f44368186d3665c3adcd38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbb998afa6b97c0623fb42d92c4012a1" id="r_acbb998afa6b97c0623fb42d92c4012a1"><td class="memItemLeft" align="right" valign="top"><a id="acbb998afa6b97c0623fb42d92c4012a1" name="acbb998afa6b97c0623fb42d92c4012a1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_SRAW</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:acbb998afa6b97c0623fb42d92c4012a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a377e9fa232b41e2f08dfe9a38d083375" id="r_a377e9fa232b41e2f08dfe9a38d083375"><td class="memItemLeft" align="right" valign="top"><a id="a377e9fa232b41e2f08dfe9a38d083375" name="a377e9fa232b41e2f08dfe9a38d083375"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_REMW</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a377e9fa232b41e2f08dfe9a38d083375"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f43740a1b924745455e35c18626a4a3" id="r_a0f43740a1b924745455e35c18626a4a3"><td class="memItemLeft" align="right" valign="top"><a id="a0f43740a1b924745455e35c18626a4a3" name="a0f43740a1b924745455e35c18626a4a3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_REMUW</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a0f43740a1b924745455e35c18626a4a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45126f7c16c658f21f19712a4f21593e" id="r_a45126f7c16c658f21f19712a4f21593e"><td class="memItemLeft" align="right" valign="top"><a id="a45126f7c16c658f21f19712a4f21593e" name="a45126f7c16c658f21f19712a4f21593e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_CSRRW</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a45126f7c16c658f21f19712a4f21593e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3aeaf1470d991319922ea57a9a421b33" id="r_a3aeaf1470d991319922ea57a9a421b33"><td class="memItemLeft" align="right" valign="top"><a id="a3aeaf1470d991319922ea57a9a421b33" name="a3aeaf1470d991319922ea57a9a421b33"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_CSRRS</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a3aeaf1470d991319922ea57a9a421b33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa816655581be281b822e594b16fc742c" id="r_aa816655581be281b822e594b16fc742c"><td class="memItemLeft" align="right" valign="top"><a id="aa816655581be281b822e594b16fc742c" name="aa816655581be281b822e594b16fc742c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_CSRRC</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:aa816655581be281b822e594b16fc742c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4db19c088c574e59ad0cf636982423cd" id="r_a4db19c088c574e59ad0cf636982423cd"><td class="memItemLeft" align="right" valign="top"><a id="a4db19c088c574e59ad0cf636982423cd" name="a4db19c088c574e59ad0cf636982423cd"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_CSRRWI</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a4db19c088c574e59ad0cf636982423cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e47d0d1fa185d763bd5032394560de8" id="r_a8e47d0d1fa185d763bd5032394560de8"><td class="memItemLeft" align="right" valign="top"><a id="a8e47d0d1fa185d763bd5032394560de8" name="a8e47d0d1fa185d763bd5032394560de8"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_CSRRSI</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a8e47d0d1fa185d763bd5032394560de8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9d258b2ce7bd4b46ac632899e4f9e71" id="r_ad9d258b2ce7bd4b46ac632899e4f9e71"><td class="memItemLeft" align="right" valign="top"><a id="ad9d258b2ce7bd4b46ac632899e4f9e71" name="ad9d258b2ce7bd4b46ac632899e4f9e71"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_CSRRCI</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:ad9d258b2ce7bd4b46ac632899e4f9e71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a711c9fa1b464ab31a8879964d986365f" id="r_a711c9fa1b464ab31a8879964d986365f"><td class="memItemLeft" align="right" valign="top"><a id="a711c9fa1b464ab31a8879964d986365f" name="a711c9fa1b464ab31a8879964d986365f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_LR_W</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a711c9fa1b464ab31a8879964d986365f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9538c793d73da05cb5b4c3b4e38e944" id="r_ad9538c793d73da05cb5b4c3b4e38e944"><td class="memItemLeft" align="right" valign="top"><a id="ad9538c793d73da05cb5b4c3b4e38e944" name="ad9538c793d73da05cb5b4c3b4e38e944"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_SC_W</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:ad9538c793d73da05cb5b4c3b4e38e944"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d1b442dd70e25588a67a948afc9c43e" id="r_a3d1b442dd70e25588a67a948afc9c43e"><td class="memItemLeft" align="right" valign="top"><a id="a3d1b442dd70e25588a67a948afc9c43e" name="a3d1b442dd70e25588a67a948afc9c43e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_AMOSWAP_W</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a3d1b442dd70e25588a67a948afc9c43e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1409cebc7d931dbd5a02d21ca3b707a3" id="r_a1409cebc7d931dbd5a02d21ca3b707a3"><td class="memItemLeft" align="right" valign="top"><a id="a1409cebc7d931dbd5a02d21ca3b707a3" name="a1409cebc7d931dbd5a02d21ca3b707a3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_AMOADD_W</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a1409cebc7d931dbd5a02d21ca3b707a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f3ea8ddbbb03cfb887f88dcabe74e94" id="r_a1f3ea8ddbbb03cfb887f88dcabe74e94"><td class="memItemLeft" align="right" valign="top"><a id="a1f3ea8ddbbb03cfb887f88dcabe74e94" name="a1f3ea8ddbbb03cfb887f88dcabe74e94"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_AMOXOR_W</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a1f3ea8ddbbb03cfb887f88dcabe74e94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1653df8863c7a06303b77acdfe2cf16f" id="r_a1653df8863c7a06303b77acdfe2cf16f"><td class="memItemLeft" align="right" valign="top"><a id="a1653df8863c7a06303b77acdfe2cf16f" name="a1653df8863c7a06303b77acdfe2cf16f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_AMOAND_W</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a1653df8863c7a06303b77acdfe2cf16f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b15f9636915a8a90ad6fb9cda99fe62" id="r_a0b15f9636915a8a90ad6fb9cda99fe62"><td class="memItemLeft" align="right" valign="top"><a id="a0b15f9636915a8a90ad6fb9cda99fe62" name="a0b15f9636915a8a90ad6fb9cda99fe62"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_AMOOR_W</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a0b15f9636915a8a90ad6fb9cda99fe62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d025e3a8a5c02a3d0dbe49fc95139d4" id="r_a5d025e3a8a5c02a3d0dbe49fc95139d4"><td class="memItemLeft" align="right" valign="top"><a id="a5d025e3a8a5c02a3d0dbe49fc95139d4" name="a5d025e3a8a5c02a3d0dbe49fc95139d4"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_AMOMIN_W</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a5d025e3a8a5c02a3d0dbe49fc95139d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98abb36760e68c86278c7e1cc0ebae6f" id="r_a98abb36760e68c86278c7e1cc0ebae6f"><td class="memItemLeft" align="right" valign="top"><a id="a98abb36760e68c86278c7e1cc0ebae6f" name="a98abb36760e68c86278c7e1cc0ebae6f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_AMOMAX_W</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a98abb36760e68c86278c7e1cc0ebae6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5d1e05223d2f4431af2c0837cfccb8c" id="r_ac5d1e05223d2f4431af2c0837cfccb8c"><td class="memItemLeft" align="right" valign="top"><a id="ac5d1e05223d2f4431af2c0837cfccb8c" name="ac5d1e05223d2f4431af2c0837cfccb8c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_AMOMINU_W</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:ac5d1e05223d2f4431af2c0837cfccb8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04777d4057102364c04710c1f7cf9815" id="r_a04777d4057102364c04710c1f7cf9815"><td class="memItemLeft" align="right" valign="top"><a id="a04777d4057102364c04710c1f7cf9815" name="a04777d4057102364c04710c1f7cf9815"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_AMOMAXU_W</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a04777d4057102364c04710c1f7cf9815"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad74462f01b7e2aafb6a9fd0e163a86fb" id="r_ad74462f01b7e2aafb6a9fd0e163a86fb"><td class="memItemLeft" align="right" valign="top"><a id="ad74462f01b7e2aafb6a9fd0e163a86fb" name="ad74462f01b7e2aafb6a9fd0e163a86fb"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_LR_D</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:ad74462f01b7e2aafb6a9fd0e163a86fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38b3108df213c82bfc164d67bce68057" id="r_a38b3108df213c82bfc164d67bce68057"><td class="memItemLeft" align="right" valign="top"><a id="a38b3108df213c82bfc164d67bce68057" name="a38b3108df213c82bfc164d67bce68057"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_SC_D</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a38b3108df213c82bfc164d67bce68057"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68023b0b04720e3f684b3daa24213c2c" id="r_a68023b0b04720e3f684b3daa24213c2c"><td class="memItemLeft" align="right" valign="top"><a id="a68023b0b04720e3f684b3daa24213c2c" name="a68023b0b04720e3f684b3daa24213c2c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_AMOSWAP_D</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a68023b0b04720e3f684b3daa24213c2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3398273143d97e47d39e98df1dbf350" id="r_ac3398273143d97e47d39e98df1dbf350"><td class="memItemLeft" align="right" valign="top"><a id="ac3398273143d97e47d39e98df1dbf350" name="ac3398273143d97e47d39e98df1dbf350"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_AMOADD_D</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:ac3398273143d97e47d39e98df1dbf350"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e8234a8956bbf22cb57568a6b4236e9" id="r_a6e8234a8956bbf22cb57568a6b4236e9"><td class="memItemLeft" align="right" valign="top"><a id="a6e8234a8956bbf22cb57568a6b4236e9" name="a6e8234a8956bbf22cb57568a6b4236e9"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_AMOXOR_D</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a6e8234a8956bbf22cb57568a6b4236e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6383a0b56bd4fc9f4af2c1bbcb23ed86" id="r_a6383a0b56bd4fc9f4af2c1bbcb23ed86"><td class="memItemLeft" align="right" valign="top"><a id="a6383a0b56bd4fc9f4af2c1bbcb23ed86" name="a6383a0b56bd4fc9f4af2c1bbcb23ed86"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_AMOAND_D</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a6383a0b56bd4fc9f4af2c1bbcb23ed86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4dc4d9d06e3ae2467949b3946069dce8" id="r_a4dc4d9d06e3ae2467949b3946069dce8"><td class="memItemLeft" align="right" valign="top"><a id="a4dc4d9d06e3ae2467949b3946069dce8" name="a4dc4d9d06e3ae2467949b3946069dce8"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_AMOOR_D</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a4dc4d9d06e3ae2467949b3946069dce8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6600c91c311ed75d5fb358156924f30" id="r_ae6600c91c311ed75d5fb358156924f30"><td class="memItemLeft" align="right" valign="top"><a id="ae6600c91c311ed75d5fb358156924f30" name="ae6600c91c311ed75d5fb358156924f30"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_AMOMIN_D</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:ae6600c91c311ed75d5fb358156924f30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26bc0b58be1b3e302223646d7147f2d3" id="r_a26bc0b58be1b3e302223646d7147f2d3"><td class="memItemLeft" align="right" valign="top"><a id="a26bc0b58be1b3e302223646d7147f2d3" name="a26bc0b58be1b3e302223646d7147f2d3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_AMOMAX_D</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a26bc0b58be1b3e302223646d7147f2d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a507357ca180977c13f61b5c5ba473c1f" id="r_a507357ca180977c13f61b5c5ba473c1f"><td class="memItemLeft" align="right" valign="top"><a id="a507357ca180977c13f61b5c5ba473c1f" name="a507357ca180977c13f61b5c5ba473c1f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_AMOMINU_D</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:a507357ca180977c13f61b5c5ba473c1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa04864fca24a4ef7f88f3b7ab7c3e094" id="r_aa04864fca24a4ef7f88f3b7ab7c3e094"><td class="memItemLeft" align="right" valign="top"><a id="aa04864fca24a4ef7f88f3b7ab7c3e094" name="aa04864fca24a4ef7f88f3b7ab7c3e094"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>exec_AMOMAXU_D</b> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="separator:aa04864fca24a4ef7f88f3b7ab7c3e094"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf95be96d2f1db5044b9d704edf739cd" id="r_acf95be96d2f1db5044b9d704edf739cd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acf95be96d2f1db5044b9d704edf739cd">cpu_init</a> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu)</td></tr>
+<tr class="memdesc:acf95be96d2f1db5044b9d704edf739cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">处理器初始化给定的<code>CPU</code>， 将指针指向的<code>CPU</code>中的寄存器全部置 0， 并将程序寄存器<code>pc</code>的值设为内存的起始地址。  <br /></td></tr>
+<tr class="separator:acf95be96d2f1db5044b9d704edf739cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af31c0dc195290e2455b036c9198a23bb" id="r_af31c0dc195290e2455b036c9198a23bb"><td class="memItemLeft" align="right" valign="top">u32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af31c0dc195290e2455b036c9198a23bb">cpu_fetch</a> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu)</td></tr>
+<tr class="memdesc:af31c0dc195290e2455b036c9198a23bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">处理器从内存（DRAM）中读取指令用于执行， 并将其存入指令变量<code>inst</code>中。  <br /></td></tr>
+<tr class="separator:af31c0dc195290e2455b036c9198a23bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae08f27bf9fb7d836bb92df902ef5828d" id="r_ae08f27bf9fb7d836bb92df902ef5828d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae08f27bf9fb7d836bb92df902ef5828d">cpu_execute</a> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, u32 inst)</td></tr>
+<tr class="memdesc:ae08f27bf9fb7d836bb92df902ef5828d"><td class="mdescLeft">&#160;</td><td class="mdescRight">处理器将从<code>DRAM</code>中取得并存放 在<code>inst</code>变量中的指令解码并执行。本质上是 ALU 和指令译码器的组合。  <br /></td></tr>
+<tr class="separator:ae08f27bf9fb7d836bb92df902ef5828d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24be27f18c18da0331c6ef74e8eb71bb" id="r_a24be27f18c18da0331c6ef74e8eb71bb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a24be27f18c18da0331c6ef74e8eb71bb">cpu_step</a> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, int step)</td></tr>
+<tr class="memdesc:a24be27f18c18da0331c6ef74e8eb71bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">处理器步进执行  <br /></td></tr>
+<tr class="separator:a24be27f18c18da0331c6ef74e8eb71bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb351583dd7a247f2d5a4d234489f20c" id="r_aeb351583dd7a247f2d5a4d234489f20c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeb351583dd7a247f2d5a4d234489f20c">cpu_loop</a> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu, char *filename)</td></tr>
+<tr class="memdesc:aeb351583dd7a247f2d5a4d234489f20c"><td class="mdescLeft">&#160;</td><td class="mdescRight">处理器循环执行  <br /></td></tr>
+<tr class="separator:aeb351583dd7a247f2d5a4d234489f20c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b8675bf8eb9edc2d2c07c74d5e21f9e" id="r_a7b8675bf8eb9edc2d2c07c74d5e21f9e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7b8675bf8eb9edc2d2c07c74d5e21f9e">cpu_dump_regs</a> (<a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *cpu)</td></tr>
+<tr class="memdesc:a7b8675bf8eb9edc2d2c07c74d5e21f9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">处理器查看寄存器的值  <br /></td></tr>
+<tr class="separator:a7b8675bf8eb9edc2d2c07c74d5e21f9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>中央处理器实现 </p>
+<dl class="section author"><dt>作者</dt><dd>lancer (<a href="#" onclick="location.href='mai'+'lto:'+'lan'+'ce'+'rst'+'ad'+'ium'+'@1'+'63.'+'co'+'m'; return false;">lance<span class="obfuscator">.nosp@m.</span>rsta<span class="obfuscator">.nosp@m.</span>dium@<span class="obfuscator">.nosp@m.</span>163.<span class="obfuscator">.nosp@m.</span>com</a>) </dd></dl>
+<dl class="section version"><dt>版本</dt><dd>0.1 </dd></dl>
+<dl class="section date"><dt>日期</dt><dd>2024-01-08 </dd></dl>
+<dl class="section copyright"><dt>版权所有</dt><dd>Copyright (c) 2024 </dd></dl>
+<dl class="section note"><dt>注解</dt><dd>当编写 exec 函数时，应当注意 0 扩展与符号扩展。 例如，立即数在与寄存器中的其它值一起被操作时， 通常是符号扩展到 64 位。我们可以在需要时通过 C 语言的类型转换（int32_t) &gt; (int64_t) &gt; (u64) 来实现符号位扩展。 </dd></dl>
+</div><h2 class="groupheader">函数说明</h2>
+<a id="a7b8675bf8eb9edc2d2c07c74d5e21f9e" name="a7b8675bf8eb9edc2d2c07c74d5e21f9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b8675bf8eb9edc2d2c07c74d5e21f9e">&#9670;&#160;</a></span>cpu_dump_regs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cpu_dump_regs </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *</td>          <td class="paramname"><span class="paramname"><em>cpu</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>处理器查看寄存器的值 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cpu</td><td>中央处理器 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae08f27bf9fb7d836bb92df902ef5828d" name="ae08f27bf9fb7d836bb92df902ef5828d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae08f27bf9fb7d836bb92df902ef5828d">&#9670;&#160;</a></span>cpu_execute()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int cpu_execute </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *</td>          <td class="paramname"><span class="paramname"><em>cpu</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">u32</td>          <td class="paramname"><span class="paramname"><em>inst</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>处理器将从<code>DRAM</code>中取得并存放 在<code>inst</code>变量中的指令解码并执行。本质上是 ALU 和指令译码器的组合。 </p>
+<dl class="section note"><dt>注解</dt><dd>操作码告诉我们要对给定的地址和寄存器进行什么操作。 具体要进行什么操作取决于 3 个值： 操作码 opcode，funct3 和 funct7。 根据指令映射， 我们用以下 cpu_execute 函数对这 3 个部分进行译码。 </dd></dl>
+
+</div>
+</div>
+<a id="af31c0dc195290e2455b036c9198a23bb" name="af31c0dc195290e2455b036c9198a23bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af31c0dc195290e2455b036c9198a23bb">&#9670;&#160;</a></span>cpu_fetch()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">u32 cpu_fetch </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *</td>          <td class="paramname"><span class="paramname"><em>cpu</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>处理器从内存（DRAM）中读取指令用于执行， 并将其存入指令变量<code>inst</code>中。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cpu</td><td>中央处理器 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>u32 32-bit 指令数据 </dd></dl>
+
+</div>
+</div>
+<a id="acf95be96d2f1db5044b9d704edf739cd" name="acf95be96d2f1db5044b9d704edf739cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf95be96d2f1db5044b9d704edf739cd">&#9670;&#160;</a></span>cpu_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cpu_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *</td>          <td class="paramname"><span class="paramname"><em>cpu</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>处理器初始化给定的<code>CPU</code>， 将指针指向的<code>CPU</code>中的寄存器全部置 0， 并将程序寄存器<code>pc</code>的值设为内存的起始地址。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cpu</td><td>中央处理器 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="afe50d05d75efdfd2bf769d566cc8e675" name="afe50d05d75efdfd2bf769d566cc8e675"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe50d05d75efdfd2bf769d566cc8e675">&#9670;&#160;</a></span>cpu_load()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static u64 cpu_load </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *</td>          <td class="paramname"><span class="paramname"><em>cpu</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">u64</td>          <td class="paramname"><span class="paramname"><em>addr</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">u64</td>          <td class="paramname"><span class="paramname"><em>size</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>*处理器加载数据 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cpu</td><td>中央处理器 </td></tr>
+    <tr><td class="paramname">addr</td><td>地址 </td></tr>
+    <tr><td class="paramname">size</td><td>数据大小 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>u64 数据 </dd></dl>
+
+</div>
+</div>
+<a id="aeb351583dd7a247f2d5a4d234489f20c" name="aeb351583dd7a247f2d5a4d234489f20c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb351583dd7a247f2d5a4d234489f20c">&#9670;&#160;</a></span>cpu_loop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int cpu_loop </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *</td>          <td class="paramname"><span class="paramname"><em>cpu</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>filename</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>处理器循环执行 </p>
+<dl class="section note"><dt>注解</dt><dd>三级流水线CPU<ul>
+<li>第 1 级流水线由函数<code><a class="el" href="#af31c0dc195290e2455b036c9198a23bb" title="处理器从内存（DRAM）中读取指令用于执行， 并将其存入指令变量inst中。">cpu_fetch()</a></code>处理。</li>
+<li>第 2、3 级流水线由定义在<code><a class="el" href="cpu_8h.html" title="中央处理器头文件">cpu.h</a></code>中的函数<code><a class="el" href="#ae08f27bf9fb7d836bb92df902ef5828d" title="处理器将从DRAM中取得并存放 在inst变量中的指令解码并执行。本质上是 ALU 和指令译码器的组合。">cpu_execute()</a></code>一并处理。</li>
+<li>程序计数器<code>pc</code>在每次循环后增加 4 个字节（32 位，因为每个 RISC-V 指令长度都为 32 位）， 以获取下一条指令。因此 CPU 执行循环可以被写为下面这样： </li>
+</ul>
+</dd></dl>
+
+</div>
+</div>
+<a id="a24be27f18c18da0331c6ef74e8eb71bb" name="a24be27f18c18da0331c6ef74e8eb71bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24be27f18c18da0331c6ef74e8eb71bb">&#9670;&#160;</a></span>cpu_step()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int cpu_step </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *</td>          <td class="paramname"><span class="paramname"><em>cpu</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>step</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>处理器步进执行 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cpu</td><td>中央处理器 </td></tr>
+    <tr><td class="paramname">step</td><td>步数 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>int 错误代码 </dd></dl>
+
+</div>
+</div>
+<a id="aa006396b01c7e478ae12120fb81f58e6" name="aa006396b01c7e478ae12120fb81f58e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa006396b01c7e478ae12120fb81f58e6">&#9670;&#160;</a></span>cpu_step_one()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int cpu_step_one </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *</td>          <td class="paramname"><span class="paramname"><em>cpu</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>处理器执行一条指令 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cpu</td><td>中央处理器 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>int 错误代码 </dd></dl>
+
+</div>
+</div>
+<a id="ab9d268797991f00ce0c99da19c12589a" name="ab9d268797991f00ce0c99da19c12589a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9d268797991f00ce0c99da19c12589a">&#9670;&#160;</a></span>cpu_store()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void cpu_store </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *</td>          <td class="paramname"><span class="paramname"><em>cpu</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">u64</td>          <td class="paramname"><span class="paramname"><em>addr</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">u64</td>          <td class="paramname"><span class="paramname"><em>size</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">u64</td>          <td class="paramname"><span class="paramname"><em>value</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>*处理器存储数据 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cpu</td><td>中央处理器 </td></tr>
+    <tr><td class="paramname">addr</td><td>地址 </td></tr>
+    <tr><td class="paramname">size</td><td>数据大小 </td></tr>
+    <tr><td class="paramname">value</td><td>数据 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2bab798e5d090c5ce8e11f51221f8a2c" name="a2bab798e5d090c5ce8e11f51221f8a2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2bab798e5d090c5ce8e11f51221f8a2c">&#9670;&#160;</a></span>exec_ADDI()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void exec_ADDI </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="cpu_8h.html#a3ad72e5a5cce962e7b286804249b8585">CPU</a> *</td>          <td class="paramname"><span class="paramname"><em>cpu</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">u32</td>          <td class="paramname"><span class="paramname"><em>inst</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>立即数相加 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cpu</td><td>处理器 </td></tr>
+    <tr><td class="paramname">inst</td><td>指令 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a06ad5cd47e7b12911352840f3975e22b" name="a06ad5cd47e7b12911352840f3975e22b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06ad5cd47e7b12911352840f3975e22b">&#9670;&#160;</a></span>print_op()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void print_op </td>
+          <td>(</td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>s</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>打印操作码 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>操作码字符串 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_1befa86077b13579493366c588abc311.html">cemu</a></li><li class="navelem"><a class="el" href="cpu_8c.html">cpu.c</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
+</body>
+</html>
